@@ -116,3 +116,5 @@ rightBtn.addEventListener('mouseleave', stopMovement);
         galleryItems[i].addEventListener('click', selectItem);
     }
 })();
+
+//slide
