@@ -290,11 +290,14 @@ label {
     display: none;
 }
 
+#hotelMobileCarousel {
+    display: none;
+}
+
 .detail hr {
     margin-top: 0;
     margin-bottom: 10px;
 }
-
 
 .content-slide-place {
     margin: 0 !important
@@ -376,9 +379,15 @@ label {
     #hotelCarousel {
         display: none;
     }
+    .main-raised {
+        margin: 0
+    }
 }
 
 @media (max-width: 424px) {
+    .main-raised {
+        margin: 0
+    }
     .rating > label:before {
         font-size: 1.3em;
     }
