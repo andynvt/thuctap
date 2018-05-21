@@ -169,8 +169,12 @@ label {
 
 /*code tao*/
 
-.card .card-header {
-    padding: 8px 15px;
+.title-lq {
+    padding: 8px 15px !important;
+}
+
+.title-lq-main {
+    padding: 8px 15px !important;
 }
 
 .detail figure {
@@ -220,7 +224,7 @@ label {
     font-weight: 400 !important;
 }
 
-.nav-tabs .nav-item .nav-link {
+.title-tab-place {
     font-size: 18px !important;
     font-weight: 400
 }
@@ -228,7 +232,8 @@ label {
 #info p {
     text-align: left;
     font-size: 18px;
-    line-height: 28px
+    line-height: 28px;
+    text-align: justify
 }
 
 .fb-comments iframe {
@@ -243,7 +248,14 @@ label {
     text-align: center;
     font-size: 20px;
     font-weight: 400;
-    height: 20%;
+    margin-bottom: 0
+}
+
+.h4-ct {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px
 }
 
 .h4-in-info {
@@ -253,9 +265,13 @@ label {
 }
 
 .item-lq {
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     overflow: hidden;
-    height: 250px
+    height: 300px
+}
+
+.item-lq > div {
+    padding: 20px 0 0 0;
 }
 
 .item-lq img {
@@ -270,9 +286,139 @@ label {
     top: -45px;
 }
 
+#eatingMobileCarousel {
+    display: none;
+}
+
+.detail hr {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+
+.content-slide-place {
+    margin: 0 !important
+}
+
+.content-lq {
+    padding: 0 5px;
+}
+
 /*
 .detail h3 {
     padding: 0 15px;
     font-weight: 400
 }
 */
+
+/*responsive*/
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .title-tab-place {
+        font-size: 15px !important;
+    }
+    .title-lq-main {
+        padding: 4px 5px !important;
+    }
+    .title-lq h3 {
+        font-size: 15px !important;
+    }
+    .content-lq {
+        padding: 0;
+    }
+    .div-col6-album {
+        padding-right: 0;
+    }
+    .album-place {
+        padding-right: 0;
+    }
+}
+
+
+@media (max-width: 767px) and (min-width: 425px) {
+    .title-tab-place {
+        font-size: 15px !important;
+    }
+    .title-lq-main {
+        padding: 4px 5px !important;
+    }
+    .title-lq h3 {
+        font-size: 15px !important;
+    }
+    .item-lq {
+        padding: 0
+    }
+    .content-lq {
+        padding: 0;
+    }
+    .col-card-lq {
+        margin-left: 15px !important
+    }
+    .quick-info-place {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .info-place {
+        padding: 0
+    }
+    .col-info-place {
+        padding-right: 0
+    }
+    #eatingMobileCarousel {
+        display: block;
+    }
+    #eatingCarousel {
+        display: none;
+    }
+    #hotelMobileCarousel {
+        display: block;
+    }
+    #hotelCarousel {
+        display: none;
+    }
+}
+
+@media (max-width: 424px) {
+    .rating > label:before {
+        font-size: 1.3em;
+    }
+    .title-tab-place {
+        font-size: 15px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    .title-lq-main {
+        padding: 4px 5px !important;
+    }
+    .title-lq h3 {
+        font-size: 15px !important;
+    }
+    .content-lq {
+        padding: 0;
+    }
+    .col-card-lq {
+        margin-left: 15px !important
+    }
+    .quick-info-place {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .info-place {
+        padding: 0
+    }
+    .col-info-place {
+        padding-right: 0
+    }
+    #eatingMobileCarousel {
+        display: block;
+    }
+    #eatingCarousel {
+        display: none;
+    }
+    #hotelMobileCarousel {
+        display: block;
+    }
+    #hotelCarousel {
+        display: none;
+    }
+}
