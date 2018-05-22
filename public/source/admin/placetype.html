@@ -136,7 +136,7 @@
                             <button class="btn btn-success" data-toggle="modal" data-target="#add-type">
                                 <i class="now-ui-icons ui-1_simple-add"></i> Thêm loại mới
                             </button>
-                            <button class="btn btn-danger" data-toggle="modal">
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#delete-info">
                                 <i class="now-ui-icons ui-1_simple-remove"></i> Xóa
                             </button>
                         </div>
@@ -146,7 +146,7 @@
                                     <thead class="bg-primary" style="color: #ffffff;">
                                     <th >
                                         <div class="checkbox">
-                                            <input id="checkbox-all" type="checkbox" style="width: 20px;height: 20px;" checked="">
+                                            <input name="checkall" type="checkbox" style="width: 20px;height: 20px;" onchange="checkAll()">
                                         </div>
                                     </th><th>STT</th><th>Tên loại địa điểm</th><th>Mô tả</th><th class="text-center">Thao tác</th>
                                     </thead>
@@ -154,7 +154,7 @@
                                     <tr>
                                         <td>
                                             <div class="checkbox">
-                                                <input  type="checkbox" style="width: 20px;height: 20px;" checked="">
+                                                <input name="id_check[]" type="checkbox" style="width: 20px;height: 20px;" >
                                             </div>
                                         </td>
                                         <td>1</td><td>Địa điểm du lịch</td><td>Các địa điểm tham quan du lịch</td>
@@ -175,7 +175,7 @@
                                     <tr>
                                         <td>
                                             <div class="checkbox">
-                                                <input  type="checkbox" style="width: 20px;height: 20px;" checked="">
+                                                <input name="id_check[]"  type="checkbox" style="width: 20px;height: 20px;" >
                                             </div>
                                         </td>
                                         <td>2</td><td>Ăn uống</td><td>Các địa điểm ăn uống hấp dẫn</td>
@@ -196,7 +196,7 @@
                                     <tr>
                                         <td>
                                             <div class="checkbox">
-                                                <input  type="checkbox" style="width: 20px;height: 20px;" checked="">
+                                                <input name="id_check[]" type="checkbox" style="width: 20px;height: 20px;" >
                                             </div>
                                         </td>
                                         <td>3</td><td>Khách sạn</td><td>Các địa điểm khách sạn thoải mái</td>
@@ -299,5 +299,11 @@
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
     });
+</script>
+
+<script>
+    function checkAll() {
+        $('[name="id_check[]"]').attr('checked', $('[name="checkall"]').prop('checked'));
+    }
 </script>
 </html>
