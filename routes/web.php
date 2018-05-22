@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/danhsachdulich', function () {
+    return view('list_places.list_place');
+});
