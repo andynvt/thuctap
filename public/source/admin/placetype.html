@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="assets/img/icon-admin.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         Loại địa điểm du lịch
@@ -19,6 +19,36 @@
     <link href="assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/demo/demo.css" rel="stylesheet"/>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/jquery.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chart JS -->
+    <script src="assets/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
+    <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/demo/demo.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+        });
+        function checkAll() {
+            $('[name="id_check[]"]').attr('checked', $('[name="checkall"]').prop('checked'));
+        }
+        function sweetAlertClick() {
+            swal("Thành công", "Dữ liệu đã được xóa!", "success");
+        }
+    </script>
 </head>
 
 <body class="">
@@ -166,7 +196,7 @@
                                             </button>
 
                                             <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit-placetype">
-                                                <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                                <i class="now-ui-icons ui-2_settings-90"></i>
                                             </button>
 
                                             <button class="btn btn-danger btn-fab btn-icon btn-round" onclick="sweetAlertClick()">
@@ -187,7 +217,7 @@
                                             </button>
 
                                             <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit">
-                                                <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                                <i class="now-ui-icons ui-2_settings-90"></i>
                                             </button>
 
                                             <button class="btn btn-danger btn-fab btn-icon btn-round" onclick="sweetAlertClick()">
@@ -208,7 +238,7 @@
                                             </button>
 
                                             <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit">
-                                                <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                                <i class="now-ui-icons ui-2_settings-90"></i>
                                             </button>
 
                                             <button class="btn btn-danger btn-fab btn-icon btn-round" onclick="sweetAlertClick()">
@@ -293,7 +323,7 @@
                 <div class="table">
                     <table class="table-info">
                         <thead class="bg-info" style="font-size: 12px; color: #ffffff;">
-                        <th class="text-center" style="font-weight: bold">STT</th><th style="font-weight: bold; width: 20%">ĐỊA ĐIỂM DU LỊCH</th><th style="font-weight: bold; width: 30%">ĐỊA ĐIỂM</th><th style="font-weight: bold">MÔ TẢ SƠ LƯỢT</th>
+                        <th class="text-center" style="font-weight: bold">STT</th><th style="font-weight: bold; width: 20%">ĐỊA ĐIỂM DU LỊCH</th><th style="font-weight: bold; width: 30%">ĐỊA CHỈ</th><th style="font-weight: bold">MÔ TẢ SƠ LƯỢT</th>
                         </thead>
                         <tbody>
                         <tr>
@@ -383,49 +413,7 @@
     </div>
 </div>
 <!--  End Modal -->
-
-<div class="alert alert-success" role="alert">
-    <div class="container">
-        <div class="alert-icon">
-            <i class="now-ui-icons ui-2_like"></i>
-        </div>
-        <strong>Well done!</strong> You successfully read this important alert message.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">
-				<i class="now-ui-icons ui-1_simple-remove"></i>
-			</span>
-        </button>
-    </div>
-</div>
-
 </body>
-<!--   Core JS Files   -->
-<script src="assets/js/core/jquery.min.js"></script>
-<script src="assets/js/core/popper.min.js"></script>
-<script src="assets/js/core/bootstrap.min.js"></script>
-<script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!-- Chart JS -->
-<script src="assets/js/plugins/chartjs.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
-<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<script src="assets/demo/demo.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-    });
-    function checkAll() {
-        $('[name="id_check[]"]').attr('checked', $('[name="checkall"]').prop('checked'));
-    }
-    function sweetAlertClick() {
-        swal("Thành công", "Dữ liệu đã được xóa!", "success");
-    }
-</script>
+
 
 </html>
