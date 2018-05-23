@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="assets/img/icon-admin.png">
+    <!--<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">-->
+    <link rel="icon" type="image/png" sizes="76x76" href="assets/img/icon-admin.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         Loại địa điểm du lịch
@@ -20,6 +20,8 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="assets/demo/demo.css" rel="stylesheet"/>
 
+    <!--css place type-->
+    <link href="css/placetype.css" rel="stylesheet"/>
     <!--   Core JS Files   -->
     <script src="assets/js/core/jquery.min.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
@@ -48,6 +50,7 @@
         function sweetAlertClick() {
             swal("Thành công", "Dữ liệu đã được xóa!", "success");
         }
+
     </script>
 </head>
 
@@ -175,18 +178,28 @@
                             <div class="table">
                                 <table class="table">
                                     <thead class="bg-primary " style="font-size: 10px;color: #ffffff;">
-                                    <th>
-                                        <div class="checkbox">
-                                            <input name="checkall" type="checkbox" style="width: 20px;height: 20px;" onchange="checkAll()">
+                                    <th style="width: 5%">
+                                        <div class="form-check" >
+                                            <label class="form-check-label check-form" >
+                                                <input class="form-check-input" type="checkbox" name="checkall" onclick="checkAll()" value="">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
                                         </div>
                                     </th>
-                                    <th class="text-center" style="font-weight: bold">STT</th><th style="font-weight: bold">TÊN LOẠI DU LỊCH</th><th style="font-weight: bold">MÔ TẢ</th><th class="text-center" style="font-weight: bold">THAO TÁC</th>
+                                    <th class="text-center" >STT</th><th >TÊN LOẠI DU LỊCH</th><th >MÔ TẢ</th><th class="text-center">THAO TÁC</th>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <div class="checkbox">
-                                                <input name="id_check[]" type="checkbox" style="width: 20px;height: 20px;" >
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="id_check[]" value="">
+                                                    <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                                </label>
                                             </div>
                                         </td>
                                         <td class="text-center">1</td><td>Địa điểm du lịch</td><td>Các địa điểm tham quan du lịch</td>
@@ -206,8 +219,13 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div class="checkbox">
-                                                <input name="id_check[]"  type="checkbox" style="width: 20px;height: 20px;" >
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="id_check[]" value="">
+                                                    <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                                </label>
                                             </div>
                                         </td>
                                         <td class="text-center">2</td><td>Ăn uống</td><td>Các địa điểm ăn uống hấp dẫn</td>
@@ -227,8 +245,13 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div class="checkbox">
-                                                <input name="id_check[]" type="checkbox" style="width: 20px;height: 20px;" >
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="id_check[]" value="">
+                                                    <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                                </label>
                                             </div>
                                         </td>
                                         <td class="text-center">3</td><td>Khách sạn</td><td>Các địa điểm khách sạn thoải mái</td>
@@ -321,9 +344,9 @@
             </div>
             <div class="modal-body">
                 <div class="table">
-                    <table class="table-info">
+                    <table class="table">
                         <thead class="bg-info" style="font-size: 12px; color: #ffffff;">
-                        <th class="text-center" style="font-weight: bold">STT</th><th style="font-weight: bold; width: 20%">ĐỊA ĐIỂM DU LỊCH</th><th style="font-weight: bold; width: 30%">ĐỊA CHỈ</th><th style="font-weight: bold">MÔ TẢ SƠ LƯỢT</th>
+                        <th class="text-center">STT</th><th style="width: 20%">ĐỊA ĐIỂM DU LỊCH</th><th style="width: 30%">ĐỊA CHỈ</th><th >MÔ TẢ SƠ LƯỢT</th>
                         </thead>
                         <tbody>
                         <tr>

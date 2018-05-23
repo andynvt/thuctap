@@ -341,8 +341,6 @@ class ComposerStaticInitf184e86be23d1639c4ad2946bfc6e97c
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
-        'App\\User_First_Location' => __DIR__ . '/../..' . '/app/User_First_Location.php',
-        'App\\User_Last_Location' => __DIR__ . '/../..' . '/app/User_Last_Location.php',
         'App\\User_Location' => __DIR__ . '/../..' . '/app/User_Location.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',

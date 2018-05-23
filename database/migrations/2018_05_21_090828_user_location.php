@@ -15,10 +15,9 @@ class UserLocation extends Migration
     {
         Schema::create('user_location', function ($table) {
             $table->increments('id');
-            $table->integer('id_first')->unsigned();
-            $table->foreign('id_first')->references('id')->on('user_first_location');
-            $table->integer('id_last')->unsigned();
-            $table->foreign('id_last')->references('id')->on('user_first_location');
+            $table->string('x');
+            $table->string('y');
+            $table->timestamps();
         });
     }
 
