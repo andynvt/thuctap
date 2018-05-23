@@ -1,0 +1,340 @@
+/*map responsive*/
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+/*end map responsive*/
+
+.place-intro{
+  position: absolute;
+  top: 25%;
+  right: 15%;
+  left: 15%;
+  text-align: center;
+  color: #fff;
+}
+
+.hide-place-info-box{
+  transition: 0.8s all;
+}
+
+.hide-place-info-box > .card-header > .nav-tabs-navigation .nav-item > .nav-link > i{
+  top: 0 !important;
+}
+
+.hide-place-info-box > .card-header > .nav-tabs-navigation .nav-item > .nav-link {
+  font-size: 1.05vw !important;
+}
+
+.place-info-box {
+  padding: 0 !important;
+  bottom: 0px !important;
+  right: 20%;
+  left: 20%;
+  transition: 0.8s all;
+  z-index: 20 !important;
+}
+
+.place-info-box .card-nav-tabs {
+  margin-bottom: 0;
+}
+
+.place-intro-left {
+  text-align: right;
+}
+
+.place-intro-right {
+  text-align: left;
+}
+
+.place-intro-left > h4,
+.place-intro-right > h4 {
+  line-height: 1.5em !important;
+}
+
+.place-intro > a > h1{
+  font-size: 3.6vw !important;
+}
+
+.place-intro > a > h3{
+  font-size: 2.2vw !important;
+}
+
+.place-intro h4{
+  font-size: 1.4vw !important;
+}
+
+.responsive-card-body{
+  max-width: unset !important;
+  min-height: unset !important;
+}
+
+.responsive-card-body .tab-pane p{
+  font-size: 1.05vw !important;
+}
+
+.div-img {
+  height: 200px;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow: hidden;
+}
+
+.div-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-minimize-btn {
+  position: absolute !important; 
+  right: -41px;
+  bottom: 0; 
+  transition: 0.8s all;
+  margin: 0px !important;
+  font-size: 30px;
+}
+
+.home-minimize-btn > i {
+  position: absolute !important; 
+  top: 0 !important; 
+  transition: 0.8s all;
+}
+
+.change-slide-home-button{
+  top: 50% !important;
+  bottom: unset !important;
+}
+
+/*home-search-form*/
+#home-search-form {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999999;
+    
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+
+  -webkit-transform: translate(0px, -100%) scale(0, 0);
+  -moz-transform: translate(0px, -100%) scale(0, 0);
+  -o-transform: translate(0px, -100%) scale(0, 0);
+  -ms-transform: translate(0px, -100%) scale(0, 0);
+  transform: translate(0px, -100%) scale(0, 0);
+    
+  opacity: 0;
+}
+
+#home-search-form.open {
+  -webkit-transform: translate(0px, 0px) scale(1, 1);
+  -moz-transform: translate(0px, 0px) scale(1, 1);
+  -o-transform: translate(0px, 0px) scale(1, 1);
+  -ms-transform: translate(0px, 0px) scale(1, 1);
+  transform: translate(0px, 0px) scale(1, 1); 
+  opacity: 1;
+}
+
+#home-search-form input[type="search"] {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0);
+  font-size: 60px;
+  font-weight: 300;
+  text-align: center;
+  border: 0px;
+  margin: 0px auto;
+  margin-top: -51px;
+  padding-left: 30px;
+  padding-right: 30px;
+  outline: none;
+}
+#home-search-form .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 61px;
+  margin-left: -45px;
+}
+#home-search-form .close {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  color: #fff;
+  background-color: #9c27b0;
+  border-color: #9c27b0;
+  opacity: 1;
+  padding: 10px 17px;
+  font-size: 27px;
+}
+/*end home-search-form*/
+
+/*@media (max-width: 1366px) and (min-width: 991px){
+  .place-intro{
+    top: 20%;
+  }
+
+  .hide-place-info-box > .card-header > .nav-tabs-navigation .nav-item > .nav-link {
+    font-size: 1.35vw !important;
+  }
+
+  .place-info-box {
+    right: 10%;
+    left: 10%;
+  }
+
+  .place-intro > a > h1{
+    font-size: 3.9vw !important;
+  }
+
+  .place-intro > a > h3{
+    font-size: 2.5vw !important;
+  }
+
+  .place-intro h4 {
+    font-size: 1.7vw !important;
+  }
+
+  .responsive-card-body .tab-pane p {
+    font-size: 1.35vw !important;
+  }
+}*/
+
+/*Max-width: <= ; Min-width: >=*/
+
+@media (max-width: 991px) and (min-width: 768px){
+  .place-intro{
+    top: 20%;
+  }
+
+  .place-intro > a > h1{
+    font-size: 3.85vw !important;
+  }
+
+  .place-intro > a > h3{
+    font-size: 2.45vw !important;
+  }
+
+  .place-intro h4 {
+    font-size: 1.65vw !important;
+  }
+
+  .responsive-card-body .tab-pane p {
+    font-size: 1.3vw !important;
+  }
+
+  .hide-place-info-box > .card-header > .nav-tabs-navigation .nav-item > .nav-link {
+    font-size: 1.3vw !important;
+  }
+
+  .place-info-box {
+    right: 0;
+    left: 0;
+  }
+  
+  .responsive-card-body{
+    max-width: unset !important;
+    min-height: unset !important;
+  }
+
+  .home-minimize-btn {
+    /*left: 0;*/
+    /*top: -15px;*/
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 425px){
+  .place-intro{
+    top: 20%;
+  }
+
+  .place-intro > a > h1{
+    font-size: 4.7vw !important;
+  }
+
+  .place-intro > a > h3{
+    font-size: 3.3vw !important;
+  }
+
+  .place-intro h4 {
+    font-size: 2.5vw !important;
+  }
+
+  .responsive-card-body .tab-pane p {
+    font-size: 2.15vw !important;
+  }
+
+  .hide-place-info-box > .card-header > .nav-tabs-navigation .nav-item > .nav-link {
+    font-size: 2.15vw !important;
+  }
+
+  .place-info-box{
+    display: block !important;
+    right: 0;
+    left: 0;
+  }
+
+  .home-minimize-btn {
+    /*left: 0;*/
+    /*top: -15px;*/
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 424px){
+  .place-intro{
+    top: 20%;
+  }
+
+  .place-intro > a > h1{
+    font-size: 5.2vw !important;
+  }
+
+  .place-intro > a > h3{
+    font-size: 3.8vw !important;
+  }
+
+  .place-intro h4 {
+    font-size: 3vw !important;
+  }
+
+  .responsive-card-body .tab-pane p {
+    font-size: 2.65vw !important;
+  }
+
+  .hide-place-info-box > .card-header > .nav-tabs-navigation .nav-item > .nav-link {
+    font-size: 2.65vw !important;
+  }
+
+  .place-info-box{
+    display: block !important;
+    right: 0;
+    left: 0;
+  }
+
+  .home-minimize-btn {
+    /*left: 0;*/
+    /*top: -15px;*/
+    right: 0;
+    bottom: 0;
+  }
+}
