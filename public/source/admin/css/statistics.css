@@ -1,0 +1,20 @@
+.place-selection{
+    padding: 10px 15px;
+}
+
+.place-statistic{
+    padding: 10px 15px;
+}
+
+.tab-header{
+    background-color: #f96332 !important;
+}
+
+.tab-header a{
+    color: #fff;
+    font-style: normal !important;
+}
+
+.tab-header a:active{
+    color: #495057 !important;
+}
