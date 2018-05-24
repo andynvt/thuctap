@@ -11,4 +11,12 @@ class City extends Model
     public function places(){
     	return $this->hasMany('App\Place','id_city','id');
     }
+
+    public function place_type(){
+    	return $this->hasManyThrough('App\Place_Type','App\Place');
+    }
+
+    public function travel(){
+    	return $this->hasManyThrough('App\Travel','App\Place');
+    }
 }
