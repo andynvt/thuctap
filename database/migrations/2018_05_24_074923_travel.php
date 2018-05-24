@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserLastLocation extends Migration
+class Travel extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class UserLastLocation extends Migration
      */
     public function up()
     {
-        Schema::create('user_last_location', function ($table) {
+        Schema::create('travel', function ($table) {
             $table->increments('id');
-            $table->string('x');
-            $table->string('y');
+            $table->integer('id_place')->unsigned();
+            $table->foreign('id_place')->references('id')->on('places');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class UserLastLocation extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_last_location');
+        Schema::dropIfExists('travel');
     }
 }

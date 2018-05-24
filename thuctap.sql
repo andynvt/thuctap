@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 21, 2018 at 11:27 AM
+-- Generation Time: May 24, 2018 at 09:53 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -71,9 +71,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2018_05_21_084800_place_image', 1),
 (6, '2018_05_21_084810_feedback', 1),
 (7, '2018_05_21_084819_place_location', 1),
-(8, '2018_05_21_090816_user_first_location', 1),
-(9, '2018_05_21_090822_user_last_location', 1),
-(10, '2018_05_21_090828_user_location', 1);
+(8, '2018_05_21_090828_user_location', 1),
+(9, '2018_05_24_074923_travel', 1);
 
 -- --------------------------------------------------------
 
@@ -136,6 +135,19 @@ CREATE TABLE `place_type` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `travel`
+--
+
+CREATE TABLE `travel` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `id_place` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -152,37 +164,15 @@ CREATE TABLE `users` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_first_location`
---
-
-CREATE TABLE `user_first_location` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `x` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `y` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_last_location`
---
-
-CREATE TABLE `user_last_location` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `x` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `y` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user_location`
 --
 
 CREATE TABLE `user_location` (
   `id` int(10) UNSIGNED NOT NULL,
-  `id_first` int(10) UNSIGNED NOT NULL,
-  `id_last` int(10) UNSIGNED NOT NULL
+  `x` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `y` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -237,6 +227,13 @@ ALTER TABLE `place_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `travel`
+--
+ALTER TABLE `travel`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `travel_id_place_foreign` (`id_place`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -244,24 +241,10 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `user_first_location`
---
-ALTER TABLE `user_first_location`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_last_location`
---
-ALTER TABLE `user_last_location`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `user_location`
 --
 ALTER TABLE `user_location`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_location_id_first_foreign` (`id_first`),
-  ADD KEY `user_location_id_last_foreign` (`id_last`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -283,7 +266,7 @@ ALTER TABLE `feedbacks`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `places`
@@ -310,21 +293,15 @@ ALTER TABLE `place_type`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `travel`
+--
+ALTER TABLE `travel`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_first_location`
---
-ALTER TABLE `user_first_location`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_last_location`
---
-ALTER TABLE `user_last_location`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -363,11 +340,10 @@ ALTER TABLE `place_location`
   ADD CONSTRAINT `place_location_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`);
 
 --
--- Constraints for table `user_location`
+-- Constraints for table `travel`
 --
-ALTER TABLE `user_location`
-  ADD CONSTRAINT `user_location_id_first_foreign` FOREIGN KEY (`id_first`) REFERENCES `user_first_location` (`id`),
-  ADD CONSTRAINT `user_location_id_last_foreign` FOREIGN KEY (`id_last`) REFERENCES `user_first_location` (`id`);
+ALTER TABLE `travel`
+  ADD CONSTRAINT `travel_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
