@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         Now UI Dashboard by Creative Tim
@@ -14,10 +14,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/now-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link href="assets/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -129,11 +129,10 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Bảng danh sách địa điểm</h4>
+                                <h4 class="card-title title">Bảng danh sách địa điểm</h4>
                             </div>
                             <div class="card-body">
-                                <button style="font-size: 15px" type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#add-place"><i class="now-ui-icons ui-1_simple-add"></i>  Thêm địa điểm</button>
-
+                                <button style="font-size: 15px" type="button" class="btn btn-primary btn-round" onclick="window.location.href='placeadd.html'"><i class="now-ui-icons ui-1_simple-add"></i> Thêm địa điểm</button>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead class=" text-primary">
@@ -172,8 +171,8 @@
                                                     <i class="now-ui-icons travel_info"></i>
                                                     </button>
 
-                                                    <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit">
-                                                    <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-round" onclick="window.location.href='placeedit.html'">
+                                                    <i class="now-ui-icons ui-2_settings-90"></i>
                                                     </button>
 
                                                     <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal" data-target="#delete">
@@ -199,8 +198,8 @@
                                                     <i class="now-ui-icons travel_info"></i>
                                                     </button>
 
-                                                    <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit">
-                                                    <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-round" onclick="window.location.href='placeedit.html'">
+                                                    <i class="now-ui-icons ui-2_settings-90"></i>
                                                     </button>
 
                                                     <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal" data-target="#delete">
@@ -226,8 +225,8 @@
                                                     <i class="now-ui-icons travel_info"></i>
                                                     </button>
 
-                                                    <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit">
-                                                    <i class="now-ui-icons design-2_ruler-pencil"></i>
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-round" onclick="window.location.href='placeedit.html'">
+                                                    <i class="now-ui-icons ui-2_settings-90"></i>
                                                     </button>
 
                                                     <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal" data-target="#delete">
@@ -245,72 +244,89 @@
             </div>
 
 
-            <div class="modal fade" id="add-place" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+            <div class="modal fade bd-example-modal-lg" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLabel">Thêm nhân viên mới</h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                            <h3 class="modal-title" id="exampleModalLabel">Thông tin XXX</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post">
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Họ tên nhân viên</label>
-                                    <input type="text" class="form-control" name="name" minlength="2" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Ngày sinh</label>
-                                    <input type="date" class="form-control" name="dob" min="1900-01-01" max="2100-01-01" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Giới tính</label>
-                                    <div class="form-check form-check-radio">
-                                        <label class="form-check-label col-lg-2">
-                                    <input class="form-check-input" type="radio" name="gender" value="Nam" checked>
-                                    Nam
-                                    <span class="circle">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
-                                        <label class="form-check-label col-lg-2">
-                                    <input class="form-check-input" type="radio" name="gender" value="Nữ">
-                                    Nữ
-                                    <span class="circle">
-                                        <span class="check"></span>
-                                    </span>
-                                </label>
+                            <form method="">
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <div class="form-group">
+                                            <label for="name">Tên</label>
+                                            <input type="text" name="name" value="XXX" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="type">Loại</label>
+                                            <input type="text" name="type" value="XXX" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">Thành phố</label>
+                                            <input type="text" name="city" value="XXX" class="form-control" disabled>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Số CMND</label>
-                                    <input type="text" class="form-control" name="id_card" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Ngày cấp</label>
-                                    <input type="date" class="form-control" name="doi" min="1900-01-01" max="2100-01-01" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Quê quán</label>
-                                    <input type="text" class="form-control" name="hometown" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Địa chỉ thường trú</label>
-                                    <input type="text" class="form-control" name="address" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Địa chỉ hiện nay</label>
-                                    <input type="text" class="form-control" name="current_address" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="bmd-label-floating">Số điện thoại</label>
-                                    <input type="text" class="form-control" name="phone" required>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="address">Địa chỉ</label>
+                                            <input type="text" name="address" value="XXX" class="form-control" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Link Google Map</label>
+                                            <input type="link" name="map" value="XXX" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="full_des">Mô tả ngắn gọn</label>
+                                            <textarea rows="5" class="form-control" id="short_des" name="short_des" disabled>XXX</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="short_des">Mô tả đầy đủ</label>
+                                            <textarea rows="5" class="form-control" id="full_des" name="full_des" disabled>XXX</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="images" disabled>Hình ảnh: </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
                                     <span></span>
                                     <button type="submit" class="btn btn-primary btn-round" name="add-emp">LƯU LẠI</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel">Xác nhận xoá XXX</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>Thao tác này sẽ mất dữ liệu</h4>
+                                        <h4>Bạn có chắc chắn muốn xoá XXX ?</h4>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
+                                    <span></span>
+                                    <button type="submit" class="btn btn-primary btn-round" name="del-place">XOÁ</button>
                                 </div>
                             </form>
                         </div>
@@ -335,20 +351,20 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/js/core/jquery.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chart JS -->
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="assets/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
+    <script src="assets/js/now-ui-dashboard.min.js?v=1.1.0" type="text/javascript"></script>
     <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-    <script src="../assets/demo/demo.js"></script>
+    <script src="assets/demo/demo.js"></script>
 </body>
 
 </html>

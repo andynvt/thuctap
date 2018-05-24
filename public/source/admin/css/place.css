@@ -1,0 +1,13 @@
+.gallery {
+    display: inline-block;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+}
+
+.gallery img {
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}
