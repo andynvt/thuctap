@@ -158,7 +158,7 @@ INSERT INTO `place_image` VALUES ('3', '1', 'cho-noi-2.jpg');
 INSERT INTO `place_image` VALUES ('4', '2', 'ben-ninh-kieu.jpg');
 INSERT INTO `place_image` VALUES ('5', '2', 'ben-ninh-kieu-du-thuyen.jpg');
 INSERT INTO `place_image` VALUES ('6', '2', 'ben-ninh-kieu-can-tho.jpg');
-INSERT INTO `place_image` VALUES ('7', '3', 'Khu_du_lịch_Mỹ_Khánh.jpg');
+INSERT INTO `place_image` VALUES ('7', '3', 'Lang-du-lich-My-khanh.jpg');
 INSERT INTO `place_image` VALUES ('8', '3', 'Lang-du-lich-My-Khanh-1.jpg');
 INSERT INTO `place_image` VALUES ('9', '3', 'Lang-du-lich-My-Khanh-2.jpg');
 INSERT INTO `place_image` VALUES ('10', '4', 'vuon-co-bang-lang.jpg');

@@ -38,7 +38,7 @@ class PlaceImageTableSeeder extends Seeder
         	],
 			[
             	'id_place' => '3',
-            	'name' => 'Khu_du_lịch_Mỹ_Khánh.jpg'            	
+            	'name' => 'Lang-du-lich-My-khanh.jpg'
         	],
         	[
             	'id_place' => '3',

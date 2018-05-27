@@ -66,18 +66,17 @@
                                         <h3 class="title text-primary">ĐỊA ĐIỂM DU LỊCH</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
+                                    @foreach($result_lp as $rlp)
                                     <div class="item-place">
                                         <div class="row">
-                                            <div class="col-6">
-                                                <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Rounded Image"
-                                                                 class="img-raised rounded img-fluid"></a>
+                                            <div class="col-6 img-div" >
+                                                <a href="#"><img src="source/admin/images/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
+                                                                 class="img-raised rounded img-fluid a-img"></a>
                                             </div>
                                             <div class="col-6 float-left">
-                                                <h3 style="margin-top: 0"><a href="#">Chợ nổi Cái Răng <br></a>
+                                                <h3 style="margin-top: 0"><a href="#">{{$rlp -> pname}}<br></a>
                                                 </h3>
-                                                <p class="">
-                                                    Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
-                                                    km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến Ninh Kiều.
+                                                <p class=""> {{$rlp -> short_des}}
                                                     <br>
                                                 </p>
                                                 <div class="star-rating">
@@ -97,69 +96,81 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="item-place">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Rounded Image"
-                                                                 class="img-raised rounded img-fluid"></a>
-                                            </div>
-                                            <div class="col-6">
-                                                <h3 style="margin-top: 0"><a href="#">Chợ nổi Cái Răng <br></a>
-                                                </h3>
-                                                <p class="">
-                                                    Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
-                                                    km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến Ninh Kiều.
-                                                    <br>
-                                                </p>
-                                                <div class="star-rating">
-                                                    <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                    <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                    <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                    <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                    <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                        @endforeach
+                                </section>
+                                <section class="list-place" id="eatDrink">
+                                    <div class="title-dl ">
+                                        <h3 class="title text-primary">Ăn uống</h3>
+                                    </div>
+                                    <hr class="text-primary" style="border: 2px solid">
+                                    @foreach($result_led as $rled)
+                                        <div class="item-place">
+                                            <div class="row">
+                                                <div class="col-6 img-div">
+                                                    <a href="#"><img src="source/admin/images/{{$rled -> piname}}" alt="{{$rled -> pname}}"
+                                                                     class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
-                                                <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                <div class="readMore float-right">
-                                                    <button class="btn btn-primary btn-round btn-sm">
-                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                <div class="col-6 float-left">
+                                                    <h3 style="margin-top: 0"><a href="#">{{$rled -> pname}}<br></a>
+                                                    </h3>
+                                                    <p class=""> {{$rled -> short_des}}
+                                                        <br>
+                                                    </p>
+                                                    <div class="star-rating">
+                                                        <img src="source/customer/images/star-on.png" alt="1" title="bad">
+                                                        <img src="source/customer/images/star-on.png" alt="2" title="poor">
+                                                        <img src="source/customer/images/star-on.png" alt="3" title="regular">
+                                                        <img src="source/customer/images/star-on.png" alt="4" title="good">
+                                                        <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                    </div>
+                                                    <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
+                                                    <div class="readMore float-right">
+                                                        <button class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr>
+                                    @endforeach
+                                </section>
+                                <section class="list-place" id="hotel">
+                                    <div class="title-dl ">
+                                        <h3 class="title text-primary">Khách sạn</h3>
                                     </div>
-                                    <hr>
-                                    <div class="item-place">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Rounded Image"
-                                                                 class="img-raised rounded img-fluid"></a>
-                                            </div>
-                                            <div class="col-6 float-left">
-                                                <h3 style="margin-top: 0"><a href="#">Chợ nổi Cái Răng <br></a>
-                                                </h3>
-                                                <p >
-                                                    Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
-                                                    km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến Ninh Kiều.
-                                                    <br>
-                                                </p>
-                                                <div class="star-rating">
-                                                    <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                    <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                    <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                    <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                    <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                    <hr class="text-primary" style="border: 2px solid">
+                                    @foreach($result_lh as $rlh)
+                                        <div class="item-place">
+                                            <div class="row">
+                                                <div class="col-6 img-div">
+                                                    <a href="#"><img src="source/admin/images/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
+                                                                     class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
-                                                <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                <div class="readMore float-right">
-                                                    <button class="btn btn-primary btn-round btn-sm">
-                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                <div class="col-6 float-left">
+                                                    <h3 style="margin-top: 0"><a href="#">{{$rlh -> pname}}<br></a>
+                                                    </h3>
+                                                    <p class=""> {{$rlh -> short_des}}
+                                                        <br>
+                                                    </p>
+                                                    <div class="star-rating">
+                                                        <img src="source/customer/images/star-on.png" alt="1" title="bad">
+                                                        <img src="source/customer/images/star-on.png" alt="2" title="poor">
+                                                        <img src="source/customer/images/star-on.png" alt="3" title="regular">
+                                                        <img src="source/customer/images/star-on.png" alt="4" title="good">
+                                                        <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                    </div>
+                                                    <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
+                                                    <div class="readMore float-right">
+                                                        <button class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <hr>
-
+                                        <hr>
+                                    @endforeach
                                 </section>
                             </div>
 
@@ -170,18 +181,17 @@
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     <div class="row">
+                                        @foreach($result_lp as $rslp)
                                         <div class="col-6">
                                             <div class="card">
-                                                <div class="card-header-image">
-                                                    <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Rounded Image"
-                                                                     class="img-raised rounded img-fluid"></a>
+                                                <div class="card-header-image img-div">
+                                                    <a href="#"><img src="source/admin/images/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
+                                                                     class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><a href="#">Chợ nổi Cái Răng <br></a></h5>
+                                                <div class="card-body div-body">
+                                                    <h5 class="card-title"><a href="#">{{$rslp -> pname}}<br></a></h5>
                                                     <p class="card-text float-left">
-                                                        Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
-                                                        km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến
-                                                        Ninh Kiều.
+                                                        {{$rslp -> short_des}}
                                                         <br>
                                                     </p>
                                                     <div class="star-rating">
@@ -193,84 +203,89 @@
                                                     </div>
                                                     <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                 </div>
-                                                <div class="card-footer ">
+                                                <div class="card-footer div-footer">
                                                     <button class="btn btn-primary btn-round btn-sm">
                                                         <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="card">
-                                                <div class="card-header-image">
-                                                    <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Rounded Image"
-                                                                     class="img-raised rounded img-fluid"></a>
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><a href="#">Chợ nổi Cái Răng <br></a></h5>
-                                                    <p class="card-text float-left">
-                                                        Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
-                                                        km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến
-                                                        Ninh Kiều.
-                                                        <br>
-                                                    </p>
-                                                    <div class="star-rating">
-                                                        <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                        <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                        <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                        <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                        <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
-                                                    </div>
-                                                    <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <button class="btn btn-primary btn-round btn-sm">
-                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="card">
-                                                <div class="card-header-image">
-                                                    <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Rounded Image"
-                                                                     class="img-raised rounded img-fluid"></a>
-                                                </div>
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><a href="#">Chợ nổi Cái Răng <br></a></h5>
-                                                    <p class="card-text float-left">
-                                                        Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
-                                                        km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến
-                                                        Ninh Kiều.
-                                                        <br>
-                                                    </p>
-                                                    <div class="star-rating">
-                                                        <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                        <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                        <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                        <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                        <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
-                                                    </div>
-                                                    <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <button class="btn btn-primary btn-round btn-sm">
-                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                            @endforeach
                                     </div>
                                 </section>
-                            </div>
-                            <div class="tab-pane" id="map">
-                                <div class="map-responsive">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.7926945322533!2d105.7870708008999!3d10.03395864279271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a2111cf0ed%3A0x4c8a499d81395168!2zQ8O0bmcgVmnDqm4gQsOqzIFuIE5pbmggS2nhu4F1IEPhuqduIFRoxqE!5e0!3m2!1svi!2s!4v1526614378134" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="comment">
-                                <div class="fb-cmt">
-                                    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5" style="width: 100%;"></div>
-                                </div>
+                                <section class="list-place" id="eatDrink-1">
+                                    <div class="title-dl ">
+                                        <h3 class="title text-primary">Ăn uống</h3>
+                                    </div>
+                                    <hr class="text-primary" style="border: 2px solid">
+                                    <div class="row">
+                                        @foreach($result_led as $rsled)
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-header-image img-div">
+                                                        <a href="#"><img src="source/admin/images/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
+                                                                         class="img-raised rounded img-fluid a-img"></a>
+                                                    </div>
+                                                    <div class="card-body div-body">
+                                                        <h5 class="card-title"><a href="#">{{$rsled -> pname}}<br></a></h5>
+                                                        <p class="card-text float-left">
+                                                            {{$rsled -> short_des}}
+                                                            <br>
+                                                        </p>
+                                                        <div class="star-rating">
+                                                            <img src="source/customer/images/star-on.png" alt="1" title="bad">
+                                                            <img src="source/customer/images/star-on.png" alt="2" title="poor">
+                                                            <img src="source/customer/images/star-on.png" alt="3" title="regular">
+                                                            <img src="source/customer/images/star-on.png" alt="4" title="good">
+                                                            <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                        </div>
+                                                        <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
+                                                    </div>
+                                                    <div class="card-footer div-footer">
+                                                        <button class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </section>
+                                <section class="list-place" id="hotel-1">
+                                    <div class="title-dl ">
+                                        <h3 class="title text-primary">Khách sạn</h3>
+                                    </div>
+                                    <hr class="text-primary" style="border: 2px solid">
+                                    <div class="row">
+                                        @foreach($result_lh as $rslh)
+                                            <div class="col-6">
+                                                <div class="card">
+                                                    <div class="card-header-image img-div">
+                                                        <a href="#"><img src="source/admin/images/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
+                                                                         class="img-raised rounded img-fluid a-img"></a>
+                                                    </div>
+                                                    <div class="card-body div-body">
+                                                        <h5 class="card-title"><a href="#">{{$rslh -> pname}}<br></a></h5>
+                                                        <p class="card-text float-left">
+                                                            {{$rslh -> short_des}}
+                                                            <br>
+                                                        </p>
+                                                        <div class="star-rating">
+                                                            <img src="source/customer/images/star-on.png" alt="1" title="bad">
+                                                            <img src="source/customer/images/star-on.png" alt="2" title="poor">
+                                                            <img src="source/customer/images/star-on.png" alt="3" title="regular">
+                                                            <img src="source/customer/images/star-on.png" alt="4" title="good">
+                                                            <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                        </div>
+                                                        <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
+                                                    </div>
+                                                    <div class="card-footer div-footer">
+                                                        <button class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </section>
                             </div>
                         </div>
                     </div>
@@ -283,27 +298,15 @@
                 </div>
                 <br>
                 <div class="col-12 content-top text-center">
+                    @foreach($result_top as $rstop)
                     <div class="item-top">
-                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="source/admin/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
                         <div class="">
-                            <p class="h4-top"><a href="#">Chợ nổi Cái Răng</a></p>
+                            <p class="h4-top"><a href="#">{{$rstop -> pname}}</a></p>
                         </div>
                     </div>
                     <hr>
-                    <div class="item-top">
-                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                        <div class="">
-                            <p class="h4-top"><a href="#">Chợ nổi Cái Răng</a></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="item-top">
-                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                        <div class="">
-                            <p class="h4-top"><a href="#">Chợ nổi Cái Răng</a></p>
-                        </div>
-                    </div>
-                    <hr>
+                        @endforeach
                 </div>
             </div>
         </div>

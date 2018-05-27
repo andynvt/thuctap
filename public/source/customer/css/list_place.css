@@ -104,6 +104,7 @@ p.h4-top{
     .main-raised {
         margin: 0
     }
+
     .title-bg{
         font-size: 15px !important;
     }
@@ -128,7 +129,26 @@ p.h4-top{
     .col-card-top {
         margin-left: 15px !important
     }
+    #liModule{
+        display: none;
+    }
 
+}
+.div-body{
+    object-fit: cover;
+    height: 270px;
+}
+.img-div{
+    object-fit: cover;
+    height: 300px;
+}
+.a-img{
+    width: 100%;
+    height: 100%;
+}
+.div-footer{
+    object-fit: cover;
+    height: 50px;
 }
 /*Ribbon*/
 .box {

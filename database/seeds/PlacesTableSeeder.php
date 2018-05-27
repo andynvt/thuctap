@@ -120,8 +120,8 @@ Có món lẩu mắn theo cá nhân thì ngon',
             	'id_city' => '1',
             	'name' => 'Nước Mía Mỹ Tho MT68',
             	'short_des' => 'Trời nóng thì uống gì, ừ thì nước mía chứ còn gì nữa.
-Ly nước mía ngọt lịm, có thạch khóm, rau câu, mít và không thể nào thiếu được đậu phộng. Tưởng như những thứ đó không hề liên quan nhau, nhưng khí kết hợp lại thì thật tuyệt vời. Nước mía ngọ lịm, chua chua của tắc, mít lại thơm thơm cùng cái vị béo bùi của đậu phộng. Thật tuyệt vời.
-Ngoài ra ở quán còn có những món ăn vặt nhà quê như: bánh chuối, bánh lá.....',
+            Ly nước mía ngọt lịm, có thạch khóm, rau câu, mít và không thể nào thiếu được đậu phộng. Tưởng như những thứ đó không hề liên quan nhau, nhưng khí kết hợp lại thì thật tuyệt vời. Nước mía ngọ lịm, chua chua của tắc, mít lại thơm thơm cùng cái vị béo bùi của đậu phộng. Thật tuyệt vời.
+            Ngoài ra ở quán còn có những món ăn vặt nhà quê như: bánh chuối, bánh lá.....',
             	'full_des' => '',
             	'map' => 'https://www.google.com/maps/place/N%C6%B0%E1%BB%9Bc+M%C3%ADa+M%E1%BB%B9+Tho+MT68/@10.0287067,105.7720223,17z/data=!3m1!4b1!4m5!3m4!1s0x31a0882396e43b3d:0x717ec2a4db3f7952!8m2!3d10.0287014!4d105.774211',
             	'address' => 'Mạc Thiên Tích, Xuân Khánh, Ninh Kiều, Cần Thơ',
