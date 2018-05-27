@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="list_place">
-    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./source/customer/images/backgroup_listplace.jpg');">
+    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('source/customer/images/backgroup_listplace.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
@@ -74,7 +74,7 @@
                                     <div class="item-place">
                                         <div class="row">
                                             <div class="col-6 img-div" >
-                                                <a href="#"><img src="source/admin/images/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
+                                                <a href="#"><img src="source/customer/images/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
                                                                  class="img-raised rounded img-fluid a-img"></a>
                                             </div>
                                             <div class="col-6 float-left">
@@ -111,7 +111,7 @@
                                         <div class="item-place">
                                             <div class="row">
                                                 <div class="col-6 img-div">
-                                                    <a href="#"><img src="source/admin/images/{{$rled -> piname}}" alt="{{$rled -> pname}}"
+                                                    <a href="#"><img src="source/customer/images/{{$rled -> piname}}" alt="{{$rled -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="col-6 float-left">
@@ -148,7 +148,7 @@
                                         <div class="item-place">
                                             <div class="row">
                                                 <div class="col-6 img-div">
-                                                    <a href="#"><img src="source/admin/images/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
+                                                    <a href="#"><img src="source/customer/images/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="col-6 float-left">
@@ -189,7 +189,7 @@
                                         <div class="col-6">
                                             <div class="card">
                                                 <div class="card-header-image img-div">
-                                                    <a href="#"><img src="source/admin/images/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
+                                                    <a href="#"><img src="source/customer/images/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="card-body div-body">
@@ -226,7 +226,7 @@
                                             <div class="col-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
-                                                        <a href="#"><img src="source/admin/images/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
+                                                        <a href="#"><img src="source/customer/images/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
@@ -263,7 +263,7 @@
                                             <div class="col-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
-                                                        <a href="#"><img src="source/admin/images/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
+                                                        <a href="#"><img src="source/customer/images/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
@@ -304,7 +304,7 @@
                 <div class="col-12 content-top text-center">
                     @foreach($result_top as $rstop)
                     <div class="item-top">
-                        <a href="#"><img src="source/admin/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
                         <div class="">
                             <p class="h4-top"><a href="#">{{$rstop -> pname}}</a></p>
                         </div>
