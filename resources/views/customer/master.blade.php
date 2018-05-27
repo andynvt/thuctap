@@ -26,6 +26,7 @@
 	<script src="source/customer/assets/js/core/popper.min.js" type="text/javascript"></script>
 	<script src="source/customer/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
 	<script src="source/customer/assets/js/plugins/moment.min.js"></script>
+
 	<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
 	<script src="source/customer/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
 	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
@@ -33,8 +34,7 @@
 	<!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
 	<script src="source/customer/assets/js/material-kit.js?v=2.0.3" type="text/javascript"></script>
 
-	{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
-
+	{{-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> --}}
 	<script>
 	    $(document).ready(function () {
 	        //init DateTimePickers
@@ -45,15 +45,11 @@
 	    });
 	</script>
 
-	{{-- Style css --}}
+	{{-- Style --}}
+		{{-- Css --}}
 		<link rel="stylesheet" href="source/customer/css/style.css">
-
-	{{-- List place --}}
-		<!--CSS -->
-	    <link rel="stylesheet" href="source/customer/css/list_place.css">
-	    <link rel="stylesheet" href="source/customer/css/style.css">
-	    {{-- Js --}}
-		<script src="source/customer/js/list_place.js"></script>
+		{{-- Js --}}
+		<script src="source/customer/js/scrolltop.js"></script>
 
 	{{-- Intro --}}
 		{{-- Css --}}
@@ -62,6 +58,19 @@
 	    <script src="source/customer/js/trangchu.js"></script>
 	    <script src="source/customer/js/time.js"></script>
 
+	{{-- List place --}}
+		{{-- Css --}}
+	    <link rel="stylesheet" href="source/customer/css/list_place.css">
+	    <link rel="stylesheet" href="source/customer/css/style.css">
+	    {{-- Js --}}
+		<script src="source/customer/js/list_place.js"></script>
+
+	{{-- Detail place --}}
+		{{-- Css --}}
+	    <link rel="stylesheet" href="source/customer/css/detail.css"/>
+	    {{-- Js --}}
+	    <script src="source/customer/js/detail.js"></script>
+
 </head>
 
 <body class="sidebar-collapse">
@@ -69,7 +78,7 @@
 	{{-- header --}}
     <!--<section id="home">-->
     <div class="menuNav">
-        @include('customer.header')
+        @yield('header')
     </div>
     <!--</section>-->
     {{-- end header --}}
@@ -80,7 +89,8 @@
 
 	{{-- footer --}}
 	<footer class="footer" data-background-color="black">
-	    @include('customer.footer')
+	    {{-- @include('customer.footer') --}}
+	    @yield('footer')
 	</footer>
 	{{-- end footer --}}
 

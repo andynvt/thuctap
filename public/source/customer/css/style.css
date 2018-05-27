@@ -1,3 +1,18 @@
 .carousel-item > img {
 	filter: brightness(0.5);
 }
+
+
+/*scroll top btn*/
+.scrollToTop{
+    position:fixed;
+    bottom:75px;
+    right:40px;
+    z-index: 10;
+    border-radius: 100%;
+    padding: 15px;
+}
+.scrollToTop:hover{
+    text-decoration:none;
+}
+/*end scroll top btn*/

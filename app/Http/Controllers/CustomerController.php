@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Console\Scheduling\Schedule;
 use Session;
+<<<<<<< HEAD
 class CustomerController extends Controller
 {
    public function CustomerListplace()
@@ -48,7 +49,28 @@ class CustomerController extends Controller
    public function CustomerDetailplace()
    {
 
+=======
+use DB;
+
+class CustomerController extends Controller
+{
+
+	public function CustomerIntro(){
+   		return view('customer.pages.intro');
+   	}
+
+   	public function CustomerListplace(){
+   		$data = Place::leftjoin('place_image','places.id','=','place_image.id_place')
+                    ->groupBy('places.id')
+                    ->get();
+       // dd($data);
+   		return view('customer.pages.listplace');
+   	}
+
+   	public function CustomerDetailplace(){
+
+>>>>>>> d123841ab6798e1878e4f732a7aa40f59cd99fca
    		return view('customer.pages.detailplace');
-   }
+   	}
 }
 
