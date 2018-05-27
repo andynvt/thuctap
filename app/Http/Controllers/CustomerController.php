@@ -48,7 +48,14 @@ class CustomerController extends Controller
 
 
     public function CustomerIntro(){
-        return view('customer.pages.intro');
+        $intro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
+                    ->leftjoin('place_image as pimg', 'pimg.id_place', '=', 'places.id')
+                    ->where('places.id_city', 1)
+                    ->groupBy('places.id')
+                    ->select('places.id as pid', 'places.name as pname', 'places.short_des', 'places.address', 'places.map', 'pimg.name as pimage', 'pt.name as ptname')
+                    ->get();
+
+        return view('customer.pages.intro', compact('intro'));
     }
 
 

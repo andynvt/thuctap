@@ -65,187 +65,71 @@
 	            <div class="card card-raised card-carousel" style="margin: 0">
 	              <div id="carouselhomeimg" class="carousel slide" data-ride="carousel" data-interval="false" style="height: 100vh">
 	                <div class="carousel-inner">
-	                  <div class="carousel-item active">
-	                    <img class="d-block w-100" src="./source/customer/assets/img/bg2.jpg" alt="First slide" style="height: 100vh">
-	                    <div class="place-intro">
-	                      <a href="#" style="color: white">
-	                        <h3>Địa điểm gần đây</h3>
-	                        <h1>Bến Ninh Kiều</h1>
-	                        <div class="row">
-	                          <div class="col-6 place-intro-left">
-	                            <h4>Địa chỉ:</h4>
-	                            <h4>Khoảng cách:</h4>
-	                            <h4>Đánh giá:</h4>
-	                            <h4>Loại hình:</h4>
-	                          </div>
-	                          <div class="col-6 place-intro-right">
-	                            <h4>Kế sông Hậu</h4>
-	                            <h4>3km</h4>
-	                            <h4>4.3 / 5 (20 đánh giá)</h4>
-	                            <h4>Vui chơi</h4>
-	                          </div>
-	                        </div>
-	                      </a>
-	                    </div>
 
-	                    <div class="carousel-caption d-none d-md-block place-info-box">
-	                      <div class="brand">
-	                        <div class="card card-nav-tabs hide-place-info-box">
-	                          <div class="card-header card-header-primary">
-	                            <div class="nav-tabs-navigation">
-	                              <div class="nav-tabs-wrapper" style="position: relative;">
-	                                <ul class="nav nav-tabs" data-tabs="tabs">
-	                                  <li class="nav-item">
-	                                    <a class="nav-link active" href="#descript" data-toggle="tab">
-	                                      <i class="material-icons">description</i> Mô tả
-	                                    </a>
-	                                  </li>
-	                                  <li class="nav-item">
-	                                    <a class="nav-link" href="#" data-target="#modalimg" data-toggle="modal">
-	                                      <i class="material-icons">insert_photo</i> Hình ảnh
-	                                    </a>
-	                                  </li>
-	                                </ul>
-	                              </div>
-	                            </div>
-	                          </div>
-	                          <div class="card-body responsive-card-body">
-	                            <div class="tab-content text-center">
-	                              <div class="tab-pane active" id="descript">
-	                                <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-	                              </div>
-	                              <div class="tab-pane" id="photo">
-	                                <div class="col-md-12 place-info-img">
-	                                </div>
-	                              </div>
-	                            </div>
-	                          </div>
-	                        </div>
-	                      </div>
-	                      <button class="btn btn-primary btn-fab home-minimize-btn"><i class="material-icons">keyboard_arrow_up</i></button>
-	                    </div>
-	                  </div>
+	                	@foreach($intro as $it)
+                  		<div class="carousel-item">
+		                    <img class="d-block w-100" src="source/customer/images/{{ $it->pimage }}" alt="First slide" style="height: 100vh">
+		                    <div class="place-intro">
+		                      	<a href="#" style="color: white">
+			                        <h3>Địa điểm gần đây</h3>
+			                        <h1>{{ $it->pname }}</h1>
+			                        <div class="row">
+		                          		<div class="col-6 place-intro-left">
+				                            <h4>Địa chỉ:</h4>
+				                            <h4>Khoảng cách:</h4>
+				                            <h4>Đánh giá:</h4>
+				                            <h4>Loại hình:</h4>
+		                          		</div>
+			                          	<div class="col-6 place-intro-right">
+				                            <h4>{{ $it->address }}</h4>
+				                            <h4>3km</h4>
+				                            <h4>4.3 / 5 (20 đánh giá)</h4>
+				                            <h4>{{ $it->ptname }}</h4>
+			                          	</div>
+			                        </div>
+		                      	</a>
+		                    </div>
+		                    <div class="carousel-caption d-none d-md-block place-info-box">
+		                      <div class="brand">
+		                        <div class="card card-nav-tabs hide-place-info-box">
+		                          <div class="card-header card-header-primary">
+		                            <div class="nav-tabs-navigation">
+		                              <div class="nav-tabs-wrapper" style="position: relative;">
+		                                <ul class="nav nav-tabs" data-tabs="tabs">
+		                                  <li class="nav-item">
+		                                    <a class="nav-link active" href="#descript" data-toggle="tab">
+		                                      <i class="material-icons">description</i> Mô tả
+		                                    </a>
+		                                  </li>
+		                                  <li class="nav-item">
+		                                    <a class="nav-link" href="#" data-target="#modalimg" data-toggle="modal">
+		                                      <i class="material-icons">insert_photo</i> Hình ảnh
+		                                    </a>
+		                                  </li>
+		                                </ul>
+		                              </div>
+		                            </div>
+		                          </div>
+		                          <div class="card-body responsive-card-body">
+		                            <div class="tab-content text-center">
+		                              <div class="tab-pane active" id="descript">
+		                                <p> {{ $it->short_des }} </p>
+		                              </div>
+		                              <div class="tab-pane" id="photo">
+		                                <div class="col-md-12 place-info-img">
+		                                </div>
+		                              </div>
+		                            </div>
+		                          </div>
+		                        </div>
+		                      </div>
+		                      <button class="btn btn-primary btn-fab home-minimize-btn"><i class="material-icons">keyboard_arrow_up</i></button>
+		                    </div>
+                  		</div>
+	                  	@endforeach
 
-	                  <div class="carousel-item">
-	                    <img class="d-block w-100" src="./source/customer/assets/img/bg3.jpg" alt="Second slide" style="filter: brightness(0.5);height: 100vh">
-	                    <div class="place-intro">
-	                      <a href="#" style="color: white">
-	                        <h3>Địa điểm gần đây</h3>
-	                        <h1>Đà Lạt</h1>
-	                        <div class="row">
-	                          <div class="col-6 place-intro-left">
-	                            <h4>Địa chỉ:</h4>
-	                            <h4>Khoảng cách:</h4>
-	                            <h4>Đánh giá:</h4>
-	                            <h4>Loại hình:</h4>
-	                          </div>
-	                          <div class="col-6 place-intro-right">
-	                            <h4>Đồng Nai</h4>
-	                            <h4>370km</h4>
-	                            <h4>4.7 / 5 (20 đánh giá)</h4>
-	                            <h4>Khu du lịch</h4>
-	                          </div>
-	                        </div>
-	                      </a>
-	                    </div>
-	                    <div class="carousel-caption d-none d-md-block place-info-box">
-	                      <div class="brand">
-	                        <div class="card card-nav-tabs hide-place-info-box">
-	                          <div class="card-header card-header-primary">
-	                            <div class="nav-tabs-navigation">
-	                              <div class="nav-tabs-wrapper" style="position: relative;">
-	                                <ul class="nav nav-tabs" data-tabs="tabs">
-	                                  <li class="nav-item">
-	                                    <a class="nav-link active" href="#descript" data-toggle="tab">
-	                                      <i class="material-icons">description</i> Mô tả
-	                                    </a>
-	                                  </li>
-	                                  <li class="nav-item">
-	                                    <a class="nav-link" href="#" data-target="#modalimg" data-toggle="modal">
-	                                      <i class="material-icons">insert_photo</i> Hình ảnh
-	                                    </a>
-	                                  </li>
-	                                </ul>
-	                              </div>
-	                            </div>
-	                          </div>
-	                          <div class="card-body responsive-card-body">
-	                            <div class="tab-content text-center">
-	                              <div class="tab-pane active" id="descript">
-	                                <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-	                              </div>
-	                              <div class="tab-pane" id="photo">
-	                                <div class="col-md-12 place-info-img">
-	                                </div>
-	                              </div>
-	                            </div>
-	                          </div>
-	                        </div>
-	                      </div>
-	                      <button class="btn btn-primary btn-fab home-minimize-btn"><i class="material-icons">keyboard_arrow_up</i></button>
-	                    </div>
-	                  </div>
-
-	                  <div class="carousel-item">
-	                    <img class="d-block w-100" src="./source/customer/assets/img/bg.jpg" alt="Third slide" style="filter: brightness(0.5);height: 100vh">
-	                    <div class="place-intro">
-	                      <a href="#" style="color: white">
-	                        <h3>Địa điểm gần đây</h3>
-	                        <h1>An Giang</h1>
-	                        <div class="row">
-	                          <div class="col-6 place-intro-left">
-	                            <h4>Địa chỉ:</h4>
-	                            <h4>Khoảng cách:</h4>
-	                            <h4>Đánh giá:</h4>
-	                            <h4>Loại hình:</h4>
-	                          </div>
-	                          <div class="col-6 place-intro-right">
-	                            <h4>Kế Đồng Tháp</h4>
-	                            <h4>100km</h4>
-	                            <h4>4.1 / 5 (20 đánh giá)</h4>
-	                            <h4>Địa điểm du lịch</h4>
-	                          </div>
-	                        </div>
-	                      </a>
-	                    </div>
-	                    <div class="carousel-caption d-none d-md-block place-info-box">
-	                      <div class="brand">
-	                        <div class="card card-nav-tabs hide-place-info-box">
-	                          <div class="card-header card-header-primary">
-	                            <div class="nav-tabs-navigation">
-	                              <div class="nav-tabs-wrapper" style="position: relative;">
-	                                <ul class="nav nav-tabs" data-tabs="tabs">
-	                                  <li class="nav-item">
-	                                    <a class="nav-link active" href="#descript" data-toggle="tab">
-	                                      <i class="material-icons">description</i> Mô tả
-	                                    </a>
-	                                  </li>
-	                                  <li class="nav-item">
-	                                    <a class="nav-link" href="#" data-target="#modalimg" data-toggle="modal">
-	                                      <i class="material-icons">insert_photo</i> Hình ảnh
-	                                    </a>
-	                                  </li>
-	                                </ul>
-	                              </div>
-	                            </div>
-	                          </div>
-	                          <div class="card-body responsive-card-body">
-	                            <div class="tab-content text-center">
-	                              <div class="tab-pane active" id="descript">
-	                                <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
-	                              </div>
-	                              <div class="tab-pane" id="photo">
-	                                <div class="col-md-12 place-info-img">
-	                                </div>
-	                              </div>
-	                            </div>
-	                          </div>
-	                        </div>
-	                      </div>
-	                      <button class="btn btn-primary btn-fab home-minimize-btn"><i class="material-icons">keyboard_arrow_up</i></button>
-	                    </div>
-	                  </div>
 	                </div>
+
 	                <a class="carousel-control-prev change-slide-home-button" href="#carouselhomeimg" role="button" data-slide="prev">
 	                  <i class="material-icons">keyboard_arrow_left</i>
 	                  <span class="sr-only">Previous</span>
@@ -353,6 +237,10 @@
 	    </div>
 	</div>
 </body>
+
+<script>
+	$('.carousel-item:first').addClass('active');
+</script>
 
 <style>
 	.footer{
