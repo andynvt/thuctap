@@ -1,7 +1,9 @@
 .nav-tabs #sort-1.nav-item.show .nav-link{
     background-color: rgba(204, 204, 204, 0.15)!important;
 }
-
+.title-bg{
+    font-weight: bold;
+}
 .title-dl{
     font-weight: bold;
     padding-left: 20px;
@@ -51,11 +53,12 @@ p.h4-top{
     .content-top {
         padding: 5px;
     }
-    /*.readMore button{*/
-        /*width: 100px;*/
-        /*font-size: 10px;*/
-        /*line-height: 0;*/
-    /*}*/
+    .title-bg{
+        font-size: 18px !important;
+    }
+    .h5-bg{
+        font-size: 12px!important;
+    }
 }
 
 
@@ -89,11 +92,23 @@ p.h4-top{
     .main-raised {
         margin: 0
     }
+    .title-bg{
+        font-size: 17px !important;
+    }
+    .h5-bg{
+        font-size: 12px!important;
+    }
 }
 
 @media (max-width: 424px) {
     .main-raised {
         margin: 0
+    }
+    .title-bg{
+        font-size: 15px !important;
+    }
+    .h5-bg{
+        font-size: 10px!important;
     }
 
     .title-tab-place {
