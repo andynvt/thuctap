@@ -14,6 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/danhsachdulich', function () {
-    return view('list_places.list_place');
-});
+
+// Customer
+Route::get('list-place',[
+	'as' => 'listplace',
+	'uses' => 'CustomerController@CustomerListplace'
+]);
+
+Route::get('detail-place',[
+	'as' => 'detailplace',
+	'uses' => 'CustomerController@CustomerDetailplace'
+]);
