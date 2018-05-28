@@ -16,6 +16,12 @@ Route::get('/', function () {
 });
 
 // Customer
+
+Route::get('intro',[
+	'as' => 'intro',
+	'uses' => 'CustomerController@CustomerIntro'
+]);
+
 Route::get('list-place',[
 	'as' => 'listplace',
 	'uses' => 'CustomerController@CustomerListplace'

@@ -1,5 +1,9 @@
 @extends('customer.master')
 
+@section('header')
+    @include('customer.header')
+@endsection
+
 @section('content')
 <div class="list_place">
     <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./source/customer/images/backgroup_listplace.jpg');">
@@ -309,4 +313,8 @@
         </div>
     </div><!--End main-->
 </div> <!-- End list place -->
+@endsection
+
+@section('footer')
+    @include('customer.footer')
 @endsection

@@ -27,3 +27,7 @@
         <a href="#" target="_blank">My Team</a> for a better web.
     </div>
 </div>
+
+{{-- scroll top button --}}
+<a href="#" class="btn btn-primary scrollToTop"><i class="fa fa-arrow-up"></i></a>
+{{-- end scroll top button --}}
