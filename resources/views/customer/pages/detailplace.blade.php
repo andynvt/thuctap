@@ -415,6 +415,7 @@
     </div>
 </div>
 
+{{-- Đem đống script này qua bên detail.js giùm tao --}}
 	<script>
         $(document).ready(function() {
             //init DateTimePickers
@@ -522,7 +523,7 @@
 		    gallery.style.left = '-23%';
 		}
 
-		function moveLeft() {
+		function moveRight() {
 		    left = left || 0;
 
 		    leftInterval = setInterval(function () {
@@ -537,7 +538,7 @@
 		    }, 1);
 		}
 
-		function moveRight() {
+		function moveLeft() {
 		    //Make sure there is element to the leftd
 		    if (left > -itemWidth && left < 0) {
 		        left = left - itemWidth;
@@ -573,6 +574,7 @@
 		rightBtn.addEventListener('mouseleave', stopMovement);
 
 
+        // Trừ thằng này để đổ dữ liệu
 		//Start this baby up
 		(function init() {
 		    var images = [
@@ -597,10 +599,13 @@
 		        galleryItems[i].addEventListener('click', selectItem);
 		    }
 		})();
+        // END Trừ thằng này để đổ dữ liệu
 
 		//slide
     </script>
     {{-- end slide image --}}
+{{-- END Đem đống script này qua bên detail.js giùm tao --}}
+
 @endsection
 
 @section('footer')
