@@ -1,40 +1,35 @@
-<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg bg-primary" color-on-scroll="100">
+<nav class="navbar navbar-color-on-scroll fixed-top navbar-expand-lg bg-primary" color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" id="logo" href="#home">
-                <i class="material-icons">home</i>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">TRANG CHỦ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        <div class="collapse navbar-collapse" id="menu">
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a id="ahome" class="nav-link" href="#home">
-                        <i class="material-icons">home</i>Trang chủ
-                    </a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#"><i class="material-icons">home</i>Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a id="aplace" class="nav-link" href="#place">
-                        <i class="material-icons">beach_access</i>Du lịch
-                    </a>
+                    <a class="nav-link" href="#"><i class="material-icons">beach_access</i>du lịch</a>
                 </li>
                 <li class="nav-item">
-                    <a id="aeat" class="nav-link" href="#EatDrink">
-                        <i class="material-icons">room_service</i>Ăn uống
-                    </a>
+                    <a class="nav-link" href="#"><i class="material-icons">room_service</i>ăn uống</a>
                 </li>
                 <li class="nav-item">
-                    <a id="ahotel" class="nav-link" href="#hotel">
-                        <i class="material-icons">hotel</i>Khách sạn
-                    </a>
+                    <a class="nav-link" href="#"><i class="material-icons">hotel</i>khách sạn</a>
                 </li>
-
+                <form class="form-inline ml-auto">
+                    <div class="form-group has-white">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+            <i class="material-icons">search</i>
+          </button>
+                </form>
             </ul>
         </div>
     </div>
