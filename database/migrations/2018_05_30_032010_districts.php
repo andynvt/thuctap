@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Feedback extends Migration
+class Districts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class Feedback extends Migration
      */
     public function up()
     {
-        Schema::create('feedbacks', function ($table) {
+        Schema::create('districts', function ($table) {
             $table->increments('id');
-            $table->integer('id_place')->unsigned();
-            $table->foreign('id_place')->references('id')->on('places');
-            $table->float('star');
-            $table->timestamps();
+            $table->integer('id_city')->unsigned();
+            $table->foreign('id_city')->references('id')->on('cities');
+            $table->string('name');
         });
     }
 
@@ -29,6 +28,6 @@ class Feedback extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedbacks');
+        Schema::dropIfExists('districts');
     }
 }

@@ -17,8 +17,8 @@ class Places extends Migration
             $table->increments('id');
             $table->integer('id_type')->unsigned();
             $table->foreign('id_type')->references('id')->on('place_type');
-            $table->integer('id_city')->unsigned();
-            $table->foreign('id_city')->references('id')->on('cities');
+            $table->integer('id_district')->unsigned();
+            $table->foreign('id_district')->references('id')->on('districts');
             $table->string('name');
             $table->text('short_des');
             $table->longtext('full_des');
