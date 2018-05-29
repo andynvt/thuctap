@@ -24,6 +24,7 @@
     <!--CSS list place-->
     <link rel="stylesheet" href="css/list_place.css">
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body class="sidebar-collapse">
@@ -149,7 +150,11 @@
                                             <div class="col-6 float-left">
                                                 <h3 style="margin-top: 0"><a href="#">Chợ nổi Cái Răng <br></a>
                                                 </h3>
-                                                <p class="">
+                                                <p id="short-des" >
+                                                    Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
+                                                    km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến Ninh Kiều.
+                                                    Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
+                                                    km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến Ninh Kiều.
                                                     Chợ nổi Cái Răng cách trung tâm Thành phố Cần Thơ khoảng 6
                                                     km đường bộ và mất 30 phút khi chúng ta đi bằng thuyền từ Bến Ninh Kiều.
                                                     <br>
@@ -427,6 +432,9 @@
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
 <script src="assets/js/material-kit.js?v=2.0.3" type="text/javascript"></script>
 <script src="js/list_place.js" type="text/javascript"></script>
+<!--<script src="http://code.jquery.com/jquery-3.2.1.js"></script>-->
+<script src="js/jquery.dotdotdot.js"></script>
+<script src="https://raw.githubusercontent.com/kswedberg/jquery-smooth-scroll/master/jquery.smooth-scroll.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -435,6 +443,14 @@
 
         // Sliders Init
         materialKit.initSliders();
+    });
+
+    jQuery(document).ready(function( $ ) {
+
+        $("#short-des").dotdotdot({
+            height: 50,
+            watch: true,
+        });
     });
 </script>
 </body>

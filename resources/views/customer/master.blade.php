@@ -63,7 +63,9 @@
 	    <link rel="stylesheet" href="source/customer/css/list_place.css">
 	    <link rel="stylesheet" href="source/customer/css/style.css">
 	    {{-- Js --}}
-		<script src="source/customer/js/list_place.js"></script>
+		<script src="source/customer/js/list_place.js" type="text/javascript"></script>
+		{{--<script href="http://code.jquery.com/jquery-3.2.1.js" type="text/javascript"></script>--}}
+		<script src="source/customer/js/jquery.dotdotdot.js" type="text/javascript"></script>
 
 	{{-- Detail place --}}
 		{{-- Css --}}

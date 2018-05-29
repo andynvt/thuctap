@@ -33,12 +33,12 @@
                             <div class="nav-tabs-wrapper">
                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                     <li class="nav-item"><h4 class="title-view">View &nbsp;</h4></li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="liList">
                                         <a class="nav-link title-tab-place active" href="#viewList" data-toggle="tab">
                                             <i class="material-icons">view_list</i>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item" id="liModule">
                                         <a class="nav-link title-tab-place" href="#viewModule" data-toggle="tab">
                                             <i class="material-icons">view_module</i>
                                         </a>
@@ -64,10 +64,10 @@
                     </div>
                     <div class="card-body" style="padding: 15px;">
                         <div class="tab-content">
-                            <div class="tab-pane active" id="viewList">
+                            <div class="tab-pane active col-12" id="viewList">
                                 <section class="list-place" id="place">
                                     <div class="title-dl ">
-                                        <h3 class="title text-primary">ĐỊA ĐIỂM DU LỊCH</h3>
+                                        <h3 class="text-primary">ĐỊA ĐIỂM DU LỊCH</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     @foreach($result_lp as $rlp)
@@ -80,7 +80,7 @@
                                             <div class="col-6 float-left">
                                                 <h3 style="margin-top: 0"><a href="#">{{$rlp -> pname}}<br></a>
                                                 </h3>
-                                                <p class=""> {{$rlp -> short_des}}
+                                                <p class="short-des"> {{$rlp -> short_des}}
                                                     <br>
                                                 </p>
                                                 <div class="star-rating">
@@ -104,7 +104,7 @@
                                 </section>
                                 <section class="list-place" id="eatDrink">
                                     <div class="title-dl ">
-                                        <h3 class="title text-primary">Ăn uống</h3>
+                                        <h3 class="text-primary">Ăn uống</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     @foreach($result_led as $rled)
@@ -117,7 +117,7 @@
                                                 <div class="col-6 float-left">
                                                     <h3 style="margin-top: 0"><a href="#">{{$rled -> pname}}<br></a>
                                                     </h3>
-                                                    <p class=""> {{$rled -> short_des}}
+                                                    <p class="short-des"> {{$rled -> short_des}}
                                                         <br>
                                                     </p>
                                                     <div class="star-rating">
@@ -141,7 +141,7 @@
                                 </section>
                                 <section class="list-place" id="hotel">
                                     <div class="title-dl ">
-                                        <h3 class="title text-primary">Khách sạn</h3>
+                                        <h3 class="text-primary">Khách sạn</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     @foreach($result_lh as $rlh)
@@ -154,7 +154,7 @@
                                                 <div class="col-6 float-left">
                                                     <h3 style="margin-top: 0"><a href="#">{{$rlh -> pname}}<br></a>
                                                     </h3>
-                                                    <p class=""> {{$rlh -> short_des}}
+                                                    <p class="short-des"> {{$rlh -> short_des}}
                                                         <br>
                                                     </p>
                                                     <div class="star-rating">
@@ -178,15 +178,15 @@
                                 </section>
                             </div>
 
-                            <div class="tab-pane" id="viewModule">
+                            <div class="tab-pane col-12" id="viewModule">
                                 <section class="list-place" id="place-1">
                                     <div class="title-dl ">
-                                        <h3 class="title text-primary">ĐỊA ĐIỂM DU LỊCH</h3>
+                                        <h3 class="text-primary">ĐỊA ĐIỂM DU LỊCH</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     <div class="row">
                                         @foreach($result_lp as $rslp)
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6 col-xl-6">
                                             <div class="card">
                                                 <div class="card-header-image img-div">
                                                     <a href="#"><img src="source/customer/images/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
@@ -194,7 +194,7 @@
                                                 </div>
                                                 <div class="card-body div-body">
                                                     <h5 class="card-title"><a href="#">{{$rslp -> pname}}<br></a></h5>
-                                                    <p class="card-text float-left">
+                                                    <p class="short-des" class="card-text float-left">
                                                         {{$rslp -> short_des}}
                                                         <br>
                                                     </p>
@@ -218,12 +218,12 @@
                                 </section>
                                 <section class="list-place" id="eatDrink-1">
                                     <div class="title-dl ">
-                                        <h3 class="title text-primary">Ăn uống</h3>
+                                        <h3 class="text-primary">Ăn uống</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     <div class="row">
                                         @foreach($result_led as $rsled)
-                                            <div class="col-6">
+                                            <div class="col-12 col-md-6 col-xl-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
                                                         <a href="#"><img src="source/customer/images/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
@@ -231,7 +231,7 @@
                                                     </div>
                                                     <div class="card-body div-body">
                                                         <h5 class="card-title"><a href="#">{{$rsled -> pname}}<br></a></h5>
-                                                        <p class="card-text float-left">
+                                                        <p class="short-des" class="card-text float-left">
                                                             {{$rsled -> short_des}}
                                                             <br>
                                                         </p>
@@ -255,12 +255,12 @@
                                 </section>
                                 <section class="list-place" id="hotel-1">
                                     <div class="title-dl ">
-                                        <h3 class="title text-primary">Khách sạn</h3>
+                                        <h3 class="text-primary">Khách sạn</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     <div class="row">
                                         @foreach($result_lh as $rslh)
-                                            <div class="col-6">
+                                            <div class="col-12 col-md-6 col-xl-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
                                                         <a href="#"><img src="source/customer/images/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
@@ -268,7 +268,7 @@
                                                     </div>
                                                     <div class="card-body div-body">
                                                         <h5 class="card-title"><a href="#">{{$rslh -> pname}}<br></a></h5>
-                                                        <p class="card-text float-left">
+                                                        <p class="short-des" class="card-text float-left">
                                                             {{$rslh -> short_des}}
                                                             <br>
                                                         </p>
@@ -304,7 +304,7 @@
                 <div class="col-12 content-top text-center">
                     @foreach($result_top as $rstop)
                     <div class="item-top">
-                        <a href="#"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>
                         <div class="">
                             <p class="h4-top"><a href="#">{{$rstop -> pname}}</a></p>
                         </div>
