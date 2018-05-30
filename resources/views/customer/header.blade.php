@@ -10,9 +10,6 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item ">
-                    <a class="nav-link" href="#"><i class="material-icons">home</i>Trang chủ</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="material-icons">beach_access</i>du lịch</a>
                 </li>
@@ -24,7 +21,7 @@
                 </li>
                 <form class="form-inline ml-auto">
                     <div class="form-group has-white">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
                     </div>
                     <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
             <i class="material-icons">search</i>

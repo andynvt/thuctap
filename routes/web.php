@@ -17,17 +17,17 @@ Route::get('/', function () {
 
 // Customer
 
-Route::get('intro',[
+Route::get('index',[
 	'as' => 'intro',
 	'uses' => 'CustomerController@CustomerIntro'
 ]);
 
-Route::get('list-place',[
+Route::get('loai-dia-diem',[
 	'as' => 'listplace',
 	'uses' => 'CustomerController@CustomerListplace'
 ]);
 
-Route::get('detail-place',[
+Route::get('chi-tiet-dia-diem',[
 	'as' => 'detailplace',
 	'uses' => 'CustomerController@CustomerDetailplace'
 ]);
