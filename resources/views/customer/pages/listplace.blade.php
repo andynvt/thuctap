@@ -74,11 +74,11 @@
                                     <div class="item-place">
                                         <div class="row">
                                             <div class="col-6 img-div" >
-                                                <a href="#"><img src="source/customer/images/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
+                                                <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
                                                                  class="img-raised rounded img-fluid a-img"></a>
                                             </div>
                                             <div class="col-6 float-left">
-                                                <h3 style="margin-top: 0"><a href="#">{{$rlp -> pname}}<br></a>
+                                                <h3 style="margin-top: 0"><a href="{{ route('detailplace') }}">{{$rlp -> pname}}<br></a>
                                                 </h3>
                                                 <p class=""> {{$rlp -> short_des}}
                                                     <br>
@@ -92,8 +92,8 @@
                                                 </div>
                                                 <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                 <div class="readMore float-right">
-                                                    <button class="btn btn-primary btn-round btn-sm">
-                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                    <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
 
                                                 </div>
                                             </div>
@@ -111,11 +111,11 @@
                                         <div class="item-place">
                                             <div class="row">
                                                 <div class="col-6 img-div">
-                                                    <a href="#"><img src="source/customer/images/{{$rled -> piname}}" alt="{{$rled -> pname}}"
+                                                    <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rled -> piname}}" alt="{{$rled -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="col-6 float-left">
-                                                    <h3 style="margin-top: 0"><a href="#">{{$rled -> pname}}<br></a>
+                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace') }}">{{$rled -> pname}}<br></a>
                                                     </h3>
                                                     <p class=""> {{$rled -> short_des}}
                                                         <br>
@@ -129,8 +129,8 @@
                                                     </div>
                                                     <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     <div class="readMore float-right">
-                                                        <button class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
 
                                                     </div>
                                                 </div>
@@ -148,11 +148,11 @@
                                         <div class="item-place">
                                             <div class="row">
                                                 <div class="col-6 img-div">
-                                                    <a href="#"><img src="source/customer/images/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
+                                                    <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="col-6 float-left">
-                                                    <h3 style="margin-top: 0"><a href="#">{{$rlh -> pname}}<br></a>
+                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace') }}">{{$rlh -> pname}}<br></a>
                                                     </h3>
                                                     <p class=""> {{$rlh -> short_des}}
                                                         <br>
@@ -166,8 +166,8 @@
                                                     </div>
                                                     <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     <div class="readMore float-right">
-                                                        <button class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
 
                                                     </div>
                                                 </div>
@@ -189,11 +189,11 @@
                                         <div class="col-6">
                                             <div class="card">
                                                 <div class="card-header-image img-div">
-                                                    <a href="#"><img src="source/customer/images/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
+                                                    <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="card-body div-body">
-                                                    <h5 class="card-title"><a href="#">{{$rslp -> pname}}<br></a></h5>
+                                                    <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rslp -> pname}}<br></a></h5>
                                                     <p class="card-text float-left">
                                                         {{$rslp -> short_des}}
                                                         <br>
@@ -208,8 +208,8 @@
                                                     <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                 </div>
                                                 <div class="card-footer div-footer">
-                                                    <button class="btn btn-primary btn-round btn-sm">
-                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                    <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                        <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -226,11 +226,11 @@
                                             <div class="col-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
-                                                        <a href="#"><img src="source/customer/images/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
+                                                        <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
-                                                        <h5 class="card-title"><a href="#">{{$rsled -> pname}}<br></a></h5>
+                                                        <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rsled -> pname}}<br></a></h5>
                                                         <p class="card-text float-left">
                                                             {{$rsled -> short_des}}
                                                             <br>
@@ -245,8 +245,8 @@
                                                         <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     </div>
                                                     <div class="card-footer div-footer">
-                                                        <button class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -263,11 +263,11 @@
                                             <div class="col-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
-                                                        <a href="#"><img src="source/customer/images/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
+                                                        <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
-                                                        <h5 class="card-title"><a href="#">{{$rslh -> pname}}<br></a></h5>
+                                                        <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rslh -> pname}}<br></a></h5>
                                                         <p class="card-text float-left">
                                                             {{$rslh -> short_des}}
                                                             <br>
@@ -282,8 +282,8 @@
                                                         <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     </div>
                                                     <div class="card-footer div-footer">
-                                                        <button class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></button>
+                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -304,13 +304,13 @@
                 <div class="col-12 content-top text-center">
                     @foreach($result_top as $rstop)
                     <div class="item-top">
-                        <a href="#"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
+                        <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
                         <div class="">
-                            <p class="h4-top"><a href="#">{{$rstop -> pname}}</a></p>
+                            <p class="h4-top"><a href="{{ route('detailplace') }}">{{$rstop -> pname}}</a></p>
                         </div>
                     </div>
                     <hr>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
