@@ -193,13 +193,8 @@
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="card-body div-body">
-<<<<<<< HEAD
-                                                    <h5 class="card-title"><a href="#">{{$rslp -> pname}}<br></a></h5>
-                                                    <p class="short-des" class="card-text float-left">
-=======
                                                     <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rslp -> pname}}<br></a></h5>
-                                                    <p class="card-text float-left">
->>>>>>> 3a0416bdc9da04a4dbf5d7013dbfc89abb8c4986
+                                                    <p class="short-des">
                                                         {{$rslp -> short_des}}
                                                         <br>
                                                     </p>
@@ -235,13 +230,8 @@
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
-<<<<<<< HEAD
-                                                        <h5 class="card-title"><a href="#">{{$rsled -> pname}}<br></a></h5>
-                                                        <p class="short-des" class="card-text float-left">
-=======
                                                         <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rsled -> pname}}<br></a></h5>
-                                                        <p class="card-text float-left">
->>>>>>> 3a0416bdc9da04a4dbf5d7013dbfc89abb8c4986
+                                                        <p class="short-des">
                                                             {{$rsled -> short_des}}
                                                             <br>
                                                         </p>
@@ -277,13 +267,8 @@
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
-<<<<<<< HEAD
-                                                        <h5 class="card-title"><a href="#">{{$rslh -> pname}}<br></a></h5>
-                                                        <p class="short-des" class="card-text float-left">
-=======
-                                                        <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rslh -> pname}}<br></a></h5>
-                                                        <p class="card-text float-left">
->>>>>>> 3a0416bdc9da04a4dbf5d7013dbfc89abb8c4986
+                                                        <h5 class="card-title"><a href="{{ route('detailplace') }}"> {{$rslh -> pname}}<br></a></h5>
+                                                        <p class="short-des">
                                                             {{$rslh -> short_des}}
                                                             <br>
                                                         </p>
@@ -319,11 +304,8 @@
                 <div class="col-12 content-top text-center">
                     @foreach($result_top as $rstop)
                     <div class="item-top">
-<<<<<<< HEAD
-                        <a href="#"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>
-=======
+                        {{--<a href="#"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>--}}
                         <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
->>>>>>> 3a0416bdc9da04a4dbf5d7013dbfc89abb8c4986
                         <div class="">
                             <p class="h4-top"><a href="{{ route('detailplace') }}">{{$rstop -> pname}}</a></p>
                         </div>

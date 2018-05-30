@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Place_Type;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -23,7 +24,9 @@ class AdminController extends Controller
     }
 
     public function AdminLoaidiadiem(){
-        return view('admin.pages.placetype');
+
+         $type= Place_Type::all();
+        return view('admin.pages.placetype',compact('type'));
     }
 
     public function AdminDanhgia(){

@@ -31,6 +31,7 @@
                             <th class="text-center" >STT</th><th >TÊN LOẠI DU LỊCH</th><th >MÔ TẢ</th><th class="text-center">THAO TÁC</th>
                             </thead>
                             <tbody>
+                            @foreach($type as $tp)
                             <tr>
                                 <td>
                                     <div class="form-check">
@@ -42,73 +43,20 @@
                                         </label>
                                     </div>
                                 </td>
-                                <td class="text-center">1</td><td>Địa điểm du lịch</td><td>Các địa điểm tham quan du lịch</td>
+                                <td class="text-center">{{$tp -> id}}</td><td>{{$tp -> name}}</td><td>{{$tp -> description}}</td>
                                 <td class="td-actions text-center">
                                     <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info-placetype">
                                         <i class="now-ui-icons travel_info"></i>
                                     </button>
-
                                     <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit-placetype">
                                         <i class="now-ui-icons ui-2_settings-90"></i>
                                     </button>
-
                                     <button class="btn btn-danger btn-fab btn-icon btn-round" onclick="sweetAlertClick()">
                                         <i class="now-ui-icons ui-1_simple-remove"></i>
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="id_check[]" value="">
-                                            <span class="form-check-sign">
-                                            <span class="check"></span>
-                                        </span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td class="text-center">2</td><td>Ăn uống</td><td>Các địa điểm ăn uống hấp dẫn</td>
-                                <td class="td-actions text-center">
-                                    <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
-                                        <i class="now-ui-icons travel_info"></i>
-                                    </button>
-
-                                    <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit">
-                                        <i class="now-ui-icons ui-2_settings-90"></i>
-                                    </button>
-
-                                    <button class="btn btn-danger btn-fab btn-icon btn-round" onclick="sweetAlertClick()">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="id_check[]" value="">
-                                            <span class="form-check-sign">
-                                            <span class="check"></span>
-                                        </span>
-                                        </label>
-                                    </div>
-                                </td>
-                                <td class="text-center">3</td><td>Khách sạn</td><td>Các địa điểm khách sạn thoải mái</td>
-                                <td class="td-actions text-center">
-                                    <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
-                                        <i class="now-ui-icons travel_info"></i>
-                                    </button>
-
-                                    <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal" data-target="#edit">
-                                        <i class="now-ui-icons ui-2_settings-90"></i>
-                                    </button>
-
-                                    <button class="btn btn-danger btn-fab btn-icon btn-round" onclick="sweetAlertClick()">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
