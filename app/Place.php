@@ -8,8 +8,8 @@ class Place extends Model
 {
     protected $table = "places";
 
-    public function cities(){
-    	return $this->belongsTo('App\City','id_city','id');
+    public function districts(){
+    	return $this->belongsTo('App\District','id_district','id');
     }
 
     public function place_type(){
