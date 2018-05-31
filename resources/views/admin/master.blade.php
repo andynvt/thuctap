@@ -41,6 +41,15 @@
             // Javascript method's body can be found in assets/js/demos.js
             demo.initDashboardPageCharts();
         });
+        // function bindSelectAll(id) {
+        //     let selector = $('#' + id);
+        //     $(selector).checkbox({
+        //         onChange() {
+        //             let checked = $(selector).find('input').prop('checked');
+        //             $('.form-check-label.check-form').checkbox(checked ? 'check': 'uncheck');
+        //         }
+        //     });
+        // }
     </script>
 
     {{-- style --}}
