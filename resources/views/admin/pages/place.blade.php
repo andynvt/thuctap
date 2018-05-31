@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <a style="font-size: 15px" class="btn btn-primary btn-round" href="{{ route('adminthemdiadiem') }}" ><i class="now-ui-icons ui-1_simple-add"></i> Thêm địa điểm</a>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table hover-table">
                             <thead class=" text-primary">
                                 <th>
                                     ID

@@ -3,3 +3,7 @@
 	overflow-y: auto !important;
 	height: 500px !important;
 }
+
+.hover-table tbody tr:hover {
+	background-color: #EEEEEE;
+}
