@@ -1,6 +1,6 @@
 <div class="logo">
-    <a href="#" class="simple-text logo-mini"><i class="now-ui-icons shopping_shop"></i></a>
-    <a href="#" class="simple-text logo-normal">trang chủ</a>
+    <a href="#" class="simple-text logo-mini"></a>
+    <a href="#" class="simple-text logo-normal">tour guide</a>
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
