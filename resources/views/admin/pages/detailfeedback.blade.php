@@ -10,7 +10,7 @@
                     <h5 class="col-6 text-right">4.2/5 (20 đánh giá)</h5>
                 </div>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table hover-table">
                         <thead>
                             <tr>
                                 <th>Người đánh giá</th>

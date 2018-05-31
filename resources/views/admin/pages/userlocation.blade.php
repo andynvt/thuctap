@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table">
-                        <table class="table">
+                        <table class="table hover-table">
                             <thead class="bg-primary " style="font-size: 10px;color: #ffffff;">
                             <th style="width: 5%">
                                 <div class="form-check" >
