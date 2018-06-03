@@ -27,7 +27,7 @@ Route::get('loai-dia-diem',[
 	'uses' => 'CustomerController@CustomerListplace'
 ]);
 
-Route::get('chi-tiet-dia-diem',[
+Route::get('chi-tiet-dia-diem/{id}',[
 	'as' => 'detailplace',
 	'uses' => 'CustomerController@CustomerDetailplace'
 ]);

@@ -68,7 +68,7 @@
 
 	                	@foreach($intro as $it)
                   		<div class="carousel-item">
-		                    <img class="d-block w-100" src="source/customer/images/{{ $it->pimage }}" alt="First slide" style="height: 100vh">
+		                    <img class="d-block w-100" src="storage/image/{{ $it->pimage }}" alt="First slide" style="height: 100vh">
 		                    <div class="place-intro">
 		                      	<a href="#" style="color: white">
 			                        <h3>Địa điểm gần đây</h3>
@@ -112,10 +112,10 @@
 		                          </div>
 		                          <div class="card-body responsive-card-body">
 		                            <div class="tab-content text-center">
-		                              <div class="tab-pane active" id="descript">
-		                                <p> {{ $it->short_des }} </p>
+		                              <div class="tab-pane active">
+		                                <p>{{ $it->short_des }}</p>
 		                              </div>
-		                              <div class="tab-pane" id="photo">
+		                              <div class="tab-pane">
 		                                <div class="col-md-12 place-info-img">
 		                                </div>
 		                              </div>
@@ -159,7 +159,8 @@
 	          </div>
 	          <div class="modal-body">
 	            <div class="map-responsive">
-	                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.814181726177!2d105.7858675147256!3d10.032187475232014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a06298aae43e71%3A0xc6a64bdac582285d!2zQuG6v24gTmluaCBLaeG7gXU!5e0!3m2!1svi!2s!4v1526616000428" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+	                {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.814181726177!2d105.7858675147256!3d10.032187475232014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a06298aae43e71%3A0xc6a64bdac582285d!2zQuG6v24gTmluaCBLaeG7gXU!5e0!3m2!1svi!2s!4v1526616000428" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> --}}
+					<div id="map-intro"></div>
 	            </div>
 	          </div>
 	          <div class="modal-footer">
@@ -186,34 +187,34 @@
 	                    <div class="carousel-item row no-gutters active">
 	                        <div class="col-4 float-left">
 	                            <div class="div-img">
-	                                <img src="source/customer/images/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
+	                                <img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
 	                            </div>
 	                        </div>
 	                        <div class="col-4 float-left">
 	                            <div class="div-img">
-	                                <img src="source/customer/images/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
+	                                <img src="storage/image/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
 	                            </div>
 	                        </div>
 	                        <div class="col-4 float-left">
 	                            <div class="div-img">
-	                                <img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
+	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
 	                            </div>
 	                        </div>
 	                    </div>
 	                    <div class="carousel-item row no-gutters ">
 	                        <div class="col-4 float-left">
 	                            <div class="div-img">
-	                                <img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
+	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
 	                            </div>
 	                        </div>
 	                        <div class="col-4 float-left">
 	                            <div class="div-img">
-	                                <img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
+	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
 	                            </div>
 	                        </div>
 	                        <div class="col-4 float-left">
 	                            <div class="div-img">
-	                                <img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
+	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
 	                            </div>
 	                        </div>
 	                    </div>
@@ -246,5 +247,138 @@
 	.footer{
 		display: none;
 	}
+	#map-intro {
+        height: 100%;
+        position: unset !important;
+  	}
 </style>
+
+{{-- Script xác định vị trí --}}
+<script>
+  // Note: This example requires that you consent to location sharing when
+  // prompted by your browser. If you see the error "The Geolocation service
+  // failed.", it means you probably did not give permission for the browser to
+  // locate you.
+  var map, infoWindow;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map-intro'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 6
+    });
+    infoWindow = new google.maps.InfoWindow;
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Vị trí của bạn.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+                          // 'Error: The Geolocation service failed.' :
+                          	'Error: Xác định vị trí thất bại.' :
+                          // 'Error: Your browser doesn\'t support geolocation.');
+    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
+    infoWindow.open(map);
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap">
+</script>
+{{-- end script xác định vị trí --}}
+
+{{-- <script>
+	var rad = function(x) {
+	  return x * Math.PI / 180;
+	};
+
+	var getDistance = function(p1, p2) {
+	  var R = 6378137; // Earth’s mean radius in meter
+	  var dLat = rad(p2.lat() - p1.lat());
+	  var dLong = rad(p2.lng() - p1.lng());
+	  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+	    Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+	    Math.sin(dLong / 2) * Math.sin(dLong / 2);
+	  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	  var d = R * c;
+	  return d; // returns the distance in meter
+	};
+	alert(getDistance());
+</script> --}}
+
+
+<?php
+	// function get_coordinates($city, $street, $province)
+	// {
+	//     $address = urlencode($city.','.$street.','.$province);
+	//     $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&region=Poland";
+	//     $ch = curl_init();
+	//     curl_setopt($ch, CURLOPT_URL, $url);
+	//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	//     curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+	//     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	//     $response = curl_exec($ch);
+	//     curl_close($ch);
+	//     $response_a = json_decode($response);
+	//     $status = $response_a->status;
+
+	//     if ( $status == 'ZERO_RESULTS' )
+	//     {
+	//         return FALSE;
+	//     }
+	//     else
+	//     {
+	//         $return = array('lat' => $response_a->results[0]->geometry->location->lat, 'long' => $long = $response_a->results[0]->geometry->location->lng);
+	//         return $return;
+	//     }
+	// }
+
+	// function GetDrivingDistance($lat1, $lat2, $long1, $long2)
+	// {
+	//     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$lat1.",".$long1."&destinations=".$lat2.",".$long2."&mode=driving&language=pl-PL";
+	//     $ch = curl_init();
+	//     curl_setopt($ch, CURLOPT_URL, $url);
+	//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	//     curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
+	//     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	//     $response = curl_exec($ch);
+	//     curl_close($ch);
+	//     $response_a = json_decode($response, true);
+	//     $dist = $response_a['rows'][0]['elements'][0]['distance']['text'];
+	//     $time = $response_a['rows'][0]['elements'][0]['duration']['text'];
+
+	//     return array('distance' => $dist, 'time' => $time);
+	// }
+
+	// $coordinates1 = get_coordinates('Tychy', 'Jana Pawła II', 'Śląskie');
+	// $coordinates2 = get_coordinates('Lędziny', 'Lędzińska', 'Śląskie');
+	// if ( !$coordinates1 || !$coordinates2 )
+	// {
+	//     echo 'Bad address.';
+	// }
+	// else
+	// {
+	//     $dist = GetDrivingDistance($coordinates1['lat'], $coordinates2['lat'], $coordinates1['long'], $coordinates2['long']);
+	//     echo 'Distance: <b>'.$dist['distance'].'</b><br>Travel time duration: <b>'.$dist['time'].'</b>';
+	// }
+?>
+
 @endsection
