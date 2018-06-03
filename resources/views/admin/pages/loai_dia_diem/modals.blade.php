@@ -10,24 +10,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post">
-                    <div class="form-group">
-                        <label class="bmd-label-floating">ID loại</label>
-                        <input type="text" class="form-control" name="id_type" minlength="2" required>
-                    </div>
+                <form action="{{ route('admin.them-loai') }}" method="post">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label class="bmd-label-floating">Tên loại du lịch</label>
-                        <input type="text" class="form-control" name="name_type" placeholder="Nhập tên loại..." minlength="5" required>
+                        <input type="text" class="form-control" name="name_type" id="name_type" placeholder="Nhập tên loại..." minlength="5" required>
                     </div>
                     <div class="form-group">
                         <label class="bmd-label-floating">Mô tả</label>
-
-                        <textarea class="form-control" placeholder="Nhập nội dung..." rows="5"></textarea>
+                        <textarea class="form-control" name="des" id="des" placeholder="Nhập nội dung..." rows="5"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
                         <span></span>
-                        <button type="submit" class="btn btn-primary btn-round" name="add-emp">LƯU LẠI</button>
+                        <button class="btn btn-primary btn-round" name="add-emp">LƯU LẠI</button>
                     </div>
                 </form>
             </div>
@@ -91,24 +87,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post">
-                    <div class="form-group">
-                        <label class="bmd-label-floating">ID loại</label>
-                        <input type="text" class="form-control" name="id_type" minlength="2" value="{{$tp->id}}" required>
-                    </div>
+                <form action="{{route('admin.sua-loai',[$tp->id])}}" method="post">
+                    {{ csrf_field() }}
+
+                    {{--{{ method_field('PUT') }}--}}
                     <div class="form-group">
                         <label class="bmd-label-floating">Tên loại du lịch</label>
-                        <input type="text" class="form-control" name="name_type" value="{{$tp->name}}" minlength="5" required>
+                        <input type="text" class="form-control" name="name_type" id="name_type" value="{{$tp->name}}" minlength="5" required>
                     </div>
                     <div class="form-group">
                         <label class="bmd-label-floating">Mô tả</label>
-
-                        <textarea class="form-control"  rows="5">{{$tp->description}} </textarea>
+                        <textarea class="form-control" name="des" id="des" rows="5">{{$tp->description}} </textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
                         <span></span>
-                        <button type="submit" class="btn btn-primary btn-round" name="add-emp">LƯU LẠI</button>
+                        <button class="btn btn-primary btn-round" name="add-emp">LƯU LẠI</button>
                     </div>
                 </form>
             </div>
