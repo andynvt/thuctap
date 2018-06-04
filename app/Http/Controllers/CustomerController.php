@@ -82,11 +82,36 @@ class CustomerController extends Controller
             ->limit('5')
             ->get();
 
-//        $dulich = Place::whe
+        $dulich = Place::join('place_image', 'places.id', '=', 'place_image.id_place')
+            ->join('feedbacks', 'places.id', '=', 'feedbacks.id_place')
+            ->select('places.*', 'place_image.name as piname')
+            ->where('id_type', 1)
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star', 'desc')
+            ->limit('6')
+            ->get();
 
-//        dd($same_place);
+        $anuong = Place::join('place_image', 'places.id', '=', 'place_image.id_place')
+            ->join('feedbacks', 'places.id', '=', 'feedbacks.id_place')
+            ->select('places.*', 'place_image.name as piname')
+            ->where('id_type', 2)
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star', 'desc')
+            ->limit('6')
+            ->get();
 
-        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','same_place'));
+        $khachsan = Place::join('place_image', 'places.id', '=', 'place_image.id_place')
+            ->join('feedbacks', 'places.id', '=', 'feedbacks.id_place')
+            ->select('places.*', 'place_image.name as piname')
+            ->where('id_type', 3)
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star', 'desc')
+            ->limit('6')
+            ->get();
+
+//        dd($khachsan);
+
+        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','same_place','dulich','anuong','khachsan','id_type'));
     }
 
 }

@@ -146,111 +146,74 @@
                             <p class="h4-lq"><a href="{{route('detailplace',$sp->id)}}">{{$sp->name}}</a></p>
                         </div>
                     </div>
-                    <hr>
                     @endforeach
                 </div>
             </div>
         </div>
-        <div class="row" style="margin: 0;">
-            <div class="col-12">
-                <div class="card card-nav-tabs">
-                    <div class="title-lq card-header card-header-primary">
-                        <h3>ĂN UỐNG</h3>
-                    </div>
-                    <div class="card-body " style="padding: 20px 5px 0 5px;">
-                        <div class="tab-content text-left">
-                            <div class="tab-pane active" id="info">
-                                <div class="text-center my-3 content-slide-place">
-                                    <div id="eatingCarousel" class="carousel slide w-100" data-ride="carousel">
-                                        <div class="carousel-inner w-100" role="listbox">
-                                            <div class="carousel-item row no-gutters active">
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
+        @switch($id_type)
+            @case(1)
+
+                <div class="row" style="margin: 0;">
+                <div class="col-12">
+                    <div class="card card-nav-tabs">
+                        <div class="title-lq card-header card-header-primary">
+                            <h3>ĂN UỐNG</h3>
+                        </div>
+                        <div class="card-body " style="padding: 20px 5px 0 5px;">
+                            <div class="tab-content text-left">
+                                <div class="tab-pane active" id="info">
+                                    <div class="text-center my-3 content-slide-place">
+                                        <div id="eatingCarousel" class="carousel slide w-100" data-ride="carousel">
+                                            <div class="carousel-inner w-100" role="listbox">
+                                                @foreach($anuong->chunk(3) as $count => $item)
+                                                <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
+                                                    @foreach($item as $au)
+                                                    <div class="col-4 float-left">
+                                                        <div class="item-lq">
+                                                            <a href="{{route('detailplace',$au->id)}}"><img src="storage/image/{{$au->piname}}" alt="{{$au->name}}" class="img-raised rounded img-fluid"></a>
+                                                            <h4 class="h4-ct"><a href="{{route('detailplace',$au->id)}}">{{$au->name}}</a></h4>
+                                                        </div>
                                                     </div>
+                                                    @endforeach
                                                 </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                            <div class="carousel-item row no-gutters ">
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a class="carousel-control-prev" href="#eatingCarousel" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#eatingCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
                                         </div>
-                                        <a class="carousel-control-prev" href="#eatingCarousel" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#eatingCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                        </a>
                                     </div>
-                                </div>
 
-                                <!--mobile carousel-->
+                                    <!--mobile carousel-->
 
-                                <div class="text-center my-3">
-                                    <div id="eatingMobileCarousel" class="carousel slide w-100" data-ride="carousel">
-                                        <div class="carousel-inner w-100" role="listbox">
-                                            <div class="carousel-item row no-gutters active">
-                                                <div class="col-12 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
+                                    <div class="text-center my-3">
+                                        <div id="eatingMobileCarousel" class="carousel slide w-100" data-ride="carousel">
+                                            <div class="carousel-inner w-100" role="listbox">
+                                                @foreach($anuong->chunk(1) as $count => $item)
+                                                <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
+                                                    @foreach($item as $au)
+                                                    <div class="col-12 float-left">
+                                                        <div class="item-lq">
+                                                            <a href="{{route('detailplace',$au->id)}}"><img src="storage/image/{{$au->piname}}" alt="{{$au->name}}" class="img-raised rounded img-fluid"></a>
+                                                            <h4 class="h4-ct"><a href="{{route('detailplace',$au->id)}}">{{$au->name}}</a></h4>
+                                                        </div>
                                                     </div>
+                                                    @endforeach
                                                 </div>
+                                                @endforeach
                                             </div>
-                                            <div class="carousel-item row no-gutters ">
-                                                <div class="col-12 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item row no-gutters ">
-                                                <div class="col-12 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a class="carousel-control-prev" href="#eatingMobileCarousel" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#eatingMobileCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
                                         </div>
-                                        <a class="carousel-control-prev" href="#eatingMobileCarousel" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#eatingMobileCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -258,107 +221,67 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row" style="margin: 0;">
-            <div class="col-12">
-                <div class="card card-nav-tabs">
-                    <div class="title-lq card-header card-header-primary">
-                        <h3>KHÁCH SẠN</h3>
-                    </div>
-                    <div class="card-body " style="padding: 20px 5px 0 5px;">
-                        <div class="tab-content text-left">
-                            <div class="tab-pane active" id="info">
-                                <div class="text-center my-3 content-slide-place">
-                                    <div id="hotelCarousel" class="carousel slide w-100" data-ride="carousel">
-                                        <div class="carousel-inner w-100" role="listbox">
-                                            <div class="carousel-item row no-gutters active">
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
+                <div class="row" style="margin: 0;">
+                <div class="col-12">
+                    <div class="card card-nav-tabs">
+                        <div class="title-lq card-header card-header-primary">
+                            <h3>KHÁCH SẠN</h3>
+                        </div>
+                        <div class="card-body " style="padding: 20px 5px 0 5px;">
+                            <div class="tab-content text-left">
+                                <div class="tab-pane active" id="info">
+                                    <div class="text-center my-3 content-slide-place">
+                                        <div id="hotelCarousel" class="carousel slide w-100" data-ride="carousel">
+                                            <div class="carousel-inner w-100" role="listbox">
+                                                @foreach($khachsan->chunk(3) as $count => $item)
+                                                    <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
+                                                        @foreach($item as $au)
+                                                            <div class="col-4 float-left">
+                                                                <div class="item-lq">
+                                                                    <a href="{{route('detailplace',$au->id)}}"><img src="storage/image/{{$au->piname}}" alt="{{$au->name}}" class="img-raised rounded img-fluid"></a>
+                                                                    <h4 class="h4-ct"><a href="{{route('detailplace',$au->id)}}">{{$au->name}}</a></h4>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
-                                                </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                            <div class="carousel-item row no-gutters ">
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a class="carousel-control-prev" href="#hotelCarousel" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#hotelCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
                                         </div>
-                                        <a class="carousel-control-prev" href="#hotelCarousel" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#hotelCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                        </a>
                                     </div>
-                                </div>
 
-                                <!--mobile carousel-->
+                                    <!--mobile carousel-->
 
-                                <div class="text-center my-3">
-                                    <div id="hotelMobileCarousel" class="carousel slide w-100" data-ride="carousel">
-                                        <div class="carousel-inner w-100" role="listbox">
-                                            <div class="carousel-item row no-gutters active">
-                                                <div class="col-12 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
+                                    <div class="text-center my-3">
+                                        <div id="hotelMobileCarousel" class="carousel slide w-100" data-ride="carousel">
+                                            <div class="carousel-inner w-100" role="listbox">
+                                                @foreach($khachsan->chunk(1) as $count => $item)
+                                                    <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
+                                                        @foreach($item as $au)
+                                                            <div class="col-12 float-left">
+                                                                <div class="item-lq">
+                                                                    <a href="{{route('detailplace',$au->id)}}"><img src="storage/image/{{$au->piname}}" alt="{{$au->name}}" class="img-raised rounded img-fluid"></a>
+                                                                    <h4 class="h4-ct"><a href="{{route('detailplace',$au->id)}}">{{$au->name}}</a></h4>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
-                                                </div>
+                                                @endforeach
                                             </div>
-                                            <div class="carousel-item row no-gutters ">
-                                                <div class="col-12 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item row no-gutters ">
-                                                <div class="col-12 float-left">
-                                                    <div class="item-lq">
-                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                                                        <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a class="carousel-control-prev" href="#hotelMobileCarousel" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#hotelMobileCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
                                         </div>
-                                        <a class="carousel-control-prev" href="#hotelMobileCarousel" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#hotelMobileCarousel" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -366,7 +289,14 @@
                     </div>
                 </div>
             </div>
-        </div>
+                @break
+            @case(2)
+                @break
+            @case(3)
+                @break
+
+            @default
+        @endswitch
     </div>
 </div>
 
