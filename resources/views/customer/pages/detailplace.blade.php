@@ -3,14 +3,16 @@
 @section('header')
     @include('customer.header')
 @endsection
-
+<title>
+    {{$places[0]->name}} | Tour Guide
+</title>
 @section('content')
-<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./source/customer/images/bnk.jpg');">
+<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./source/customer/images/{{$image[0]->name}}');">
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
-                <div class="brand">
-                    <h1>Bến Ninh Kiều</h1>
+                <div class="brand" style="text-align: center;">
+                    <h1>{{$places[0]->name}}</h1>
                     <h3>Một nét văn hoá của người Cần Thơ</h3>
                 </div>
             </div>
@@ -67,7 +69,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-6 col-sm-12 quick-info-place">
-                <h2 class="h2-place">Bến Ninh Kiều</h2>
+                <h2 class="h2-place">{{$places[0]->name}}</h2>
                 <div class="social-place">
                     <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
                     <div class="fb-save" data-uri="https://www.instagram.com/facebook/" data-size="small"></div>
@@ -93,7 +95,7 @@
                 <div class="clearfix"></div>
                 <div class="info-place">
                     <p class="p-place">
-                        Toàn cảnh bến Ninh Kiều Bến Ninh Kiều nay được gọi là Công viên Ninh Kiều là một bến nước và là địa danh du lịch, văn hóa của thành phố Cần Thơ hình thành từ thế kỷ XIX. Bến Ninh Kiều tọa lạc ở bờ phải sông Hậu, nằm giữa ngã ba sông Hậu và sông Cần Thơ tiếp giáp với đường Hai Bà Trưng, phường Tân An, quận Ninh Kiều thuộc thành phố Cần Thơ.
+                        {{$places[0]->short_des}}
                     </p>
                 </div>
             </div>
@@ -120,27 +122,27 @@
                         </div>
                     </div>
                     <div class="card-body" style="padding: 15px;">
-                        <div class="tab-content text-center">
+                        <div class="tab-content text-center" id="div-info">
+                            <input type="hidden" value="{{$places[0]->full_des}}">
                             <div class="tab-pane active" id="info">
-                                <h4 class="h4-in-info">Tổng quan</h4>
-                                <p>
-                                    Bến Ninh Kiều ngày nay nằm giữa ngã ba sông Hậu và sông Cần Thơ, dọc theo con đường Hai Bà Trưng, trực thuộc phường Tân An, quận Ninh Kiều, thành phố Cần Thơ. Nói về giai thoại hình thành nên Bến, bến Ninh Kiều xưa vốn là một bến sông ở đầu chợ Cần Thơ. Năm 1876, quân Pháp chiếm đóng Cần Thơ, bến sông được xây gạch, đá dọc theo bờ để ngăn sóng và trở thành bến tàu giao thương hàng hóa đông đúc, tấp nập. Bến sông được người Pháp đặt tên là Quai de Commerce (có nghĩa là bến Thương Mại), còn người dân thì gọi với cái tên bình dị là bến Hàng Dương vì dọc bờ sông có trồng nhiều cây dương. Năm 1957, Tỉnh trưởng Cần Thơ lúc này là Đỗ Văn Chước đã tạo tại đây nên một bến dạo mát và công viên cây cảnh. Sau đó, Đỗ Văn Chước trình lên Ngô Đình Diệm (tổng thống của Việt Nam cộng hòa) xin đặt tên công viên và bến dạo mát là Ninh Kiều theo tên địa danh lịch sử Ninh Kiều - nơi ghi dấu chiến thắng quân Minh của anh hùng Lê Lợi và nghĩa quân Lam Sơn. Việc chọn tên Ninh Kiều để đặt cho một bến và công viên mới thành lập dọc theo đường Lê Lợi thật sự có ý nghĩa cũng như thể hiện sự trân trọng với chiến tích to lớn của người anh hùng đất Lam Sơn.
-                                </p>
-                                <h4 class="h4-in-info">Ngày nay</h4>
-                                <p>
-                                    Ngày nay, bến Ninh Kiều được đầu tư thành công viên du lịch có diện tích 7.000 m², trở thành điểm thu hút người dân địa phương và nhiều lượt du khách đến ngắm cảnh, tản bộ, hóng mát. Đứng ở bến Ninh Kiều, du khách có thể nhìn thấy cầu Cần Thơ – cây cầu dây văng có nhịp chính dài nhất Đông Nam Á vào thời điểm hoàn thành (4/2010). Trong công viên có bức tượng Chủ tịch Hồ Chí Minh bằng đồng cao 7,2 m, đặt trên bệ cao 3,6 m, trọng lượng hơn 12 tấn.
-                                    <br> Bến Ninh Kiều là một công viên với nhiều cây cảnh có thể vui chơi và dạo mát theo con đường dọc bờ sông kè được thảm đá bằng phẳng, những lối đi tráng nhựa, xi măng xen kẻ những sân cỏ nhìn rất đẹp. Trong khuôn viên được bố trí nhiều băng đá để khách ngồi nghỉ chân ngắm cảnh dọc bờ sông. Dọc bờ sông là hàng dương rũ thân xuống mặt sông rất đẹp, lá sà xuống hòa cùng dãy sóng nhấp nhô, đôi lúc đong đưa theo từng con gió thổi vào từ dòng sông Hậu...Du khách có thể đến thăm Bến Ninh Kiều bất cứ thời gian nào, bởi mỗi lúc là một khoảnh khắc độc đáo riêng. Buổi sáng bến Ninh Kiều mang vẻ yên tĩnh, trầm mặc lạ thường giữa cái đông đúc, náo nhiệt của thành phố. Về đêm, Bến Ninh Kiều thật sự khoác lên mình chiếc áo mới, vô cùng lộng lẫy và nguy nga với những ánh đèn rực rỡ sắc màu, người người qua lại, ta dễ dàng bắt gặp cảnh một gia đình cùng dắt tay nhau đi dạo quanh Bến, nhiều nhóm trẻ em vô tư vui đùa trước tượng Chủ tịch Hồ Chí Minh hay vô tình ta bắt gặp hình ảnh cô gái đôi mươi thẹn thùng bên người yêu đi dạo phố...tất cả tạo nên một bức tranh sinh động, đầy màu sắc.
-                                </p>
-                                <h4 class="h4-in-info">Du lịch</h4>
-
-                                <p>
-                                    Đến Bến Ninh Kiều, du khách không thể bỏ qua cơ hội được một lần lên du thuyền Ninh Kiều. Mỗi ngày du thuyền Ninh Kiều - một nhà hàng trên sông, hoạt động từ 19h30 tối tại đến 21h tối, đưa khách thưởng ngoạn trên sông và xem những tiết mục văn nghệ như cải lương hay đờn ca tài tử đặc sắc, thưởng thức các món ăn đặc sản Nam Bộ. Du thuyền với thiết kế 3 tầng rộng rãi, sang trọng với sức chứa khoảng 600 khách mỗi thuyền. Hiện nay tại Du thuyền Bến Ninh Kiều có 2 du thuyền phục vụ khách, bạn không phải chịu phí khi lên thuyền mà chỉ thanh toán cho thức ăn và thức uống dùng khi vui chơi trên thuyền. Giá cả các món ăn, uống trên đây khá hợp lý, dao động từ 80.000 đến 300.000. Giữa đất trời bao la, xung quanh là sông nước hữu tình, mênh mông và vẳng bên tai là giọng ca vọng cổ vang lên mượt mà...quả là những phút giây thư giãn tuyệt vời, thi vị. Từ trên du thuyền bạn cũng có thể ngắm nhìn vẻ đẹp lung linh, tráng lệ của cầu Cần Thơ - cây cầu lớn và dài nhất Việt Nam.<br> Đến với bến Ninh Kiều, du khách không chỉ được tham quan công viên Ninh Kiều mà còn có thể ghé thăm chợ cổ Cần Thơ nằm ngày đầu Bến. Tại đây bày bán các mặt hàng lưu niệm, vật dùng gắn liền với miền sông nước nam Bộ, du khách có thể tha hồ lựa chọn những món quà lưu niệm để mang về tặng người thân, bạn bè. Và đi đến cuối bến, du khách sẽ bắt gặp một cây cầu đi bộ nói liền Bến Ninh Kiều với cồn Cái Khế, Cầu chỉ mới khánh thành vào tháng 2 năm 2016 nhưng đã nhanh chóng trở thành điểm nhấn thú vị trong hành trình tham quan bến Ninh Kiều, Cầu đi bộ thật sự thu hút với muôn màu ánh đèn vào ban đêm, được hòa mình vào khí trời về đêm khi đứng trên cầu mang đến cảm giác thật dễ chịu.
+                                <p >
+                                    {{$places[0]->full_des}}
+                                    {{--<script>--}}
+                                        {{--var info = $("#div-info input").val();--}}
+                                        {{--$("#info").html(info);--}}
+                                    {{--</script>--}}
                                 </p>
 
                             </div>
                             <div class="tab-pane" id="map">
-                                <div class="map-responsive">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.7926945322533!2d105.7870708008999!3d10.03395864279271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a2111cf0ed%3A0x4c8a499d81395168!2zQ8O0bmcgVmnDqm4gQsOqzIFuIE5pbmggS2nhu4F1IEPhuqduIFRoxqE!5e0!3m2!1svi!2s!4v1526614378134" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                <input type="hidden" value="{{$places[0]->map}}">
+                                <p>Địa chỉ: <b>{{$places[0]->address}}</b> </p>
+                                <div class="map-responsive" id="map-cc">
+                                    <script>
+                                        var map = $("#map input").val();
+                                        $("#map-cc").html(map);
+                                    </script>
+
                                 </div>
                             </div>
                             <div class="tab-pane" id="comment">
@@ -578,7 +580,8 @@
 		//Start this baby up
 		(function init() {
 		    var images = [
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/car.jpg',
+				'',
+                './source/',
 				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/city.jpg',
 				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/deer.jpg',
 				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/flowers.jpg',

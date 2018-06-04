@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Place;
+use App\Place_Image;
+use App\Feedback;
+use App\Place_Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Console\Scheduling\Schedule;
@@ -59,9 +62,16 @@ class CustomerController extends Controller
     }
 
 
+    public function CustomerDetailplace($id){
+        $places = Place::where('id',$id)->get();
+        $image = Place_Image::where('id_place', $id)->get();
+//        $detail_place = Place::join('place_image', 'place_image.id_place', '=', 'places.id')
+//            ->select('places.*', 'place_image.name as piname')
+//            ->where('places.id', $id)
+//            ->get();
+//        dd($image);
 
-    public function CustomerDetailplace(){
-        return view('customer.pages.detailplace');
+        return view('customer.pages.detailplace', compact('places', 'image'));
     }
 
 }
