@@ -37,6 +37,7 @@
 
 .fb-item:hover {
     transform: translateY(-4px);
+    /*box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit;*/
     box-shadow: 5px 10px 18px #888888;
 }
 
