@@ -112,10 +112,10 @@
 		                          </div>
 		                          <div class="card-body responsive-card-body">
 		                            <div class="tab-content text-center">
-		                              <div class="tab-pane active" id="descript">
-		                                <p> {{ $it->short_des }} </p>
+		                              <div class="tab-pane active">
+		                                <p>{{ $it->short_des }}</p>
 		                              </div>
-		                              <div class="tab-pane" id="photo">
+		                              <div class="tab-pane">
 		                                <div class="col-md-12 place-info-img">
 		                                </div>
 		                              </div>
