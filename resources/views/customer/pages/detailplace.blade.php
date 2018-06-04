@@ -13,7 +13,7 @@
             <div class="col-md-8 ml-auto mr-auto">
                 <div class="brand" style="text-align: center;">
                     <h1>{{$places[0]->name}}</h1>
-                    <h3>Một nét văn hoá của người Cần Thơ</h3>
+                    <h3>{{$places[0]->slogan}}</h3>
                 </div>
             </div>
         </div>
@@ -57,18 +57,18 @@
                 </div>
                 <div class="star-place">
                     <fieldset class="rating ">
-                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
-                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
-                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
-                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
-                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
+                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Tốt - 4 sao"></label>
+                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Ổn - 3 sao"></label>
+                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
+                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
+                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
                     </fieldset>
-                    <p class="p-place">&nbsp;&nbsp;<b>4.65/5</b> trong <b>23</b> đánh giá</p>
+                    <p class="p-place">&nbsp;&nbsp;<b>{{$avg_fb}}/5</b> trong <b>{{$no_of_fb}}</b> đánh giá</p>
                 </div>
                 <div class="clearfix"></div>
                 <div class="info-place">
@@ -139,40 +139,15 @@
                 </div>
                 <br>
                 <div class="col-12 content-lq">
+                    @foreach($same_place as $sp)
                     <div class="item-lq">
-                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                        <a href="{{route('detailplace',$sp->id)}}"><img src="storage/image/{{$sp->piname}}" alt="{{$sp->name}}" class="img-raised rounded img-fluid"></a>
                         <div class="">
-                            <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
+                            <p class="h4-lq"><a href="{{route('detailplace',$sp->id)}}">{{$sp->name}}</a></p>
                         </div>
                     </div>
                     <hr>
-                    <div class="item-lq">
-                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                        <div class="">
-                            <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="item-lq">
-                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                        <div class="">
-                            <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="item-lq">
-                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                        <div class="">
-                            <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="item-lq">
-                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
-                        <div class="">
-                            <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

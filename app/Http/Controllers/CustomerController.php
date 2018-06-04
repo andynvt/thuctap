@@ -65,13 +65,28 @@ class CustomerController extends Controller
     public function CustomerDetailplace($id){
         $places = Place::where('id',$id)->get();
         $image = Place_Image::where('id_place', $id)->get();
-//        $detail_place = Place::join('place_image', 'place_image.id_place', '=', 'places.id')
-//            ->select('places.*', 'place_image.name as piname')
-//            ->where('places.id', $id)
-//            ->get();
-//        dd($image);
+        $no_of_fb = Feedback::where('id_place', $id)->count();
+        $avg_of_fb = Feedback::where('id_place', $id)->avg('star');
+        $avg_fb = number_format((float)$avg_of_fb, 2, '.', '');
 
-        return view('customer.pages.detailplace', compact('places', 'image'));
+        $id_type = Place::where('id',$id)->value('id_type');
+        $same_place = Place::join('place_image', 'places.id', '=', 'place_image.id_place')
+            ->join('feedbacks', 'places.id', '=', 'feedbacks.id_place')
+            ->select('places.*', 'place_image.name as piname')
+            ->where([
+                ['id_type', $id_type],
+                ['places.id', '<>', $id]
+            ])
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star', 'desc')
+            ->limit('5')
+            ->get();
+
+//        $dulich = Place::whe
+
+//        dd($same_place);
+
+        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','same_place'));
     }
 
 }
