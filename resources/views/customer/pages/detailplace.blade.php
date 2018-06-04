@@ -7,7 +7,7 @@
     {{$places[0]->name}} | Tour Guide
 </title>
 @section('content')
-<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./source/customer/images/{{$image[0]->name}}');">
+<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./storage/image/{{$image[0]->name}}');">
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
@@ -30,37 +30,15 @@
                     </div>
                     <div class="gallery-wrapper" style="line-height: 0">
                         <div class="gallery">
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 active transition"></figure>
-                            </div>
+                            @foreach($image as $i)
                             <div class="item-wrapper">
                                 <figure class="gallery-item image-holder r-3-2 transition"></figure>
                             </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 transition"></figure>
-                            </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 transition"></figure>
-                            </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2"></figure>
-                            </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 transition"></figure>
-                            </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 transition"></figure>
-                            </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 transition"></figure>
-                            </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 transition"></figure>
-                            </div>
-                            <div class="item-wrapper">
-                                <figure class="gallery-item image-holder r-3-2 transition"></figure>
-                            </div>
+                            @endforeach
                         </div>
+                        <script>
+                            $('.gallery-item:first').addClass('active');
+                        </script>
                     </div>
                     <div class="controls">
                         <button class="move-btn left">&larr;</button>
@@ -162,35 +140,35 @@
                 <br>
                 <div class="col-12 content-lq">
                     <div class="item-lq">
-                        <a href="#"><img src="source/customer/images/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                         <div class="">
                             <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
                         </div>
                     </div>
                     <hr>
                     <div class="item-lq">
-                        <a href="#"><img src="source/customer/images/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                         <div class="">
                             <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
                         </div>
                     </div>
                     <hr>
                     <div class="item-lq">
-                        <a href="#"><img src="source/customer/images/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                         <div class="">
                             <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
                         </div>
                     </div>
                     <hr>
                     <div class="item-lq">
-                        <a href="#"><img src="source/customer/images/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                         <div class="">
                             <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
                         </div>
                     </div>
                     <hr>
                     <div class="item-lq">
-                        <a href="#"><img src="source/customer/images/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                        <a href="#"><img src="storage/image/1big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                         <div class="">
                             <p class="h4-lq"><a href="#">Chợ nổi Cái Răng</a></p>
                         </div>
@@ -213,19 +191,19 @@
                                             <div class="carousel-item row no-gutters active">
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -233,19 +211,19 @@
                                             <div class="carousel-item row no-gutters ">
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -269,7 +247,7 @@
                                             <div class="carousel-item row no-gutters active">
                                                 <div class="col-12 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -277,7 +255,7 @@
                                             <div class="carousel-item row no-gutters ">
                                                 <div class="col-12 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -285,7 +263,7 @@
                                             <div class="carousel-item row no-gutters ">
                                                 <div class="col-12 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -321,19 +299,19 @@
                                             <div class="carousel-item row no-gutters active">
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -341,19 +319,19 @@
                                             <div class="carousel-item row no-gutters ">
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
                                                 <div class="col-4 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -377,7 +355,7 @@
                                             <div class="carousel-item row no-gutters active">
                                                 <div class="col-12 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -385,7 +363,7 @@
                                             <div class="carousel-item row no-gutters ">
                                                 <div class="col-12 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -393,7 +371,7 @@
                                             <div class="carousel-item row no-gutters ">
                                                 <div class="col-12 float-left">
                                                     <div class="item-lq">
-                                                        <a href="#"><img src="source/customer/images/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
+                                                        <a href="#"><img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid"></a>
                                                         <h4 class="h4-ct"><a href="#">Chợ nổi Cái Răng</a></h4>
                                                     </div>
                                                 </div>
@@ -580,17 +558,18 @@
 		//Start this baby up
 		(function init() {
 		    var images = [
-				'',
-                './source/',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/city.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/deer.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/flowers.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/food.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/guy.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/landscape.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/lips.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/night.jpg',
-				'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/table.jpg'
+		        @foreach($image as $i)
+                'storage/image/{{$i->name}}',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/city.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/deer.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/flowers.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/food.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/guy.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/landscape.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/lips.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/night.jpg',
+				// 'https://s3-us-west-2.amazonaws.com/forconcepting/800Wide50Quality/table.jpg',
+                @endforeach
 			];
 
 		    //Set Initial Featured Image

@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="list_place">
-    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('source/customer/images/backgroup_listplace.jpg');">
+    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('/backgroup_listplace.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">

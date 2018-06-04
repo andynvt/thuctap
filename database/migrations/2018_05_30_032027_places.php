@@ -20,6 +20,7 @@ class Places extends Migration
             $table->integer('id_district')->unsigned();
             $table->foreign('id_district')->references('id')->on('districts');
             $table->string('name');
+            $table->text('slogan');
             $table->text('short_des');
             $table->longtext('full_des');
             $table->text('map');
