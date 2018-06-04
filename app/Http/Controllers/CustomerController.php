@@ -53,7 +53,8 @@ class CustomerController extends Controller
     public function CustomerIntro(){
         $intro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
                     ->leftjoin('place_image as pimg', 'pimg.id_place', '=', 'places.id')
-                    ->where('places.id_city', 1)
+                    ->leftjoin('districts as dt', 'places.id_district', '=', 'dt.id')
+                    ->where('dt.id_city', 3)
                     ->groupBy('places.id')
                     ->select('places.id as pid', 'places.name as pname', 'places.short_des', 'places.address', 'places.map', 'pimg.name as pimage', 'pt.name as ptname')
                     ->get();
