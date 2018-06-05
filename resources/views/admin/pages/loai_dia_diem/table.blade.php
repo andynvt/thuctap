@@ -1,8 +1,13 @@
 <table class="table">
     <thead class="bg-primary " style="font-size: 10px;color: #ffffff;">
     <th class="collapsing">
-        <div class="ui checkbox" id="chon-het-loai-dia-diem" >
-            <input type="checkbox" id="checkall" class="hidden">
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="checkall" onclick="eventCheckBox()">
+                <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+            </label>
         </div>
     </th>
     <th class="text-center">STT</th>
@@ -14,23 +19,27 @@
     @foreach($placeType as $stt =>$tp)
         <tr>
             <td class="collapsing">
-                <div class="ui child checkbox">
-                    <input type="checkbox" class="checkitem" name="loai-dia-diem-id[]" value="{{ $tp->id }}">
-                </div></td>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="loai-dia-diem-id[]" value="{{ $tp->id }}">
+                        <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                    </label>
+                </div>
+            </td>
             <td class="text-center">{{$stt +1}}</td>
             <td>{{$tp -> name}}</td>
             <td>{{$tp -> description}}</td>
             <td class="td-actions text-center">
-                <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal"
-                        data-target="#infoplace-{{$tp->id}}">
+                <a class="btn btn-info btn-fab btn-icon btn-round a-white" onclick="$('{{ "#infoplace-" . $tp->id }}').modal('show')">
                     <i class="now-ui-icons travel_info"></i>
-                </button>
-                <button class="btn btn-warning btn-fab btn-icon btn-round" data-toggle="modal"
-                        data-target="#edit-placetype{{$tp->id}}">
+                </a>
+                <a class="btn btn-warning btn-fab btn-icon btn-round a-white" onclick="$('{{ "#edit-placetype" . $tp->id }}').modal('show')">
                     <i class="now-ui-icons ui-2_settings-90"></i>
-                </button>
+                </a>
                 <button class="btn btn-danger btn-fab btn-icon btn-round" type="submit">
-                <a class="a-delete"
+                <a class="a-white"
                    href="{{route('admin.xoa-loai',[$tp->id])}}"
                    onclick="return confirm('Bạn chắc chắn muốn xóa không?')">
                     <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -41,3 +50,12 @@
     @endforeach
     </tbody>
 </table>
+<script>
+    function eventCheckBox() {
+        let checkboxs = document.getElementsByName("loai-dia-diem-id[]");
+        let checkAll = document.getElementById('checkall');
+        for(let i = 0; i < checkboxs.length ; i++) {
+            checkboxs[i].checked = checkAll.checked;
+        }
+    }
+</script>

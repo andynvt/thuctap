@@ -32,7 +32,7 @@
                 class="active"
             @endif
         >
-            <a href="{{ route('admindanhgia') }}">
+            <a href="{{ route('admin.danh-gia') }}">
                 <i class="now-ui-icons ui-2_chat-round"></i>
                 <p>Đánh giá</p>
             </a>

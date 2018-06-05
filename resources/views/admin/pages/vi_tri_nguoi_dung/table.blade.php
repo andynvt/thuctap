@@ -3,7 +3,7 @@
     <th style="width: 5%">
         <div class="form-check">
             <label class="form-check-label check-form">
-                <input class="form-check-input" type="checkbox" name="checkall" onclick="checkAll()" value="">
+                <input class="form-check-input" type="checkbox" id="selectall" onclick="checkBoxAll()" >
                 <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -22,7 +22,7 @@
         <td>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="id_check[]" value="">
+                    <input class="form-check-input" type="checkbox" name="vi-tri-id[]" value="{{$ul ->id}}">
                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
@@ -33,13 +33,13 @@
         <td class="text-center">{{$ul -> id}}</td>
         <td>{{($ul -> created_at).('-').($ul -> updated_at)}}</td>
         <td class="td-actions text-center">
-            <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#view-location">
+            <a class="btn btn-info btn-fab btn-icon btn-round a-white" onclick="$('{{"#view-location-" . $ul ->id}}').modal('show')">
                 <i class="now-ui-icons location_pin"></i>
-            </button>
+            </a>
         </td>
         <td class="text-center">
             <button class="btn btn-danger btn-fab btn-icon btn-round" type="submit">
-                <a class="a-delete"
+                <a class="a-white"
                    href="{{route('admin.xoa-vi-tri',[$ul->id])}}"
                    onclick="return confirm('Bạn chắc chắn muốn xóa không?')">
                     <i class="now-ui-icons ui-1_simple-remove"></i>
@@ -48,6 +48,15 @@
         </td>
     </tr>
     @endforeach
-
     </tbody>
 </table>
+
+<script>
+    function checkBoxAll() {
+        let checkboxs = document.getElementsByName("vi-tri-id[]");
+        let checkAll = document.getElementById('selectall');
+        for(let i = 0; i < checkboxs.length ; i++) {
+            checkboxs[i].checked = checkAll.checked;
+        }
+    }
+</script>

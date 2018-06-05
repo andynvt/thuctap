@@ -68,13 +68,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('xoa-loai-dia-diem/{id}',
         'AdminController@AdminXoaLoaidiadiem')->name('admin.xoa-loai');
 
-    Route:: get('xoa-loai-dia-diem-da-chon',
+    Route::get('xoa-loai-dia-diem-da-chon',
         'AdminController@AdminXoaLoaidiadiemdachon')->name('admin.xoa-da-chon');
 
-    Route::get('danh-gia',[
-        'as' => 'admindanhgia',
-        'uses' => 'AdminController@AdminDanhgia'
-    ]);
+    Route::get('danh-gia',
+        'AdminController@AdminDanhgia')->name('admin.danh-gia');
 
     Route::get('chi-tiet-danh-gia',[
         'as' => 'adminchitietdanhgia',
@@ -87,5 +85,7 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::get('xoa-vi-tri-nguoi-dung/{id}',
         'AdminController@AdminXoavitringuoidung')->name('admin.xoa-vi-tri');
+    Route::get('xoa-vi-tri-da-chon',
+        'AdminController@AdminXoavitringuoidungdachon')->name('admin.xoa-vi-tri-da-chon');
 });
 

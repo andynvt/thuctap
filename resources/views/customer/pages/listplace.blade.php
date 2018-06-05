@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="list_place">
-    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('/backgroup_listplace.jpg');">
+    <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('storage/image/backgroup_listplace.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
@@ -22,8 +22,6 @@
 
     <!--Main container-->
     <div class="main main-raised">
-        <!--<div class="section section-basic">-->
-        <!--<div class="container list-place" style="padding: 30px">-->
         <div class="row" style=" padding-top:20px; margin-left: 0; margin-right: 15px;">
             <div class="col-md-8 col-lg-8 col-xl-8 col-sm-12 col-list-place">
                 <div class="card card-nav-tabs">
@@ -74,25 +72,34 @@
                                     <div class="item-place">
                                         <div class="row">
                                             <div class="col-6 img-div" >
-                                                <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
+                                                <a href="{{ route('detailplace',[$rlp ->pid]) }}"><img src="storage/image/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
                                                                  class="img-raised rounded img-fluid a-img"></a>
+                                                {{--@dd( route('detailplace',[$rlp ->pid]) }});--}}
                                             </div>
                                             <div class="col-6 float-left">
-                                                <h3 style="margin-top: 0"><a href="{{ route('detailplace') }}">{{$rlp -> pname}}<br></a>
+                                                <h3 style="margin-top: 0"><a href="{{ route('detailplace',[$rlp -> pid]) }}">{{$rlp -> pname}}<br></a>
+
                                                 </h3>
                                                 <p class="short-des"> {{$rlp -> short_des}}
                                                     <br>
                                                 </p>
-                                                <div class="star-rating">
-                                                    <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                    <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                    <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                    <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                    <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                <div class="star-place">
+                                                    <fieldset class="rating ">
+                                                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
+                                                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
+                                                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Tốt - 4 sao"></label>
+                                                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
+                                                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Ổn - 3 sao"></label>
+                                                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
+                                                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
+                                                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
+                                                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
+                                                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
+                                                    </fieldset>
+                                                    {{--<p class="p-place">&nbsp;&nbsp;<b>{{$avg_fb}}/5</b> trong <b>{{$no_of_fb}}</b> đánh giá</p>--}}
                                                 </div>
-                                                <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                 <div class="readMore float-right">
-                                                    <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                    <a href="{{ route('detailplace',[$rlp ->pid]) }}" class="btn btn-primary btn-round btn-sm">
                                                         <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
 
                                                 </div>
@@ -111,25 +118,25 @@
                                         <div class="item-place">
                                             <div class="row">
                                                 <div class="col-6 img-div">
-                                                    <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rled -> piname}}" alt="{{$rled -> pname}}"
+                                                    <a href="{{ route('detailplace',[$rled ->pid]) }}"><img src="storage/image/{{$rled -> piname}}" alt="{{$rled -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="col-6 float-left">
-                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace') }}">{{$rled -> pname}}<br></a>
+                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace',[$rled ->pid]) }}">{{$rled -> pname}}<br></a>
                                                     </h3>
                                                     <p class="short-des"> {{$rled -> short_des}}
                                                         <br>
                                                     </p>
                                                     <div class="star-rating">
-                                                        <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                        <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                        <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                        <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                        <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                        <img src="storage/image/star-on.png" alt="1" title="bad">
+                                                        <img src="storage/image/star-on.png" alt="2" title="poor">
+                                                        <img src="storage/image/star-on.png" alt="3" title="regular">
+                                                        <img src="storage/image/star-on.png" alt="4" title="good">
+                                                        <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
                                                     </div>
                                                     <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     <div class="readMore float-right">
-                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                        <a href="{{ route('detailplace',[$rled ->pid]) }}" class="btn btn-primary btn-round btn-sm">
                                                             <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
 
                                                     </div>
@@ -148,25 +155,25 @@
                                         <div class="item-place">
                                             <div class="row">
                                                 <div class="col-6 img-div">
-                                                    <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
+                                                    <a href="{{ route('detailplace',[$rlh ->pid]) }}"><img src="storage/image/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="col-6 float-left">
-                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace') }}">{{$rlh -> pname}}<br></a>
+                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace',[$rlh ->pid]) }}">{{$rlh -> pname}}<br></a>
                                                     </h3>
                                                     <p class="short-des"> {{$rlh -> short_des}}
                                                         <br>
                                                     </p>
                                                     <div class="star-rating">
-                                                        <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                        <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                        <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                        <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                        <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                        <img src="storage/image/star-on.png" alt="1" title="bad">
+                                                        <img src="storage/image/star-on.png" alt="2" title="poor">
+                                                        <img src="storage/image/star-on.png" alt="3" title="regular">
+                                                        <img src="storage/image/star-on.png" alt="4" title="good">
+                                                        <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
                                                     </div>
                                                     <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     <div class="readMore float-right">
-                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                        <a href="{{ route('detailplace',[$rlh ->pid]) }}" class="btn btn-primary btn-round btn-sm">
                                                             <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
 
                                                     </div>
@@ -189,26 +196,26 @@
                                         <div class="col-12 col-md-6 col-xl-6">
                                             <div class="card">
                                                 <div class="card-header-image img-div">
-                                                    <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
+                                                    <a href="{{ route('detailplace',[$rslp ->pid]) }}"><img src="storage/image/{{$rslp -> piname}}" alt="{{$rslp -> pname}}"
                                                                      class="img-raised rounded img-fluid a-img"></a>
                                                 </div>
                                                 <div class="card-body div-body">
-                                                    <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rslp -> pname}}<br></a></h5>
+                                                    <h5 class="card-title"><a href="{{ route('detailplace',[$rslp ->pid]) }}">{{$rslp -> pname}}<br></a></h5>
                                                     <p class="short-des">
                                                         {{$rslp -> short_des}}
                                                         <br>
                                                     </p>
                                                     <div class="star-rating">
-                                                        <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                        <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                        <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                        <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                        <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                        <img src="storage/image/star-on.png" alt="1" title="bad">
+                                                        <img src="storage/image/star-on.png" alt="2" title="poor">
+                                                        <img src="storage/image/star-on.png" alt="3" title="regular">
+                                                        <img src="storage/image/star-on.png" alt="4" title="good">
+                                                        <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
                                                     </div>
                                                     <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                 </div>
                                                 <div class="card-footer div-footer">
-                                                    <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                    <a href="{{ route('detailplace',[$rslp ->pid]) }}" class="btn btn-primary btn-round btn-sm">
                                                         <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
                                                 </div>
                                             </div>
@@ -226,26 +233,26 @@
                                             <div class="col-12 col-md-6 col-xl-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
-                                                        <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
+                                                        <a href="{{ route('detailplace',[$rslp ->pid]) }}"><img src="storage/image/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
-                                                        <h5 class="card-title"><a href="{{ route('detailplace') }}">{{$rsled -> pname}}<br></a></h5>
+                                                        <h5 class="card-title"><a href="{{ route('detailplace',[$rslp ->pid]) }}">{{$rsled -> pname}}<br></a></h5>
                                                         <p class="short-des">
                                                             {{$rsled -> short_des}}
                                                             <br>
                                                         </p>
                                                         <div class="star-rating">
-                                                            <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                            <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                            <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                            <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                            <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                            <img src="storage/image/star-on.png" alt="1" title="bad">
+                                                            <img src="storage/image/star-on.png" alt="2" title="poor">
+                                                            <img src="storage/image/star-on.png" alt="3" title="regular">
+                                                            <img src="storage/image/star-on.png" alt="4" title="good">
+                                                            <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
                                                         </div>
                                                         <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     </div>
                                                     <div class="card-footer div-footer">
-                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                        <a href="{{ route('detailplace',[$rslp ->pid]) }}" class="btn btn-primary btn-round btn-sm">
                                                             <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
                                                     </div>
                                                 </div>
@@ -263,26 +270,26 @@
                                             <div class="col-12 col-md-6 col-xl-6">
                                                 <div class="card">
                                                     <div class="card-header-image img-div">
-                                                        <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
+                                                        <a href="{{ route('detailplace',[$rslh ->pid]) }}"><img src="storage/image/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
                                                                          class="img-raised rounded img-fluid a-img"></a>
                                                     </div>
                                                     <div class="card-body div-body">
-                                                        <h5 class="card-title"><a href="{{ route('detailplace') }}"> {{$rslh -> pname}}<br></a></h5>
+                                                        <h5 class="card-title"><a href="{{ route('detailplace',[$rslh ->pid]) }}"> {{$rslh -> pname}}<br></a></h5>
                                                         <p class="short-des">
                                                             {{$rslh -> short_des}}
                                                             <br>
                                                         </p>
                                                         <div class="star-rating">
-                                                            <img src="source/customer/images/star-on.png" alt="1" title="bad">
-                                                            <img src="source/customer/images/star-on.png" alt="2" title="poor">
-                                                            <img src="source/customer/images/star-on.png" alt="3" title="regular">
-                                                            <img src="source/customer/images/star-on.png" alt="4" title="good">
-                                                            <img src="source/customer/images/star-half-mono.png" alt="5" title="gorgeous">
+                                                            <img src="storage/image/star-on.png" alt="1" title="bad">
+                                                            <img src="storage/image/star-on.png" alt="2" title="poor">
+                                                            <img src="storage/image/star-on.png" alt="3" title="regular">
+                                                            <img src="storage/image/star-on.png" alt="4" title="good">
+                                                            <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
                                                         </div>
                                                         <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
                                                     </div>
                                                     <div class="card-footer div-footer">
-                                                        <a href="{{ route('detailplace') }}" class="btn btn-primary btn-round btn-sm">
+                                                        <a href="{{ route('detailplace',[$rslh ->pid]) }}" class="btn btn-primary btn-round btn-sm">
                                                             <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
                                                     </div>
                                                 </div>
@@ -304,10 +311,10 @@
                 <div class="col-12 content-top text-center">
                     @foreach($result_top as $rstop)
                     <div class="item-top">
-                        {{--<a href="#"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>--}}
-                        <a href="{{ route('detailplace') }}"><img src="source/customer/images/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
+                        {{--<a href="#"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>--}}
+                        <a href="{{ route('detailplace',[$rstop ->id]) }}"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
                         <div class="">
-                            <p class="h4-top"><a href="{{ route('detailplace') }}">{{$rstop -> pname}}</a></p>
+                            <p class="h4-top"><a href="{{ route('detailplace',[$rstop ->id]) }}">{{$rstop -> pname}}</a></p>
                         </div>
                     </div>
                     <hr>

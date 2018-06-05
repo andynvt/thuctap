@@ -34,11 +34,11 @@
 
 <!-- Modal hiện thị danh sách địa điểm thuộc loại-->
 @foreach($placeType as $tp)
-<div class="modal fade" id="infoplace-{{$tp->id}}" tabindex="-1" role="dialog" aria-labelledby="list-info-placetype" aria-hidden="true">
+<div class="modal fade" id="infoplace-{{$tp->id}}" tabindex="-1" role="dialog" aria-labelledby="list-info-placetype-{{$tp->id}}" aria-hidden="true">
     <div class="modal-dialog" role="document" style="max-width: 80%; min-height: 30%;">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h5 class="modal-title text-info title" id="list-info-placetype">DANH SÁCH LIÊN QUAN</h5>
+                <h5 class="modal-title text-info title" id="list-info-placetype-{{$tp->id}}">DANH SÁCH LIÊN QUAN</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -77,11 +77,11 @@
 
 {{--<!-- Modal sửa loại địa điểm-->--}}
 @foreach($placeType as $tp)
-<div class="modal fade" id="edit-placetype{{$tp->id}}" tabindex="-1" role="dialog" aria-labelledby="list-edit-placetype" aria-hidden="true">
+<div class="modal fade" id="edit-placetype{{$tp->id}}" tabindex="-1" role="dialog" aria-labelledby="list-edit-placetype-{{$tp->id}}" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h3 class="modal-title title text-primary" id="list-edit-placetype">CẬP NHẬT LOẠI DU LỊCH</h3>
+                <h3 class="modal-title title text-primary" id="list-edit-placetype-{{$tp->id}}">CẬP NHẬT LOẠI DU LỊCH</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -89,8 +89,6 @@
             <div class="modal-body">
                 <form action="{{route('admin.sua-loai',[$tp->id])}}" method="post">
                     {{ csrf_field() }}
-
-                    {{--{{ method_field('PUT') }}--}}
                     <div class="form-group">
                         <label class="bmd-label-floating">Tên loại du lịch</label>
                         <input type="text" class="form-control" name="name_type" id="name_type" value="{{$tp->name}}" minlength="5" required>

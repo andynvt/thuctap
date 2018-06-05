@@ -41,10 +41,7 @@
             // Javascript method's body can be found in assets/js/demos.js
             demo.initDashboardPageCharts();
         });
-        function bindSelectAll(id) {
-            alert("đâ");
 
-        }
     </script>
 
     {{-- style --}}
@@ -66,9 +63,7 @@
         {{-- Css --}}
         <link href="{{asset('source/admin/css/placetype.css')}}" rel="stylesheet" />
         {{-- Js --}}
-        <script type="text/javascript">
 
-        </script>
     {{-- feedback --}}
         {{-- Css --}}
         <link href="{{asset('source/admin/css/adminfeedback.css')}}" rel="stylesheet" />

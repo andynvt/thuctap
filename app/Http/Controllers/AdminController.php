@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use App\Place_Type;
 use App\Place;
 use App\User_Location;
@@ -55,42 +56,27 @@ class AdminController extends Controller
         $xoaLoai->delete();
         return back();
     }
-    public function AdminXoaLoaidiadiemdachon(Request $request) {
+    public function AdminXoaLoaidiadiemdachon(Request $request ) {
         $ids = $request->get('loai-dia-diem-id');
 
-        if (empty($ids))
-            return back();
-
-        $errors = $this->canDelete($ids);
-
-        if (!empty($errors))
-            return back()->with('errors', $errors);
-
-        NhaCungCap::destroy($ids);
-
-        return back()->with('success', 'Xóa thành công');
+        Place_Type::destroy($ids);
+        return back();
     }
 
-    private function canDelete($ids) {
-        $errors = [];
-
-        foreach ($ids as $id) {
-            $loaidiadiem = Place_Type::findOrFail($id);
-
-            if ($loaidiadiem->khongCoDiaDiem())
-                continue;
-
-            $errors[] = "Vẫn còn địa điểm của loại địa điểm " . $loaidiadiem->name;
-        }
-
-        return $errors;
-    }
-
-    public function AdminDanhgia(){
-        return view('admin.pages.feedback');
+    public function AdminDanhgia(Request $request){
+        $id= $request->get('btn-loai');
+        $danhGia= Feedback::join('places','feedbacks.id_place','=','places.id')
+            ->join('place_image','place_image.id_place','=','places.id')
+            ->select('feedbacks.id as fid','places.id as pid','places.name as pname',
+                'place_image.name as iname')
+            ->where('places.id_type',1)
+            ->groupBY('places.id')
+            ->get();
+        return view('admin.pages.feedback',compact('danhGia'));
     }
 
     public function AdminChitietdanhgia(){
+
         return view('admin.pages.detailfeedback');
     }
 
@@ -102,6 +88,12 @@ class AdminController extends Controller
     {
         $xoaViTri = User_Location::find($id);
         $xoaViTri->delete();
+        return back();
+    }
+    public function AdminXoavitringuoidungdachon(Request $request ) {
+        $ids = $request->get('vi-tri-id');
+
+        User_Location::destroy($ids);
         return back();
     }
 }

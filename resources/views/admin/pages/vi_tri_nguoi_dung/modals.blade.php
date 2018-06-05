@@ -1,6 +1,7 @@
 
 <!-- Sart add type Modal -->
-<div class="modal fade" id="view-location" tabindex="-1" role="dialog" aria-labelledby="list-type" aria-hidden="true">
+@foreach($userLocation as $ul)
+<div class="modal fade" id="view-location-{{$ul -> id}}" tabindex="-1" role="dialog" aria-labelledby="list-type" aria-hidden="true">
     <div class="modal-dialog" role="document" style="max-width: 50%;">
         <div class="modal-content" >
             <div class="modal-header">
@@ -16,4 +17,5 @@
         </div>
     </div>
 </div>
+@endforeach
 <!--  End Modal -->
