@@ -29,5 +29,5 @@
 </div>
 
 {{-- scroll top button --}}
-<a href="#" class="btn btn-primary scrollToTop"><i class="fa fa-arrow-up"></i></a>
+<a href="#" class="btn btn-primary scrollToTop"><i style="margin: 0" class="fa fa-arrow-up"></i></a>
 {{-- end scroll top button --}}
