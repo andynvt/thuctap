@@ -17,8 +17,7 @@ class PlaceLocation extends Migration
             $table->increments('id');
             $table->integer('id_place')->unsigned();
             $table->foreign('id_place')->references('id')->on('places');
-            $table->string('x');
-            $table->string('y');
+            $table->string('coor');
             $table->timestamps();
         });
     }

@@ -15,8 +15,7 @@ class UserLocation extends Migration
     {
         Schema::create('user_location', function ($table) {
             $table->increments('id');
-            $table->string('x');
-            $table->string('y');
+            $table->string('coor');
             $table->timestamps();
         });
     }
