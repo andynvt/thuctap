@@ -45,6 +45,10 @@
                                     <label for="address">Link Google Map</label>
                                     <input type="link" name="map" value="http://xnxx.com" class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label for="address">Toạ độ</label>
+                                    <input type="text" name="coor" value="10.047741, 105.772110" class="form-control">
+                                </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
