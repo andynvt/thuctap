@@ -71,9 +71,8 @@ class CustomerController extends Controller
         $latitude = $req->lati;
         $longitude = $req->longi;
 
-        echo distance($latitude, $longitude, 10.0411439,105.7844303, 'K');
-
-        dd($req->lati);
+        $dis = distance($latitude, $longitude, 10.0411439,105.7844303, 'K');
+        return response()->json(['data' => $dis]);
     }
 
     public function CustomerIntro(){

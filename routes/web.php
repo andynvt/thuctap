@@ -22,10 +22,7 @@ Route::get('index',[
 	'uses' => 'CustomerController@CustomerIntro'
 ]);
 
-Route::post('cal-dis',[
-    'as' => 'caldis',
-    'uses' => 'CustomerController@CustomerCaldis'
-]);
+Route::get('cal-dis','CustomerController@CustomerCaldis');
 
 Route::get('loai-dia-diem',[
 	'as' => 'listplace',
