@@ -115,6 +115,13 @@ class CustomerController extends Controller
         return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','same_place','dulich','anuong','khachsan','id_type'));
     }
 
+    public function postDanhGia(Request $req){
+        $id = $req->id;
+        $star = $req->star;
+//        dd($id , $star);
+        return response()->json(['id' => $id, 'star' => $star]);
+    }
+
 }
 
 

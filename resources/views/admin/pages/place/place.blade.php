@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title title">Bảng DANH SÁCH ĐỊA ĐIỂM</h4>
+                    <h4 class="card-title title">BẢNG DANH SÁCH ĐỊA ĐIỂM</h4>
                 </div>
                 <div class="card-body">
                     <a style="font-size: 15px" class="btn btn-primary btn-round" href="{{ route('adminthemdiadiem') }}" ><i class="now-ui-icons ui-1_simple-add"></i> Thêm địa điểm</a>

@@ -32,6 +32,7 @@ Route::get('chi-tiet-dia-diem/{id}',[
 	'uses' => 'CustomerController@CustomerDetailplace'
 ]);
 
+Route::get('dg', 'CustomerController@postDanhGia') ;
 
 // Admin
 Route::group(['prefix' => 'admin'], function () {
