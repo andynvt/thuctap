@@ -28,7 +28,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chart JS -->
     <script src="{{asset('source/admin/assets/js/plugins/chartjs.min.js')}}"></script>
-    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js')}}"></script>
+{{--    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js')}}"></script>--}}
     <script src="{{asset('source/admin/js/chartist.min.js')}}" type="text/javascript"></script>
     <!--  Notifications Plugin    -->
     <script src="{{asset('source/admin/assets/js/plugins/bootstrap-notify.js')}}"></script>
@@ -36,6 +36,14 @@
     <script src="{{asset('source/admin/assets/js/now-ui-dashboard.min.js?v=1.1.0')}}" type="text/javascript"></script>
     <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('source/admin/assets/demo/demo.js')}}"></script>
+    <script src="{{asset('source/admin/js/place.js')}}"></script>
+    {{--ckeditor--}}
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
     <script>
         $(document).ready(function() {
             // Javascript method's body can be found in assets/js/demos.js

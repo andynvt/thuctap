@@ -41,8 +41,12 @@
                                     <input type="text" name="address" value="" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="address">Link Google Map</label>
+                                    <label for="address">Link Nhúng Google Map <i class="now-ui-icons travel_info" title="Chọn chức năng chia sẻ địa điểm trong Google Map -> Nhúng bản đồ"></i></label>
                                     <input type="link" name="map" value="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Toạ độ (VD: 10.047741, 105.772110)</label>
+                                    <input type="text" name="coor" value="" class="form-control">
                                 </div>
                             </div>
                             <div class="col-12">
@@ -85,6 +89,7 @@
                                             }
                                         };
                                         $('#gallery-photo-add').on('change', function() {
+                                            $('.gallery').empty();
                                             imagesPreview(this, 'div.gallery');
                                         });
                                     });
