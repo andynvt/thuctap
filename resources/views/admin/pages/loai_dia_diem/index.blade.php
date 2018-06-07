@@ -9,7 +9,7 @@
                 {{ csrf_field() }}
                 <div class="card-header">
                     <h5 class="title">BẢNG DANH SÁCH LOẠI ĐỊA ĐIỂM</h5>
-                    <button class="btn btn-success btn-round" type="button" data-toggle="modal" data-target="#add-placetype"
+                    <button class="btn btn-primary btn-round" type="button" data-toggle="modal" data-target="#add-placetype"
                             >
                         <i class="now-ui-icons ui-1_simple-add"></i> Thêm loại mới
                     </button>
@@ -28,10 +28,3 @@
 </div>
     @include('admin.pages.loai_dia_diem.modals')
 @endsection
-{{--@push('script')--}}
-    {{--<script>--}}
-        {{--bindSelectAll('chon-het-nha-cung-cap');--}}
-
-        {{--// bindDataTable('bang-nha-cung-cap');--}}
-    {{--</script>--}}
-{{--@endpush--}}

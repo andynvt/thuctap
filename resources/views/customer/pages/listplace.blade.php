@@ -65,7 +65,7 @@
                             <div class="tab-pane active col-12" id="viewList">
                                 <section class="list-place" id="place">
                                     <div class="title-dl ">
-                                        <h3 class="text-primary">ĐỊA ĐIỂM DU LỊCH</h3>
+                                        <h3 class="text-primary" style="text-transform: uppercase">{{$title_place->name}}</h3>
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     @foreach($result_lp as $rlp)
@@ -96,7 +96,7 @@
                                                         <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
                                                         <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
                                                     </fieldset>
-                                                    {{--<p class="p-place">&nbsp;&nbsp;<b>{{$avg_fb}}/5</b> trong <b>{{$no_of_fb}}</b> đánh giá</p>--}}
+                                                    <p class="p-place">&nbsp;&nbsp;<b>{{number_format((float)\App\Feedback::where('id_place',$rlp -> pid)->avg('star'),2,'.','')}}/5</b> trong <b>{{\App\Feedback::where('id_place',$rlp -> pid)->count('star')}}</b> ĐÁNH GIÁ</p>
                                                 </div>
                                                 <div class="readMore float-right">
                                                     <a href="{{ route('detailplace',[$rlp ->pid]) }}" class="btn btn-primary btn-round btn-sm">
@@ -109,86 +109,13 @@
                                     <hr>
                                         @endforeach
                                 </section>
-                                <section class="list-place" id="eatDrink">
-                                    <div class="title-dl ">
-                                        <h3 class="text-primary">Ăn uống</h3>
-                                    </div>
-                                    <hr class="text-primary" style="border: 2px solid">
-                                    @foreach($result_led as $rled)
-                                        <div class="item-place">
-                                            <div class="row">
-                                                <div class="col-6 img-div">
-                                                    <a href="{{ route('detailplace',[$rled ->pid]) }}"><img src="storage/image/{{$rled -> piname}}" alt="{{$rled -> pname}}"
-                                                                     class="img-raised rounded img-fluid a-img"></a>
-                                                </div>
-                                                <div class="col-6 float-left">
-                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace',[$rled ->pid]) }}">{{$rled -> pname}}<br></a>
-                                                    </h3>
-                                                    <p class="short-des"> {{$rled -> short_des}}
-                                                        <br>
-                                                    </p>
-                                                    <div class="star-rating">
-                                                        <img src="storage/image/star-on.png" alt="1" title="bad">
-                                                        <img src="storage/image/star-on.png" alt="2" title="poor">
-                                                        <img src="storage/image/star-on.png" alt="3" title="regular">
-                                                        <img src="storage/image/star-on.png" alt="4" title="good">
-                                                        <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
-                                                    </div>
-                                                    <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                    <div class="readMore float-right">
-                                                        <a href="{{ route('detailplace',[$rled ->pid]) }}" class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    @endforeach
-                                </section>
-                                <section class="list-place" id="hotel">
-                                    <div class="title-dl ">
-                                        <h3 class="text-primary">Khách sạn</h3>
-                                    </div>
-                                    <hr class="text-primary" style="border: 2px solid">
-                                    @foreach($result_lh as $rlh)
-                                        <div class="item-place">
-                                            <div class="row">
-                                                <div class="col-6 img-div">
-                                                    <a href="{{ route('detailplace',[$rlh ->pid]) }}"><img src="storage/image/{{$rlh -> piname}}" alt="{{$rlh -> pname}}"
-                                                                     class="img-raised rounded img-fluid a-img"></a>
-                                                </div>
-                                                <div class="col-6 float-left">
-                                                    <h3 style="margin-top: 0"><a href="{{ route('detailplace',[$rlh ->pid]) }}">{{$rlh -> pname}}<br></a>
-                                                    </h3>
-                                                    <p class="short-des"> {{$rlh -> short_des}}
-                                                        <br>
-                                                    </p>
-                                                    <div class="star-rating">
-                                                        <img src="storage/image/star-on.png" alt="1" title="bad">
-                                                        <img src="storage/image/star-on.png" alt="2" title="poor">
-                                                        <img src="storage/image/star-on.png" alt="3" title="regular">
-                                                        <img src="storage/image/star-on.png" alt="4" title="good">
-                                                        <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
-                                                    </div>
-                                                    <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                    <div class="readMore float-right">
-                                                        <a href="{{ route('detailplace',[$rlh ->pid]) }}" class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    @endforeach
-                                </section>
                             </div>
 
                             <div class="tab-pane col-12" id="viewModule">
                                 <section class="list-place" id="place-1">
                                     <div class="title-dl ">
-                                        <h3 class="text-primary">ĐỊA ĐIỂM DU LỊCH</h3>
+                                        <h3 class="text-primary" style="text-transform: uppercase">{{$title_place->name}}</h3>
+
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     <div class="row">
@@ -212,7 +139,8 @@
                                                         <img src="storage/image/star-on.png" alt="4" title="good">
                                                         <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
                                                     </div>
-                                                    <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
+                                                    <p class="p-place">&nbsp;&nbsp;<b>{{number_format((float)\App\Feedback::where('id_place',$rslp -> pid)->avg('star'),2,'.','')}}/5</b> trong <b>{{\App\Feedback::where('id_place',$rslp -> pid)->count('star')}}</b> ĐÁNH GIÁ</p>
+
                                                 </div>
                                                 <div class="card-footer div-footer">
                                                     <a href="{{ route('detailplace',[$rslp ->pid]) }}" class="btn btn-primary btn-round btn-sm">
@@ -221,80 +149,6 @@
                                             </div>
                                         </div>
                                             @endforeach
-                                    </div>
-                                </section>
-                                <section class="list-place" id="eatDrink-1">
-                                    <div class="title-dl ">
-                                        <h3 class="text-primary">Ăn uống</h3>
-                                    </div>
-                                    <hr class="text-primary" style="border: 2px solid">
-                                    <div class="row">
-                                        @foreach($result_led as $rsled)
-                                            <div class="col-12 col-md-6 col-xl-6">
-                                                <div class="card">
-                                                    <div class="card-header-image img-div">
-                                                        <a href="{{ route('detailplace',[$rslp ->pid]) }}"><img src="storage/image/{{$rsled -> piname}}" alt="{{$rsled -> pname}}"
-                                                                         class="img-raised rounded img-fluid a-img"></a>
-                                                    </div>
-                                                    <div class="card-body div-body">
-                                                        <h5 class="card-title"><a href="{{ route('detailplace',[$rslp ->pid]) }}">{{$rsled -> pname}}<br></a></h5>
-                                                        <p class="short-des">
-                                                            {{$rsled -> short_des}}
-                                                            <br>
-                                                        </p>
-                                                        <div class="star-rating">
-                                                            <img src="storage/image/star-on.png" alt="1" title="bad">
-                                                            <img src="storage/image/star-on.png" alt="2" title="poor">
-                                                            <img src="storage/image/star-on.png" alt="3" title="regular">
-                                                            <img src="storage/image/star-on.png" alt="4" title="good">
-                                                            <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
-                                                        </div>
-                                                        <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                    </div>
-                                                    <div class="card-footer div-footer">
-                                                        <a href="{{ route('detailplace',[$rslp ->pid]) }}" class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </section>
-                                <section class="list-place" id="hotel-1">
-                                    <div class="title-dl ">
-                                        <h3 class="text-primary">Khách sạn</h3>
-                                    </div>
-                                    <hr class="text-primary" style="border: 2px solid">
-                                    <div class="row">
-                                        @foreach($result_lh as $rslh)
-                                            <div class="col-12 col-md-6 col-xl-6">
-                                                <div class="card">
-                                                    <div class="card-header-image img-div">
-                                                        <a href="{{ route('detailplace',[$rslh ->pid]) }}"><img src="storage/image/{{$rslh -> piname}}" alt="{{$rslh -> pname}}"
-                                                                         class="img-raised rounded img-fluid a-img"></a>
-                                                    </div>
-                                                    <div class="card-body div-body">
-                                                        <h5 class="card-title"><a href="{{ route('detailplace',[$rslh ->pid]) }}"> {{$rslh -> pname}}<br></a></h5>
-                                                        <p class="short-des">
-                                                            {{$rslh -> short_des}}
-                                                            <br>
-                                                        </p>
-                                                        <div class="star-rating">
-                                                            <img src="storage/image/star-on.png" alt="1" title="bad">
-                                                            <img src="storage/image/star-on.png" alt="2" title="poor">
-                                                            <img src="storage/image/star-on.png" alt="3" title="regular">
-                                                            <img src="storage/image/star-on.png" alt="4" title="good">
-                                                            <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
-                                                        </div>
-                                                        <p class="p-place">&nbsp;&nbsp;<b>4.5/5</b> trong <b>23</b> ĐÁNH GIÁ</p>
-                                                    </div>
-                                                    <div class="card-footer div-footer">
-                                                        <a href="{{ route('detailplace',[$rslh ->pid]) }}" class="btn btn-primary btn-round btn-sm">
-                                                            <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
                                     </div>
                                 </section>
                             </div>
@@ -310,11 +164,10 @@
                 <br>
                 <div class="col-12 content-top text-center">
                     @foreach($result_top as $rstop)
-                    <div class="item-top">
-                        {{--<a href="#"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>--}}
-                        <a href="{{ route('detailplace',[$rstop ->id]) }}"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
+                    <div class="item-top">{{--<a href="#"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>--}}
+                        <a href="{{ route('detailplace',[$rstop ->pid]) }}"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
                         <div class="">
-                            <p class="h4-top"><a href="{{ route('detailplace',[$rstop ->id]) }}">{{$rstop -> pname}}</a></p>
+                            <p class="h4-top"><a href="{{ route('detailplace',[$rstop ->pid]) }}">{{$rstop -> pname}}</a></p>
                         </div>
                     </div>
                     <hr>
