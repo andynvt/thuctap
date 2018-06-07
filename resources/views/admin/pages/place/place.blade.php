@@ -6,23 +6,24 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title title">Bảng danh sách địa điểm</h4>
+                    <h4 class="card-title title">Bảng DANH SÁCH ĐỊA ĐIỂM</h4>
                 </div>
                 <div class="card-body">
                     <a style="font-size: 15px" class="btn btn-primary btn-round" href="{{ route('adminthemdiadiem') }}" ><i class="now-ui-icons ui-1_simple-add"></i> Thêm địa điểm</a>
-                    <div class="table-responsive">
-                        <table class="table hover-table">
+                    <br><br>
+                    <div class="">
+                        <table class="mdl-data-table table hover-table" id="place-table">
                             <thead class=" text-primary">
-                                <th>
+                                <th class="text-left">
                                     ID
                                 </th>
-                                <th>
+                                <th class="text-left">
                                     Tên
                                 </th>
-                                <th>
+                                <th class="text-left">
                                     Loại hình
                                 </th>
-                                <th>
+                                <th class="text-left">
                                     Tỉnh
                                 </th>
                                 <th class="text-center">
@@ -40,11 +41,11 @@
                                     <td>
                                         Niger
                                     </td>
-                                    <td>
+                                    <td class="text-left">
                                         Oud-Turnhout
                                     </td>
                                     <td class="td-actions text-center">
-                                        <button class="btn btn-success btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
+                                        <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
                                         <i class="now-ui-icons travel_info"></i>
                                         </button>
 
@@ -54,60 +55,6 @@
 
                                         <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal" data-target="#delete">
                                         <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        Minerva Hooper
-                                    </td>
-                                    <td>
-                                        Curaçao
-                                    </td>
-                                    <td>
-                                        Sinaai-Waas
-                                    </td>
-                                    <td class="td-actions text-center">
-                                        <button class="btn btn-success btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
-                                        <i class="now-ui-icons travel_info"></i>
-                                        </button>
-
-                                        <a class="btn btn-warning btn-fab btn-icon btn-round" href="{{ route('adminsuadiadiem') }}">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </a>
-
-                                        <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal" data-target="#delete">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        3
-                                    </td>
-                                    <td>
-                                        Sage Rodriguez
-                                    </td>
-                                    <td>
-                                        Netherlands
-                                    </td>
-                                    <td>
-                                        Baileux
-                                    </td>
-                                    <td class="td-actions text-center">
-                                        <button class="btn btn-success btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
-                                            <i class="now-ui-icons travel_info"></i>
-                                        </button>
-
-                                        <a class="btn btn-warning btn-fab btn-icon btn-round" href="{{ route('adminsuadiadiem') }}">
-                                            <i class="now-ui-icons ui-2_settings-90"></i>
-                                        </a>
-
-                                        <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal" data-target="#delete">
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -154,8 +101,12 @@
                                 <input type="text" name="address" value="XXX" class="form-control" disabled>
                             </div>
                             <div class="form-group">
-                                <label for="address">Link Google Map</label>
+                                <label for="address">Link nhúng Google Map</label>
                                 <input type="link" name="map" value="XXX" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Toạ độ</label>
+                                <input type="link" name="coor" value="XXX" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="col-12">
@@ -187,7 +138,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Xác nhận xoá XXX</h3>
+                <h3 class="modal-title" id="exampleModalLabel">Xác nhận xoá</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 <i class="now-ui-icons ui-1_simple-remove"></i>
             </button>

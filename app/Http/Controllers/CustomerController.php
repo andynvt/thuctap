@@ -38,6 +38,32 @@ class CustomerController extends Controller
         return view('customer.pages.listplace', compact('result_lp', 'title_place','result_top','sum_fb','avg_fb'));
     }
 
+    public function CustomerCaldis(Request $req){
+        function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+
+            $theta = $lon1 - $lon2;
+            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            $unit = strtoupper($unit);
+
+            if ($unit == "K") {
+                return ($miles * 1.609344);
+            } else if ($unit == "N") {
+                return ($miles * 0.8684);
+            } else {
+                return $miles;
+            }
+        }
+
+        $latitude = $req->lati;
+        $longitude = $req->longi;
+
+        echo distance($latitude, $longitude, 10.0411439,105.7844303, 'K');
+
+        dd($req->lati);
+    }
 
     public function CustomerIntro(){
         $intro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
@@ -50,7 +76,6 @@ class CustomerController extends Controller
 
         return view('customer.pages.intro', compact('intro'));
     }
-
 
     public function CustomerDetailplace($id){
         $places = Place::where('id',$id)->get();

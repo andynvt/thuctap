@@ -15,15 +15,15 @@ class AdminController extends Controller
     }
 
     public function AdminDiadiem(){
-        return view('admin.pages.place');
+        return view('admin.pages.place.place');
     }
 
     public function AdminThemdiadiem(){
-        return view('admin.pages.placeadd');
+        return view('admin.pages.place.placeadd');
     }
 
     public function AdminSuadiadiem(){
-        return view('admin.pages.placeedit');
+        return view('admin.pages.place.placeedit');
     }
 
     public function AdminLoaidiadiem(){
