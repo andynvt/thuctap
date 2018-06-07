@@ -1,4 +1,56 @@
 @extends('customer.master')
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script>
+
+{{-- script xác định vị trí hiện tại --}}
+<script>
+  	// Note: This example requires that you consent to location sharing when
+  	// prompted by your browser. If you see the error "The Geolocation service
+  	// failed.", it means you probably did not give permission for the browser to
+  	// locate you.
+
+  	// latitude: vĩ độ
+  	// longitude: kinh độ
+
+  	var map, infoWindow;
+  	function initMap() {
+	    map = new google.maps.Map(document.getElementById('map-intro'), {
+	      	center: {lat: -34.397, lng: 150.644},
+	      	zoom: 15
+	    });
+	    infoWindow = new google.maps.InfoWindow;
+
+	    // Try HTML5 geolocation.
+	    if (navigator.geolocation) {
+	      	navigator.geolocation.getCurrentPosition(function(position) {
+	        	var pos = {
+	          	lat: position.coords.latitude,
+	          	lng: position.coords.longitude
+	        };
+
+	        	infoWindow.setPosition(pos);
+	        	infoWindow.setContent('Vị trí của bạn.');
+	        	infoWindow.open(map);
+	        	map.setCenter(pos);
+	      	}, function() {
+	        	handleLocationError(true, infoWindow, map.getCenter());
+	      	});
+	    } else {
+	      	// Browser doesn't support Geolocation
+	      	handleLocationError(false, infoWindow, map.getCenter());
+	    }
+  	}
+
+  	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	    infoWindow.setPosition(pos);
+	    infoWindow.setContent(browserHasGeolocation ?
+	                          // 'Error: The Geolocation service failed.' :
+	                          	'Error: Xác định vị trí thất bại.' :
+	                          // 'Error: Your browser doesn\'t support geolocation.');
+	    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
+	    infoWindow.open(map);
+  	}
+</script>
+{{-- end script xác định vị trí hiện tại --}}
 
 @section('content')
 <body onLoad="Time();" class="signup-page sidebar-collapse" style="height: 100vh">
@@ -253,55 +305,40 @@
   	}
 </style>
 
-{{-- Script xác định vị trí --}}
+{{-- script đưa vị trí lên map --}}
 <script>
-  // Note: This example requires that you consent to location sharing when
-  // prompted by your browser. If you see the error "The Geolocation service
-  // failed.", it means you probably did not give permission for the browser to
-  // locate you.
-  var map, infoWindow;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map-intro'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 6
+	var locations = [
+      	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962, 4],
+      	['Công Viên Vòng Xoay Công Viên Nước, 36 Trần Phú, Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', 10.041788, 105.791230, 5],
+      	['Khách sạn Mường Thanh Luxury Cần Thơ', 10.042318, 105.790419, 3],
+      	['Khách sạn Victoria Cần Thơ', 10.039361, 105.793527, 2],
+      	['Nhà hàng Hoa Sứ', 10.039252, 105.791973, 1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map-intro'), {
+      	zoom: 15,
+      	center: new google.maps.LatLng(10.041143, 105.792070),
+      	mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    infoWindow = new google.maps.InfoWindow;
 
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+    var infowindow = new google.maps.InfoWindow();
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Vị trí của bạn.');
-        infoWindow.open(map);
-        map.setCenter(pos);
-      }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      	marker = new google.maps.Marker({
+        	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        	map: map
+      	});
+
+      	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        	return function() {
+          		infowindow.setContent(locations[i][0]);
+          		infowindow.open(map, marker);
+        	}
+      	})(marker, i));
     }
-  }
-
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-                          // 'Error: The Geolocation service failed.' :
-                          	'Error: Xác định vị trí thất bại.' :
-                          // 'Error: Your browser doesn\'t support geolocation.');
-    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
-    infoWindow.open(map);
-  }
 </script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap">
-</script>
-{{-- end script xác định vị trí --}}
-
+{{-- end script đưa vị trí lên map --}}
 
 @endsection
