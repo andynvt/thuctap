@@ -28,11 +28,11 @@
             </a>
         </li>
 
-        <li @if(Request::is('admin/danh-gia') || Request::is('admin/chi-tiet-danh-gia'))
+        <li @if(Request::is('admin/danh-gia/1') || Request::is('admin/chi-tiet-danh-gia'))
                 class="active"
             @endif
         >
-            <a href="{{ route('admin.danh-gia') }}">
+            <a href="{{ route('admin.danh-gia',[1]) }}">
                 <i class="now-ui-icons ui-2_chat-round"></i>
                 <p>Đánh giá</p>
             </a>

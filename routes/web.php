@@ -22,10 +22,8 @@ Route::get('index',[
 	'uses' => 'CustomerController@CustomerIntro'
 ]);
 
-Route::get('loai-dia-diem',[
-	'as' => 'listplace',
-	'uses' => 'CustomerController@CustomerListplace'
-]);
+Route::get('loai-dia-diem/{id}',
+    'CustomerController@CustomerListplace')->name('customer.loai-dia-diem');
 
 Route::get('chi-tiet-dia-diem/{id}',[
 	'as' => 'detailplace',
@@ -35,7 +33,7 @@ Route::get('chi-tiet-dia-diem/{id}',[
 
 // Admin
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('thong-ke',[
+    Route::get('/',[
         'as' => 'adminthongke',
         'uses' => 'AdminController@AdminThongke'
     ]);
@@ -71,14 +69,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('xoa-loai-dia-diem-da-chon',
         'AdminController@AdminXoaLoaidiadiemdachon')->name('admin.xoa-da-chon');
 
-    Route::get('danh-gia',
+    Route::get('danh-gia/{id}',
         'AdminController@AdminDanhgia')->name('admin.danh-gia');
 
-    Route::get('chi-tiet-danh-gia',[
-        'as' => 'adminchitietdanhgia',
-        'uses' => 'AdminController@AdminChitietdanhgia'
-    ]);
-
+    Route::get('chi-tiet-danh-gia/{id}',
+        'AdminController@AdminChitietdanhgia')->name('admin.chi-tiet-danh-gia');
+    Route::get('xoa-danh-gia/{id}',
+        'AdminController@AdminXoadanhgia')->name('admin.xoa-danh-gia');
     Route::get('vi-tri-nguoi-dung',[
         'as' => 'adminvitringuoidung',
         'uses' => 'AdminController@AdminVitringuoidung'
