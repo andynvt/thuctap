@@ -1,21 +1,16 @@
 @extends('customer.master')
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script>
 
-{{-- script xác định vị trí hiện tại --}}
 <script>
-  	// Note: This example requires that you consent to location sharing when
-  	// prompted by your browser. If you see the error "The Geolocation service
-  	// failed.", it means you probably did not give permission for the browser to
-  	// locate you.
-
-  	// latitude: vĩ độ
-  	// longitude: kinh độ
-
+  // Note: This example requires that you consent to location sharing when
+  // prompted by your browser. If you see the error "The Geolocation service
+  // failed.", it means you probably did not give permission for the browser to
+  // locate you.
   	var map, infoWindow;
   	function initMap() {
 	    map = new google.maps.Map(document.getElementById('map-intro'), {
-	      	center: {lat: -34.397, lng: 150.644},
-	      	zoom: 15
+	      center: {lat: -34.397, lng: 150.644},
+	      zoom: 15
 	    });
 	    infoWindow = new google.maps.InfoWindow;
 
@@ -50,7 +45,6 @@
 	    infoWindow.open(map);
   	}
 </script>
-{{-- end script xác định vị trí hiện tại --}}
 
 @section('content')
 <body onLoad="Time();" class="signup-page sidebar-collapse" style="height: 100vh">
@@ -305,7 +299,52 @@
   	}
 </style>
 
-{{-- script đưa vị trí lên map --}}
+{{-- Script xác định vị trí --}}
+{{-- <script>
+  // Note: This example requires that you consent to location sharing when
+  // prompted by your browser. If you see the error "The Geolocation service
+  // failed.", it means you probably did not give permission for the browser to
+  // locate you.
+  	var map, infoWindow;
+  	function initMap() {
+	    map = new google.maps.Map(document.getElementById('map-intro'), {
+	      center: {lat: -34.397, lng: 150.644},
+	      zoom: 15
+	    });
+	    infoWindow = new google.maps.InfoWindow;
+
+	    // Try HTML5 geolocation.
+	    if (navigator.geolocation) {
+	      	navigator.geolocation.getCurrentPosition(function(position) {
+	        	var pos = {
+	          	lat: position.coords.latitude,
+	          	lng: position.coords.longitude
+	        };
+
+	        	infoWindow.setPosition(pos);
+	        	infoWindow.setContent('Vị trí của bạn.');
+	        	infoWindow.open(map);
+	        	map.setCenter(pos);
+	      	}, function() {
+	        	handleLocationError(true, infoWindow, map.getCenter());
+	      	});
+	    } else {
+	      	// Browser doesn't support Geolocation
+	      	handleLocationError(false, infoWindow, map.getCenter());
+	    }
+  	}
+
+  	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	    infoWindow.setPosition(pos);
+	    infoWindow.setContent(browserHasGeolocation ?
+	                          // 'Error: The Geolocation service failed.' :
+	                          	'Error: Xác định vị trí thất bại.' :
+	                          // 'Error: Your browser doesn\'t support geolocation.');
+	    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
+	    infoWindow.open(map);
+  	}
+</script> --}}
+
 <script>
 	var locations = [
       	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962, 4],
@@ -339,6 +378,9 @@
       	})(marker, i));
     }
 </script>
-{{-- end script đưa vị trí lên map --}}
+{{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script> --}}
+{{-- <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> --}}
+{{-- end script xác định vị trí --}}
+
 
 @endsection
