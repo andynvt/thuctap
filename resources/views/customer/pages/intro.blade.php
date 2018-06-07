@@ -1,6 +1,7 @@
 @extends('customer.master')
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script>
 
+{{-- script xác định vị trí hiện tại --}}
 <script>
   // Note: This example requires that you consent to location sharing when
   // prompted by your browser. If you see the error "The Geolocation service
@@ -18,22 +19,33 @@
 	    if (navigator.geolocation) {
 	      	navigator.geolocation.getCurrentPosition(function(position) {
 	        	var pos = {
-	          	lat: position.coords.latitude,
-	          	lng: position.coords.longitude
-	        };
+		          	lat: position.coords.latitude,
+		          	lng: position.coords.longitude
+		        };
 
 	        	infoWindow.setPosition(pos);
 	        	infoWindow.setContent('Vị trí của bạn.');
 	        	infoWindow.open(map);
 	        	map.setCenter(pos);
-	      	}, function() {
+
+	      		var la = pos.lat;
+	      		var long = pos.lng;
+	      		$('#lala').val(la);
+	      		$('#longlong').val(long);
+	      	}, 
+	      	function() {
 	        	handleLocationError(true, infoWindow, map.getCenter());
 	      	});
+
+	      	// alert(la);
+	      	// return la;
 	    } else {
 	      	// Browser doesn't support Geolocation
 	      	handleLocationError(false, infoWindow, map.getCenter());
 	    }
   	}
+
+  	// alert(la);
 
   	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	    infoWindow.setPosition(pos);
@@ -44,7 +56,9 @@
 	    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
 	    infoWindow.open(map);
   	}
+
 </script>
+{{-- end script xác định vị trí hiện tại --}}
 
 @section('content')
 <body onLoad="Time();" class="signup-page sidebar-collapse" style="height: 100vh">
@@ -283,7 +297,63 @@
 	      </div>
 	    </div>
 	</div>
+	<form method="post" action="{{ route('caldis') }}">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="text" id="lala" name="lati" value="1234">
+		<input type="text" id="longlong" name="longi" value="1234">
+		<input type="submit" name="">
+	</form>
 </body>
+
+{{-- <?php
+
+    /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::                                                                         :*/
+    /*::  This routine calculates the distance between two points (given the     :*/
+    /*::  latitude/longitude of those points). It is being used to calculate     :*/
+    /*::  the distance between two locations using GeoDataSource(TM) Products    :*/
+    /*::                                                                         :*/
+    /*::  Definitions:                                                           :*/
+    /*::    South latitudes are negative, east longitudes are positive           :*/
+    /*::                                                                         :*/
+    /*::  Passed to function:                                                    :*/
+    /*::    lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)  :*/
+    /*::    lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)  :*/
+    /*::    unit = the unit you desire for results                               :*/
+    /*::           where: 'M' is statute miles (default)                         :*/
+    /*::                  'K' is kilometers                                      :*/
+    /*::                  'N' is nautical miles                                  :*/
+    /*::  Worldwide cities and other features databases with latitude longitude  :*/
+    /*::  are available at https://www.geodatasource.com                          :*/
+    /*::                                                                         :*/
+    /*::  For enquiries, please contact sales@geodatasource.com                  :*/
+    /*::                                                                         :*/
+    /*::  Official Web site: https://www.geodatasource.com                        :*/
+    /*::                                                                         :*/
+    /*::         GeoDataSource.com (C) All Rights Reserved 2017              :*/
+    /*::                                                                         :*/
+    /*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+
+      	$theta = $lon1 - $lon2;
+      	$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+      	$dist = acos($dist);
+      	$dist = rad2deg($dist);
+      	$miles = $dist * 60 * 1.1515;
+      	$unit = strtoupper($unit);
+
+      	if ($unit == "K") {
+        	return ($miles * 1.609344);
+      	} else if ($unit == "N") {
+          	return ($miles * 0.8684);
+        } else {
+            return $miles;
+      	}
+    }
+
+    echo distance(32.9697, -96.80322, 29.46786, -98.53506, "K") . " Kilometers<br>";
+    echo distance(10.0453015, 105.7796662, 10.0411439,105.7844303, 'K');
+?> --}}
 
 <script>
 	$('.carousel-item:first').addClass('active');
@@ -299,52 +369,7 @@
   	}
 </style>
 
-{{-- Script xác định vị trí --}}
-{{-- <script>
-  // Note: This example requires that you consent to location sharing when
-  // prompted by your browser. If you see the error "The Geolocation service
-  // failed.", it means you probably did not give permission for the browser to
-  // locate you.
-  	var map, infoWindow;
-  	function initMap() {
-	    map = new google.maps.Map(document.getElementById('map-intro'), {
-	      center: {lat: -34.397, lng: 150.644},
-	      zoom: 15
-	    });
-	    infoWindow = new google.maps.InfoWindow;
-
-	    // Try HTML5 geolocation.
-	    if (navigator.geolocation) {
-	      	navigator.geolocation.getCurrentPosition(function(position) {
-	        	var pos = {
-	          	lat: position.coords.latitude,
-	          	lng: position.coords.longitude
-	        };
-
-	        	infoWindow.setPosition(pos);
-	        	infoWindow.setContent('Vị trí của bạn.');
-	        	infoWindow.open(map);
-	        	map.setCenter(pos);
-	      	}, function() {
-	        	handleLocationError(true, infoWindow, map.getCenter());
-	      	});
-	    } else {
-	      	// Browser doesn't support Geolocation
-	      	handleLocationError(false, infoWindow, map.getCenter());
-	    }
-  	}
-
-  	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-	    infoWindow.setPosition(pos);
-	    infoWindow.setContent(browserHasGeolocation ?
-	                          // 'Error: The Geolocation service failed.' :
-	                          	'Error: Xác định vị trí thất bại.' :
-	                          // 'Error: Your browser doesn\'t support geolocation.');
-	    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
-	    infoWindow.open(map);
-  	}
-</script> --}}
-
+{{-- script thêm vị trí vào map --}}
 <script>
 	var locations = [
       	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962, 4],
@@ -378,9 +403,6 @@
       	})(marker, i));
     }
 </script>
-{{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script> --}}
-{{-- <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> --}}
-{{-- end script xác định vị trí --}}
-
+{{-- end script thêm vị trí vào map --}}
 
 @endsection
