@@ -60,9 +60,8 @@ class CustomerController extends Controller
         $latitude = $req->lati;
         $longitude = $req->longi;
 
-        echo distance($latitude, $longitude, 10.0411439,105.7844303, 'K');
-
-        dd($req->lati);
+        $dis = distance($latitude, $longitude, 10.0411439,105.7844303, 'K');
+        return response()->json(['data' => $dis]);
     }
 
     public function CustomerIntro(){
@@ -127,6 +126,13 @@ class CustomerController extends Controller
 //        dd($khachsan);
 
         return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','same_place','dulich','anuong','khachsan','id_type'));
+    }
+
+    public function postDanhGia(Request $req){
+        $id = $req->id;
+        $star = $req->star;
+//        dd($id , $star);
+        return response()->json(['id' => $id, 'star' => $star]);
     }
 
 }

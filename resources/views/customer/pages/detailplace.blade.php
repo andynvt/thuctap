@@ -55,27 +55,57 @@
                         <img src="//ssl.gstatic.com/images/icons/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;" />
                     </a>
                 </div>
-                <div class="star-place">
+                {{--<form method="post" action="{{route('dg')}}">--}}
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="id" id="{{$places[0]->id}}" value="{{$places[0]->id}}">
+                    <div class="star-place">
                     <fieldset class="rating ">
-                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
-                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
-                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Tốt - 4 sao"></label>
-                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
-                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Ổn - 3 sao"></label>
-                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
-                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
-                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
-                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
-                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
+                        <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
+                        <input type="radio" id="star4half" name="rating" value="4.5"/><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
+                        <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4" title="Tốt - 4 sao"></label>
+                        <input type="radio" id="star3half" name="rating" value="3.5"/><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
+                        <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3" title="Ổn - 3 sao"></label>
+                        <input type="radio" id="star2half" name="rating" value="2.5"/><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
+                        <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
+                        <input type="radio" id="star1half" name="rating" value="1.5"/><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
+                        <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
+                        <input type="radio" id="starhalf" name="rating" value="0.5"/><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
+                        {{--<button type="submit">submit</button>--}}
                     </fieldset>
                     <p class="p-place">&nbsp;&nbsp;<b>{{$avg_fb}}/5</b> trong <b>{{$no_of_fb}}</b> đánh giá</p>
                 </div>
+                {{--</form>--}}
+                <script>
+                    $('.rating').on('change', function () {
+                        var star = $('.rating input:checked').val();
+                        var id = '{{$places[0]->id}}';
+                        // alert(star);
+                        $.ajax({
+                            type: 'GET',
+                            url: 'dg',
+                            data: {id:id, star: star},
+                            success: function (id, star) {
+                                console.log(id, star);
+                                $('.rating input').attr('disabled', 'disabled');
+                            }
+                        });
+                    });
+
+
+                </script>
                 <div class="clearfix"></div>
-                <div class="info-place">
-                    <p class="p-place">
-                        {{$places[0]->short_des}}
-                    </p>
+                <div id="sdiv-info">
+                    <input type="hidden" value="{{$places[0]->short_des}}">
+                    <div class="info-place" id="sinfo">
+                        <p>
+                            <script>
+                                var sinfo = $("#sdiv-info input").val();
+                                $("#sinfo").html(sinfo);
+                            </script>
+                        </p>
+                    </div>
                 </div>
+
             </div>
         </div>
         <div class="row" style="margin-left: 0; margin-right: 15px;">
@@ -103,14 +133,12 @@
                         <div class="tab-content text-center" id="div-info">
                             <input type="hidden" value="{{$places[0]->full_des}}">
                             <div class="tab-pane active" id="info">
-                                <p >
-                                    {{$places[0]->full_des}}
-                                    {{--<script>--}}
-                                        {{--var info = $("#div-info input").val();--}}
-                                        {{--$("#info").html(info);--}}
-                                    {{--</script>--}}
+                                <p>
+                                    <script>
+                                        var info = $("#div-info input").val();
+                                        $("#info").html(info);
+                                    </script>
                                 </p>
-
                             </div>
                             <div class="tab-pane" id="map">
                                 <input type="hidden" value="{{$places[0]->map}}">
