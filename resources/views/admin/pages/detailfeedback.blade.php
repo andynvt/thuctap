@@ -39,6 +39,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="div-pagination" style="padding-left: 40%!important;">
+                        {{ $chitiet->links() }}
+                    </div>
                 </div>
             </div>
         </div>

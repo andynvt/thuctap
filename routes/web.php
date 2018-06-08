@@ -22,8 +22,10 @@ Route::get('index',[
 	'uses' => 'CustomerController@CustomerIntro'
 ]);
 
-Route::get('loai-dia-diem/{id}',
-    'CustomerController@CustomerListplace')->name('customer.loai-dia-diem');
+Route::get('loai-dia-diem/{id}',[
+    'as' => 'customer.loai-dia-diem',
+    'uses' => 'CustomerController@CustomerListplace'
+]);
 
 Route::post('cal-dis',[
     'as' => 'caldis',
@@ -36,9 +38,10 @@ Route::get('loai-dia-diem',[
 ]);
 Route::get('cal-dis','CustomerController@CustomerCaldis');
 
-Route::get('loai-dia-diem/{id}',
-    'CustomerController@CustomerListplace')->name('customer.loai-dia-diem');
->>>>>>> c47affc018c3f5083e1120939f7d821029366148
+Route::get('loai-dia-diem/{id}',[
+    'as' => 'customer.loai-dia-diem',
+    'uses' => 'CustomerController@CustomerListplace'
+]);
 
 Route::get('chi-tiet-dia-diem/{id}',[
 	'as' => 'detailplace',
@@ -73,32 +76,53 @@ Route::group(['prefix' => 'admin'], function () {
         'as' => 'adminloaidiadiem',
         'uses' => 'AdminController@AdminLoaidiadiem'
     ]);
-    Route:: post('them-loai-dia-diem',
-        'AdminController@AdminThemLoaidiadiem')->name('admin.them-loai');
+    Route:: post('them-loai-dia-diem',[
+        'as' => 'admin.them-loai',
+        'uses' => 'AdminController@AdminThemLoaidiadiem'
+    ]);
 
-    Route:: post('sua-loai-dia-diem/{id}',
-        'AdminController@AdminSuaLoaidiadiem')->name('admin.sua-loai');
+    Route:: post('sua-loai-dia-diem/{id}',[
+        'as' => 'admin.sua-loai',
+        'uses' => 'AdminController@AdminSuaLoaidiadiem'
+    ]);
 
-    Route::get('xoa-loai-dia-diem/{id}',
-        'AdminController@AdminXoaLoaidiadiem')->name('admin.xoa-loai');
+    Route::get('xoa-loai-dia-diem/{id}',[
+        'as' => 'admin.xoa-loai',
+        'uses' => 'AdminController@AdminXoaLoaidiadiem'
+    ]);
 
-    Route::get('xoa-loai-dia-diem-da-chon',
-        'AdminController@AdminXoaLoaidiadiemdachon')->name('admin.xoa-da-chon');
+    Route::get('xoa-loai-dia-diem-da-chon',[
+        'as' => 'admin.xoa-da-chon',
+        'uses' => 'AdminController@AdminXoaLoaidiadiemdachon'
+    ]);
 
-    Route::get('danh-gia/{id}',
-        'AdminController@AdminDanhgia')->name('admin.danh-gia');
+    Route::get('danh-gia/{id}',[
+        'as' => 'admin.danh-gia',
+        'uses' => 'AdminController@AdminDanhgia'
+    ]);
 
-    Route::get('chi-tiet-danh-gia/{id}',
-        'AdminController@AdminChitietdanhgia')->name('admin.chi-tiet-danh-gia');
-    Route::get('xoa-danh-gia/{id}',
-        'AdminController@AdminXoadanhgia')->name('admin.xoa-danh-gia');
+    Route::get('chi-tiet-danh-gia/{id}',[
+        'as' => 'admin.chi-tiet-danh-gia',
+        'uses' => 'AdminController@AdminChitietdanhgia'
+    ]);
+
+    Route::get('xoa-danh-gia/{id}',[
+        'as' => 'admin.xoa-danh-gia',
+        'uses' => 'AdminController@AdminXoadanhgia'
+    ]);
+
     Route::get('vi-tri-nguoi-dung',[
         'as' => 'adminvitringuoidung',
         'uses' => 'AdminController@AdminVitringuoidung'
     ]);
-    Route::get('xoa-vi-tri-nguoi-dung/{id}',
-        'AdminController@AdminXoavitringuoidung')->name('admin.xoa-vi-tri');
-    Route::get('xoa-vi-tri-da-chon',
-        'AdminController@AdminXoavitringuoidungdachon')->name('admin.xoa-vi-tri-da-chon');
+    Route::get('xoa-vi-tri-nguoi-dung/{id}',[
+        'as' => 'admin.xoa-vi-tri',
+        'uses' => 'AdminController@AdminXoavitringuoidung'
+    ]);
+
+    Route::get('xoa-vi-tri-da-chon',[
+        'as' => 'admin.xoa-vi-tri-da-chon',
+        'uses' => 'AdminController@AdminXoavitringuoidungdachon'
+    ]);
 });
 

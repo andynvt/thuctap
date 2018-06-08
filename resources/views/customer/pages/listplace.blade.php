@@ -74,30 +74,20 @@
                                             <div class="col-6 img-div" >
                                                 <a href="{{ route('detailplace',[$rlp ->pid]) }}"><img src="storage/image/{{$rlp -> piname}}" alt="{{$rlp -> pname}}"
                                                                  class="img-raised rounded img-fluid a-img"></a>
-                                                {{--@dd( route('detailplace',[$rlp ->pid]) }});--}}
                                             </div>
                                             <div class="col-6 float-left">
                                                 <h3 style="margin-top: 0"><a href="{{ route('detailplace',[$rlp -> pid]) }}">{{$rlp -> pname}}<br></a>
-
                                                 </h3>
-                                                <p class="short-des"> {{$rlp -> short_des}}
-                                                    <br>
-                                                </p>
-                                                <div class="star-place">
-                                                    <fieldset class="rating ">
-                                                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
-                                                        <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
-                                                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Tốt - 4 sao"></label>
-                                                        <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
-                                                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Ổn - 3 sao"></label>
-                                                        <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
-                                                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
-                                                        <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
-                                                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
-                                                        <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
-                                                    </fieldset>
-                                                    <p class="p-place">&nbsp;&nbsp;<b>{{number_format((float)\App\Feedback::where('id_place',$rlp -> pid)->avg('star'),2,'.','')}}/5</b> trong <b>{{\App\Feedback::where('id_place',$rlp -> pid)->count('star')}}</b> ĐÁNH GIÁ</p>
-                                                </div>
+                                                <div class="short-des">
+                                                        {!! $rlp->short_des !!}
+                                                </div><br>
+                                                @component('customer.star_rating')
+                                                    {{number_format((float)\App\Feedback::where('id_place',$rlp -> pid)->avg('star'),2,'.','')}}
+                                                @endcomponent
+                                                    <p class="p-place">&nbsp;&nbsp;<b>{{number_format((float)\App\Feedback::where('id_place',$rlp -> pid)->avg('star'),2,'.','')}}/5</b>
+                                                        trong <b>{{\App\Feedback::where('id_place',$rlp -> pid)->count('star')}}</b> ĐÁNH GIÁ
+                                                    </p>
+
                                                 <div class="readMore float-right">
                                                     <a href="{{ route('detailplace',[$rlp ->pid]) }}" class="btn btn-primary btn-round btn-sm">
                                                         <i class="material-icons">details</i>Xem chi tiết<span class="badge badge-pill badge-primary"></span></a>
@@ -110,12 +100,10 @@
                                         @endforeach
                                 </section>
                             </div>
-
                             <div class="tab-pane col-12" id="viewModule">
                                 <section class="list-place" id="place-1">
                                     <div class="title-dl ">
                                         <h3 class="text-primary" style="text-transform: uppercase">{{$title_place->name}}</h3>
-
                                     </div>
                                     <hr class="text-primary" style="border: 2px solid">
                                     <div class="row">
@@ -128,17 +116,13 @@
                                                 </div>
                                                 <div class="card-body div-body">
                                                     <h5 class="card-title"><a href="{{ route('detailplace',[$rslp ->pid]) }}">{{$rslp -> pname}}<br></a></h5>
-                                                    <p class="short-des">
-                                                        {{$rslp -> short_des}}
+                                                    <div class="short-des">
+                                                        {!! $rslp -> short_des !!}
                                                         <br>
-                                                    </p>
-                                                    <div class="star-rating">
-                                                        <img src="storage/image/star-on.png" alt="1" title="bad">
-                                                        <img src="storage/image/star-on.png" alt="2" title="poor">
-                                                        <img src="storage/image/star-on.png" alt="3" title="regular">
-                                                        <img src="storage/image/star-on.png" alt="4" title="good">
-                                                        <img src="storage/image/star-half-mono.png" alt="5" title="gorgeous">
                                                     </div>
+                                                    @component('customer.star_rating')
+                                                        {{number_format((float)\App\Feedback::where('id_place',$rslp -> pid)->avg('star'),2,'.','')}}
+                                                    @endcomponent
                                                     <p class="p-place">&nbsp;&nbsp;<b>{{number_format((float)\App\Feedback::where('id_place',$rslp -> pid)->avg('star'),2,'.','')}}/5</b> trong <b>{{\App\Feedback::where('id_place',$rslp -> pid)->count('star')}}</b> ĐÁNH GIÁ</p>
 
                                                 </div>
@@ -159,14 +143,16 @@
             </div>
             <div class="col-md-4 col-lg-4 col-xl-4 col-sm-12 card col-card-top">
                 <div class="title-top card-header card-header-primary text-center">
-                    <h3>TOP DU LỊCH HẤP DẪN</h3>
+                    <h3 style="text-transform: uppercase">TOP {{$title_place->name}} HẤP DẪN</h3>
                 </div>
                 <br>
                 <div class="col-12 content-top text-center">
                     @foreach($result_top as $rstop)
-                    <div class="item-top">{{--<a href="#"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>--}}
-                        <a href="{{ route('detailplace',[$rstop ->pid]) }}"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid"></a>
-                        <div class="">
+                    <div class="item-top ">
+                        <div class="img-top">
+                        <a href="{{ route('detailplace',[$rstop ->pid]) }}"><img src="storage/image/{{$rstop -> piname}}" alt="{{$rstop -> pname}}" class="img-raised rounded img-fluid a-img"></a>
+                        </div>
+                            <div class="">
                             <p class="h4-top"><a href="{{ route('detailplace',[$rstop ->pid]) }}">{{$rstop -> pname}}</a></p>
                         </div>
                     </div>

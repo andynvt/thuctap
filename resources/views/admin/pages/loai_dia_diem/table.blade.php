@@ -53,6 +53,9 @@
         </tbody>
     </table>
 </form>
+<div class="div-pagination" style="padding-left: 40%!important;">
+    {{ $placeType->links() }}
+</div>
 <script>
     function eventCheckBox() {
         let checkboxs = document.getElementsByName("loai-dia-diem-id[]");

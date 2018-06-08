@@ -11,13 +11,16 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[1])}}"><i class="material-icons">beach_access</i>du lịch</a>
+                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[1])}}"
+                       data-toggle="tooltip" data-placement="bottom" title="Du lịch"><i class="material-icons">beach_access</i>du lịch</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[2])}}"><i class="material-icons">room_service</i>ăn uống</a>
+                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[2])}}"
+                       data-toggle="tooltip" data-placement="bottom" title="Ăn uống"><i class="material-icons">room_service</i>ăn uống</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[3])}}"><i class="material-icons">hotel</i>khách sạn</a>
+                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[3])}}"
+                       data-toggle="tooltip" data-placement="bottom" title="Khách sạn"><i class="material-icons">hotel</i>khách sạn</a>
                 </li>
                 <form class="form-inline ml-auto">
                     <div class="form-group has-white">

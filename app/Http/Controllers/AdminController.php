@@ -28,7 +28,7 @@ class AdminController extends Controller
 
     public function AdminLoaidiadiem(){
 //        view list all type
-         $placeType= Place_Type::all();
+         $placeType= Place_Type::orderBy('id','asc')->paginate(5);
         return view('admin.pages.loai_dia_diem.index',compact('placeType'));
     }
     public function AdminThemLoaidiadiem(Request $request){
@@ -64,13 +64,15 @@ class AdminController extends Controller
     }
 
     public function AdminDanhgia($id){
+
         $danhGia= Feedback::join('places','feedbacks.id_place','=','places.id')
             ->join('place_image','place_image.id_place','=','places.id')
             ->select('feedbacks.id as fid','places.id as pid','places.name as pname',
                 'place_image.name as iname')
             ->where('places.id_type',$id)
             ->groupBY('places.id')
-            ->get();
+            ->orderBy('places.id','asc')
+            ->paginate(10);
         return view('admin.pages.feedback',compact('danhGia'));
     }
 
@@ -84,7 +86,7 @@ class AdminController extends Controller
                 'places.updated_at as pupdated_at','feedbacks.created_at as fcreated_at',
                 'feedbacks.updated_at as fupdated_at','feedbacks.star as fstar')
             ->where('places.id',$id)
-            ->get();
+            ->paginate(10);
         return view('admin.pages.detailfeedback',compact('diaDiem','chitiet','tongdg','avg'));
     }
     public function AdminXoadanhgia($id)
@@ -95,7 +97,7 @@ class AdminController extends Controller
     }
 
     public function AdminVitringuoidung(){
-        $userLocation = User_Location::all();
+        $userLocation = User_Location::orderBy('id','asc')->paginate(5);
         return view('admin.pages.vi_tri_nguoi_dung.index',compact('userLocation'));
     }
     public function AdminXoavitringuoidung($ids)

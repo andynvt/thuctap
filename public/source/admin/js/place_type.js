@@ -1,26 +1,39 @@
-//
-// function bindSelectAll(id) {
-//     let selector = $('#' + id);
-//     $(selector).checkbox({
-//         onChange() {
-//             let checked = $(selector).find('input').prop('checked');
-//             $('.form-check.child.checkbox').checkbox(checked ? 'check': 'uncheck');
-//         }
-//     });
-// }
-//     function bindSelectAll(id) {
-//         alert("đâ");
-//         // let selector = $('#' + id);
-//         // $(selector).checkbox({
-//         //     onChange() {
-//         //         let checked = $(selector).find('input').prop('checked');
-//         //         $('.ui.child.checkbox').checkbox(checked ? 'check': 'uncheck');
-//         //     }
-//         // });
-//     }
+
 function confirmDelete() {
     if ($('.ui.child.checkbox input:checked').length < 1)
         return false;
 
     return confirm('Bạn chắc chắn xóa các mục vừa chọn?');
 }
+
+$(document).ready(function() {
+    $('#place-table').DataTable( {
+        columnDefs: [
+            {
+                targets: [ 0, 1, 2 ],
+                className: 'mdl-data-table__cell--non-numeric'
+            }
+        ],
+        language: {
+            processing:     "Đang xử lý...",
+            search:         "Tìm kiếm",
+            lengthMenu:     "Xem _MENU_ mục",
+            info:           "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+            infoEmpty:      "Đang xem 0 đến 0 trong tổng số 0 mục",
+            infoFiltered:   "(được lọc từ _MAX_ mục)",
+            infoPostFix:    "",
+            zeroRecords:     "Không tìm thấy dòng nào phù hợp",
+            paginate: {
+                first:      "Đầu",
+                previous:   "Trước",
+                next:       "Tiếp",
+                last:       "Cuối"
+            },
+            aria: {
+                sortAscending:  ": sắp xếp tăng",
+                sortDescending: ": sắp xếp giảm"
+            }
+        }
+
+    } );
+} );

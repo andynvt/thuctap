@@ -4,7 +4,7 @@
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-        <li {{ (Request::is('admin/thong-ke') ? 'class=active' : '') }}>
+        <li {{ (Request::is('admin') ? 'class=active' : '') }}>
             <a href="{{ route('adminthongke') }}">
                 <i class="now-ui-icons design_app"></i>
                 <p>Thống kê</p>
