@@ -45,6 +45,7 @@
 
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="{{asset('source/admin/js/datatables.js')}}"></script>
 
     <script>
         // $(document).ready(function() {
@@ -68,11 +69,15 @@
         {{-- Css --}}
         <link href="{{asset('source/admin/css/place.css')}}" rel="stylesheet" />
         {{-- Js --}}
+        <script type="text/javascript" src="{{asset('source/admin/js/place.js')}}"></script>
 
     {{-- placetype --}}
         {{-- Css --}}
         <link href="{{asset('source/admin/css/placetype.css')}}" rel="stylesheet" />
+        <link href="{{asset('source/admin/js/jquery.toast.min.css')}}" rel="stylesheet" />
         {{-- Js --}}
+        <script type="text/javascript" src="{{asset('source/admin/js/jquery.toast.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('source/admin/js/place_type.js')}}"></script>
 
     {{-- feedback --}}
         {{-- Css --}}
@@ -116,6 +121,11 @@
             {{-- end footer --}}
         </div>
     </div>
+    <script>
+        var tableid = $('table').attr('id');
+        // alert(tableid);
+        bindDatatable(tableid);
+    </script>
 </body>
 
 </html>

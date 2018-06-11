@@ -24,8 +24,8 @@ class CustomerController extends Controller
                 'place_image.id as piimg', 'place_image.name as piname','feedbacks.id as fid')
             ->where('places.id_type', $id)
             ->groupBy('places.id')
-            ->limit('5')
-            ->get();
+//            ->limit('5')
+            ->paginate(3);
 //       view top places interesting
         $result_top = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->leftjoin('feedbacks', 'places.id', '=', 'feedbacks.id_place')

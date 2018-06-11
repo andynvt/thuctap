@@ -98,6 +98,10 @@
                                     </div>
                                     <hr>
                                         @endforeach
+
+                                    <div class="div-pagination" style="padding-left: 40%!important;">
+                                        {{ $result_lp->links() }}
+                                    </div>
                                 </section>
                             </div>
                             <div class="tab-pane col-12" id="viewModule">
@@ -133,7 +137,11 @@
                                             </div>
                                         </div>
                                             @endforeach
+                                            <div class="div-pagination" style="padding-left: 40%!important;">
+                                                {{ $result_lp->links() }}
+                                            </div>
                                     </div>
+
                                 </section>
                             </div>
                         </div>

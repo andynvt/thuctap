@@ -1,17 +1,20 @@
 @extends('admin.master')
 
 @section('content')
+
+
 <div class="content fb-content">
     <div class="card">
         <div class="row">
-
             <div class="col-12 fb-info clearfix">
                 <div class="row">
                     <h3 class="col-6">{{$diaDiem->name}}:</h3>
-                    <h5 class="col-6 text-right">{{$avg}}/5 ({{$tongdg}} đánh giá)</h5>
+                    <h5 class="col-6 text-right">
+                        {{number_format((float)$avg,2,'.','')}}
+                        /5 ({{$tongdg}} đánh giá)</h5>
                 </div>
                 <div class="table-responsive">
-                    <table class="table hover-table">
+                    <table class="table" id="detail-fb-table">
                         <thead class="bg-primary" style="font-size: 10px;color: #ffffff;">
                             <tr>
                                 <th>ID ĐÁNH GIÁ</th>
@@ -24,7 +27,12 @@
                         @foreach($chitiet as $ct)
                             <tr>
                                 <td>{{$ct ->fid}}</td>
-                                <td class="text-center">{{$ct -> fstar}}</td>
+                                <td class="text-center">
+                                    @component('customer.star_rating')
+                                        {{$ct -> fstar}}
+
+                                    @endcomponent
+                                    </td>
                                 <td class="text-center">{{$ct ->fcreated_at . '-' . $ct ->fupdated_at}}</td>
                                 <td class="td-actions text-right">
                                     <button class="btn btn-danger btn-fab btn-icon btn-round" type="submit">
@@ -39,13 +47,18 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="div-pagination" style="padding-left: 40%!important;">
-                        {{ $chitiet->links() }}
-                    </div>
+                    {{--<div class="div-pagination" style="padding-left: 40%!important;">--}}
+                        {{--{{ $chitiet->links() }}--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+{{--<script>--}}
+    {{--var tableid = $('table').attr('id');--}}
+    {{--// alert(tableid);--}}
+    {{--bindDatatable(tableid);--}}
+{{--</script>--}}
 @endsection

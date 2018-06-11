@@ -1,39 +1,40 @@
 
-function confirmDelete() {
-    if ($('.ui.child.checkbox input:checked').length < 1)
-        return false;
-
-    return confirm('Bạn chắc chắn xóa các mục vừa chọn?');
+function infoMessage(heading, msg) {
+    $.toast({
+        heading: heading,
+        text: msg,
+        loader: false,
+        icon: 'info',
+        position: 'bottom-right'
+    });
 }
 
-$(document).ready(function() {
-    $('#place-table').DataTable( {
-        columnDefs: [
-            {
-                targets: [ 0, 1, 2 ],
-                className: 'mdl-data-table__cell--non-numeric'
-            }
-        ],
-        language: {
-            processing:     "Đang xử lý...",
-            search:         "Tìm kiếm",
-            lengthMenu:     "Xem _MENU_ mục",
-            info:           "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-            infoEmpty:      "Đang xem 0 đến 0 trong tổng số 0 mục",
-            infoFiltered:   "(được lọc từ _MAX_ mục)",
-            infoPostFix:    "",
-            zeroRecords:     "Không tìm thấy dòng nào phù hợp",
-            paginate: {
-                first:      "Đầu",
-                previous:   "Trước",
-                next:       "Tiếp",
-                last:       "Cuối"
-            },
-            aria: {
-                sortAscending:  ": sắp xếp tăng",
-                sortDescending: ": sắp xếp giảm"
-            }
-        }
+function successMessage(heading, msg) {
+    $.toast({
+        heading: heading,
+        text: msg,
+        loader: false,
+        icon: 'success',
+        position: 'bottom-right'
+    });
+}
 
-    } );
-} );
+function errorMessage(heading, msg) {
+    $.toast({
+        heading: heading,
+        text: msg,
+        loader: false,
+        icon: 'error',
+        position: 'bottom-right'
+    });
+}
+function warningMessage(heading, msg) {
+    $.toast({
+        heading: heading,
+        text: msg,
+        loader: false,
+        icon: 'warning',
+        position: 'bottom-right',
+        loaderBg: red
+    });
+}
