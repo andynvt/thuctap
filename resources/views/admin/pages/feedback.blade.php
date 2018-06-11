@@ -44,6 +44,9 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="div-pagination" style="padding-left: 40%!important;">
+                    {{ $danhGia->links() }}
+                </div>
             </div>
         </div>
     </div>

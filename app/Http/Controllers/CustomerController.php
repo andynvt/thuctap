@@ -13,7 +13,7 @@ use Session;
 
 class CustomerController extends Controller
 {
-    public function CustomerListplace($id)
+    public function CustomerListplace(Request $request,$id)
     {
 //       view list places
         $title_place= Place_Type::find($id);
@@ -35,6 +35,7 @@ class CustomerController extends Controller
             ->orderBy('feedbacks.star', 'desc')
             ->limit('5')
             ->get();
+
         return view('customer.pages.listplace', compact('result_lp', 'title_place','result_top','sum_fb','avg_fb'));
     }
 

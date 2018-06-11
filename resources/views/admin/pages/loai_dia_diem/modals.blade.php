@@ -57,7 +57,7 @@
                             <td>{{$rslp -> address}}
                             </td>
                             <td>
-                                {{$rslp -> short_des}}
+                                {!! $rslp -> short_des !!}
                             </td>
                         </tr>
                             @endforeach
