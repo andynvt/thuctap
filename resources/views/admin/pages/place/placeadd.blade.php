@@ -19,20 +19,54 @@
                                 <div class="form-group">
                                     <label for="type">Loại</label>
                                     <select name="type" id="type" class="form-control" style="border-radius: 30px">
-                                        <option value="1">Du lịch</option>
-                                        <option value="2">Ăn uống</option>
-                                        <option value="3">Khách sạn</option>
+                                        <option value="">---Chọn loại---</option>
+                                        @foreach($place_type as $pt)
+                                            <option value="{{$pt->id}}">{{$pt->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="city">Thành phố</label>
                                     <select name="city" id="city" class="form-control">
-                                        <option value="1">Cần Thơ</option>
-                                        <option value="2">Sóc Trăng</option>
+                                        <option value="">---Chọn thành phố---</option>
+                                        @foreach($city as $c)
+                                        <option value="{{$c->id}}">{{$c->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="city">Quận/Huyện</label>
+                                    <select name="district" id="district" class="form-control">
+                                        <option value="0">---Chọn Quận/Huyện---</option>
+                                        {{--@foreach($district as $d)--}}
+                                        {{--<option value="{{$d->id}}">{{$d->name}}</option>--}}
+                                        {{--@endforeach--}}
+                                    </select>
+                                </div>
+                                <script>
+                                    $("#city").change(function () {
+                                        var id = $("#city").val();
+                                        var token = $('input[name="_token"]');
+                                        // $.get("tp", {
+                                        //     id: id, token: token
+                                        // }, function (data) {
+                                        //     console.log(data);
+                                        //     // $(".district").html(data);
+                                        // });
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: 'tp',
+                                            data: {
+                                                id: id, token: token
+                                            },
+                                            success: function (district) {
+                                                console.log(district);
 
+                                            }
+                                        })
+                                    });
+                                </script>
 
                             </div>
                             <div class="col-6">

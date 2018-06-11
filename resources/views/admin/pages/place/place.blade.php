@@ -14,7 +14,7 @@
                     <div class="">
                         <table class="mdl-data-table table hover-table" id="place-table">
                             <thead class=" text-primary">
-                                <th class="text-left">
+                                <th>
                                     ID
                                 </th>
                                 <th class="text-left">
@@ -24,25 +24,26 @@
                                     Loại hình
                                 </th>
                                 <th class="text-left">
-                                    Tỉnh
+                                    Quận/Huyện
                                 </th>
                                 <th class="text-center">
                                     Thao tác
                                 </th>
                             </thead>
                             <tbody>
+                            @foreach($place as $p)
                                 <tr>
                                     <td>
-                                        1
+                                        {{$p->id}}
                                     </td>
                                     <td>
-                                        Dakota Rice
+                                        {{$p->name}}
                                     </td>
                                     <td>
-                                        Niger
+                                        {{$p->ptname}}
                                     </td>
                                     <td class="text-left">
-                                        Oud-Turnhout
+                                        {{$p->dname}}
                                     </td>
                                     <td class="td-actions text-center">
                                         <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
@@ -58,6 +59,7 @@
                                         </button>
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

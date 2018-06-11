@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
+use App\District;
 use App\Feedback;
 use App\Place_Type;
 use App\Place;
@@ -15,11 +17,30 @@ class AdminController extends Controller
     }
 
     public function AdminDiadiem(){
-        return view('admin.pages.place.place');
+        $place = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
+            ->leftjoin('districts', 'districts.id', '=', 'places.id_district')
+            ->select('places.*', 'place_image.name as piname', 'place_type.name as ptname', 'districts.name as dname')
+            ->groupBy('places.id')
+            ->get();
+
+//        dd($place);
+        return view('admin.pages.place.place', compact('place'));
     }
 
     public function AdminThemdiadiem(){
-        return view('admin.pages.place.placeadd');
+        $place_type = Place_Type::all();
+        $city = City::all();
+        $district = District::all();
+        return view('admin.pages.place.placeadd', compact('place_type','city','district'));
+    }
+
+    public function postThanhPho(Request $req){
+        $id_city = $req->id;
+        $district = District::where('id_city', $id_city)->get();
+
+        return response()->json(['district' => $id_city]);
+
     }
 
     public function AdminSuadiadiem(){
