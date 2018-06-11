@@ -30,13 +30,13 @@
 
 	      		var la = pos.lat;
 	      		var long = pos.lng;
-	      		// $('#lala').val(la);
-	      		// $('#longlong').val(long);
+	      		var _token = $('input[name="_token"').val();
 
 	      		$.ajax({
 			        type: "GET",
 			        url: "cal-dis",
-			        data: {lati: la, longi: long},
+			        dataType: "json",
+			        data: {token: _token, lati: la, longi: long},
 			        success: function(data){
 			        	console.log(data);
 			        }
@@ -45,7 +45,7 @@
 	      	function() {
 	        	handleLocationError(true, infoWindow, map.getCenter());
 	      	});
-	      	
+
 	    } else {
 	      	// Browser doesn't support Geolocation
 	      	handleLocationError(false, infoWindow, map.getCenter());
@@ -69,6 +69,7 @@
 
 @section('content')
 <body onLoad="Time();" class="signup-page sidebar-collapse" style="height: 100vh">
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="trang-chu">
 	    <!-- header -->
 	    <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
