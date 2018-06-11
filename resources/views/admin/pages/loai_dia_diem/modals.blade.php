@@ -23,7 +23,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
                         <span></span>
-                        <button class="btn btn-primary btn-round" name="add-emp">LƯU LẠI</button>
+                        <button class="btn btn-primary btn-round" name="add-emp" onclick="successMessage('sucess','Thêm thành công!')">LƯU LẠI</button>
                     </div>
                 </form>
             </div>
@@ -100,7 +100,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
                         <span></span>
-                        <button class="btn btn-primary btn-round" name="add-emp">LƯU LẠI</button>
+                        <button class="btn btn-primary btn-round" onclick="successMessage('success','Cập nhật thành công!')" name="add-emp">LƯU LẠI</button>
                     </div>
                 </form>
             </div>
@@ -109,3 +109,4 @@
 </div>
 @endforeach
 {{--<!--  End Modal -->--}}
+
