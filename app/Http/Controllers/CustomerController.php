@@ -83,6 +83,7 @@ class CustomerController extends Controller
         $no_of_fb = Feedback::where('id_place', $id)->count();
         $avg_of_fb = Feedback::where('id_place', $id)->avg('star');
         $avg_fb = number_format((float)$avg_of_fb, 2, '.', '');
+        $floor_fb = floor($avg_fb);
 
         $id_type = Place::where('id',$id)->value('id_type');
         $same_place = Place::join('place_image', 'places.id', '=', 'place_image.id_place')
@@ -126,14 +127,24 @@ class CustomerController extends Controller
 
 //        dd($khachsan);
 
-        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','same_place','dulich','anuong','khachsan','id_type'));
+        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','floor_fb','same_place','dulich','anuong','khachsan','id_type'));
     }
 
     public function postDanhGia(Request $req){
         $id = $req->id;
         $star = $req->star;
-//        dd($id , $star);
-        return response()->json(['id' => $id, 'star' => $star]);
+
+        $fb = new Feedback();
+        $fb->id_place = $id;
+        $fb->star = $star;
+        $fb->save();
+
+        $no_of_fb1 = Feedback::where('id_place', $id)->count();
+        $avg_of_fb = Feedback::where('id_place', $id)->avg('star');
+        $avg_fb1 = number_format((float)$avg_of_fb, 2, '.', '');
+
+        return json_encode([$no_of_fb1, $avg_fb1]);
+//        return response()->json(['id' => $id, 'star' => $star, 'no_of_fb1' => $no_of_fb1, 'avg_fb1' => $avg_fb1]);
     }
 
 }

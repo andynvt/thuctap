@@ -59,21 +59,21 @@
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" name="id" id="{{$places[0]->id}}" value="{{$places[0]->id}}">
                     <div class="star-place">
-                    <fieldset class="rating ">
-                        <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
-                        <input type="radio" id="star4half" name="rating" value="4.5"/><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
-                        <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4" title="Tốt - 4 sao"></label>
-                        <input type="radio" id="star3half" name="rating" value="3.5"/><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
-                        <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3" title="Ổn - 3 sao"></label>
-                        <input type="radio" id="star2half" name="rating" value="2.5"/><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
-                        <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
-                        <input type="radio" id="star1half" name="rating" value="1.5"/><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
-                        <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
-                        <input type="radio" id="starhalf" name="rating" value="0.5"/><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
-                        {{--<button type="submit">submit</button>--}}
-                    </fieldset>
-                    <p class="p-place">&nbsp;&nbsp;<b>{{$avg_fb}}/5</b> trong <b>{{$no_of_fb}}</b> đánh giá</p>
-                </div>
+                        <fieldset class="rating ">
+                            <input type="radio" id="star5" name="rating" value="5"/><label class="full" for="star5" title="Tuyệt vời - 5 sao"></label>
+                            <input type="radio" id="star4half" name="rating" value="4.5"/><label class="half" for="star4half" title="Rất tốt - 4.5 sao"></label>
+                            <input type="radio" id="star4" name="rating" value="4"/><label class="full" for="star4" title="Tốt - 4 sao"></label>
+                            <input type="radio" id="star3half" name="rating" value="3.5"/><label class="half" for="star3half" title="Bình thường - 3.5 sao"></label>
+                            <input type="radio" id="star3" name="rating" value="3"/><label class="full" for="star3" title="Ổn - 3 sao"></label>
+                            <input type="radio" id="star2half" name="rating" value="2.5"/><label class="half" for="star2half" title="Có vẻ tệ - 2.5 sao"></label>
+                            <input type="radio" id="star2" name="rating" value="2"/><label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
+                            <input type="radio" id="star1half" name="rating" value="1.5"/><label class="half" for="star1half" title="Tệ - 1.5 sao"></label>
+                            <input type="radio" id="star1" name="rating" value="1"/><label class="full" for="star1" title="Quá tệ - 1 sao"></label>
+                            <input type="radio" id="starhalf" name="rating" value="0.5"/><label class="half" for="starhalf" title="Cực kỳ tệ - 0.5 sao"></label>
+                            {{--<button type="submit">submit</button>--}}
+                        </fieldset>
+                        <p class="p-place">&nbsp;&nbsp;<b id="cc">{{$avg_fb}}/5</b> trong <b>{{$no_of_fb}}</b> đánh giá</p>
+                    </div>
                 {{--</form>--}}
                 <script>
                     $('.rating').on('change', function () {
@@ -83,25 +83,33 @@
                         $.ajax({
                             type: 'GET',
                             url: 'dg',
+                            dataType: "json",
                             data: {id:id, star: star},
-                            success: function (id, star) {
-                                console.log(id, star);
+                            success: function (data) {
                                 $('.rating input').attr('disabled', 'disabled');
+                                $('#cc').text(data[1] + "/5");
+                                $('#cc').next('b').text(data[0]);
+                                // alert(data[1]);
                             }
                         });
                     });
 
-
+                    var mod = {{$avg_fb}} % {{$floor_fb}};
+                    var fl = {{$floor_fb}};
+                    var flhalf = fl+0.5;
+                    if(mod == 0){
+                        $('.rating input[value="'+fl+'"]').attr('checked','checked');
+                    }
+                    else{
+                        $('.rating input[value="'+flhalf+'"]').attr('checked','checked');
+                    }
                 </script>
                 <div class="clearfix"></div>
                 <div id="sdiv-info">
                     <input type="hidden" value="{{$places[0]->short_des}}">
                     <div class="info-place" id="sinfo">
                         <p>
-                            <script>
-                                var sinfo = $("#sdiv-info input").val();
-                                $("#sinfo").html(sinfo);
-                            </script>
+                            {!! $places[0]->short_des !!}
                         </p>
                     </div>
                 </div>
@@ -134,10 +142,7 @@
                             <input type="hidden" value="{{$places[0]->full_des}}">
                             <div class="tab-pane active" id="info">
                                 <p>
-                                    <script>
-                                        var info = $("#div-info input").val();
-                                        $("#info").html(info);
-                                    </script>
+                                    {!! $places[0]->full_des !!}
                                 </p>
                             </div>
                             <div class="tab-pane" id="map">
