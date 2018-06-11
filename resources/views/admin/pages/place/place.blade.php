@@ -1,24 +1,7 @@
 @extends('admin.master')
 
 @section('content')
-<<<<<<< HEAD
-    <div class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title title">BẢNG DANH SÁCH ĐỊA ĐIỂM</h4>
-                    </div>
-                    <div class="card-body">
-                        <a style="font-size: 15px" class="btn btn-primary btn-round"
-                           href="{{ route('adminthemdiadiem') }}"><i class="now-ui-icons ui-1_simple-add"></i> Thêm địa
-                            điểm</a>
-                        <br><br>
-                        <div class="">
-                            <table class="mdl-data-table table hover-table" id="place-table">
-                                <thead class=" text-primary">
-                                <th class="text-left">
-=======
+
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -33,7 +16,6 @@
                         <table class="mdl-data-table table hover-table" id="place-table">
                             <thead class=" text-primary">
                                 <th>
->>>>>>> dc642c16cb77cb0d8514ce12a9f834afca389f8e
                                     ID
                                 </th>
                                 <th class="text-left">
@@ -48,14 +30,11 @@
                                 <th class="text-center">
                                     Thao tác
                                 </th>
-<<<<<<< HEAD
                                 </thead>
                                 <tbody>
-=======
                             </thead>
                             <tbody>
                             @foreach($place as $p)
->>>>>>> dc642c16cb77cb0d8514ce12a9f834afca389f8e
                                 <tr>
                                     <td>
                                         {{$p->id}}
@@ -86,23 +65,17 @@
                                         </button>
                                     </td>
                                 </tr>
-<<<<<<< HEAD
+                            @endforeach
                                 </tbody>
                             </table>
                         </div>
-=======
-                            @endforeach
-                            </tbody>
-                        </table>
->>>>>>> dc642c16cb77cb0d8514ce12a9f834afca389f8e
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
-
-
 <div class="modal fade bd-example-modal-lg" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -201,6 +174,3 @@
 </div>
 
 
-<script>
-    bindDatatable('place-table');
-</script>

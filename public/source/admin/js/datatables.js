@@ -16,11 +16,9 @@ function bindDatatable(tableId) {
             infoFiltered:   "(được lọc từ _MAX_ mục)",
             infoPostFix:    "",
             zeroRecords:     "Không tìm thấy dòng nào phù hợp",
-            paginate: {
-                first:      "Đầu",
-                previous:   "Trước",
-                next:       "Tiếp",
-                last:       "Cuối"
+            "paginate": {
+                "next": "<strong>&raquo;</strong>",
+                "previous": "<strong>&laquo;</strong>"
             },
             aria: {
                 sortAscending:  ": sắp xếp tăng",
