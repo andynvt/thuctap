@@ -67,6 +67,8 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'AdminController@AdminThemdiadiem'
     ]);
 
+    Route::get('tp', 'AdminController@postThanhPho') ;
+
     Route::get('sua-dia-diem',[
         'as' => 'adminsuadiadiem',
         'uses' => 'AdminController@AdminSuadiadiem'
