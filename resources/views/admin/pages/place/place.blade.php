@@ -1,6 +1,7 @@
 @extends('admin.master')
 
 @section('content')
+
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -14,7 +15,7 @@
                     <div class="">
                         <table class="mdl-data-table table hover-table" id="place-table">
                             <thead class=" text-primary">
-                                <th class="text-left">
+                                <th>
                                     ID
                                 </th>
                                 <th class="text-left">
@@ -24,59 +25,66 @@
                                     Loại hình
                                 </th>
                                 <th class="text-left">
-                                    Tỉnh
+                                    Quận/Huyện
                                 </th>
                                 <th class="text-center">
                                     Thao tác
                                 </th>
+                                </thead>
+                                <tbody>
                             </thead>
                             <tbody>
+                            @foreach($place as $p)
                                 <tr>
                                     <td>
-                                        1
+                                        {{$p->id}}
                                     </td>
                                     <td>
-                                        Dakota Rice
+                                        {{$p->name}}
                                     </td>
                                     <td>
-                                        Niger
+                                        {{$p->ptname}}
                                     </td>
                                     <td class="text-left">
-                                        Oud-Turnhout
+                                        {{$p->dname}}
                                     </td>
                                     <td class="td-actions text-center">
-                                        <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal" data-target="#info">
-                                        <i class="now-ui-icons travel_info"></i>
+                                        <button class="btn btn-info btn-fab btn-icon btn-round" data-toggle="modal"
+                                                data-target="#info">
+                                            <i class="now-ui-icons travel_info"></i>
                                         </button>
 
-                                        <a class="btn btn-warning btn-fab btn-icon btn-round" href="{{ route('adminsuadiadiem') }}">
+                                        <a class="btn btn-warning btn-fab btn-icon btn-round"
+                                           href="{{ route('adminsuadiadiem') }}">
                                             <i class="now-ui-icons ui-2_settings-90"></i>
                                         </a>
 
-                                        <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal" data-target="#delete">
-                                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        <button class="btn btn-danger btn-fab btn-icon btn-round" data-toggle="modal"
+                                                data-target="#delete">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
                                         </button>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
-
-<div class="modal fade bd-example-modal-lg" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalLabel">Thông tin XXX</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
             </div>
             <div class="modal-body">
                 <form method="">
@@ -112,11 +120,13 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="full_des">Mô tả ngắn gọn</label>
-                                <textarea rows="5" class="form-control" id="short_des" name="short_des" disabled>XXX</textarea>
+                                <textarea rows="5" class="form-control" id="short_des" name="short_des"
+                                          disabled>XXX</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="short_des">Mô tả đầy đủ</label>
-                                <textarea rows="5" class="form-control" id="full_des" name="full_des" disabled>XXX</textarea>
+                                <textarea rows="5" class="form-control" id="full_des" name="full_des"
+                                          disabled>XXX</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="images" disabled>Hình ảnh: </label>
@@ -140,8 +150,8 @@
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalLabel">Xác nhận xoá</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
+                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                </button>
             </div>
             <div class="modal-body">
                 <form method="">
@@ -162,3 +172,5 @@
         </div>
     </div>
 </div>
+
+

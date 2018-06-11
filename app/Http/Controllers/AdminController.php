@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
+use App\District;
 use App\Feedback;
 use App\Place_Type;
 use App\Place;
@@ -15,11 +17,30 @@ class AdminController extends Controller
     }
 
     public function AdminDiadiem(){
-        return view('admin.pages.place.place');
+        $place = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
+            ->leftjoin('districts', 'districts.id', '=', 'places.id_district')
+            ->select('places.*', 'place_image.name as piname', 'place_type.name as ptname', 'districts.name as dname')
+            ->groupBy('places.id')
+            ->get();
+
+//        dd($place);
+        return view('admin.pages.place.place', compact('place'));
     }
 
     public function AdminThemdiadiem(){
-        return view('admin.pages.place.placeadd');
+        $place_type = Place_Type::all();
+        $city = City::all();
+        $district = District::all();
+        return view('admin.pages.place.placeadd', compact('place_type','city','district'));
+    }
+
+    public function postThanhPho(Request $req){
+        $id_city = $req->id;
+        $district = District::where('id_city', $id_city)->get();
+
+        return response()->json(['district' => $id_city]);
+
     }
 
     public function AdminSuadiadiem(){
@@ -28,7 +49,7 @@ class AdminController extends Controller
 
     public function AdminLoaidiadiem(){
 //        view list all type
-         $placeType= Place_Type::all();
+         $placeType= Place_Type::orderBy('id','asc')->get();
         return view('admin.pages.loai_dia_diem.index',compact('placeType'));
     }
     public function AdminThemLoaidiadiem(Request $request){
@@ -63,15 +84,26 @@ class AdminController extends Controller
         return back();
     }
 
-    public function AdminDanhgia($id){
+    public function AdminDanhgia($id){//
+        $notify_fb= Feedback::join('places','feedbacks.id_place','=','places.id')
+            ->join('place_image','place_image.id_place','=','places.id')
+            ->select('feedbacks.id as fid','places.id as pid','places.name as pname',
+                'place_image.name as iname')
+            ->where('places.id_type',$id)
+            ->where('status',0)
+            ->groupBY('places.id')
+            ->orderBy('places.id','asc')
+            ->get();
         $danhGia= Feedback::join('places','feedbacks.id_place','=','places.id')
             ->join('place_image','place_image.id_place','=','places.id')
             ->select('feedbacks.id as fid','places.id as pid','places.name as pname',
                 'place_image.name as iname')
             ->where('places.id_type',$id)
+            ->where('status',1)
             ->groupBY('places.id')
+            ->orderBy('places.id','asc')
             ->get();
-        return view('admin.pages.feedback',compact('danhGia'));
+        return view('admin.pages.danh_gia.feedback',compact('notify_fb','danhGia'));
     }
 
     public function AdminChitietdanhgia($id){
@@ -79,14 +111,18 @@ class AdminController extends Controller
         $tongdg= Feedback::where('id_place',$id)->count();
         $avg=Feedback::where('id_place',$id)->avg('star');
 
+        $update_fb= Feedback::where('id_place',$id)
+            ->update(['status'=>1]);
         $chitiet= Feedback::join('places','places.id','=','feedbacks.id_place')
             ->select('places.id as pid', 'feedbacks.id as fid','places.created_at as pcreated_at',
                 'places.updated_at as pupdated_at','feedbacks.created_at as fcreated_at',
                 'feedbacks.updated_at as fupdated_at','feedbacks.star as fstar')
             ->where('places.id',$id)
-            ->get();
-        return view('admin.pages.detailfeedback',compact('diaDiem','chitiet','tongdg','avg'));
+//            ->paginate(8);
+        ->get();
+        return view('admin.pages.danh_gia.detailfeedback',compact('update_fb','diaDiem','chitiet','tongdg','avg'));
     }
+
     public function AdminXoadanhgia($id)
     {
         $xoaDanhGia= Feedback::find($id);
@@ -95,7 +131,7 @@ class AdminController extends Controller
     }
 
     public function AdminVitringuoidung(){
-        $userLocation = User_Location::all();
+        $userLocation = User_Location::orderBy('id','asc')->get();
         return view('admin.pages.vi_tri_nguoi_dung.index',compact('userLocation'));
     }
     public function AdminXoavitringuoidung($ids)

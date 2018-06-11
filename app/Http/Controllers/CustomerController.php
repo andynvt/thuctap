@@ -15,7 +15,7 @@ use Session;
 
 class CustomerController extends Controller
 {
-    public function CustomerListplace($id)
+    public function CustomerListplace(Request $request,$id)
     {
 //       view list places
         $title_place= Place_Type::find($id);
@@ -26,8 +26,8 @@ class CustomerController extends Controller
                 'place_image.id as piimg', 'place_image.name as piname','feedbacks.id as fid')
             ->where('places.id_type', $id)
             ->groupBy('places.id')
-            ->limit('5')
-            ->get();
+//            ->limit('5')
+            ->paginate(3);
 //       view top places interesting
         $result_top = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->leftjoin('feedbacks', 'places.id', '=', 'feedbacks.id_place')
@@ -37,6 +37,7 @@ class CustomerController extends Controller
             ->orderBy('feedbacks.star', 'desc')
             ->limit('5')
             ->get();
+
         return view('customer.pages.listplace', compact('result_lp', 'title_place','result_top','sum_fb','avg_fb'));
     }
 
@@ -79,6 +80,7 @@ class CustomerController extends Controller
         $no_of_fb = Feedback::where('id_place', $id)->count();
         $avg_of_fb = Feedback::where('id_place', $id)->avg('star');
         $avg_fb = number_format((float)$avg_of_fb, 2, '.', '');
+        $floor_fb = floor($avg_fb);
 
         $id_type = Place::where('id',$id)->value('id_type');
         $same_place = Place::join('place_image', 'places.id', '=', 'place_image.id_place')
@@ -122,14 +124,24 @@ class CustomerController extends Controller
 
 //        dd($khachsan);
 
-        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','same_place','dulich','anuong','khachsan','id_type'));
+        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','floor_fb','same_place','dulich','anuong','khachsan','id_type'));
     }
 
     public function postDanhGia(Request $req){
         $id = $req->id;
         $star = $req->star;
-//        dd($id , $star);
-        return response()->json(['id' => $id, 'star' => $star]);
+
+        $fb = new Feedback();
+        $fb->id_place = $id;
+        $fb->star = $star;
+        $fb->save();
+
+        $no_of_fb1 = Feedback::where('id_place', $id)->count();
+        $avg_of_fb = Feedback::where('id_place', $id)->avg('star');
+        $avg_fb1 = number_format((float)$avg_of_fb, 2, '.', '');
+
+        return json_encode([$no_of_fb1, $avg_fb1]);
+//        return response()->json(['id' => $id, 'star' => $star, 'no_of_fb1' => $no_of_fb1, 'avg_fb1' => $avg_fb1]);
     }
 
 }

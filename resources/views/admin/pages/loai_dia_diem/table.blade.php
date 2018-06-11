@@ -1,5 +1,5 @@
 <form action="" method="get">
-    <table class="table">
+    <table class="table" id="placetype-table">
         <thead class="bg-primary " style="font-size: 10px;color: #ffffff;">
         <th class="collapsing">
             <div class="form-check">
@@ -53,6 +53,9 @@
         </tbody>
     </table>
 </form>
+{{--<div class="div-pagination" style="padding-left: 40%!important;">--}}
+    {{--{{ $placeType->links() }}--}}
+{{--</div>--}}
 <script>
     function eventCheckBox() {
         let checkboxs = document.getElementsByName("loai-dia-diem-id[]");
@@ -61,4 +64,7 @@
             checkboxs[i].checked = checkAll.checked;
         }
     }
+    // var tableid = $('table').attr('id');
+    // // alert(tableid);
+    // bindDatatable(tableid);
 </script>

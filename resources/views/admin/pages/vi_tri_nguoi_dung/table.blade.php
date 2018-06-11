@@ -1,4 +1,4 @@
-<table class="table hover-table">
+<table class="table hover-table" id="user-location-table">
     <thead class="bg-primary " style="font-size: 10px;color: #ffffff;">
     <th style="width: 5%">
         <div class="form-check">
@@ -49,7 +49,9 @@
     @endforeach
     </tbody>
 </table>
-
+{{--<div class="div-pagination" style="padding-left: 40%!important;">--}}
+    {{--{{ $userLocation->links() }}--}}
+{{--</div>--}}
 <script>
     function checkBoxAll() {
         let checkboxs = document.getElementsByName("vi-tri-id[]");
@@ -58,4 +60,6 @@
             checkboxs[i].checked = checkAll.checked;
         }
     }
+    // var tableid = $('table').attr('id');
+    // bindDatatable(tableid);
 </script>
