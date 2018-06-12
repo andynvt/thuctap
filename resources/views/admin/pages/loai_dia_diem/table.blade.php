@@ -1,4 +1,6 @@
-<form action="" method="get">
+<form action="{{route('admin.xoa-da-chon',[0])}}" method="get">
+    {{ method_field('DELETE') }}
+    {{ csrf_field() }}
     <table class="table" id="placetype-table">
         <thead class="bg-primary " style="font-size: 10px;color: #ffffff;">
         <th class="collapsing">
@@ -43,8 +45,7 @@
                         <i class="now-ui-icons ui-2_settings-90"></i>
                     </a>
                     <a class="a-white btn btn-danger btn-fab btn-icon btn-round"
-                           href="{{route('admin.xoa-loai',[$tp->id])}}"
-                           onclick="return confirm('Bạn chắc chắn muốn xóa không?')">
+                           onclick="$('{{ "#modal-delete-" . $tp->id }}').modal('show')">
                             <i class="now-ui-icons ui-1_simple-remove"></i>
                     </a>
                 </td>
@@ -52,6 +53,7 @@
         @endforeach
         </tbody>
     </table>
+    @include('admin.pages.loai_dia_diem.modalAllDelete')
 </form>
 {{--<div class="div-pagination" style="padding-left: 40%!important;">--}}
     {{--{{ $placeType->links() }}--}}
@@ -64,6 +66,7 @@
             checkboxs[i].checked = checkAll.checked;
         }
     }
+
     // var tableid = $('table').attr('id');
     // // alert(tableid);
     // bindDatatable(tableid);

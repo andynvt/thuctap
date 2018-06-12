@@ -38,3 +38,25 @@ function warningMessage(heading, msg) {
         loaderBg: red
     });
 }
+
+
+
+// function alertDelete(text) {
+//     swal({
+//         title: 'Bạn chắc muốn xóa nó chứ?',
+//         text: 'Dữ liệu liên quan sẽ bị xóa hoàn toàn!',
+//         icon: 'warning',
+//         buttons: true,
+//         dangerMode: true,
+//     })
+//         .then((willDelete) => {
+//             if (willDelete) {
+//                 swal("Dữ liệu đã được xóa thành công!", {
+//                     icon: "success",
+//                 });
+//             } else {
+//                 swal("Your imaginary file is safe!");
+//             }
+//         });
+//
+// }

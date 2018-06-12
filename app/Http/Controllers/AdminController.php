@@ -70,7 +70,7 @@ class AdminController extends Controller
         $loaiDiaDiem ->description = $request->get('des');
 
         $loaiDiaDiem->update();
-        return back()->with('success', "Cập nhật thành công");;
+        return back()->with('success', "Cập nhật thành công");
     }
     public function AdminXoaLoaidiadiem($id){
 
@@ -78,9 +78,10 @@ class AdminController extends Controller
         $xoaLoai->delete();
         return back();
     }
-    public function AdminXoaLoaidiadiemdachon(Request $request ) {
-        $ids = $request->get('loai-dia-diem-id');
-        Place_Type::destroy($ids);
+    public function AdminXoaLoaidiadiemdachon(Request $request) {
+
+        $id = $request->get('loai-dia-diem-id');
+        Place_Type::destroy($id);
         return back();
     }
 
@@ -129,7 +130,12 @@ class AdminController extends Controller
         $xoaDanhGia->delete();
         return back();
     }
+    public function AdminXoaDanhGiadachon(Request $request) {
 
+        $id = $request->get('danh-gia-id');
+        Feedback::destroy($id);
+        return back();
+    }
     public function AdminVitringuoidung(){
         $userLocation = User_Location::orderBy('id','asc')->get();
         return view('admin.pages.vi_tri_nguoi_dung.index',compact('userLocation'));
@@ -142,7 +148,6 @@ class AdminController extends Controller
     }
     public function AdminXoavitringuoidungdachon(Request $request ) {
         $ids = $request->get('vi-tri-id');
-
         User_Location::destroy($ids);
         return back();
     }
