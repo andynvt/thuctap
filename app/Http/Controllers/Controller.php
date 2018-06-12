@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
-    public function GetDrivingDistance($lat1, $long1, $lat2, $long2){
+    public function GetDrivingDistance($id,$lat1, $long1, $lat2, $long2){
         $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=".$lat1.",".$long1."&destinations=".$lat2.",".$long2."&mode=driving&language=pl-PL";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -22,9 +22,11 @@ class Controller extends BaseController
         $response = curl_exec($ch);
         curl_close($ch);
         $response_a = json_decode($response, true);
-        $dist = $response_a['rows'][0]['elements'][0]['distance']['text'];
-        $time = $response_a['rows'][0]['elements'][0]['duration']['text'];
+        // $dist = $response_a['rows'][0]['elements'][0]['distance']['text'];
+        // $time = $response_a['rows'][0]['elements'][0]['duration']['text'];
+        $dist = $response_a['rows'][0]['elements'][0]['distance']['value'];
+        $time = $response_a['rows'][0]['elements'][0]['duration']['value'];
 
-        return array('distance' => $dist, 'time' => $time);
+        return array('id' => $id,'distance' => $dist, 'time' => $time);
     }
 }

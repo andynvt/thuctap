@@ -49,17 +49,23 @@ class CustomerController extends Controller
 
         $plocate = Place_Location::all();
 
-        $collection = collect([]);
+        $collection = collect([]);        
 
         $cntplace = count($plocate);
 
         for($i = 0; $i < $cntplace; $i++){
             $coords = explode(',', $plocate[$i]->coor);
-            $dist = $getdist->GetDrivingDistance($latitude, $longitude, $coords[0], $coords[1]);
+            $dist = $getdist->GetDrivingDistance($plocate[$i]->id, $latitude, $longitude, $coords[0], $coords[1]);
+            $idp = $plocate[$i]->id;
+
             $collection->push($dist);
         }
 
-        return json_encode([$collection, $dist]);
+        $sorted = $collection->sortBy('distance');
+
+        $intro = $sorted->values()->take(3);
+
+        return json_encode([$intro]);
     }
 
     public function CustomerIntro(){
