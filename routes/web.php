@@ -36,8 +36,14 @@ Route::get('loai-dia-diem',[
 	'as' => 'listplace',
 	'uses' => 'CustomerController@CustomerListplace'
 ]);
+
 Route::get('cal-dis','CustomerController@CustomerCaldis');
 
+<<<<<<< HEAD
+=======
+Route::get('loai-dia-diem/{id}',
+    'CustomerController@CustomerListplace')->name('customer.loai-dia-diem');
+>>>>>>> 5cbe0f0c66c027d3d1cc384574141eb86445fbe8
 
 Route::get('loai-dia-diem/{id}',[
     'as' => 'customer.loai-dia-diem',

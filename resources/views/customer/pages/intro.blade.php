@@ -145,12 +145,14 @@
 		                          		<div class="col-6 place-intro-left">
 				                            <h4>Địa chỉ:</h4>
 				                            <h4>Khoảng cách:</h4>
+				                            <h4>Thời gian đi:</h4>
 				                            <h4>Đánh giá:</h4>
 				                            <h4>Loại hình:</h4>
 		                          		</div>
 			                          	<div class="col-6 place-intro-right">
 				                            <h4>{{ $it->address }}</h4>
-				                            <h4>3km</h4>
+				                            <h4>3 km</h4>
+				                            <h4>15 phút (xe ô tô)</h4>
 				                            <h4>4.3 / 5 (20 đánh giá)</h4>
 				                            <h4>{{ $it->ptname }}</h4>
 			                          	</div>
