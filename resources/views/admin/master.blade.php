@@ -36,7 +36,6 @@
     <script src="{{asset('source/admin/assets/js/now-ui-dashboard.min.js?v=1.1.0')}}" type="text/javascript"></script>
     <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{asset('source/admin/assets/demo/demo.js')}}"></script>
-    <script src="{{asset('source/admin/js/place.js')}}"></script>
     {{--ckeditor--}}
     <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
@@ -69,7 +68,7 @@
         {{-- Css --}}
         <link href="{{asset('source/admin/css/place.css')}}" rel="stylesheet" />
         {{-- Js --}}
-        <script type="text/javascript" src="{{asset('source/admin/js/place.js')}}"></script>
+        {{--<script type="text/javascript" src="{{asset('source/admin/js/place.js')}}"></script>--}}
 
     {{-- placetype --}}
         {{-- Css --}}
@@ -126,6 +125,7 @@
         var tableid = $('table').attr('id');
         // alert(tableid);
         bindDatatable(tableid);
+
     </script>
 </body>
 

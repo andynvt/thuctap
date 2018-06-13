@@ -20,12 +20,23 @@ class AdminController extends Controller
         $place = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
             ->leftjoin('districts', 'districts.id', '=', 'places.id_district')
-            ->select('places.*', 'place_image.name as piname', 'place_type.name as ptname', 'districts.name as dname')
+            ->leftjoin('cities', 'cities.id', '=', 'districts.id_city')
+            ->leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+            ->select('places.*', 'place_image.name as piname', 'place_type.name as ptname', 'districts.name as dname', 'cities.name as cname','place_location.coor')
             ->groupBy('places.id')
             ->get();
-
-//        dd($place);
         return view('admin.pages.place.place', compact('place'));
+    }
+
+    public function AdminXoaDiadiem($id){
+        Place::destroy($id);
+        return redirect()->back();
+    }
+
+    public function AdminXoaNhieuDiadiem(Request $req){
+        $ids = $req->get('place-id');
+        Place::destroy($ids);
+        return back();
     }
 
     public function AdminThemdiadiem(){
@@ -35,16 +46,16 @@ class AdminController extends Controller
         return view('admin.pages.place.placeadd', compact('place_type','city','district'));
     }
 
-    public function postThanhPho(Request $req){
+    public function getThanhPho(Request $req){
         $id_city = $req->id;
-        $district = District::where('id_city', $id_city)->get();
+//        $district = District::where('id_city', $id_city)->get();
 
-        return response()->json(['district' => $id_city]);
-
+        return json_encode($id_city);
     }
 
-    public function AdminSuadiadiem(){
-        return view('admin.pages.place.placeedit');
+    public function AdminSuadiadiem($id){
+
+        return view('admin.pages.place.placeedit', compact('id'));
     }
 
     public function AdminLoaidiadiem(){

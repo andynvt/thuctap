@@ -1,6 +1,6 @@
 function bindDatatable(tableId) {
 
-    $('#' + tableId).DataTable( {
+    $('#' + tableId).DataTable({
         columnDefs: [
             {
                 targets: [ 0, 1, 2 ],
@@ -18,8 +18,8 @@ function bindDatatable(tableId) {
             zeroRecords:     "Không tìm thấy dòng nào phù hợp",
             paginate: {
                 first:      "Đầu",
-                previous:   "Trước",
-                next:       "Tiếp",
+                previous:   "<",
+                next:       ">",
                 last:       "Cuối"
             },
             aria: {
@@ -28,5 +28,5 @@ function bindDatatable(tableId) {
             }
         }
 
-    } );
+    });
 }
