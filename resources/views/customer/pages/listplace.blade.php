@@ -51,7 +51,7 @@
                                             <a href="#" class="dropdown-item">
                                                 <i class="material-icons">near_me</i> Gần nhất
                                             </a>
-                                            <a href="#" class="dropdown-item">
+                                            <a href="{{route('customer.pho-bien')}}" class="dropdown-item">
                                                 <i class="material-icons">favorite</i> Phổ biến
                                             </a>
                                         </div>
@@ -143,6 +143,7 @@
                                     </div>
 
                                 </section>
+
                             </div>
                         </div>
                     </div>

@@ -34,16 +34,16 @@
                 <td class="text-center">{{$ul -> id}}</td>
                 <td>{{($ul -> created_at).('-').($ul -> updated_at)}}</td>
                 <td class="td-actions text-center">
-                    <button class="btn btn-info btn-fab btn-icon btn-round"
+                    <a class="btn btn-info btn-fab btn-icon btn-round a-white"
                        onclick="$('{{"#view-location-" . $ul ->id}}').modal('show')">
                         <i class="now-ui-icons location_pin"></i>
-                    </button>
+                    </a>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-danger btn-fab btn-icon btn-round"
+                    <a class="btn btn-danger btn-fab btn-icon btn-round a-white"
                        onclick="$('{{"#modal-delete-".$ul->id}}').modal('show')">
                         <i class="now-ui-icons ui-1_simple-remove"></i>
-                    </button>
+                    </a>
                 </td>
             </tr>
         @endforeach
@@ -55,6 +55,8 @@
 {{--<div class="div-pagination" style="padding-left: 40%!important;">--}}
 {{--{{ $userLocation->links() }}--}}
 {{--</div>--}}
+
+
 <script>
     function checkBoxAll() {
         let checkboxs = document.getElementsByName("vi-tri-id[]");
@@ -63,7 +65,6 @@
             checkboxs[i].checked = checkAll.checked;
         }
     }
-
     // var tableid = $('table').attr('id');
     // bindDatatable(tableid);
 </script>
