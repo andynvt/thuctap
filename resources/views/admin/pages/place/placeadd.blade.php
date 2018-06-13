@@ -35,6 +35,7 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="form-group">
                                     <label for="city">Quận/Huyện</label>
                                     <select name="district" id="district" class="form-control">
@@ -44,27 +45,28 @@
                                         {{--@endforeach--}}
                                     </select>
                                 </div>
+
                                 <script>
                                     $("#city").change(function () {
                                         var id = $("#city").val();
-                                        var token = $('input[name="_token"]');
+                                        var _token = $('input[name="_token"]').val();
                                         // $.get("tp", {
-                                        //     id: id, token: token
+                                        //     id: id, token: _token
                                         // }, function (data) {
                                         //     console.log(data);
                                         //     // $(".district").html(data);
+                                        //     alert(data);
                                         // });
                                         $.ajax({
-                                            type: 'GET',
-                                            url: 'tp',
-                                            data: {
-                                                id: id, token: token
-                                            },
-                                            success: function (district) {
-                                                console.log(district);
-
+                                            type: "GET",
+                                            url: "get-tp",
+                                            dataType: "json",
+                                            data: {token: _token, id: id},
+                                            success: function(data){
+                                                console.log(data);
+                                                alert(data);
                                             }
-                                        })
+                                        });
                                     });
                                 </script>
 

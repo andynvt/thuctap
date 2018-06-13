@@ -62,14 +62,25 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'AdminController@AdminDiadiem'
     ]);
 
+    Route::get('xoa-dia-diem/{id}',[
+        'as' => 'adminxoadiadiem',
+        'uses' => 'AdminController@AdminXoaDiadiem'
+    ]);
+
+    Route::get('xoa-nhieu-dia-diem',[
+        'as' => 'adminxoanhieudiadiem',
+        'uses' => 'AdminController@AdminXoaNhieuDiadiem'
+    ]);
+
     Route::get('them-dia-diem',[
         'as' => 'adminthemdiadiem',
         'uses' => 'AdminController@AdminThemdiadiem'
     ]);
 
-    Route::get('tp', 'AdminController@postThanhPho') ;
+    Route::get('get-tp','AdminController@getThanhPho');
 
-    Route::get('sua-dia-diem',[
+
+    Route::get('sua-dia-diem/{id}',[
         'as' => 'adminsuadiadiem',
         'uses' => 'AdminController@AdminSuadiadiem'
     ]);
