@@ -18,15 +18,9 @@ function bindDatatable(tableId) {
             zeroRecords:     "Không tìm thấy dòng nào phù hợp",
             paginate: {
                 first:      "Đầu",
-<<<<<<< HEAD
                 previous:   "<",
                 next:       ">",
-                last:       "Cuối",
-=======
-                previous:   "Trước",
-                next:       "Tiếp",
                 last:       "Cuối"
->>>>>>> e007a3acf8356daaa16ea0b763d4b8d8912d0038
             },
             aria: {
                 sortAscending:  ": sắp xếp tăng",
