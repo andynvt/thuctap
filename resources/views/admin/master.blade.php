@@ -94,6 +94,36 @@
 <body class="">
     <div class="wrapper ">
 
+        {{--Thông báo--}}
+        @if (session('del-1'))
+            <body onload="admin.showNotification('top','right')"></body>
+        @endif
+
+        {{-- 1: Xanh dương   2: Xanh lá cây  3: Vàng  4: Đỏ --}}
+        <script>
+            admin = {
+                showNotification: function (from, align) {
+
+                    @if(session('del-1'))
+                        color = 'primary';
+                    $.notify({
+                            icon: "now-ui-icons",
+                            message: "dcsfds"
+                        }
+                    @endif
+                        ,{
+                            type: color,
+                            timer: 4000,
+                            placement: {
+                                from: from,
+                                align: align
+                            }
+                        });
+                }
+            }
+        </script>
+        {{--Hết thông báo--}}
+
         {{-- sidebar --}}
         <div class="sidebar" data-color="orange">
             @include('admin.sidebar')

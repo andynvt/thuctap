@@ -31,8 +31,9 @@ class AdminController extends Controller
     }
 
     public function AdminXoaDiadiem($id){
+        $name = Place::where('id', $id)->value('name');
         Place::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('del-1', 'Xoá '.$name.' thành công');
     }
 
     public function AdminXoaNhieuDiadiem(Request $req){
