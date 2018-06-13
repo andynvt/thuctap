@@ -36,7 +36,14 @@ Route::get('loai-dia-diem',[
 	'as' => 'listplace',
 	'uses' => 'CustomerController@CustomerListplace'
 ]);
+
 Route::get('cal-dis','CustomerController@CustomerCaldis');
+
+<<<<<<< HEAD
+=======
+Route::get('loai-dia-diem/{id}',
+    'CustomerController@CustomerListplace')->name('customer.loai-dia-diem');
+>>>>>>> 5cbe0f0c66c027d3d1cc384574141eb86445fbe8
 
 Route::get('loai-dia-diem/{id}',[
     'as' => 'customer.loai-dia-diem',
@@ -123,7 +130,10 @@ Route::group(['prefix' => 'admin'], function () {
         'as' => 'admin.xoa-danh-gia',
         'uses' => 'AdminController@AdminXoadanhgia'
     ]);
-
+    Route::get('xoa-danh-gia-da-chon',[
+        'as' => 'admin.xoa-danh-gia-da-chon',
+        'uses' => 'AdminController@AdminXoaDanhGiadachon'
+    ]);
     Route::get('vi-tri-nguoi-dung',[
         'as' => 'adminvitringuoidung',
         'uses' => 'AdminController@AdminVitringuoidung'

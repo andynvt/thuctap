@@ -6,9 +6,11 @@ use App\Place;
 use App\Place_Image;
 use App\Feedback;
 use App\Place_Type;
+use App\Place_Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Collection;
 use Session;
 
 class CustomerController extends Controller
@@ -40,29 +42,30 @@ class CustomerController extends Controller
     }
 
     public function CustomerCaldis(Request $req){
-        function distance($lat1, $lon1, $lat2, $lon2, $unit) {
-
-            $theta = $lon1 - $lon2;
-            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-            $dist = acos($dist);
-            $dist = rad2deg($dist);
-            $miles = $dist * 60 * 1.1515;
-            $unit = strtoupper($unit);
-
-            if ($unit == "K") {
-                return ($miles * 1.609344);
-            } else if ($unit == "N") {
-                return ($miles * 0.8684);
-            } else {
-                return $miles;
-            }
-        }
+        $getdist = new Controller;
 
         $latitude = $req->lati;
         $longitude = $req->longi;
 
-        $dis = distance($latitude, $longitude, 10.0411439,105.7844303, 'K');
-        return response()->json(['data' => $dis]);
+        $plocate = Place_Location::all();
+
+        $collection = collect([]);        
+
+        $cntplace = count($plocate);
+
+        for($i = 0; $i < $cntplace; $i++){
+            $coords = explode(',', $plocate[$i]->coor);
+            $dist = $getdist->GetDrivingDistance($plocate[$i]->id, $latitude, $longitude, $coords[0], $coords[1]);
+            $idp = $plocate[$i]->id;
+
+            $collection->push($dist);
+        }
+
+        $sorted = $collection->sortBy('distance');
+
+        $intro = $sorted->values()->take(3);
+
+        return json_encode([$intro]);
     }
 
     public function CustomerIntro(){

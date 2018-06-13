@@ -77,6 +77,7 @@
         {{-- Js --}}
         <script type="text/javascript" src="{{asset('source/admin/js/jquery.toast.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('source/admin/js/place_type.js')}}"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     {{-- feedback --}}
         {{-- Css --}}
