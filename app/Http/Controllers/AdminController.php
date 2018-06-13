@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\City;
 use App\District;
 use App\Feedback;
+use App\Place_Location;
 use App\Place_Type;
+use App\Place_Image;
 use App\Place;
 use App\User_Location;
 use Illuminate\Http\Request;
@@ -44,6 +46,42 @@ class AdminController extends Controller
         $city = City::all();
         $district = District::all();
         return view('admin.pages.place.placeadd', compact('place_type','city','district'));
+    }
+
+    public function AdminPostdiadiem(Request $req){
+        $place = new Place();
+        $place_location = new Place_Location();
+
+        if($req->hasfile('images')){
+
+            $place->name = $req->name;
+            $place->id_type = $req->type;
+            $place->id_district = $req->district;
+            $place->slogan = $req->slogan;
+            $place->map = $req->map;
+            $place->address = $req->address;
+            $place->short_des = $req->short_des;
+            $place->full_des = $req->full_des;
+            $place->save();
+
+            $place_location->id_place = $place->id;
+            $place_location->coor = $req->coor;
+            $place_location->save();
+
+            foreach($req->file('images') as $image){
+                $namee=date('Y-m-d-H-i-s')."-".$image->getClientOriginalName();
+                $image->move('storage/image', $namee);
+                $img[] = $namee;
+            }
+            foreach($img as $i){
+                Place_Image::insert( [
+                    'id_place'=>$place->id,
+                    'name'=>$i,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('addplace', 'Đã thêm: '.$req->name);
     }
 
     public function getThanhPho(Request $req){

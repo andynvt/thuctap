@@ -108,12 +108,16 @@
                                 <input type="text" name="name" value="{{$pl->name}}" class="form-control" disabled>
                             </div>
                             <div class="form-group">
+                                <label for="name">Slogan</label>
+                                <input type="text" name="slogan" value="{{$pl->slogan}}" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
                                 <label for="type">Loại</label>
                                 <input type="text" name="type" value="{{$pl->ptname}}" class="form-control" disabled>
                             </div>
                             <div class="form-group">
-                                <label for="city">Quận/Huyện  -  Tỉnh/Thành phố</label>
-                                <input type="text" name="city" value="{{$pl->dname}} - {{$pl->cname}}" class="form-control" disabled>
+                                <label for="address">Link nhúng Google Map</label>
+                                <input type="link" name="map" value="{{$pl->map}}" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="col-6">
@@ -122,8 +126,12 @@
                                 <input type="text" name="address" value="{{$pl->address}}" class="form-control" disabled>
                             </div>
                             <div class="form-group">
-                                <label for="address">Link nhúng Google Map</label>
-                                <input type="link" name="map" value="{{$pl->map}}" class="form-control" disabled>
+                                <label for="city">Quận/Huyện</label>
+                                <input type="text" name="city" value="{{$pl->dname}}" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Tỉnh/Thành phố</label>
+                                <input type="text" name="city" value="{{$pl->cname}}" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="address">Toạ độ</label>
@@ -167,11 +175,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="">
+                <form method="get" action="{{route('adminxoadiadiem', $pl->id)}}">
                     <div class="row">
                         <div class="col-12">
                             <p>
-                            <h5 class="text-center"> Thao tác này sẽ mất dữ liệu<br><br>Bạn có chắc chắn muốn xoá <b>{{$pl->name}}</b> ?</h5>
+                            <h5 class="place-del"> Thao tác này sẽ mất toàn bộ dữ liệu về <b>{{$pl->name}}</b>.
+                                <br>Bao gồm cả hình ảnh, du khách, đánh giá và toạ độ.
+                                <br><br>Bạn có chắc chắn muốn xoá?</h5>
                             </p>
                         </div>
 
@@ -179,9 +189,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
                         <span></span>
-                        <form action="{{route('adminxoadiadiem', $pl->id)}}">
                             <button type="submit" class="btn btn-primary btn-round" name="del-place">XOÁ</button>
-                        </form>
                     </div>
                 </form>
             </div>

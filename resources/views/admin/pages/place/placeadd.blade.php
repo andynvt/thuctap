@@ -9,12 +9,17 @@
                     <h4 class="card-title title">Thêm địa điểm mới</h4>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{route('adminpostdiadiem')}}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-6 ">
                                 <div class="form-group">
                                     <label for="name">Tên</label>
                                     <input type="text" name="name" value="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Slogan</label>
+                                    <input type="text" name="slogan" value="" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="type">Loại</label>
@@ -25,13 +30,22 @@
                                         @endforeach
                                     </select>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="address">Link Nhúng Google Map <i class="now-ui-icons travel_info" title="Chọn chức năng chia sẻ địa điểm trong Google Map -> Nhúng bản đồ"></i></label>
+                                    <input type="link" name="map" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="address">Địa chỉ</label>
+                                    <input type="text" name="address" value="" class="form-control">
+                                </div>
                                 <div class="form-group">
                                     <label for="city">Thành phố</label>
                                     <select name="city" id="city" class="form-control">
                                         <option value="">---Chọn thành phố---</option>
                                         @foreach($city as $c)
-                                        <option value="{{$c->id}}">{{$c->name}}</option>
+                                            <option value="{{$c->id}}">{{$c->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -40,9 +54,9 @@
                                     <label for="city">Quận/Huyện</label>
                                     <select name="district" id="district" class="form-control">
                                         <option value="0">---Chọn Quận/Huyện---</option>
-                                        {{--@foreach($district as $d)--}}
-                                        {{--<option value="{{$d->id}}">{{$d->name}}</option>--}}
-                                        {{--@endforeach--}}
+                                        @foreach($district as $d)
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -69,17 +83,6 @@
                                         });
                                     });
                                 </script>
-
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="address">Địa chỉ</label>
-                                    <input type="text" name="address" value="" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Link Nhúng Google Map <i class="now-ui-icons travel_info" title="Chọn chức năng chia sẻ địa điểm trong Google Map -> Nhúng bản đồ"></i></label>
-                                    <input type="link" name="map" value="" class="form-control">
-                                </div>
                                 <div class="form-group">
                                     <label for="address">Toạ độ (VD: 10.047741, 105.772110)</label>
                                     <input type="text" name="coor" value="" class="form-control">
@@ -133,7 +136,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button style="font-size: 15px" type="button" class="btn btn-round">Quay lại</button>
+                            <a style="font-size: 15px; color:white" class="btn btn-round" href="{{route('admindiadiem')}}">Quay lại</a>
                             <button style="font-size: 15px" type="submit" class="btn btn-primary btn-round">Thêm địa điểm</button>
                         </div>
                     </form>
