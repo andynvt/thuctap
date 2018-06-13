@@ -16,7 +16,7 @@ class PlaceLocation extends Migration
         Schema::create('place_location', function ($table) {
             $table->increments('id');
             $table->integer('id_place')->unsigned();
-            $table->foreign('id_place')->references('id')->on('places');
+            $table->foreign('id_place')->references('id')->on('places')->onDelete('CASCADE');
             $table->string('coor');
             $table->timestamps();
         });

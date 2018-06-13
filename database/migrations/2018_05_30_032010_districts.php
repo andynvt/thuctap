@@ -16,7 +16,7 @@ class Districts extends Migration
         Schema::create('districts', function ($table) {
             $table->increments('id');
             $table->integer('id_city')->unsigned();
-            $table->foreign('id_city')->references('id')->on('cities');
+            $table->foreign('id_city')->references('id')->on('cities')->onDelete('CASCADE');
             $table->string('name');
         });
     }

@@ -16,7 +16,7 @@ class Places extends Migration
         Schema::create('places', function ($table) {
             $table->increments('id');
             $table->integer('id_type')->unsigned();
-            $table->foreign('id_type')->references('id')->on('place_type');
+            $table->foreign('id_type')->references('id')->on('place_type')->onDelete('CASCADE');
             $table->integer('id_district')->unsigned();
             $table->foreign('id_district')->references('id')->on('districts')->onDelete('CASCADE');
             $table->string('name');

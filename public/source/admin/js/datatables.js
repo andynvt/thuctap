@@ -1,6 +1,6 @@
 function bindDatatable(tableId) {
 
-    $('#' + tableId).DataTable( {
+    $('#' + tableId).DataTable({
         columnDefs: [
             {
                 targets: [ 0, 1, 2 ],
@@ -16,9 +16,11 @@ function bindDatatable(tableId) {
             infoFiltered:   "(được lọc từ _MAX_ mục)",
             infoPostFix:    "",
             zeroRecords:     "Không tìm thấy dòng nào phù hợp",
-            "paginate": {
-                "next": "<strong>&raquo;</strong>",
-                "previous": "<strong>&laquo;</strong>"
+            paginate: {
+                first:      "Đầu",
+                previous:   "<",
+                next:       ">",
+                last:       "Cuối"
             },
             aria: {
                 sortAscending:  ": sắp xếp tăng",
@@ -26,5 +28,5 @@ function bindDatatable(tableId) {
             }
         }
 
-    } );
+    });
 }

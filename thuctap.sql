@@ -2,10 +2,10 @@
 -- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 07, 2018 at 10:27 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th6 13, 2018 lúc 10:23 AM
+-- Phiên bản máy phục vụ: 10.1.31-MariaDB
+-- Phiên bản PHP: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `thuctap`
+-- Cơ sở dữ liệu: `thuctap`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities`
+-- Cấu trúc bảng cho bảng `cities`
 --
 
 CREATE TABLE `cities` (
@@ -33,9 +33,7 @@ CREATE TABLE `cities` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `cities`
---
+-- --------------------------------------------------------
 
 INSERT INTO `cities` (`id`, `name`) VALUES
 (3, 'An Giang'),
@@ -803,47 +801,42 @@ INSERT INTO `districts` (`id`, `id_city`, `name`) VALUES
 (685, 65, 'Huyện Bạch Long Vĩ'),
 (686, 65, 'Quận Dương Kinh');
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `feedbacks`
+-- Cấu trúc bảng cho bảng `feedbacks`
 --
 
 CREATE TABLE `feedbacks` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_place` int(10) UNSIGNED NOT NULL,
   `star` double(8,2) NOT NULL,
+  `status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `feedbacks`
---
-
-INSERT INTO `feedbacks` (`id`, `id_place`, `star`, `created_at`, `updated_at`) VALUES
-(1, 1, 2.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(2, 2, 4.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(3, 3, 3.50, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, 4, 2.50, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(5, 5, 1.50, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(6, 6, 5.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(7, 7, 4.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(8, 8, 1.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(9, 9, 2.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(10, 10, 3.50, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(11, 11, 3.50, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(12, 12, 5.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(13, 13, 3.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(14, 14, 2.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(15, 15, 1.00, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(16, 1, 5.00, '2018-06-03 17:00:00', '2018-06-03 17:00:00'),
-(17, 1, 4.00, '2018-06-03 17:00:00', '2018-06-03 17:00:00');
-
 -- --------------------------------------------------------
 
+INSERT INTO `feedbacks` (`id`, `id_place`, `star`,`status`, `created_at`, `updated_at`) VALUES
+(1, 1, 2.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(2, 2, 4.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(3, 3, 3.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(4, 4, 2.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(5, 5, 1.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(6, 6, 5.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(7, 7, 4.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(8, 8, 1.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(9, 9, 2.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(10, 10, 3.50,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(11, 11, 3.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(12, 12, 5.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(13, 13, 3.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(14, 14, 2.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(15, 15, 1.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(16, 1, 5.00,0, '2018-06-03 17:00:00', '2018-06-03 17:00:00'),
+(17, 1, 4.00,1, '2018-06-03 17:00:00', '2018-06-03 17:00:00');
+
 --
--- Table structure for table `migrations`
+-- Cấu trúc bảng cho bảng `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -853,7 +846,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Đang đổ dữ liệu cho bảng `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -871,7 +864,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `places`
+-- Cấu trúc bảng cho bảng `places`
 --
 
 CREATE TABLE `places` (
@@ -888,9 +881,7 @@ CREATE TABLE `places` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `places`
---
+-- --------------------------------------------------------
 
 INSERT INTO `places` (`id`, `id_type`, `id_district`, `name`, `slogan`, `short_des`, `full_des`, `map`, `address`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'Chợ nổi Cái Răng', 'Nét văn hoá cổ xưa', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>\r\n\r\n            ', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>\r\n', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.1802349064924!2d105.74193531479423!3d10.001966392849832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089afb6342d8d%3A0xcdb2b569f5f13898!2zQ2jhu6MgTuG7lWkgQ8OhaSBSxINuZw!5e0!3m2!1svi!2s!4v1527733455653\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Lê Bình, Cái Răng, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
@@ -909,12 +900,9 @@ INSERT INTO `places` (`id`, `id_type`, `id_district`, `name`, `slogan`, `short_d
 (14, 3, 1, 'Ninh Kieu Riverside Hotel', 'Thủ phủ quê nhà', 'Ninh Kieu Riverside Hotel tọa lạc tại thành phố Cần Thơ và cách Cầu đi bộ Bến Ninh Kiều chỉ 1 phút dạo bước. Du khách có thể dùng bữa trong nhà hàng hay thư giãn ở quán bar. Khách sạn cung cấp miễn phí Wi-Fi trong toàn khuôn viên và bãi đậu xe riêng tại chỗ.', 'Ninh Kieu Riverside Hotel tọa lạc tại thành phố Cần Thơ và cách Cầu đi bộ Bến Ninh Kiều chỉ 1 phút dạo bước. Du khách có thể dùng bữa trong nhà hàng hay thư giãn ở quán bar. Khách sạn cung cấp miễn phí Wi-Fi trong toàn khuôn viên và bãi đậu xe riêng tại chỗ.\r\nTất cả các phòng nghỉ tại đây đều được trang bị truyền hình cáp màn hình phẳng, ấm đun nước và phòng tắm riêng kèm vòi sen. Những tiện nghi khác bao gồm dép và đồ vệ sinh cá nhân miễn phí.\r\n\r\nNhân viên song ngữ tại quầy lễ tân 24 giờ có thể hỗ trợ khách với các dịch vụ nhận phòng và trả phòng riêng, thu đổi ngoại tệ cũng như giữ hành lý.\r\n\r\nNinh Kieu Riverside Hotel cách Chợ Đêm 400 m, Bảo tàng Cần Thơ 500 m, Chợ nổi Cái Răng 7 km và sân bay gần nhất là sân bay Rạch Giá 72 km. \r\n\r\nChỗ nghỉ này là một trong những vị trí được đánh giá tốt nhất ở Cần Thơ! Khách thích nơi đây hơn so với những chỗ nghỉ khác trong khu vực.\r\n\r\nCác cặp đôi đặc biệt thích địa điểm này — họ cho điểm 8,8 cho kỳ nghỉ dành cho 2 người.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.763826809605!2d105.78745501479453!3d10.036337692826258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x3f70fa9b4ba0895e!2sNinh+Kieu+Riverside+Hotel!5e0!3m2!1svi!2s!4v1527733770529\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '2 Hai Bà Trưng st, Tân An, Ninh Kiều, Cần Thơ 900000, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (15, 3, 1, 'Ninh Kieu 2 Hotel', 'Trung tâm thành phố', 'Tọa lạc tại thành phố Cần Thơ, cách Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel có trung tâm thể dục, lễ tân 24 giờ và sảnh khách chung. Khách sạn 4 sao này cung cấp Wi-Fi miễn phí.', 'Tọa lạc tại thành phố Cần Thơ, cách Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel có trung tâm thể dục, lễ tân 24 giờ và sảnh khách chung. Khách sạn 4 sao này cung cấp Wi-Fi miễn phí.\r\n     Tất cả các phòng nghỉ tại Ninh Kieu 2 Hotel đều có khu vực ghế ngồi và TV truyền hình cáp màn hình phẳng. Các phòng cũng có phòng tắm riêng, tầm nhìn ra quang cảnh thành phố, máy điều hòa và bàn làm việc.\r\n\r\n      Khách sạn cung cấp bữa sáng kiểu Mỹ hàng ngày. Tại đây có nhà hàng ngay trong khuôn viên phục vụ hải sản và ẩm thực Việt Nam.\r\n\r\n     Ninh Kieu 2 Hotel có sân hiên.\r\n\r\n    Gần khách sạn có các điểm tham quan nổi tiếng như trung tâm thương mại Vincom Plaza Hùng Vương, trung tâm thương mại Vincom Plaza Xuân Khánh và Bảo tàng Cần Thơ. Sân bay gần nhất là Sân bay Rạch Giá, cách chỗ nghỉ 72 km. ', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.780440486042!2d105.78387401479443!3d10.03496859282718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x386bdb632835e00e!2zS2jDoWNoIFPhuqFuIE5pbmggS2nhu4F1IDI!5e0!3m2!1svi!2s!4v1527733792692\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '03 Đại lộ Hoà Bình, Tân An, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `place_image`
+-- Cấu trúc bảng cho bảng `place_image`
 --
-
 CREATE TABLE `place_image` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_place` int(10) UNSIGNED NOT NULL,
@@ -1100,37 +1088,38 @@ INSERT INTO `user_location` (`id`, `coor`, `created_at`, `updated_at`) VALUES
 (6, '160', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
 
 --
--- Indexes for dumped tables
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `cities`
+-- Chỉ mục cho bảng `cities`
 --
 ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `districts`
+-- Chỉ mục cho bảng `districts`
 --
 ALTER TABLE `districts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `districts_id_city_foreign` (`id_city`);
 
 --
--- Indexes for table `feedbacks`
+-- Chỉ mục cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `feedbacks_id_place_foreign` (`id_place`);
 
 --
--- Indexes for table `migrations`
+-- Chỉ mục cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `places`
+-- Chỉ mục cho bảng `places`
 --
 ALTER TABLE `places`
   ADD PRIMARY KEY (`id`),
@@ -1138,155 +1127,155 @@ ALTER TABLE `places`
   ADD KEY `places_id_district_foreign` (`id_district`);
 
 --
--- Indexes for table `place_image`
+-- Chỉ mục cho bảng `place_image`
 --
 ALTER TABLE `place_image`
   ADD PRIMARY KEY (`id`),
   ADD KEY `place_image_id_place_foreign` (`id_place`);
 
 --
--- Indexes for table `place_location`
+-- Chỉ mục cho bảng `place_location`
 --
 ALTER TABLE `place_location`
   ADD PRIMARY KEY (`id`),
   ADD KEY `place_location_id_place_foreign` (`id_place`);
 
 --
--- Indexes for table `place_type`
+-- Chỉ mục cho bảng `place_type`
 --
 ALTER TABLE `place_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `travel`
+-- Chỉ mục cho bảng `travel`
 --
 ALTER TABLE `travel`
   ADD PRIMARY KEY (`id`),
   ADD KEY `travel_id_place_foreign` (`id_place`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `user_location`
+-- Chỉ mục cho bảng `user_location`
 --
 ALTER TABLE `user_location`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `cities`
+-- AUTO_INCREMENT cho bảng `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `districts`
+-- AUTO_INCREMENT cho bảng `districts`
 --
 ALTER TABLE `districts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=687;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `feedbacks`
+-- AUTO_INCREMENT cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `places`
+-- AUTO_INCREMENT cho bảng `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `place_image`
+-- AUTO_INCREMENT cho bảng `place_image`
 --
 ALTER TABLE `place_image`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `place_location`
+-- AUTO_INCREMENT cho bảng `place_location`
 --
 ALTER TABLE `place_location`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `place_type`
+-- AUTO_INCREMENT cho bảng `place_type`
 --
 ALTER TABLE `place_type`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `travel`
+-- AUTO_INCREMENT cho bảng `travel`
 --
 ALTER TABLE `travel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user_location`
+-- AUTO_INCREMENT cho bảng `user_location`
 --
 ALTER TABLE `user_location`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `districts`
+-- Các ràng buộc cho bảng `districts`
 --
 ALTER TABLE `districts`
-  ADD CONSTRAINT `districts_id_city_foreign` FOREIGN KEY (`id_city`) REFERENCES `cities` (`id`);
+  ADD CONSTRAINT `districts_id_city_foreign` FOREIGN KEY (`id_city`) REFERENCES `cities` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `feedbacks`
+-- Các ràng buộc cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  ADD CONSTRAINT `feedbacks_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`);
+  ADD CONSTRAINT `feedbacks_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `places`
+-- Các ràng buộc cho bảng `places`
 --
 ALTER TABLE `places`
-  ADD CONSTRAINT `places_id_district_foreign` FOREIGN KEY (`id_district`) REFERENCES `districts` (`id`),
-  ADD CONSTRAINT `places_id_type_foreign` FOREIGN KEY (`id_type`) REFERENCES `place_type` (`id`);
+  ADD CONSTRAINT `places_id_district_foreign` FOREIGN KEY (`id_district`) REFERENCES `districts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `places_id_type_foreign` FOREIGN KEY (`id_type`) REFERENCES `place_type` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `place_image`
+-- Các ràng buộc cho bảng `place_image`
 --
 ALTER TABLE `place_image`
-  ADD CONSTRAINT `place_image_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`);
+  ADD CONSTRAINT `place_image_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `place_location`
+-- Các ràng buộc cho bảng `place_location`
 --
 ALTER TABLE `place_location`
-  ADD CONSTRAINT `place_location_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`);
+  ADD CONSTRAINT `place_location_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `travel`
+-- Các ràng buộc cho bảng `travel`
 --
 ALTER TABLE `travel`
-  ADD CONSTRAINT `travel_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`);
+  ADD CONSTRAINT `travel_id_place_foreign` FOREIGN KEY (`id_place`) REFERENCES `places` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

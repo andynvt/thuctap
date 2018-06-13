@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\City;
 use App\District;
 use App\Feedback;
+use App\Place_Location;
 use App\Place_Type;
+use App\Place_Image;
 use App\Place;
 use App\User_Location;
 use Illuminate\Http\Request;
@@ -20,12 +22,24 @@ class AdminController extends Controller
         $place = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
             ->leftjoin('districts', 'districts.id', '=', 'places.id_district')
-            ->select('places.*', 'place_image.name as piname', 'place_type.name as ptname', 'districts.name as dname')
+            ->leftjoin('cities', 'cities.id', '=', 'districts.id_city')
+            ->leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+            ->select('places.*', 'place_image.name as piname', 'place_type.name as ptname', 'districts.name as dname', 'cities.name as cname','place_location.coor')
             ->groupBy('places.id')
             ->get();
-
-//        dd($place);
         return view('admin.pages.place.place', compact('place'));
+    }
+
+    public function AdminXoaDiadiem($id){
+        $name = Place::where('id', $id)->value('name');
+        Place::destroy($id);
+        return redirect()->back()->with('del-1', 'Xoá '.$name.' thành công');
+    }
+
+    public function AdminXoaNhieuDiadiem(Request $req){
+        $ids = $req->get('place-id');
+        Place::destroy($ids);
+        return back();
     }
 
     public function AdminThemdiadiem(){
@@ -35,16 +49,52 @@ class AdminController extends Controller
         return view('admin.pages.place.placeadd', compact('place_type','city','district'));
     }
 
-    public function postThanhPho(Request $req){
-        $id_city = $req->id;
-        $district = District::where('id_city', $id_city)->get();
+    public function AdminPostdiadiem(Request $req){
+        $place = new Place();
+        $place_location = new Place_Location();
 
-        return response()->json(['district' => $id_city]);
+        if($req->hasfile('images')){
 
+            $place->name = $req->name;
+            $place->id_type = $req->type;
+            $place->id_district = $req->district;
+            $place->slogan = $req->slogan;
+            $place->map = $req->map;
+            $place->address = $req->address;
+            $place->short_des = $req->short_des;
+            $place->full_des = $req->full_des;
+            $place->save();
+
+            $place_location->id_place = $place->id;
+            $place_location->coor = $req->coor;
+            $place_location->save();
+
+            foreach($req->file('images') as $image){
+                $namee=date('Y-m-d-H-i-s')."-".$image->getClientOriginalName();
+                $image->move('storage/image', $namee);
+                $img[] = $namee;
+            }
+            foreach($img as $i){
+                Place_Image::insert( [
+                    'id_place'=>$place->id,
+                    'name'=>$i,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('addplace', 'Đã thêm: '.$req->name);
     }
 
-    public function AdminSuadiadiem(){
-        return view('admin.pages.place.placeedit');
+    public function getThanhPho(Request $req){
+        $id_city = $req->id;
+//        $district = District::where('id_city', $id_city)->get();
+
+        return json_encode($id_city);
+    }
+
+    public function AdminSuadiadiem($id){
+
+        return view('admin.pages.place.placeedit', compact('id'));
     }
 
     public function AdminLoaidiadiem(){
@@ -70,7 +120,7 @@ class AdminController extends Controller
         $loaiDiaDiem ->description = $request->get('des');
 
         $loaiDiaDiem->update();
-        return back()->with('success', "Cập nhật thành công");;
+        return back()->with('success', "Cập nhật thành công");
     }
     public function AdminXoaLoaidiadiem($id){
 
@@ -78,9 +128,10 @@ class AdminController extends Controller
         $xoaLoai->delete();
         return back();
     }
-    public function AdminXoaLoaidiadiemdachon(Request $request ) {
-        $ids = $request->get('loai-dia-diem-id');
-        Place_Type::destroy($ids);
+    public function AdminXoaLoaidiadiemdachon(Request $request) {
+
+        $id = $request->get('loai-dia-diem-id');
+        Place_Type::destroy($id);
         return back();
     }
 
@@ -129,7 +180,12 @@ class AdminController extends Controller
         $xoaDanhGia->delete();
         return back();
     }
+    public function AdminXoaDanhGiadachon(Request $request) {
 
+        $id = $request->get('danh-gia-id');
+        Feedback::destroy($id);
+        return back();
+    }
     public function AdminVitringuoidung(){
         $userLocation = User_Location::orderBy('id','asc')->get();
         return view('admin.pages.vi_tri_nguoi_dung.index',compact('userLocation'));
@@ -142,7 +198,6 @@ class AdminController extends Controller
     }
     public function AdminXoavitringuoidungdachon(Request $request ) {
         $ids = $request->get('vi-tri-id');
-
         User_Location::destroy($ids);
         return back();
     }

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title title">Sửa thông tin XXX</h4>
+                    <h4 class="card-title title">Sửa thông tin {{$id}}</h4>
                 </div>
                 <div class="card-body">
                     <form action="">
