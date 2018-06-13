@@ -27,7 +27,7 @@ class CustomerController extends Controller
             ->where('places.id_type', $id)
             ->groupBy('places.id')
 //            ->limit('5')
-            ->paginate(3);
+            ->paginate(10);
 //       view top places interesting
         $result_top = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->leftjoin('feedbacks', 'places.id', '=', 'feedbacks.id_place')
@@ -37,8 +37,26 @@ class CustomerController extends Controller
             ->orderBy('feedbacks.star', 'desc')
             ->limit('5')
             ->get();
-
         return view('customer.pages.listplace', compact('result_lp', 'title_place','result_top','sum_fb','avg_fb'));
+    }
+    public function CustomerListplaceFavorite()
+    {
+//        view favorite place
+        $result_favorite= Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->join('feedbacks','feedbacks.id_place','=','places.id')
+            ->select('places.id as pid', 'places.name as pname', 'places.short_des', 'places.name',
+                'place_image.id as piimg', 'place_image.name as piname','feedbacks.id as fid')
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star', 'desc')
+            ->paginate(10);
+        $result_top_fav = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->leftjoin('feedbacks', 'places.id', '=', 'feedbacks.id_place')
+            ->select('places.id as pid', 'places.name as pname', 'places.short_des', 'places.name', 'place_image.id as piimg', 'place_image.name as piname')
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star', 'desc')
+            ->limit('5')
+            ->get();
+        return view('customer.pages.listplace_favorite', compact('result_favorite','result_top_fav'));
     }
 
     public function CustomerCaldis(Request $req){

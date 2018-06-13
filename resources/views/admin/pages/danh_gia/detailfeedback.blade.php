@@ -9,7 +9,7 @@
                     <div class="row">
                         <h3 class="col-6">{{$diaDiem->name}}:</h3>
                         <h5 class="col-6 text-right">
-                            {{number_format((float)$avg,2,'.','')}}
+                            <b>{{number_format((float)$avg,2,'.','')}}</b>
                             /5 ({{$tongdg}} đánh giá)</h5>
                     </div>
                     <button class="btn btn-danger btn-round" onclick="$('{{ "#modal-Alldelete"}}').modal('show')">
