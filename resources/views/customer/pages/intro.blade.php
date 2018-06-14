@@ -24,13 +24,13 @@
 		        };
 
 	        	infoWindow.setPosition(pos);
-	        	infoWindow.setContent('Vị trí của bạn.');
+	        	infoWindow.setContent('Bạn đang ở đây.');
 	        	infoWindow.open(map);
 	        	map.setCenter(pos);
 
 	      		var la = pos.lat;
 	      		var long = pos.lng;
-	      		var _token = $('input[name="_token"').val();
+	      		var _token = $('input[name="_token"]').val();
 
 	      		$.ajax({
 			        type: "GET",
@@ -39,6 +39,7 @@
 			        data: {token: _token, lati: la, longi: long},
 			        success: function(data){
 			        	console.log(data);
+			        	// $('.viewplace').html(data);
 			        }
 			    });
 	      	}, 
@@ -132,8 +133,7 @@
 	            <!-- Carousel Card -->
 	            <div class="card card-raised card-carousel" style="margin: 0">
 	              <div id="carouselhomeimg" class="carousel slide" data-ride="carousel" data-interval="false" style="height: 100vh">
-	                <div class="carousel-inner">
-
+	                <div class="carousel-inner viewplace">
 	                	@foreach($intro as $it)
                   		<div class="carousel-item">
 		                    <img class="d-block w-100" src="storage/image/{{ $it->pimage }}" alt="First slide" style="height: 100vh">
@@ -183,7 +183,7 @@
 		                          <div class="card-body responsive-card-body">
 		                            <div class="tab-content text-center">
 		                              <div class="tab-pane active">
-		                                <p>{{ $it->short_des }}</p>
+		                                <p>{!! $it->short_des !!}</p>
 		                              </div>
 		                              <div class="tab-pane">
 		                                <div class="col-md-12 place-info-img">
@@ -197,7 +197,6 @@
 		                    </div>
                   		</div>
 	                  	@endforeach
-
 	                </div>
 
 	                <a class="carousel-control-prev change-slide-home-button" href="#carouselhomeimg" role="button" data-slide="prev">

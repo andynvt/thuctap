@@ -101,14 +101,15 @@ class CustomerController extends Controller
 
         $plocate = Place_Location::all();
 
-        $collection = collect([]);        
+        $collection = collect([]);
+
+        $viewIntro = collect([]);
 
         $cntplace = count($plocate);
 
         for($i = 0; $i < $cntplace; $i++){
             $coords = explode(',', $plocate[$i]->coor);
             $dist = $getdist->GetDrivingDistance($plocate[$i]->id, $latitude, $longitude, $coords[0], $coords[1]);
-            $idp = $plocate[$i]->id;
 
             $collection->push($dist);
         }
@@ -117,7 +118,36 @@ class CustomerController extends Controller
 
         $intro = $sorted->values()->take(3);
 
-        return json_encode([$intro]);
+        $cntintro = $intro->count();
+
+        for($i = 0; $i < $cntintro; $i++){
+            // $pintro = Place::where('id', $intro[$i]['id'])->get();
+
+            $pintro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
+                    ->leftjoin('place_image as pimg', 'pimg.id_place', '=', 'places.id')
+                    ->leftjoin('districts as dt', 'places.id_district', '=', 'dt.id')
+                    ->where('places.id', $intro[$i]['id'])
+                    ->groupBy('places.id')
+                    ->select('places.id as id', 'places.name as pname', 'places.short_des', 'places.address', 'pimg.name as pimage', 'pt.name as ptname')
+                    ->get();
+            $viewIntro->push($pintro);
+        }
+
+        $flattened = $viewIntro->flatten(1);
+
+        foreach($flattened as $view){
+            $intro->push($view);
+        }
+
+        $grouped = $intro->groupBy('id');
+
+        // $htmls = "";
+
+        // foreach($grouped as $value){
+        //     $htmls .= $getdist->displayIntro($value[1]['pimage'], $value[1]['address'], $value[0]['distance'], $value[0]['time'], $value[1]['ptname'], $value[1]['short_des']);
+        // }
+
+        return json_encode($grouped);
     }
 
     public function CustomerIntro(){
