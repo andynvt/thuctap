@@ -1,5 +1,7 @@
 @extends('admin.master')
-
+<title>
+    Vị trí người dùng | Admin
+</title>
 @section('content')
 <div class="content place-type">
     <div class="row">

@@ -1,5 +1,7 @@
 @extends('admin.master')
-
+<title>
+    Loại địa điểm | Admin
+</title>
 @section('content')
 <div class="content place-type">
     <div class="row">
@@ -27,28 +29,3 @@
 @include('admin.pages.loai_dia_diem.modals')
 
 @endsection
-<script>
-    function alertDelete() {
-        swal({
-            title: "Are you sure?",
-            text: "Are you sure that you want to delete this photo?",
-            type: "warning",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            confirmButtonText: "Yes, delete it!",
-            confirmButtonColor: "#ec6c62"
-        },
-            function () {
-            $.ajax({
-                url: '{{route('admin.xoa-da-chon',[0])}}',
-                type: "DELETE"
-            })
-                .done(function (data) {
-                    swal("Deleted!", "Your file was successfully deleted!", "success");
-                })
-                .error(function (data) {
-                    swal("Oops", "We couldn't connect to the server!", "error");
-                });
-        })
-    }
-</script>

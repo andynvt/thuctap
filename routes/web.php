@@ -32,10 +32,6 @@ Route::post('cal-dis',[
     'uses' => 'CustomerController@CustomerCaldis'
 ]);
 
-Route::get('loai-dia-diem',[
-	'as' => 'listplace',
-	'uses' => 'CustomerController@CustomerListplace'
-]);
 
 Route::get('cal-dis','CustomerController@CustomerCaldis');
 
@@ -43,6 +39,10 @@ Route::get('cal-dis','CustomerController@CustomerCaldis');
 Route::get('pho-bien',[
     'as' => 'customer.pho-bien',
     'uses' => 'CustomerController@CustomerListplaceFavorite'
+]);
+Route::get('tim-kiem',[
+    'as' => 'customer.tim-kiem',
+    'uses' => 'CustomerController@CustomerListplaceSearch'
 ]);
 
 Route::get('chi-tiet-dia-diem/{id}',[

@@ -14,7 +14,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-round " data-dismiss="modal">ĐÓNG</button>
                 <span></span>
-                <button type="submit" class="btn btn-primary btn-round" >OK</button>
+                <button type="submit" class="btn btn-primary btn-round" onclick="return successMessage('success','Xóa thành công!')">OK</button>
             </div>
         </div>
     </div>
