@@ -26,7 +26,6 @@ class CustomerController extends Controller
                 'place_image.id as piimg', 'place_image.name as piname','feedbacks.id as fid')
             ->where('places.id_type', $id)
             ->groupBy('places.id')
-//            ->limit('5')
             ->paginate(10);
 //       view top places interesting
         $result_top = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
@@ -35,9 +34,9 @@ class CustomerController extends Controller
             ->where('places.id_type', $id)
             ->groupBy('places.id')
             ->orderBy('feedbacks.star', 'desc')
-            ->limit('5')
+            ->limit(5)
             ->get();
-        return view('customer.pages.listplace', compact('result_lp', 'title_place','result_top','sum_fb','avg_fb'));
+        return view('customer.pages.listplace', compact('types','result_lp', 'title_place','result_top','sum_fb','avg_fb'));
     }
     public function CustomerListplaceFavorite()
     {
@@ -58,7 +57,42 @@ class CustomerController extends Controller
             ->get();
         return view('customer.pages.listplace_favorite', compact('result_favorite','result_top_fav'));
     }
-
+    public function CustomerListplaceSearch(Request $request)
+    {
+        $keyWord= $request->input('data');
+            $place= Place::join('place_image', 'places.id', '=', 'place_image.id_place')
+                ->join('feedbacks','feedbacks.id_place','=','places.id')
+                ->join('place_type','place_type.id','=','places.id_type')
+                ->join('districts','districts.id','=','places.id_district')
+                ->join('cities','cities.id','districts.id_city')
+                ->select('place_image.id as mid','feedbacks.id as fid','places.id as pid','place_type.id as tid','districts.id as did',
+                    'cities.id as cid','place_image.name as piname','places.name as pname','place_type.name as tname',
+                    'districts.name as dname','cities.name as cname','short_des')
+                ->where('places.name','like','%'.$keyWord.'%')
+                ->orwhere('place_type.name','like','%'.$keyWord.'%')
+                ->orwhere('districts.name','like','%'.$keyWord.'%')
+                ->orwhere('cities.name','like','%'.$keyWord.'%')
+                ->groupBy('places.id')
+                ->paginate(10);
+            $total = $place->count();
+        $same_place= Place::join('place_image', 'places.id', '=', 'place_image.id_place')
+            ->join('feedbacks','feedbacks.id_place','=','places.id')
+            ->join('place_type','place_type.id','=','places.id_type')
+            ->join('districts','districts.id','=','places.id_district')
+            ->join('cities','cities.id','districts.id_city')
+            ->select('place_image.id as mid','feedbacks.id as fid','places.id as pid','place_type.id as tid','districts.id as did',
+                'cities.id as cid','place_image.name as piname','places.name as pname','place_type.name as tname',
+                'districts.name as dname','cities.name as cname','short_des')
+            ->where('places.name','like','%'.$keyWord.'%')
+            ->orwhere('place_type.name','like','%'.$keyWord.'%')
+            ->orwhere('districts.name','like','%'.$keyWord.'%')
+            ->orwhere('cities.name','like','%'.$keyWord.'%')
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star','desc')
+            ->limit(5)
+            ->get();
+        return view('customer.pages.resultSearch', compact('place','total','same_place'));
+    }
     public function CustomerCaldis(Request $req){
         $getdist = new Controller;
 
@@ -67,14 +101,15 @@ class CustomerController extends Controller
 
         $plocate = Place_Location::all();
 
-        $collection = collect([]);        
+        $collection = collect([]);
+
+        $viewIntro = collect([]);
 
         $cntplace = count($plocate);
 
         for($i = 0; $i < $cntplace; $i++){
             $coords = explode(',', $plocate[$i]->coor);
             $dist = $getdist->GetDrivingDistance($plocate[$i]->id, $latitude, $longitude, $coords[0], $coords[1]);
-            $idp = $plocate[$i]->id;
 
             $collection->push($dist);
         }
@@ -83,7 +118,36 @@ class CustomerController extends Controller
 
         $intro = $sorted->values()->take(3);
 
-        return json_encode([$intro]);
+        $cntintro = $intro->count();
+
+        for($i = 0; $i < $cntintro; $i++){
+            // $pintro = Place::where('id', $intro[$i]['id'])->get();
+
+            $pintro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
+                    ->leftjoin('place_image as pimg', 'pimg.id_place', '=', 'places.id')
+                    ->leftjoin('districts as dt', 'places.id_district', '=', 'dt.id')
+                    ->where('places.id', $intro[$i]['id'])
+                    ->groupBy('places.id')
+                    ->select('places.id as id', 'places.name as pname', 'places.short_des', 'places.address', 'pimg.name as pimage', 'pt.name as ptname')
+                    ->get();
+            $viewIntro->push($pintro);
+        }
+
+        $flattened = $viewIntro->flatten(1);
+
+        foreach($flattened as $view){
+            $intro->push($view);
+        }
+
+        $grouped = $intro->groupBy('id');
+
+        // $htmls = "";
+
+        // foreach($grouped as $value){
+        //     $htmls .= $getdist->displayIntro($value[1]['pimage'], $value[1]['address'], $value[0]['distance'], $value[0]['time'], $value[1]['ptname'], $value[1]['short_des']);
+        // }
+
+        return json_encode($grouped);
     }
 
     public function CustomerIntro(){

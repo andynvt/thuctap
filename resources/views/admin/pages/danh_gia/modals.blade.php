@@ -17,9 +17,8 @@
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
                         <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">ĐÓNG</button>
-                        <button type="submit" class="btn btn-primary btn-round">OK</button>
+                        <button type="submit" class="btn btn-primary btn-round" onclick="return successMessage('success','Xóa thành công!')">OK</button>
                     </form>
-
                 </div>
             </div>
         </div>

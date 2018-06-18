@@ -10,25 +10,21 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
+                @foreach(\App\Place_Type::all() as $type)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[1])}}"
-                       data-toggle="tooltip" data-placement="bottom" title="Du lịch"><i class="material-icons">beach_access</i>du lịch</a>
+                    <a class="nav-link " href="{{route('customer.loai-dia-diem',[$type->id])}}"
+                       data-toggle="tooltip" data-placement="bottom" title="{{$type -> name}}">
+                        <i class="material-icons">place</i>{{$type -> name}}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[2])}}"
-                       data-toggle="tooltip" data-placement="bottom" title="Ăn uống"><i class="material-icons">room_service</i>ăn uống</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('customer.loai-dia-diem',[3])}}"
-                       data-toggle="tooltip" data-placement="bottom" title="Khách sạn"><i class="material-icons">hotel</i>khách sạn</a>
-                </li>
-                <form class="form-inline ml-auto">
+                @endforeach
+                <form class="form-inline ml-auto" action="{{route('customer.tim-kiem')}}" method="get">
+
                     <div class="form-group has-white">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <input type="text" class="form-control" name="data" placeholder="Tìm kiếm...">
                     </div>
                     <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
-            <i class="material-icons">search</i>
-          </button>
+                        <i class="material-icons">search</i>
+                    </button>
                 </form>
             </ul>
         </div>
