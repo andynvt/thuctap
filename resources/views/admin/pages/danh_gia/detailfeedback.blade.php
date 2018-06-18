@@ -1,5 +1,7 @@
 @extends('admin.master')
-
+<title>
+    {{$diaDiem->name}}- Đánh giá | Admin
+</title>
 @section('content')
 <div class="content fb-content">
     <div class="card">

@@ -11,6 +11,7 @@ use App\Place_Image;
 use App\Place;
 use App\User_Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -33,7 +34,7 @@ class AdminController extends Controller
     public function AdminXoaDiadiem($id){
         $name = Place::where('id', $id)->value('name');
         Place::destroy($id);
-        return redirect()->back()->with('del-1', 'Xoá '.$name.' thành công');
+        return redirect()->back()->with('del-1', 'Đã xoá '.$name);
     }
 
     public function AdminXoaNhieuDiadiem(Request $req){
@@ -82,7 +83,7 @@ class AdminController extends Controller
             }
         }
 
-        return redirect()->back()->with('addplace', 'Đã thêm: '.$req->name);
+        return redirect()->back()->with('add-place', 'Đã thêm: '.$req->name);
     }
 
     public function getThanhPho(Request $req){
@@ -93,8 +94,54 @@ class AdminController extends Controller
     }
 
     public function AdminSuadiadiem($id){
+        $info = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
+            ->leftjoin('districts', 'districts.id', '=', 'places.id_district')
+            ->leftjoin('cities', 'cities.id', '=', 'districts.id_city')
+            ->leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+            ->select('places.*', 'place_image.name as piname','place_type.name as ptname' ,'districts.id as did', 'cities.id as cid','place_location.coor')
+            ->where('places.id', $id)
+            ->groupBy('places.id')
+            ->get();
+        $place_type = Place_Type::all();
+        $id_type = Place::where('id',$id)->value('id_type');
+        $type_name = Place_Type::where('id', $id_type)->value('name');
 
-        return view('admin.pages.place.placeedit', compact('id'));
+        $district = District::all();
+        $id_district = Place::where('id',$id)->value('id_district');
+        $dname = District::where('id', $id_district)->value('name');
+
+        $city = City::all();
+        $id_city = District::where('id',$id)->value('id_city');
+        $cname = District::where('id', $id_city)->value('name');
+
+        $img = Place_Image::leftjoin('places', 'places.id', '=', 'place_image.id_place')
+            ->select('place_image.id', 'place_image.name')
+            ->where('places.id',$id)
+            ->get();
+
+//        dd($img);
+        return view('admin.pages.place.placeedit', compact('info','place_type','id_type','type_name','district','id_district','dname','city','id_city','cname','img'));
+    }
+
+    public function AjaxXoaimg(Request $req){
+        $c = "chuoi";
+//        $id = $req->iid;
+//        $idimg = Place_Image::find($id);
+//
+//        Place_Image::find($idimg->id)->delete();
+//        Storage::delete('app/public/image/'.$idimg->name);
+//        unlink(storage_path('app/public/image/'.$idimg->name));
+
+//        $req->session()->flash('deleleimg', 'Đã xoá ảnh');
+//        return response()->json(['data' => $idimg->id]);
+        return json_encode($c);
+    }
+
+    public function AdminPostedit(Request $req){
+
+
+        return redirect()->back()->with('edit-place', 'Đã sửa: '.$req->name);
     }
 
     public function AdminLoaidiadiem(){

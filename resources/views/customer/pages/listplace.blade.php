@@ -3,7 +3,9 @@
 @section('header')
     @include('customer.header')
 @endsection
-
+<title>
+    {{$title_place->name}} | Tour Guide
+</title>
 @section('content')
 <div class="list_place">
     <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('storage/image/backgroup_listplace.jpg');">
