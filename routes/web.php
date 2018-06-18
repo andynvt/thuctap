@@ -22,6 +22,8 @@ Route::get('index',[
 	'uses' => 'CustomerController@CustomerIntro'
 ]);
 
+Route::get('cal-dis','CustomerController@CustomerCaldis');
+
 Route::get('loai-dia-diem/{id}',[
     'as' => 'customer.loai-dia-diem',
     'uses' => 'CustomerController@CustomerListplace'
@@ -31,9 +33,6 @@ Route::get('loai-dia-diem',[
 	'as' => 'listplace',
 	'uses' => 'CustomerController@CustomerListplace'
 ]);
-
-Route::get('cal-dis','CustomerController@CustomerCaldis');
-
 
 Route::get('pho-bien',[
     'as' => 'customer.pho-bien',
