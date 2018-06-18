@@ -141,13 +141,20 @@ class CustomerController extends Controller
 
         $grouped = $intro->groupBy('id');
 
-        // $htmls = "";
+        $flattengrp = $grouped->flatten(1);
+
+        // $chunks = $flattengrp->chunk(2);
+
+        // $html = "";
 
         // foreach($grouped as $value){
-        //     $htmls .= $getdist->displayIntro($value[1]['pimage'], $value[1]['address'], $value[0]['distance'], $value[0]['time'], $value[1]['ptname'], $value[1]['short_des']);
+        //     $html .= $getdist->displayIntro($value);
         // }
 
-        return json_encode($grouped);
+        // $html = view('customer.pages.intro')->with(compact('grouped'))->render();
+        // return response()->json(['success' => true, 'html' => $grouped]);
+
+        return json_encode($flattengrp);
     }
 
     public function CustomerIntro(){
