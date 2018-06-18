@@ -80,7 +80,6 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'AdminController@AdminSuadiadiem'
     ]);
     
-
     Route::get('edit',[
         'as' => 'adminpostedit',
         'uses' => 'AdminController@AdminPostedit'

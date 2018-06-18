@@ -42,9 +42,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{asset('source/admin/js/datatables.js')}}"></script>
+
 
     <script>
         // $(document).ready(function() {
@@ -83,12 +85,12 @@
         {{-- Css --}}
         <link href="{{asset('source/admin/css/adminfeedback.css')}}" rel="stylesheet" />
         {{-- Js --}}
-    
+
     {{-- userlocation --}}
         {{-- Css --}}
         <link href="{{asset('source/admin/css/userlocation.css')}}" rel="stylesheet" />
         {{-- Js --}}
-        
+
 </head>
 
 <body class="">
@@ -96,6 +98,10 @@
 
         {{--Thông báo--}}
         @if (session('del-1'))
+            <body onload="admin.showNotification('top','right')"></body>
+        @elseif (session('add-place'))
+            <body onload="admin.showNotification('top','right')"></body>
+        @elseif (session('edit-place'))
             <body onload="admin.showNotification('top','right')"></body>
         @endif
 
@@ -105,10 +111,23 @@
                 showNotification: function (from, align) {
 
                     @if(session('del-1'))
-                        color = 'primary';
-                    $.notify({
-                            icon: "now-ui-icons",
-                            message: "dcsfds"
+                        color = 'danger';
+                        $.notify({
+                            icon: "now-ui-icons ui-1_check",
+                        // design-2_ruler-pencil
+                            message: "{{session('del-1')}}"
+                        }
+                    @elseif(session('add-place'))
+                        color = 'success';
+                        $.notify({
+                            icon: "now-ui-icons ui-1_check",
+                            message: "{{session('add-place')}}"
+                        }
+                    @elseif(session('edit-place'))
+                        color = 'success';
+                        $.notify({
+                            icon: "now-ui-icons ui-1_check",
+                            message: "{{session('edit-place')}}"
                         }
                     @endif
                         ,{
