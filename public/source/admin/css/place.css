@@ -3,16 +3,34 @@
     overflow: hidden;
     width: auto;
     height: auto;
+    padding-right: 5px;
 }
 
 .gallery img {
     object-fit: contain;
     width: 200px;
     height: 200px;
-    padding: 10px;
+    padding: 20px;
 }
 .place-del{
     text-align: justify;
     font-size: 25px;
     line-height: 30px;
+}
+.show-img{
+    width: 200px;
+    height: 200px;
+    padding-right: 5px;
+    display: inline-block;
+}
+.show-img img{
+    border: 1px solid darkgrey;
+    box-shadow: 2px 2px 5px 0px darkgrey;
+}
+.show-img i{
+    position: absolute;
+    top: 0;
+    /*right: 0;*/
+    font-size: 16px;
+    cursor: pointer;
 }
