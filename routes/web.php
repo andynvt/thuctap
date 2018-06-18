@@ -27,16 +27,22 @@ Route::get('loai-dia-diem/{id}',[
     'uses' => 'CustomerController@CustomerListplace'
 ]);
 
+Route::post('cal-dis',[
+    'as' => 'caldis',
+    'uses' => 'CustomerController@CustomerCaldis'
+]);
+
+Route::get('loai-dia-diem',[
+	'as' => 'listplace',
+	'uses' => 'CustomerController@CustomerListplace'
+]);
+
 Route::get('cal-dis','CustomerController@CustomerCaldis');
 
 
 Route::get('pho-bien',[
     'as' => 'customer.pho-bien',
     'uses' => 'CustomerController@CustomerListplaceFavorite'
-]);
-Route::get('tim-kiem',[
-    'as' => 'customer.tim-kiem',
-    'uses' => 'CustomerController@CustomerListplaceSearch'
 ]);
 
 Route::get('chi-tiet-dia-diem/{id}',[
@@ -80,11 +86,17 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('get-tp','AdminController@getThanhPho');
 
-
     Route::get('sua-dia-diem/{id}',[
         'as' => 'adminsuadiadiem',
         'uses' => 'AdminController@AdminSuadiadiem'
     ]);
+    
+
+    Route::get('edit',[
+        'as' => 'adminpostedit',
+        'uses' => 'AdminController@AdminPostedit'
+    ]);
+    Route::get('delimg', 'AdminController@AjaxXoaimg');
 
     Route::get('loai-dia-diem',[
         'as' => 'adminloaidiadiem',
