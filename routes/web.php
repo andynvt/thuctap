@@ -39,16 +39,6 @@ Route::get('loai-dia-diem/{id}',[
     'uses' => 'CustomerController@CustomerListplace'
 ]);
 
-<<<<<<< HEAD
-
-Route::post('cal-dis',[
-    'as' => 'caldis',
-    'uses' => 'CustomerController@CustomerCaldis'
-]);
-
-
-=======
->>>>>>> 50b70edb358d5b32b5280f8416a374e235052577
 Route::get('pho-bien',[
     'as' => 'customer.pho-bien',
     'uses' => 'CustomerController@CustomerListplaceFavorite'
