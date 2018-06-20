@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::post('/admin/login',[
+    'as' => 'admin.login.submit',
+    'uses' => 'Auth\AdminLoginController@login'
+]);
+Route::get('/admin/login',[
+    'as' =>'admin.login',
+    'uses' => 'Auth\AdminLoginController@showLoginForm'
+]);
 // Customer
 
 Route::get('index',[
@@ -27,20 +37,11 @@ Route::get('loai-dia-diem/{id}',[
     'uses' => 'CustomerController@CustomerListplace'
 ]);
 
-<<<<<<< HEAD
+
 Route::post('cal-dis',[
     'as' => 'caldis',
     'uses' => 'CustomerController@CustomerCaldis'
 ]);
-
-=======
-Route::get('loai-dia-diem',[
-	'as' => 'listplace',
-	'uses' => 'CustomerController@CustomerListplace'
-]);
->>>>>>> a9b8f897670f4bc4966660336a220994d8d81c2e
-
-Route::get('cal-dis','CustomerController@CustomerCaldis');
 
 
 Route::get('pho-bien',[
@@ -60,7 +61,12 @@ Route::get('chi-tiet-dia-diem/{id}',[
 Route::get('dg', 'CustomerController@postDanhGia') ;
 
 // Admin
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('logout/', [
+        'as' => 'admin.logout',
+        'uses' => 'Auth\AdminLoginController@logout'
+    ]);
+
     Route::get('/',[
         'as' => 'adminthongke',
         'uses' => 'AdminController@AdminThongke'
