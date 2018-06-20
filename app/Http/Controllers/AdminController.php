@@ -12,6 +12,7 @@ use App\Place;
 use App\User_Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -306,6 +307,7 @@ class AdminController extends Controller
         $userLocation = User_Location::orderBy('id','asc')->get();
         return view('admin.pages.vi_tri_nguoi_dung.index',compact('userLocation'));
     }
+
     public function AdminXoavitringuoidung($ids)
     {
         $xoaViTri = User_Location::find($ids);

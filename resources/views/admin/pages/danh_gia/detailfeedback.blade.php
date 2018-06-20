@@ -14,7 +14,7 @@
                             <b>{{number_format((float)$avg,2,'.','')}}</b>
                             /5 ({{$tongdg}} đánh giá)</h5>
                     </div>
-                    <button class="btn btn-danger btn-round" onclick="$('{{ "#modal-Alldelete"}}').modal('show')">
+                    <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#modal-Alldelete">
                         <i class="now-ui-icons ui-1_simple-remove"></i> Xóa nhiều
                     </button>
                 </div>

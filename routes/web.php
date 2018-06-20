@@ -36,11 +36,6 @@ Route::get('index',[
 
 Route::get('cal-dis','CustomerController@CustomerCaldis');
 
-Route::post('get-array',[
-    'as' => 'getarray',
-    'uses' => 'CustomerController@CustomerGetarray'
-]);
-
 Route::get('loai-dia-diem/{id}',[
     'as' => 'customer.loai-dia-diem',
     'uses' => 'CustomerController@CustomerListplace'
@@ -58,11 +53,21 @@ Route::get('chi-tiet-dia-diem/{id}',[
 
 Route::get('dg', 'CustomerController@postDanhGia') ;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> b181f5a032dab522f82fc452b5ad2732faa31d50
 Route::get('tim-kiem',[
     'as' => 'customer.tim-kiem',
     'uses' => 'CustomerController@CustomerListplaceSearch'
 ]);
+<<<<<<< HEAD
+=======
+=======
 
+>>>>>>> b181f5a032dab522f82fc452b5ad2732faa31d50
+
+>>>>>>> c31bfc0a4e1e2e4cfd64b870e071c8057dfedcff
 // Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('logout/', [

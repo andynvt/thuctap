@@ -37,15 +37,15 @@
                 <td>{{$tp -> description}}</td>
                 <td class="td-actions text-center">
                     <a class="btn btn-info btn-fab btn-icon btn-round a-white"
-                       onclick="$('{{ "#infoplace-" . $tp->id }}').modal('show')">
+                       data-toggle="modal" data-target="#infoplace-{{$tp->id }}">
                         <i class="now-ui-icons travel_info"></i>
                     </a>
                     <a class="btn btn-warning btn-fab btn-icon btn-round a-white"
-                       onclick="$('{{ "#edit-placetype" . $tp->id }}').modal('show')">
+                       data-toggle="modal" data-target="#edit-placetype{{$tp->id }}">
                         <i class="now-ui-icons ui-2_settings-90"></i>
                     </a>
                     <a class="a-white btn btn-danger btn-fab btn-icon btn-round"
-                           onclick="$('{{ "#modal-delete-" . $tp->id }}').modal('show')">
+                       data-toggle="modal" data-target="#modal-delete-{{$tp->id }}">
                             <i class="now-ui-icons ui-1_simple-remove"></i>
                     </a>
                 </td>
