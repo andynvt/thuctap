@@ -95,6 +95,5 @@
 	    @yield('footer')
 	</footer>
 	{{-- end footer --}}
-
 </body>
 </html>
