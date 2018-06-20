@@ -58,7 +58,10 @@ Route::get('chi-tiet-dia-diem/{id}',[
 
 Route::get('dg', 'CustomerController@postDanhGia') ;
 
-
+Route::get('tim-kiem',[
+    'as' => 'customer.tim-kiem',
+    'uses' => 'CustomerController@CustomerListplaceSearch'
+]);
 
 // Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
