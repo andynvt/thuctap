@@ -39,7 +39,18 @@
 			        data: {token: _token, lati: la, longi: long},
 			        success: function(data){
 			        	console.log(data);
-			        	// $('.viewplace').html(data);
+			        	// foreach(data)
+			        	// $('.viewplace').html(data.html);
+			        	// alert(data[0]);
+			        	// alert(data.length);
+
+						// var numbers = data[0][0];
+
+		    			// $('#demo').on('click', function(){
+			    		// 	numbers.forEach(function(item, index){
+			    		// 		alert("index[" + index + "]: " + item);
+			    		// 	});		
+		    			// });	
 			        }
 			    });
 	      	}, 
@@ -108,6 +119,9 @@
 	                <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
 	                  <i class="material-icons">hotel</i> Khách sạn
 	                </a>
+	                <a  class="dropdown-item">
+    					<p id="demo" style="color: black; font-size: 30px;">dsadsa</p>
+	                </a>
 	              </div>
 	            </li>
 	          </ul>
@@ -157,7 +171,7 @@
 				                            <h4>{{ $it->ptname }}</h4>
 			                          	</div>
 			                        </div>
-		                      	</a>
+		                      	</a> 
 		                    </div>
 		                    <div class="carousel-caption d-none d-md-block place-info-box">
 		                      <div class="brand">

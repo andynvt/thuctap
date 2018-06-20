@@ -32,11 +32,14 @@ Route::get('index',[
 	'uses' => 'CustomerController@CustomerIntro'
 ]);
 
+Route::get('cal-dis','CustomerController@CustomerCaldis');
+
 Route::get('loai-dia-diem/{id}',[
     'as' => 'customer.loai-dia-diem',
     'uses' => 'CustomerController@CustomerListplace'
 ]);
 
+<<<<<<< HEAD
 
 Route::post('cal-dis',[
     'as' => 'caldis',
@@ -44,13 +47,11 @@ Route::post('cal-dis',[
 ]);
 
 
+=======
+>>>>>>> 50b70edb358d5b32b5280f8416a374e235052577
 Route::get('pho-bien',[
     'as' => 'customer.pho-bien',
     'uses' => 'CustomerController@CustomerListplaceFavorite'
-]);
-Route::get('tim-kiem',[
-    'as' => 'customer.tim-kiem',
-    'uses' => 'CustomerController@CustomerListplaceSearch'
 ]);
 
 Route::get('chi-tiet-dia-diem/{id}',[
@@ -99,11 +100,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     Route::get('get-tp','AdminController@getThanhPho');
 
-
     Route::get('sua-dia-diem/{id}',[
         'as' => 'adminsuadiadiem',
         'uses' => 'AdminController@AdminSuadiadiem'
     ]);
+    
+    Route::get('edit',[
+        'as' => 'adminpostedit',
+        'uses' => 'AdminController@AdminPostedit'
+    ]);
+    Route::get('delimg', 'AdminController@AjaxXoaimg');
 
     Route::get('loai-dia-diem',[
         'as' => 'adminloaidiadiem',
