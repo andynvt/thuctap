@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h5 class="title">BẢNG DANH SÁCH VỊ TRÍ NGƯỜI DÙNG</h5>
                     <button class="btn btn-danger btn-round" type="submit"
-                            onclick="$('{{ "#modal-Alldelete"}}').modal('show')">
+                            data-toggle="modal" data-target="#modal-Alldelete">
                         <i class="now-ui-icons ui-1_simple-remove"></i> Xóa nhiều
                     </button>
                 </div>

@@ -35,13 +35,13 @@
                 <td>{{($ul -> created_at).('-').($ul -> updated_at)}}</td>
                 <td class="td-actions text-center">
                     <a class="btn btn-info btn-fab btn-icon btn-round a-white"
-                       onclick="$('{{"#view-location-" . $ul ->id}}').modal('show')">
+                       data-toggle="modal" data-target="#view-location-{{$ul ->id}}">
                         <i class="now-ui-icons location_pin"></i>
                     </a>
                 </td>
                 <td class="text-center">
                     <a class="btn btn-danger btn-fab btn-icon btn-round a-white"
-                       onclick="$('{{"#modal-delete-".$ul->id}}').modal('show')">
+                       data-toggle="modal" data-target="#modal-delete-{{$ul->id}}">
                         <i class="now-ui-icons ui-1_simple-remove"></i>
                     </a>
                 </td>

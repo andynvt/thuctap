@@ -10,13 +10,13 @@ body{
 .nen{
 	background:rgba(40,57,101,.9)
 }
-.h1{
-	color: white;
+.h1-header{
+	color: #2837bb;
 	text-align: center;
 	user-select: none;
 	font-size:50px;
-	margin-bottom:80px;
-	text-shadow:4px 2px chocolate;
+	margin-bottom:50px;
+	text-shadow:4px 2px #ffffff;
 }
 .h2{
 	text-align: center;
@@ -59,7 +59,7 @@ a{color:inherit;text-decoration:none}
 	height:100%;
 	position:absolute;
 	padding:50px 70px 50px 70px;
-	background:rgba(40,57,101,.9);
+	background: rgba(255, 113, 29, 0.9);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -126,7 +126,7 @@ a{color:inherit;text-decoration:none}
 .login-form .group .input,
 .login-form .group .button{
 	width:100%;
-	color:#fff;
+	color: #fffbf6;
 	display:block;
 }
 
@@ -149,7 +149,7 @@ a{color:inherit;text-decoration:none}
 	-webkit-text-security:circle;
 }
 .login-form .group .label{
-	color:#aaa;
+	color: #ffffff;
 	font-size:12px;
 }
 .login-form .group .button{
@@ -168,7 +168,7 @@ a{color:inherit;text-decoration:none}
 	content:'';
 	width:10px;
 	height:2px;
-	background:#fff;
+	background:#1161ee;
 	position:absolute;
 	-webkit-transition:all .2s ease-in-out 0s;
 	transition:all .2s ease-in-out 0s;
@@ -188,7 +188,7 @@ a{color:inherit;text-decoration:none}
 }
 
 .login-form .group .check:checked + label{
-	color:#fff;
+	color:#1161ee;
 }
 .login-form .group .check:checked + label .icon{
 	background:#1161ee;

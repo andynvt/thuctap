@@ -44,7 +44,7 @@
                     <td class="text-center">{{$ct ->fcreated_at . '-' . $ct ->fupdated_at}}</td>
                     <td class="td-actions text-right">
                         <button class="btn btn-danger btn-fab btn-icon btn-round" type="button"
-                                onclick="$('{{"#modal-delete-".$ct ->fid}}').modal('show')">
+                                data-toggle="modal" data-target="#modal-delete-{{$ct ->fid}}">
                             <i class="now-ui-icons ui-1_simple-remove"></i>
                         </button>
                     </td>

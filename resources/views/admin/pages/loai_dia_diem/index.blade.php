@@ -13,7 +13,7 @@
                             data-toggle="modal" data-target="#add-placetype">
                         <i class="now-ui-icons ui-1_simple-add"></i> Thêm loại mới
                     </button>
-                    <button class="btn btn-danger btn-round" onclick="$('{{ "#modal-Alldelete"}}').modal('show')">
+                    <button class="btn btn-danger btn-round" data-toggle="modal" data-target="#modal-Alldelete">
                         <i class="now-ui-icons ui-1_simple-remove"></i> Xóa nhiều
                     </button>
                 </div>
