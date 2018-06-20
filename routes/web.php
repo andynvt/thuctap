@@ -26,6 +26,7 @@ Route::get('/admin/login',[
     'as' =>'admin.login',
     'uses' => 'Auth\AdminLoginController@showLoginForm'
 ]);
+
 // Customer
 
 Route::get('index',[
@@ -52,10 +53,15 @@ Route::get('chi-tiet-dia-diem/{id}',[
 
 Route::get('dg', 'CustomerController@postDanhGia') ;
 
+<<<<<<< HEAD
 Route::get('tim-kiem',[
     'as' => 'customer.tim-kiem',
     'uses' => 'CustomerController@CustomerListplaceSearch'
 ]);
+=======
+
+
+>>>>>>> c31bfc0a4e1e2e4cfd64b870e071c8057dfedcff
 // Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('logout/', [
@@ -100,10 +106,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
         'uses' => 'AdminController@AdminSuadiadiem'
     ]);
     
-    Route::get('edit',[
+    Route::get('edit/{id}',[
         'as' => 'adminpostedit',
         'uses' => 'AdminController@AdminPostedit'
     ]);
+
     Route::get('delimg', 'AdminController@AjaxXoaimg');
 
     Route::get('loai-dia-diem',[

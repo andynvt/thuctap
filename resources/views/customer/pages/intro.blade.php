@@ -40,12 +40,38 @@
 			        success: function(data){
 			        	console.log(data);
 
+			        	var introhtml = $('.fadeitem').html();
+
+			        	var time = "";
+
+			        	function secondsToHms(d) {
+						    d = Number(d);
+						    var h = Math.floor(d / 3600);
+						    var m = Math.floor(d % 3600 / 60);
+						    var s = Math.floor(d % 3600 % 60);
+
+						    var hDisplay = h > 0 ? h + (h == 1 ? " giờ, " : " giờ, ") : "";
+						    var mDisplay = m > 0 ? m + (m == 1 ? " phút, " : " phút, ") : "";
+						    var sDisplay = s > 0 ? s + (s == 1 ? " giây" : " giây") : "";
+						    return hDisplay + mDisplay + sDisplay; 
+						}
+
+			        	// $('.viewplace').empty();
+
 			        	for($i = 0; $i < data.length; $i++){
-			        		$('.diachi').html(data[$i]['address']);
-			        		$('.khoangcach').html(data[$i]['dist']);
-			        		$('.thoigian').html(data[$i]['time']);
-			        		$('.tenloai').html(data[$i]['pname']);
+			        		time = secondsToHms(data[$i]['time']);
+
+			        		$('.viewplace').append(introhtml).children('#item'+($i-$i)).attr('id', 'item'+ ($i+1));
+
+			        		$('#item' +($i+1)+ ' .anhdiadiem').attr('src','storage/image/'+data[$i]['pimage']);
+			        		$('#item' +($i+1)+ ' .tendiadiem').html(data[$i]['pname']);
+			        		$('#item' +($i+1)+ ' .diachi').html(data[$i]['address']);
+			        		$('#item' +($i+1)+ ' .khoangcach').html( (data[$i]['dist']/1000).toFixed(2) + " km");
+			        		$('#item' +($i+1)+ ' .thoigian').html(time);
+			        		$('#item' +($i+1)+ ' .tenloai').html(data[$i]['ptname']);
+			        		$('#item' +($i+1)+ ' .mota').html(data[$i]['short_des']);
 			        	}
+			        	$('.carousel-item:first').addClass('active');
 			        }
 			    });
 	      	}, 
@@ -76,7 +102,6 @@
 
 @section('content')
 <body onLoad="Time();" class="signup-page sidebar-collapse" style="height: 100vh">
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="trang-chu">
 	    <!-- header -->
 	    <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
@@ -143,69 +168,7 @@
 	            <div class="card card-raised card-carousel" style="margin: 0">
 	              <div id="carouselhomeimg" class="carousel slide" data-ride="carousel" data-interval="false" style="height: 100vh">
 	                <div class="carousel-inner viewplace">
-	                	@foreach($intro as $it)
-                  		<div class="carousel-item">
-		                    <img class="d-block w-100" src="storage/image/{{ $it->pimage }}" alt="First slide" style="height: 100vh">
-		                    <div class="place-intro">
-		                      	<a href="#" style="color: white">
-			                        <h3>Địa điểm gần đây</h3>
-			                        <h1>{{ $it->pname }}</h1>
-			                        <div class="row">
-		                          		<div class="col-6 place-intro-left">
-				                            <h4>Địa chỉ:</h4>
-				                            <h4>Khoảng cách:</h4>
-				                            <h4>Thời gian đi:</h4>
-				                            <h4>Đánh giá:</h4>
-				                            <h4>Loại hình:</h4>
-		                          		</div>
-			                          	<div class="col-6 place-intro-right">
-				                            <h4 class="diachi">{{ $it->address }}</h4>
-				                            <h4 class="khoangcach">3 km</h4>
-				                            <h4 class="thoigian">15 phút (xe ô tô)</h4>
-				                            <h4>4.3 / 5 (20 đánh giá)</h4>
-				                            <h4 class="tenloai">{{ $it->ptname }}</h4>
-			                          	</div>
-			                        </div>
-		                      	</a> 
-		                    </div>
-		                    <div class="carousel-caption d-none d-md-block place-info-box">
-		                      <div class="brand">
-		                        <div class="card card-nav-tabs hide-place-info-box">
-		                          <div class="card-header card-header-primary">
-		                            <div class="nav-tabs-navigation">
-		                              <div class="nav-tabs-wrapper" style="position: relative;">
-		                                <ul class="nav nav-tabs" data-tabs="tabs">
-		                                  <li class="nav-item">
-		                                    <a class="nav-link active" href="#descript" data-toggle="tab">
-		                                      <i class="material-icons">description</i> Mô tả
-		                                    </a>
-		                                  </li>
-		                                  <li class="nav-item">
-		                                    <a class="nav-link" href="#" data-target="#modalimg" data-toggle="modal">
-		                                      <i class="material-icons">insert_photo</i> Hình ảnh
-		                                    </a>
-		                                  </li>
-		                                </ul>
-		                              </div>
-		                            </div>
-		                          </div>
-		                          <div class="card-body responsive-card-body">
-		                            <div class="tab-content text-center">
-		                              <div class="tab-pane active">
-		                                <p>{!! $it->short_des !!}</p>
-		                              </div>
-		                              <div class="tab-pane">
-		                                <div class="col-md-12 place-info-img">
-		                                </div>
-		                              </div>
-		                            </div>
-		                          </div>
-		                        </div>
-		                      </div>
-		                      <button class="btn btn-primary btn-fab home-minimize-btn"><i class="material-icons">keyboard_arrow_up</i></button>
-		                    </div>
-                  		</div>
-	                  	@endforeach
+
 	                </div>
 
 	                <a class="carousel-control-prev change-slide-home-button" href="#carouselhomeimg" role="button" data-slide="prev">
@@ -237,7 +200,6 @@
 	          </div>
 	          <div class="modal-body">
 	            <div class="map-responsive">
-	                {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.814181726177!2d105.7858675147256!3d10.032187475232014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a06298aae43e71%3A0xc6a64bdac582285d!2zQuG6v24gTmluaCBLaeG7gXU!5e0!3m2!1svi!2s!4v1526616000428" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> --}}
 					<div id="map-intro"></div>
 	            </div>
 	          </div>
@@ -315,11 +277,73 @@
 	      </div>
 	    </div>
 	</div>
-</body>
 
-<script>
-	$('.carousel-item:first').addClass('active');
-</script>
+
+	<div class="fadeitem">
+		<div class="carousel-item" id="item0">
+		    <img class="d-block w-100 anhdiadiem" src="storage/image/cho-noi.jpg" alt="First slide" style="height: 100vh">
+		    <div class="place-intro">
+		      	<a href="#" style="color: white">
+		            <h3>Địa điểm gần đây</h3>
+		            <h1 class="tendiadiem">Chợ nổi</h1>
+		            <div class="row">
+		          		<div class="col-6 place-intro-left">
+		                    <h4>Địa chỉ:</h4>
+		                    <h4>Khoảng cách:</h4>
+		                    <h4>Thời gian đi:</h4>
+		                    <h4>Đánh giá:</h4>
+		                    <h4>Loại hình:</h4>
+		          		</div>
+		              	<div class="col-6 place-intro-right">
+		                    <h4 class="diachi">Kế Bến Ninh Kiều</h4>
+		                    <h4 class="khoangcach">3 km</h4>
+		                    <h4 class="thoigian">15 phút (xe ô tô)</h4>
+		                    <h4>4.3 / 5 (20 đánh giá)</h4>
+		                    <h4 class="tenloai">Ăn chơi</h4>
+		              	</div>
+		            </div>
+		      	</a> 
+		    </div>
+
+		    <div class="carousel-caption d-none d-md-block place-info-box">
+		      <div class="brand">
+		        <div class="card card-nav-tabs hide-place-info-box">
+		          <div class="card-header card-header-primary">
+		            <div class="nav-tabs-navigation">
+		              <div class="nav-tabs-wrapper" style="position: relative;">
+		                <ul class="nav nav-tabs" data-tabs="tabs">
+		                  <li class="nav-item">
+		                    <a class="nav-link active" href="#descript" data-toggle="tab">
+		                      <i class="material-icons">description</i> Mô tả
+		                    </a>
+		                  </li>
+		                  <li class="nav-item">
+		                    <a class="nav-link" href="#" data-target="#modalimg" data-toggle="modal">
+		                      <i class="material-icons">insert_photo</i> Hình ảnh
+		                    </a>
+		                  </li>
+		                </ul>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="card-body responsive-card-body">
+		            <div class="tab-content text-center">
+		              <div class="tab-pane active">
+		                <p class="mota">Mô tả</p>
+		              </div>
+		              <div class="tab-pane">
+		                <div class="col-md-12 place-info-img">
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		      <button class="btn btn-primary btn-fab home-minimize-btn"><i class="material-icons">keyboard_arrow_up</i></button>
+		    </div>
+		</div>
+	</div>
+</body>
 
 <style>
 	.footer{
@@ -329,7 +353,13 @@
         height: 100%;
         position: unset !important;
   	}
+
+  	.fadeitem {
+  		display: none;
+  	}
 </style>
+
+{{-- <script src="source/customer/js/trangchu.js"></script> --}}
 
 {{-- script thêm vị trí vào map --}}
 <script>

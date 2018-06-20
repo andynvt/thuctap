@@ -3,14 +3,17 @@
     overflow: hidden;
     width: auto;
     height: auto;
-    padding-right: 5px;
 }
 
 .gallery img {
     object-fit: contain;
-    width: 200px;
-    height: 200px;
-    padding: 20px;
+    width: 195px;
+    height: 130px;
+    margin-right: 10px;
+    border: 1px solid darkgrey;
+    box-shadow: 2px 2px 5px 0px darkgrey;
+    margin-bottom: 10px;
+
 }
 .place-del{
     text-align: justify;
@@ -18,19 +21,24 @@
     line-height: 30px;
 }
 .show-img{
+    position: relative;
     width: 200px;
-    height: 200px;
+    height: 150px;
     padding-right: 5px;
     display: inline-block;
 }
 .show-img img{
+    object-fit: contain;
     border: 1px solid darkgrey;
     box-shadow: 2px 2px 5px 0px darkgrey;
+    height: 130px;
 }
 .show-img i{
     position: absolute;
-    top: 0;
-    /*right: 0;*/
+    top: -20px;
+    left: 180px;
+    /*right:5px;*/
     font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
 }

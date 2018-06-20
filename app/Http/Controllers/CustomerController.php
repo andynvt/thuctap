@@ -93,7 +93,7 @@ class CustomerController extends Controller
             ->get();
         return view('customer.pages.resultSearch', compact('place','total','same_place'));
     }
-    
+
     public function CustomerCaldis(Request $req){
         $getdist = new Controller;
 
@@ -122,8 +122,6 @@ class CustomerController extends Controller
         $cntintro = $intro->count();
 
         for($i = 0; $i < $cntintro; $i++){
-            // $pintro = Place::where('id', $intro[$i]['id'])->get();
-
             $pintro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
                     ->leftjoin('place_image as pimg', 'pimg.id_place', '=', 'places.id')
                     ->leftjoin('districts as dt', 'places.id_district', '=', 'dt.id')
@@ -150,15 +148,7 @@ class CustomerController extends Controller
     }
 
     public function CustomerIntro(){
-        $intro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
-                    ->leftjoin('place_image as pimg', 'pimg.id_place', '=', 'places.id')
-                    ->leftjoin('districts as dt', 'places.id_district', '=', 'dt.id')
-                    ->where('dt.id_city', 3)
-                    ->groupBy('places.id')
-                    ->select('places.id as pid', 'places.name as pname', 'places.short_des', 'places.address', 'places.map', 'pimg.name as pimage', 'pt.name as ptname')
-                    ->get();
-
-        return view('customer.pages.intro', compact('intro'));
+        return view('customer.pages.intro');
     }
 
     public function CustomerDetailplace($id){

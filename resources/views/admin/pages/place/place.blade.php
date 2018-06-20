@@ -12,9 +12,9 @@
                         <h4 class="card-title title">BẢNG DANH SÁCH ĐỊA ĐIỂM</h4>
                     </div>
                     <div class="card-body">
-                        <a style="font-size: 15px" class="btn btn-primary btn-round"
-                           href="{{ route('adminthemdiadiem') }}"><i class="now-ui-icons ui-1_simple-add"></i> Thêm địa
-                            điểm</a>
+                        <button style="font-size: 15px" class="btn btn-primary btn-round"
+                                onclick="location.href='{{route('adminthemdiadiem')}}'" type="button" ><i class="now-ui-icons ui-1_simple-add"></i> Thêm địa
+                            điểm</button>
                         <button style="font-size: 15px" class="btn btn-danger btn-round" type="submit" onclick="return confirm('Bạn chắc chắn muốn xóa không?')">
                             <i class="now-ui-icons ui-1_simple-remove"></i> Xóa nhiều
                         </button>
@@ -46,9 +46,7 @@
                                         <td class="collapsing">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox"
-                                                           name="place-id[]"
-                                                           value="{{ $p->id }}">
+                                                    <input class="form-check-input" type="checkbox" name="placeid[]" value="{{ $p->id }}">
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
                                                     </span>
