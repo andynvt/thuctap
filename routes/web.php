@@ -41,6 +41,8 @@ Route::get('chi-tiet-dia-diem/{id}',[
 
 Route::get('dg', 'CustomerController@postDanhGia') ;
 
+
+
 // Admin
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/',[
@@ -80,10 +82,11 @@ Route::group(['prefix' => 'admin'], function () {
         'uses' => 'AdminController@AdminSuadiadiem'
     ]);
     
-    Route::get('edit',[
+    Route::get('edit/{id}',[
         'as' => 'adminpostedit',
         'uses' => 'AdminController@AdminPostedit'
     ]);
+
     Route::get('delimg', 'AdminController@AjaxXoaimg');
 
     Route::get('loai-dia-diem',[

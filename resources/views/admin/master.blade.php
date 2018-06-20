@@ -42,7 +42,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{asset('source/admin/js/datatables.js')}}"></script>
@@ -124,7 +124,7 @@
                             message: "{{session('add-place')}}"
                         }
                     @elseif(session('edit-place'))
-                        color = 'success';
+                        color = 'warning';
                         $.notify({
                             icon: "now-ui-icons ui-1_check",
                             message: "{{session('edit-place')}}"

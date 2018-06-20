@@ -33,7 +33,17 @@ class AdminController extends Controller
 
     public function AdminXoaDiadiem($id){
         $name = Place::where('id', $id)->value('name');
+
+        $idimg = Place_Image::where('id_place',$id)->get();
+//        dd($idimg);
+        foreach ($idimg as $i){
+            Place_Image::find($i->id)->delete();
+            Storage::delete('app/public/image/'.$i->name);
+            unlink(storage_path('app/public/image/'.$i->name));
+        }
+
         Place::destroy($id);
+
         return redirect()->back()->with('del-1', 'Đã xoá '.$name);
     }
 
@@ -88,9 +98,8 @@ class AdminController extends Controller
 
     public function getThanhPho(Request $req){
         $id_city = $req->id;
-//        $district = District::where('id_city', $id_city)->get();
-
-        return json_encode($id_city);
+        $distr = District::where('id_city', $id_city)->get();
+        return json_encode($distr);
     }
 
     public function AdminSuadiadiem($id){
@@ -112,33 +121,64 @@ class AdminController extends Controller
         $dname = District::where('id', $id_district)->value('name');
 
         $city = City::all();
-        $id_city = District::where('id',$id)->value('id_city');
-        $cname = District::where('id', $id_city)->value('name');
+        $id_city = District::where('id',$id_district)->value('id_city');
+        $cname = City::where('id', $id_city)->value('name');
+
+        $d_of_c = District::where('id_city',$id_city)->get();
 
         $img = Place_Image::leftjoin('places', 'places.id', '=', 'place_image.id_place')
             ->select('place_image.id', 'place_image.name')
             ->where('places.id',$id)
             ->get();
 
-//        dd($img);
-        return view('admin.pages.place.placeedit', compact('info','place_type','id_type','type_name','district','id_district','dname','city','id_city','cname','img'));
+//        dd($cname);
+        return view('admin.pages.place.placeedit', compact('info','place_type','id_type','type_name','district','id_district','dname','city','id_city','cname','img','d_of_c'));
     }
 
     public function AjaxXoaimg(Request $req){
-        $c = "chuoi";
-//        $id = $req->iid;
-//        $idimg = Place_Image::find($id);
-//
-//        Place_Image::find($idimg->id)->delete();
-//        Storage::delete('app/public/image/'.$idimg->name);
-//        unlink(storage_path('app/public/image/'.$idimg->name));
+        $idimg = Place_Image::find($req->iid);
 
-//        $req->session()->flash('deleleimg', 'Đã xoá ảnh');
-//        return response()->json(['data' => $idimg->id]);
-        return json_encode($c);
+        Place_Image::find($idimg->id)->delete();
+        Storage::delete('app/public/image/'.$idimg->name);
+        unlink(storage_path('app/public/image/'.$idimg->name));
+
+        $req->session()->flash('deleleimg', 'Đã xoá ảnh');
+        return response()->json(['data' => $idimg->id]);
+        return json_encode($idimg);
     }
 
-    public function AdminPostedit(Request $req){
+    public function AdminPostedit($id, Request $req){
+        $place = Place::find($id);
+
+        Place::where('id',$id)->update([
+            'name'=>$req->name,
+            'slogan'=>$req->slogan,
+            'id_type'=>$req->type,
+            'map'=>$req->map,
+            'address'=>$req->address,
+            'id_district'=>$req->district,
+            'short_des'=>$req->short_des,
+            'full_des'=>$req->full_des,
+        ]);
+
+        Place_Location::where('id_place',$id)->update([
+            'coor'=>$req->coor,
+        ]);
+
+        if($req->hasfile('images')){
+            foreach($req->file('images') as $image){
+                $namee=date('Y-m-d-H-i-s')."-".$image->getClientOriginalName();
+                $image->move('storage/image', $namee);
+                $img[] = $namee;
+            }
+            foreach($img as $i){
+                Place_Image::insert( [
+                    'id_place'=>$id,
+                    'name'=>$i,
+                ]);
+            }
+        }
+
 
 
         return redirect()->back()->with('edit-place', 'Đã sửa: '.$req->name);

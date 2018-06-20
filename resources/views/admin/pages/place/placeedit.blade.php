@@ -9,20 +9,20 @@
                     <h4 class="card-title title">Sửa thông tin <i>{{$info[0]->name}}</i></h4>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{route('adminpostedit',$info[0]->id)}}" method="get">
                         <div class="row">
                             <div class="col-6 ">
                                 <div class="form-group">
                                     <label for="name">Tên</label>
-                                    <input type="text" name="name" value="{{$info[0]->name}}" class="form-control">
+                                    <input type="text" name="name" value="{{$info[0]->name}}" class="form-control" minlength="3" pattern="^([a-zA-Z0-9)$" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Slogan</label>
-                                    <input type="text" name="slogan" value="{{$info[0]->slogan}}" class="form-control">
+                                    <input type="text" name="slogan" value="{{$info[0]->slogan}}" class="form-control" minlength="3" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="type">Loại</label>
-                                    <select name="type" id="type" class="form-control round">
+                                    <select name="type" id="type" class="form-control round" required>
                                         @foreach($place_type as $pt)
                                             @if($info[0]->id_type == $pt->id)
                                                 <option value="{{$id_type}}" selected>{{$type_name}}</option>
@@ -34,32 +34,32 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Link Google Map</label>
-                                    <input type="link" name="map" value="{{$info[0]->map}}" class="form-control">
+                                    <input type="link" name="map" value="{{$info[0]->map}}" class="form-control" minlength="3" required>
                                 </div>
 
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="address">Địa chỉ</label>
-                                    <input type="text" name="address" value="{{$info[0]->address}}" class="form-control">
+                                    <input type="text" name="address" value="{{$info[0]->address}}" class="form-control" minlength="3" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="city">Thành phố</label>
-                                    <select name="city" id="city" class="form-control">
-                                        {{--@foreach($place_type as $pt)--}}
-                                            {{--@if()--}}
-                                                {{--<option value="{{$id_type}}" selected>{{$type_name}}</option>--}}
-                                            {{--@else--}}
-                                                {{--<option value="{{$pt->id}}">{{$pt->name}}</option>--}}
-                                            {{--@endif--}}
-                                        {{--@endforeach--}}
+                                    <select name="city" id="city" class="form-control" required>
+                                        @foreach($city as $c)
+                                            @if($info[0]->cid == $c->id)
+                                                <option value="{{$id_city}}" selected>{{$cname}}</option>
+                                            @else
+                                                <option value="{{$c->id}}">{{$c->name}}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="city">Quận Huyện</label>
-                                    <select name="city" id="district" class="form-control">
-                                        @foreach($district as $d)
-                                            @if($info[0]->id_district == $d->id)
+                                    <select name="district" id="district" class="form-control" required>
+                                        @foreach($d_of_c as $d)
+                                            @if($info[0]->did == $d->id)
                                                 <option value="{{$id_district}}" selected>{{$dname}}</option>
                                             @else
                                                 <option value="{{$d->id}}">{{$d->name}}</option>
@@ -68,9 +68,30 @@
                                     </select>
                                 </div>
 
+                                <script>
+                                    $("#city").change(function () {
+                                        var id = $("#city").val();
+                                        var _token = $('input[name="_token"]').val();
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "admin/get-tp",
+                                            dataType: "json",
+                                            data: {token: _token, id: id},
+                                            success: function(data){
+                                                console.log(data);
+                                                var distr = "";
+                                                for ($i=0 ; $i<data.length ; $i++){
+                                                    distr += '<option value="' + data[$i]['id'] +'">' + data[$i]['name'] +'</option>';
+                                                }
+                                                $('#district').html(distr);
+                                            }
+                                        });
+                                    });
+                                </script>
+
                                 <div class="form-group">
                                     <label for="address">Toạ độ</label>
-                                    <input type="text" name="coor" value="{{$info[0]->coor}}" class="form-control">
+                                    <input type="text" name="coor" value="{{$info[0]->coor}}" class="form-control" minlength="3" required>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -137,13 +158,11 @@
                                         var iid = $(this).next('input').val();
                                         {{--var token = '{{csrf_token()}}';--}}
                                         var delimg = submitForm();
-                                        alert(iid);
                                         if(delimg == true){
-                                            alert('h');
                                             $.ajax({
                                                 type: "GET",
                                                 dataType: 'json',
-                                                url: "delimg",
+                                                url: "admin/delimg",
                                                 data: {iid: iid},
                                                 success: function(data){
                                                     console.log(data);
@@ -157,8 +176,8 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button style="font-size: 15px" type="button" class="btn btn-round">Quay lại</button>
-                            <button style="font-size: 15px" type="submit" class="btn btn-primary btn-round">Thêm địa điểm</button>
+                            <button style="font-size: 15px" type="button" onclick="location.href='{{route('admindiadiem')}}'" class="btn btn-round">Quay lại</button>
+                            <button style="font-size: 15px" type="submit" class="btn btn-primary btn-round">Cập nhật</button>
                         </div>
                     </form>
                 </div>
