@@ -93,7 +93,7 @@ class CustomerController extends Controller
             ->get();
         return view('customer.pages.resultSearch', compact('place','total','same_place'));
     }
-    
+
     public function CustomerCaldis(Request $req){
         $getdist = new Controller;
 
@@ -147,6 +147,12 @@ class CustomerController extends Controller
         }
 
         return json_encode($final);
+    }
+
+    public function CustomerGetarray(Request $req){
+        $array = json_decode($req->arrayintro);
+
+        return $array;
     }
 
     public function CustomerIntro(){

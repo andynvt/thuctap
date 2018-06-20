@@ -40,12 +40,20 @@
 			        success: function(data){
 			        	console.log(data);
 
-			        	for($i = 0; $i < data.length; $i++){
-			        		$('.diachi').html(data[$i]['address']);
-			        		$('.khoangcach').html(data[$i]['dist']);
-			        		$('.thoigian').html(data[$i]['time']);
-			        		$('.tenloai').html(data[$i]['pname']);
-			        	}
+			        	// for($i = 0; $i < data.length; $i++){
+			        	// 	$('.diachi').html(data[$i]['address']);
+			        	// 	$('.khoangcach').html(data[$i]['dist']);
+			        	// 	$('.thoigian').html(data[$i]['time']);
+			        	// 	$('.tenloai').html(data[$i]['pname']);
+			        	// }
+
+			        	var arrayintro = JSON.stringify(data);
+
+				        $('#submitintro').on('click', function(event) {
+				            $('#intro').val(data[0]['address']);
+				        });
+
+				        $('#submitintro').trigger('click');
 			        }
 			    });
 	      	}, 
@@ -76,7 +84,11 @@
 
 @section('content')
 <body onLoad="Time();" class="signup-page sidebar-collapse" style="height: 100vh">
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	<form action="{{ route('getarray') }}" method="post">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="hidden" name="arrayintro" value="" id="intro">
+		<input type="submit" value="submit" name="postarrayintro" id="submitintro">
+	</form>
 	<div class="trang-chu">
 	    <!-- header -->
 	    <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
