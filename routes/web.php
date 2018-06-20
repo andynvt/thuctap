@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home','HomeController@index');
+Route::post('/admin/login',[
+    'as' => 'admin.login.submit',
+    'uses' => 'Auth\AdminLoginController@login'
+]);
+Route::get('/admin/login',[
+    'as' =>'admin.login',
+    'uses' => 'Auth\AdminLoginController@showLoginForm'
+]);
 // Customer
 
 Route::get('index',[
@@ -44,7 +55,12 @@ Route::get('dg', 'CustomerController@postDanhGia') ;
 
 
 // Admin
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('logout/', [
+        'as' => 'admin.logout',
+        'uses' => 'Auth\AdminLoginController@logout'
+    ]);
+
     Route::get('/',[
         'as' => 'adminthongke',
         'uses' => 'AdminController@AdminThongke'

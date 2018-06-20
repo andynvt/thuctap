@@ -15,6 +15,23 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    //Login
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    /**
+     * show dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('admin');
+    }
+
+
     public function AdminThongke(){
         return view('admin.pages.statistics');
     }

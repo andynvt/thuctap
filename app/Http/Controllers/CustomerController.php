@@ -93,6 +93,7 @@ class CustomerController extends Controller
             ->get();
         return view('customer.pages.resultSearch', compact('place','total','same_place'));
     }
+    
     public function CustomerCaldis(Request $req){
         $getdist = new Controller;
 
@@ -135,26 +136,17 @@ class CustomerController extends Controller
 
         $flattened = $viewIntro->flatten(1);
 
-        foreach($flattened as $view){
-            $intro->push($view);
+        $cntflattened = $flattened->count();
+
+        $final = collect([]);
+
+        for($i = 0; $i < $cntflattened; $i++){
+            $flattened[$i]['dist'] = $intro[$i]['distance'];
+            $flattened[$i]['time'] = $intro[$i]['time'];
+            $final->push($flattened[$i]);
         }
 
-        $grouped = $intro->groupBy('id');
-
-        $flattengrp = $grouped->flatten(1);
-
-        // $chunks = $flattengrp->chunk(2);
-
-        // $html = "";
-
-        // foreach($grouped as $value){
-        //     $html .= $getdist->displayIntro($value);
-        // }
-
-        // $html = view('customer.pages.intro')->with(compact('grouped'))->render();
-        // return response()->json(['success' => true, 'html' => $grouped]);
-
-        return json_encode($flattengrp);
+        return json_encode($final);
     }
 
     public function CustomerIntro(){

@@ -24,8 +24,8 @@
             <hr>
             <div class="col-12 fb-info clearfix" id="list-place">
                 <div class="row">
-                @include('admin.pages.danh_gia.new_place_feedbacks');
-                @include('admin.pages.danh_gia.place_feedbacks');
+                @include('admin.pages.danh_gia.new_place_feedbacks')
+                @include('admin.pages.danh_gia.place_feedbacks')
                 </div>
                 {{--<div class="div-pagination" style="padding-left: 40%!important;">--}}
                     {{--{{ $danhGia->links() }}--}}
