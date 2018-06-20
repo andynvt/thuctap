@@ -39,18 +39,13 @@
 			        data: {token: _token, lati: la, longi: long},
 			        success: function(data){
 			        	console.log(data);
-			        	// foreach(data)
-			        	// $('.viewplace').html(data.html);
-			        	// alert(data[0]);
-			        	// alert(data.length);
 
-						// var numbers = data[0][0];
-
-		    			// $('#demo').on('click', function(){
-			    		// 	numbers.forEach(function(item, index){
-			    		// 		alert("index[" + index + "]: " + item);
-			    		// 	});		
-		    			// });	
+			        	for($i = 0; $i < data.length; $i++){
+			        		$('.diachi').html(data[$i]['address']);
+			        		$('.khoangcach').html(data[$i]['dist']);
+			        		$('.thoigian').html(data[$i]['time']);
+			        		$('.tenloai').html(data[$i]['pname']);
+			        	}
 			        }
 			    });
 	      	}, 
@@ -164,11 +159,11 @@
 				                            <h4>Loại hình:</h4>
 		                          		</div>
 			                          	<div class="col-6 place-intro-right">
-				                            <h4>{{ $it->address }}</h4>
-				                            <h4>3 km</h4>
-				                            <h4>15 phút (xe ô tô)</h4>
+				                            <h4 class="diachi">{{ $it->address }}</h4>
+				                            <h4 class="khoangcach">3 km</h4>
+				                            <h4 class="thoigian">15 phút (xe ô tô)</h4>
 				                            <h4>4.3 / 5 (20 đánh giá)</h4>
-				                            <h4>{{ $it->ptname }}</h4>
+				                            <h4 class="tenloai">{{ $it->ptname }}</h4>
 			                          	</div>
 			                        </div>
 		                      	</a> 
