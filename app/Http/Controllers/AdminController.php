@@ -65,9 +65,21 @@ class AdminController extends Controller
     }
 
     public function AdminXoaNhieuDiadiem(Request $req){
-        $ids = $req->get('place-id');
+        $ids = $req->get('placeid');
+        foreach ($ids as $i){
+            $img[$i] = Place_Image::where('id_place',$i)->get();
+        }
+        foreach ($img as $im) {
+            foreach ($im as $i) {
+//                dd($i->name);
+                Place_Image::find($i->id)->delete();
+                Storage::delete('app/public/image/'.$i->name);
+                unlink(storage_path('app/public/image/'.$i->name));
+            }
+        }
+
         Place::destroy($ids);
-        return back();
+        return redirect()->back()->with('del-1', 'Đã xoá !');
     }
 
     public function AdminThemdiadiem(){
