@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home','HomeController@index');
 Route::post('/admin/login',[
     'as' => 'admin.login.submit',
     'uses' => 'Auth\AdminLoginController@login'
@@ -56,6 +57,8 @@ Route::get('chi-tiet-dia-diem/{id}',[
 ]);
 
 Route::get('dg', 'CustomerController@postDanhGia') ;
+
+
 
 // Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
@@ -101,10 +104,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
         'uses' => 'AdminController@AdminSuadiadiem'
     ]);
     
-    Route::get('edit',[
+    Route::get('edit/{id}',[
         'as' => 'adminpostedit',
         'uses' => 'AdminController@AdminPostedit'
     ]);
+
     Route::get('delimg', 'AdminController@AjaxXoaimg');
 
     Route::get('loai-dia-diem',[
