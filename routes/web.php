@@ -25,6 +25,7 @@ Route::get('/admin/login',[
     'as' =>'admin.login',
     'uses' => 'Auth\AdminLoginController@showLoginForm'
 ]);
+
 // Customer
 
 Route::get('index',[
@@ -33,6 +34,11 @@ Route::get('index',[
 ]);
 
 Route::get('cal-dis','CustomerController@CustomerCaldis');
+
+Route::post('get-array',[
+    'as' => 'getarray',
+    'uses' => 'CustomerController@CustomerGetarray'
+]);
 
 Route::get('loai-dia-diem/{id}',[
     'as' => 'customer.loai-dia-diem',
