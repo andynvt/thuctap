@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home','HomeController@index');
 Route::post('/admin/login',[
     'as' => 'admin.login.submit',
     'uses' => 'Auth\AdminLoginController@login'
