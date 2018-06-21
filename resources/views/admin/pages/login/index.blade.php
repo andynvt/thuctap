@@ -9,13 +9,9 @@
     <title>
         Admin
     </title>
-    <meta charset="utf-8"/>
     {{-- <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png"> --}}
-    <link rel="icon" type="image/png" href="storage/image/icon_location.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>
-        Danh sách các địa điểm
-    </title>
+
     <base href="{{asset('')}}">
     <meta id="Viewport" content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -70,7 +66,7 @@
                                     </span>
                                     <input id="email"
                                               class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                              name="email" type="email" placeholder="Email..." required>
+                                              name="email" type="email" placeholder="Email..." value="blabla@gmail.com" required>
                                 </div>
 
                             </div>
@@ -87,7 +83,7 @@
                                     </span>
                                     <input id="password" type="password"
                                               class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                              name="password" placeholder="Mật khẩu..."
+                                              name="password" placeholder="Mật khẩu..." value="123456"
                                               required>
 
                                     @if ($errors->has('password'))

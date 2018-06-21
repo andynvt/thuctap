@@ -125,9 +125,10 @@ class CustomerController extends Controller
             $pintro = Place::leftjoin('place_type as pt', 'places.id_type', '=', 'pt.id')
                     ->leftjoin('place_image as pimg', 'pimg.id_place', '=', 'places.id')
                     ->leftjoin('districts as dt', 'places.id_district', '=', 'dt.id')
+                    ->leftjoin('place_location as plo', 'places.id', '=', 'plo.id_place')
                     ->where('places.id', $intro[$i]['id'])
                     ->groupBy('places.id')
-                    ->select('places.id as id', 'places.name as pname', 'places.short_des', 'places.address', 'pimg.name as pimage', 'pt.name as ptname')
+                    ->select('places.id as id', 'places.name as pname', 'places.short_des', 'places.address', 'pimg.name as pimage', 'pt.name as ptname', 'plo.coor as pcoord')
                     ->get();
             $viewIntro->push($pintro);
         }
