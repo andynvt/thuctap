@@ -112,8 +112,8 @@ class CustomerController extends Controller
         $cntplace = count($plocate);
 
         for($i = 0; $i < $cntplace; $i++){
-            $coords = explode(',', $plocate[$i]->coor);
-            $dist = $getdist->GetDrivingDistance($plocate[$i]->id, $latitude, $longitude, $coords[0], $coords[1]);
+            $coords = explode(', ', $plocate[$i]->coor);
+            $dist = $getdist->GetDrivingDistance($plocate[$i]->id_place, $latitude, $longitude, $coords[0], $coords[1]);
 
             $collection->push($dist);
         }
