@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th6 13, 2018 lúc 10:23 AM
+-- Thời gian đã tạo: Th6 20, 2018 lúc 11:56 AM
 -- Phiên bản máy phục vụ: 10.1.31-MariaDB
 -- Phiên bản PHP: 7.2.3
 
@@ -33,7 +33,9 @@ CREATE TABLE `cities` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+--
+-- Đang đổ dữ liệu cho bảng `cities`
+--
 
 INSERT INTO `cities` (`id`, `name`) VALUES
 (3, 'An Giang'),
@@ -103,7 +105,7 @@ INSERT INTO `cities` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `districts`
+-- Cấu trúc bảng cho bảng `districts`
 --
 
 CREATE TABLE `districts` (
@@ -113,7 +115,7 @@ CREATE TABLE `districts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `districts`
+-- Đang đổ dữ liệu cho bảng `districts`
 --
 
 INSERT INTO `districts` (`id`, `id_city`, `name`) VALUES
@@ -801,6 +803,8 @@ INSERT INTO `districts` (`id`, `id_city`, `name`) VALUES
 (685, 65, 'Huyện Bạch Long Vĩ'),
 (686, 65, 'Quận Dương Kinh');
 
+-- --------------------------------------------------------
+
 --
 -- Cấu trúc bảng cho bảng `feedbacks`
 --
@@ -814,26 +818,38 @@ CREATE TABLE `feedbacks` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+--
+-- Đang đổ dữ liệu cho bảng `feedbacks`
+--
 
-INSERT INTO `feedbacks` (`id`, `id_place`, `star`,`status`, `created_at`, `updated_at`) VALUES
-(1, 1, 2.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(2, 2, 4.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(3, 3, 3.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, 4, 2.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(5, 5, 1.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(6, 6, 5.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(7, 7, 4.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(8, 8, 1.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(9, 9, 2.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(10, 10, 3.50,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(11, 11, 3.50,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(12, 12, 5.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(13, 13, 3.00,1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(14, 14, 2.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(15, 15, 1.00,0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(16, 1, 5.00,0, '2018-06-03 17:00:00', '2018-06-03 17:00:00'),
-(17, 1, 4.00,1, '2018-06-03 17:00:00', '2018-06-03 17:00:00');
+INSERT INTO `feedbacks` (`id`, `id_place`, `star`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 2.00, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(2, 2, 4.00, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(3, 3, 3.50, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(4, 4, 2.50, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(5, 5, 1.50, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(6, 6, 5.00, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(7, 7, 4.00, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(8, 8, 1.00, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(9, 9, 2.00, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(10, 10, 3.50, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(11, 11, 3.50, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(12, 12, 5.00, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(13, 13, 3.00, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(14, 14, 2.00, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(15, 15, 1.00, 0, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(16, 1, 5.00, 1, '2018-06-03 17:00:00', '2018-06-03 17:00:00'),
+(17, 1, 4.00, 1, '2018-06-03 17:00:00', '2018-06-03 17:00:00'),
+(18, 1, 5.00, 1, NULL, NULL),
+(19, 1, 5.00, 1, NULL, NULL),
+(20, 1, 4.00, 1, NULL, NULL),
+(21, 1, 4.00, 1, NULL, NULL),
+(22, 1, 3.00, 1, NULL, NULL),
+(23, 1, 5.00, 1, NULL, NULL),
+(24, 1, 0.50, 1, NULL, NULL),
+(25, 1, 4.50, 1, NULL, NULL);
+
+-- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `migrations`
@@ -881,13 +897,15 @@ CREATE TABLE `places` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
+--
+-- Đang đổ dữ liệu cho bảng `places`
+--
 
 INSERT INTO `places` (`id`, `id_type`, `id_district`, `name`, `slogan`, `short_des`, `full_des`, `map`, `address`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Chợ nổi Cái Răng', 'Nét văn hoá cổ xưa', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>\r\n\r\n            ', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>\r\n', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.1802349064924!2d105.74193531479423!3d10.001966392849832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089afb6342d8d%3A0xcdb2b569f5f13898!2zQ2jhu6MgTuG7lWkgQ8OhaSBSxINuZw!5e0!3m2!1svi!2s!4v1527733455653\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Lê Bình, Cái Răng, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(1, 1, 2, 'Chợ nổi Cái Răng', 'Nét văn hoá cổ xưa', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.1802349064924!2d105.74193531479423!3d10.001966392849832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089afb6342d8d%3A0xcdb2b569f5f13898!2zQ2jhu6MgTuG7lWkgQ8OhaSBSxINuZw!5e0!3m2!1svi!2s!4v1527733455653\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Lê Bình, Cái Răng, Cần Thơ', '2018-05-21 00:00:00', '2018-06-19 19:21:33'),
 (2, 1, 1, 'Bến Ninh Kiều', 'Một nét văn hoá của người Cần Thơ', 'Cần Thơ có bến Ninh Kiều/Có dòng sông đẹp với nhiều giai nhân\"...Bến Ninh Kiều nay được người dân xứ Tây Đô gọi là công viên Ninh Kiều, là một bến nước, địa danh du lịch và văn hóa được hình thành từ thế kỷ 19', 'Ca dao từng có cầu: \"Cần Thơ có bến Ninh Kiều/Có dòng sông đẹp với nhiều giai nhân\"...Bến Ninh Kiều nay được người dân xứ Tây Đô gọi là công viên Ninh Kiều, là một bến nước, địa danh du lịch và văn hóa được hình thành từ thế kỷ 19.Bến Ninh Kiều, nơi nhìn ra dòng Hậu Giang dạt dào phù sa, nằm ở vị trí đắc địa, giao thoa hữu ngạn sông Hậu, ngay ngã ba sông Hậu và sông Cần Thơ, gần trung tâm thành phố Cần Thơ.</br>\r\n\r\n         Điều hấp dẫn du khách của bến là nhà thủy tạ trên sông. Nhà thủy tạ là một con tàu nổi bồng bềnh nối bờ bằng một đoạn cầu, hai bên cầu có lan can, khách có thể dừng chân đứng hóng gió. Nhà nổi này chính là nhà hàng ăn uống có hai tầng với hàng trăm chỗ ngồi. Khách tới nhà nổi, gọi ly nước ngọt, hoặc một xị rượu nếp than nhắm với món lẩu lươn đặc sản địa phương. Vừa ăn uống, vừa ngắm cảnh sông Hậu. Trên sông đủ loại thuyền ngược thuyền xuôi tấp nập. Bến còn có công viên với nhiều loại cây quý, xanh mướt, là nơi vui chơi và sinh hoạt của người dân.', ' <iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3928.8141814257274!2d105.7858675!3d10.0321875!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a06298aae43e71%3A0xc6a64bdac582285d!2zQuG6v24gTmluaCBLaeG7gXU!5e0!3m2!1svi!2s!4v1527733506977\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>                                   ', '106 Hai Bà Trưng, Tân An, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (3, 1, 1, 'Làng du lịch Mỹ Khánh', 'Du lịch sinh thái trong lòng Cần Thơ', 'Làng Du Lịch Mỹ Khánh thuộc huyện Phong Điền, nằm cách trung tâm TP Cần Thơ 10km, trên tuyến Lộ Vòng Cung lịch sử và ở giữa hai chợ nổi Cái Răng và Phong Điền. Làng du lịch Mỹ Khánh là nơi hội tụ những tinh hoa văn hóa sông nước miệt vườn.', 'Làng Du Lịch Mỹ Khánh thuộc huyện Phong Điền, nằm cách trung tâm TP Cần Thơ 10km, trên tuyến Lộ Vòng Cung lịch sử và ở giữa hai chợ nổi Cái Răng và Phong Điền. Làng du lịch Mỹ Khánh là nơi hội tụ những tinh hoa văn hóa sông nước miệt vườn.\r\n\r\nNhững trải nghiệm du khách không thể bỏ qua ở đây là thưởng thức hơn 20 chủng loại trái cây trong miệt vườn rộng lớn, tham quan làng nghề truyền thống, nấu rượu, tráng bánh với người dân bản địa, thưởng thức những món ăn đặc sản, tham quan nhà cổ Nam Bộ và được nghe những bài hát vọng cổ giao duyên từ máy hát đĩa quay có tuổi thọ đã 80 năm.</br>\r\nĐến với Làng Du Lịch Mỹ Khánh, quý khách thỏa sức khám phá, tìm hiểu về đời sống cư dân miệt vườn như: tham quan Nhà cổ Nam bộ, thưởng thức chương trình văn nghệ “đờn ca tài tử”, “một ngày làm Điền Chủ” với bữa cơm điền chủ, “một ngày làm nông dân”, “tát mương bắt cá…”, tham quan làng nghề văn hóa truyền thống, vườn cây ăn trái, các dịch vụ tại chỗ như đi xe ngựa, bơi thuyền, taxi điện, đua heo, đua chó, xiếc khỉ, câu cá sấu…và nhiều chương trình khác theo yêu cầu của quý khách.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.3355796516753!2d105.7043455147941!3d9.989113892858635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089ae6c592dbb%3A0x5475c9775633f9fe!2zTMOgbmcgRHUgbOG7i2NoIE3hu7kgS2jDoW5o!5e0!3m2!1svi!2s!4v1527733527287\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '335 Lộ Vòng Cung, Mỹ Khánh, Phong Điền, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, 1, 1, 'Vườn cò Bằng Lăng', 'Hoà mình với thiên nhiên', 'Vườn cò Bằng Lăng thuộc ấp Thới Bình, huyện Thốt Nốt, Tp Cần Thơ. Vườn cò Bằng Lăng hiện đang là một trong những sân chim lớn nhất nơi miệt vườn này.', 'Trên đường từ Cần Thơ về thành phố Long Xuyên, qua khỏi thị trấn Thốt Nốt chừng 5 km là đến vườn cò Bằng Lăng. Du khách đến thăm vườn cò này sẽ được chiêm ngưỡng thỏa thích vô số các loại cò (cò trắng, cò xám, cò đen, cồng cộc…) đang chao cánh và sà xuống đậu trắng xóa những những cành trúc, đong đưa theo chiều gió. Khi chiều về, quanh khu vực này có âm thanh văng vẳng tiếng những con cò đang rối rít gọi đàn…', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.7459923699903!2d105.50308531479638!3d10.282038692658071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a767e831c7399%3A0xf1d584c069d473eb!2zVsaw4budbiBjw7IgQuG6sW5nIEzEg25n!5e0!3m2!1svi!2s!4v1527733567718\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Thuận An, Thốt Nốt, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(4, 1, 1, 'Vườn cò Bằng Lăng', 'Hoà mình với thiên nhiên', '<p>Vườn c&ograve; Bằng Lăng thuộc ấp Thới B&igrave;nh, huyện Thốt Nốt, Tp Cần Thơ. Vườn c&ograve; Bằng Lăng hiện đang l&agrave; một trong những s&acirc;n chim lớn nhất nơi miệt vườn n&agrave;y.</p>', '<p>Tr&ecirc;n đường từ Cần Thơ về th&agrave;nh phố Long Xuy&ecirc;n, qua khỏi thị trấn Thốt Nốt chừng 5 km l&agrave; đến vườn c&ograve; Bằng Lăng. Du kh&aacute;ch đến thăm vườn c&ograve; n&agrave;y sẽ được chi&ecirc;m ngưỡng thỏa th&iacute;ch v&ocirc; số c&aacute;c loại c&ograve; (c&ograve; trắng, c&ograve; x&aacute;m, c&ograve; đen, cồng cộc&hellip;) đang chao c&aacute;nh v&agrave; s&agrave; xuống đậu trắng x&oacute;a những những c&agrave;nh tr&uacute;c, đong đưa theo chiều gi&oacute;. Khi chiều về, quanh khu vực n&agrave;y c&oacute; &acirc;m thanh văng vẳng tiếng những con c&ograve; đang rối r&iacute;t gọi đ&agrave;n&hellip;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.7459923699903!2d105.50308531479638!3d10.282038692658071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a767e831c7399%3A0xf1d584c069d473eb!2zVsaw4budbiBjw7IgQuG6sW5nIEzEg25n!5e0!3m2!1svi!2s!4v1527733567718\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Thuận An, Thốt Nốt, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-06-19 20:01:39'),
 (5, 1, 1, 'Chùa Ông', 'Hoài niệm xưa cũ', 'Chùa Ông nằm ở đường Hai Bà Trưng, Quận Ninh Kiều, Tp. Cần Thơ. Chùa Ông là nơi sinh hoạt tín ngưỡng và văn hoá của người Hoa tại đây. Chùa được Bộ Văn hoá – Thông tin công nhận là di tích kiến trúc nghệ thuật quốc gia năm 1993', 'Chùa Ông nằm ở đường Hai Bà Trưng, Quận Ninh Kiều, Tp. Cần Thơ. Chùa Ông là nơi sinh hoạt tín ngưỡng và văn hoá của người Hoa tại đây. Chùa được Bộ Văn hoá – Thông tin công nhận là di tích kiến trúc nghệ thuật quốc gia năm 1993. Chùa được xây dựng năm 1894 – 1896, với lối kiến trúc độc đáo. Mái chùa lợp ngói âm dương với các gờ bó mái bằng những hàng ngói ống men xanh thẫm, trên bờ nóc có vô số hình nhân đủ màu bằng gốm sứ, lưỡng long chầu nguyệt, chim phụng, ở hai đầu có hai tượng người cầm mặt trời, mặt trăng. Trong chùa thờ Quan Công – một tấm gương về lòng trung hiếu tiết nghĩa và các vị Quan Âm Nam Hải, Thái Bạch tinh quân, Thổ Địa, Đổng Vĩnh,…', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.7900380452093!2d105.78626891479446!3d10.034177592827776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0629e9e0072c5%3A0x45ff04519813c779!2zQ2jDuWEgw5RuZw!5e0!3m2!1svi!2s!4v1527733586010\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', ' 32, Hai Bà Trưng, Tân An, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (6, 2, 1, 'Quán ăn Hàn Quốc Sam', 'Hoà nhập thế giới', 'Không gian ấm cúng, tinh tế\r\n                Đa dạng các món ăn mang hương vị Hàn Quốc\r\n               Phục vụ vhu đáo, nhiệt tình', 'Đồ ăn ở dạ đa dạng với nhiều món khác nhau cho khách hàng lựa chọn. Một phần lẩu 2 người đồ ăn cũng tương đối chứ không hẳn là nhiều, nhưng nước lẩu thì khá là ngon, còn có món mì tương đen nữa. Kêu 1phần mà ăn cả 2 người mới hết\r\nCó dịp sẽ ghé lại quán ủng hộ tiếp', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.978357620994!2d105.7648397147943!3d10.018644392838372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08831098958e9%3A0x83a667d12440f794!2zUXXDoW4gxINuIEjDoG4gUXXhu5FjIFNhbQ!5e0!3m2!1svi!2s!4v1527733603966\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '474 Đường 30 Tháng 4, Hưng Lợi, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (7, 2, 1, 'Quán Hồi Đó', 'Trở về ngày xưa', 'Quán có không gian kiểu xưa \r\nĐồ ăn khá ngon\r\nGiá ổn\r\nNằm trong hẻm nhưng cũng dễ tìm\r\nCó món lẩu mắn theo cá nhân thì ngon', 'Quán Hồi Đó có kiến trúc xây dựng kiểu nhà Nam Bộ xưa. Nếu là một người thành thị bạn sẽ thích với không gian nơi đây. Ngoài ra quán bán thức ăn khá phong phú, phục vụ cơm trưa và cả lẩu.\r\n              Nếu bạn muốn một vé về tuổi thơ. Thưởng thức những món ăn ngon của thời xưa, được chế biến theo phong cách truyền thống, và ăn bằn những dụng cụ truyền thống của những quán ăn 1975 sang trọng. Thì hãy đến nơi này.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.785519641608!2d105.77394781479445!3d10.034549992827467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0881f3bcce005%3A0x89d28cf688a6e80b!2zUXXDoW4gSOG7k2kgxJDDsw!5e0!3m2!1svi!2s!4v1527733619631\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '54, Trần Bình Trọng, An Phú, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
@@ -900,9 +918,12 @@ INSERT INTO `places` (`id`, `id_type`, `id_district`, `name`, `slogan`, `short_d
 (14, 3, 1, 'Ninh Kieu Riverside Hotel', 'Thủ phủ quê nhà', 'Ninh Kieu Riverside Hotel tọa lạc tại thành phố Cần Thơ và cách Cầu đi bộ Bến Ninh Kiều chỉ 1 phút dạo bước. Du khách có thể dùng bữa trong nhà hàng hay thư giãn ở quán bar. Khách sạn cung cấp miễn phí Wi-Fi trong toàn khuôn viên và bãi đậu xe riêng tại chỗ.', 'Ninh Kieu Riverside Hotel tọa lạc tại thành phố Cần Thơ và cách Cầu đi bộ Bến Ninh Kiều chỉ 1 phút dạo bước. Du khách có thể dùng bữa trong nhà hàng hay thư giãn ở quán bar. Khách sạn cung cấp miễn phí Wi-Fi trong toàn khuôn viên và bãi đậu xe riêng tại chỗ.\r\nTất cả các phòng nghỉ tại đây đều được trang bị truyền hình cáp màn hình phẳng, ấm đun nước và phòng tắm riêng kèm vòi sen. Những tiện nghi khác bao gồm dép và đồ vệ sinh cá nhân miễn phí.\r\n\r\nNhân viên song ngữ tại quầy lễ tân 24 giờ có thể hỗ trợ khách với các dịch vụ nhận phòng và trả phòng riêng, thu đổi ngoại tệ cũng như giữ hành lý.\r\n\r\nNinh Kieu Riverside Hotel cách Chợ Đêm 400 m, Bảo tàng Cần Thơ 500 m, Chợ nổi Cái Răng 7 km và sân bay gần nhất là sân bay Rạch Giá 72 km. \r\n\r\nChỗ nghỉ này là một trong những vị trí được đánh giá tốt nhất ở Cần Thơ! Khách thích nơi đây hơn so với những chỗ nghỉ khác trong khu vực.\r\n\r\nCác cặp đôi đặc biệt thích địa điểm này — họ cho điểm 8,8 cho kỳ nghỉ dành cho 2 người.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.763826809605!2d105.78745501479453!3d10.036337692826258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x3f70fa9b4ba0895e!2sNinh+Kieu+Riverside+Hotel!5e0!3m2!1svi!2s!4v1527733770529\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '2 Hai Bà Trưng st, Tân An, Ninh Kiều, Cần Thơ 900000, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (15, 3, 1, 'Ninh Kieu 2 Hotel', 'Trung tâm thành phố', 'Tọa lạc tại thành phố Cần Thơ, cách Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel có trung tâm thể dục, lễ tân 24 giờ và sảnh khách chung. Khách sạn 4 sao này cung cấp Wi-Fi miễn phí.', 'Tọa lạc tại thành phố Cần Thơ, cách Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel có trung tâm thể dục, lễ tân 24 giờ và sảnh khách chung. Khách sạn 4 sao này cung cấp Wi-Fi miễn phí.\r\n     Tất cả các phòng nghỉ tại Ninh Kieu 2 Hotel đều có khu vực ghế ngồi và TV truyền hình cáp màn hình phẳng. Các phòng cũng có phòng tắm riêng, tầm nhìn ra quang cảnh thành phố, máy điều hòa và bàn làm việc.\r\n\r\n      Khách sạn cung cấp bữa sáng kiểu Mỹ hàng ngày. Tại đây có nhà hàng ngay trong khuôn viên phục vụ hải sản và ẩm thực Việt Nam.\r\n\r\n     Ninh Kieu 2 Hotel có sân hiên.\r\n\r\n    Gần khách sạn có các điểm tham quan nổi tiếng như trung tâm thương mại Vincom Plaza Hùng Vương, trung tâm thương mại Vincom Plaza Xuân Khánh và Bảo tàng Cần Thơ. Sân bay gần nhất là Sân bay Rạch Giá, cách chỗ nghỉ 72 km. ', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.780440486042!2d105.78387401479443!3d10.03496859282718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x386bdb632835e00e!2zS2jDoWNoIFPhuqFuIE5pbmggS2nhu4F1IDI!5e0!3m2!1svi!2s!4v1527733792692\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '03 Đại lộ Hoà Bình, Tân An, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
 
+-- --------------------------------------------------------
+
 --
 -- Cấu trúc bảng cho bảng `place_image`
 --
+
 CREATE TABLE `place_image` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_place` int(10) UNSIGNED NOT NULL,
@@ -910,7 +931,7 @@ CREATE TABLE `place_image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `place_image`
+-- Đang đổ dữ liệu cho bảng `place_image`
 --
 
 INSERT INTO `place_image` (`id`, `id_place`, `name`) VALUES
@@ -963,7 +984,7 @@ INSERT INTO `place_image` (`id`, `id_place`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `place_location`
+-- Cấu trúc bảng cho bảng `place_location`
 --
 
 CREATE TABLE `place_location` (
@@ -975,14 +996,14 @@ CREATE TABLE `place_location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `place_location`
+-- Đang đổ dữ liệu cho bảng `place_location`
 --
 
 INSERT INTO `place_location` (`id`, `id_place`, `coor`, `created_at`, `updated_at`) VALUES
-(1, 1, '260', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(1, 1, '260', '2018-05-21 00:00:00', '2018-06-19 19:21:33'),
 (2, 2, '120', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (3, 3, '230', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, 4, '450', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(4, 4, '450', '2018-05-21 00:00:00', '2018-06-19 20:01:39'),
 (5, 5, '430', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (6, 6, '330', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (7, 7, '670', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
@@ -998,7 +1019,7 @@ INSERT INTO `place_location` (`id`, `id_place`, `coor`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `place_type`
+-- Cấu trúc bảng cho bảng `place_type`
 --
 
 CREATE TABLE `place_type` (
@@ -1008,7 +1029,7 @@ CREATE TABLE `place_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `place_type`
+-- Đang đổ dữ liệu cho bảng `place_type`
 --
 
 INSERT INTO `place_type` (`id`, `name`, `description`) VALUES
@@ -1019,7 +1040,7 @@ INSERT INTO `place_type` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `travel`
+-- Cấu trúc bảng cho bảng `travel`
 --
 
 CREATE TABLE `travel` (
@@ -1030,7 +1051,7 @@ CREATE TABLE `travel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `travel`
+-- Đang đổ dữ liệu cho bảng `travel`
 --
 
 INSERT INTO `travel` (`id`, `id_place`, `created_at`, `updated_at`) VALUES
@@ -1049,7 +1070,7 @@ INSERT INTO `travel` (`id`, `id_place`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -1062,10 +1083,17 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'a@b.c', '$2y$10$8L4srdLWmt/nP76GgoDYI.801KtHp28yIm/JPYud4rnVxYWj6lE6G', 'C8Tx9DKbd9R7iwIRhIhxnxLV8pyIrU7bgtfiPuPQY06CJqO8ftrWAaqtqlfS', '2018-06-19 20:23:24', '2018-06-19 20:23:24');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_location`
+-- Cấu trúc bảng cho bảng `user_location`
 --
 
 CREATE TABLE `user_location` (
@@ -1076,18 +1104,17 @@ CREATE TABLE `user_location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `user_location`
+-- Đang đổ dữ liệu cho bảng `user_location`
 --
 
 INSERT INTO `user_location` (`id`, `coor`, `created_at`, `updated_at`) VALUES
-(1, '260', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(2, '270', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(3, '760', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, '760', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(5, '230', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(6, '160', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
+(1, '10.041295,105.792962', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(2, '10.041788,105.791230', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(3, '10.042318,105.790419', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(4, '10.039361,105.793527', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(5, '10.039252,105.791973', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(6, '10.039252,105.791979', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
 
---
 --
 -- Chỉ mục cho các bảng đã đổ
 --
@@ -1174,19 +1201,19 @@ ALTER TABLE `user_location`
 -- AUTO_INCREMENT cho bảng `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT cho bảng `districts`
 --
 ALTER TABLE `districts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=687;
 
 --
 -- AUTO_INCREMENT cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -1198,43 +1225,43 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `place_image`
 --
 ALTER TABLE `place_image`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT cho bảng `place_location`
 --
 ALTER TABLE `place_location`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `place_type`
 --
 ALTER TABLE `place_type`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `travel`
 --
 ALTER TABLE `travel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `user_location`
 --
 ALTER TABLE `user_location`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

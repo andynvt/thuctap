@@ -43,7 +43,7 @@
 			        	var introhtml = $('.fadeitem').html();
 
 			        	var time = "";
-
+			        	
 			        	function secondsToHms(d) {
 						    d = Number(d);
 						    var h = Math.floor(d / 3600);
@@ -55,8 +55,6 @@
 						    var sDisplay = s > 0 ? s + (s == 1 ? " giây" : " giây") : "";
 						    return hDisplay + mDisplay + sDisplay; 
 						}
-
-			        	// $('.viewplace').empty();
 
 			        	for($i = 0; $i < data.length; $i++){
 			        		time = secondsToHms(data[$i]['time']);
@@ -70,7 +68,12 @@
 			        		$('#item' +($i+1)+ ' .thoigian').html(time);
 			        		$('#item' +($i+1)+ ' .tenloai').html(data[$i]['ptname']);
 			        		$('#item' +($i+1)+ ' .mota').html(data[$i]['short_des']);
+
+			        		coord += (data[$i]['pname'] +","+ data[$i]['pcoord'] + ";");
 			        	}
+
+			        	// $('.fadecoord').append('<div id="coordhtml"></div>');
+			        	// $('#coordhtml').html(coord);
 			        	$('.carousel-item:first').addClass('active');
 			        }
 			    });
@@ -101,6 +104,7 @@
 {{-- end script xác định vị trí hiện tại --}}
 
 @section('content')
+<script src="source/customer/js/trangchu.js"></script>
 <body onLoad="Time();" class="signup-page sidebar-collapse" style="height: 100vh">
 	<div class="trang-chu">
 	    <!-- header -->
@@ -278,7 +282,6 @@
 	    </div>
 	</div>
 
-
 	<div class="fadeitem">
 		<div class="carousel-item" id="item0">
 		    <img class="d-block w-100 anhdiadiem" src="storage/image/cho-noi.jpg" alt="First slide" style="height: 100vh">
@@ -343,6 +346,8 @@
 		    </div>
 		</div>
 	</div>
+
+	<div class="fadecoord"></div>
 </body>
 
 <style>
@@ -359,16 +364,15 @@
   	}
 </style>
 
-{{-- <script src="source/customer/js/trangchu.js"></script> --}}
-
 {{-- script thêm vị trí vào map --}}
 <script>
+	alert(coord);
 	var locations = [
-      	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962, 4],
-      	['Công Viên Vòng Xoay Công Viên Nước, 36 Trần Phú, Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', 10.041788, 105.791230, 5],
-      	['Khách sạn Mường Thanh Luxury Cần Thơ', 10.042318, 105.790419, 3],
-      	['Khách sạn Victoria Cần Thơ', 10.039361, 105.793527, 2],
-      	['Nhà hàng Hoa Sứ', 10.039252, 105.791973, 1]
+      	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962],
+      	['Công Viên Vòng Xoay Công Viên Nước, 36 Trần Phú, Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', 10.041788, 105.791230],
+      	['Khách sạn Mường Thanh Luxury Cần Thơ', 10.042318, 105.790419],
+      	['Khách sạn Victoria Cần Thơ', 10.039361, 105.793527],
+      	['Nhà hàng Hoa Sứ', 10.039252, 105.791973]
     ];
 
     var map = new google.maps.Map(document.getElementById('map-intro'), {

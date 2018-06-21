@@ -171,7 +171,7 @@
                     <h3>ĐỊA ĐIỂM LIÊN QUAN</h3>
                 </div>
                 <br>
-                <div class="col-12 content-lq">
+                <div class="col-12 content-lq" style="flex: auto;">
                     @foreach($same_place as $sp)
                     <div class="item-lq">
                         <a href="{{route('detailplace',$sp->id)}}"><img src="storage/image/{{$sp->piname}}" alt="{{$sp->name}}" class="img-raised rounded img-fluid"></a>
