@@ -58,4 +58,12 @@
     {{--{{ $chitiet->links() }}--}}
     {{--</div>--}}
 </div>
-
+<script>
+    $('input[type="checkbox"]').change( function () {
+        let button = document.getElementById("all-delete");
+        button.disabled= true;
+        if ($('.form-check input:checked').length < 1)
+            return false;
+        return button.disabled = false;
+    });
+</script>

@@ -1,7 +1,7 @@
 {{--Modal all delete--}}
 <div class="modal fade" id="modal-Alldelete" tabindex="-1" role="dialog" aria-labelledby="alldelete" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content text-center">
+        <div class="modal-content">
             <div class="modal-header ">
                 <h5 class="modal-title title " id="alldelete">Bạn chắc chắn muốn xóa phải không?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

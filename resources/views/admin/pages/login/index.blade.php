@@ -66,7 +66,7 @@
                                     </span>
                                     <input id="email"
                                               class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                              name="email" type="email" placeholder="Email..." value="blabla@gmail.com" required>
+                                              name="email" type="email" placeholder="Email..." value="a@b.c" required>
                                 </div>
 
                             </div>

@@ -65,6 +65,13 @@
             checkboxs[i].checked = checkAll.checked;
         }
     }
+    $('input[type="checkbox"]').change( function () {
+        let button = document.getElementById("all-delete");
+        button.disabled= true;
+        if ($('.form-check input:checked').length < 1)
+            return false;
+        return button.disabled = false;
+    });
     // var tableid = $('table').attr('id');
     // bindDatatable(tableid);
 </script>
