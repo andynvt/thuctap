@@ -43,6 +43,8 @@
 			        	var introhtml = $('.fadeitem').html();
 
 			        	var time = "";
+
+			        	var coord = "";
 			        	
 			        	function secondsToHms(d) {
 						    d = Number(d);
@@ -66,6 +68,7 @@
 			        		$('#item' +($i+1)+ ' .diachi').html(data[$i]['address']);
 			        		$('#item' +($i+1)+ ' .khoangcach').html( (data[$i]['dist']/1000).toFixed(2) + " km");
 			        		$('#item' +($i+1)+ ' .thoigian').html(time);
+			        		$('#item' +($i+1)+ ' .danhgia').html( (data[$i]['avgstar']).toFixed(2) + " / 5 " + "(" + data[$i]['cntfbp'] + " đánh giá)");
 			        		$('#item' +($i+1)+ ' .tenloai').html(data[$i]['ptname']);
 			        		$('#item' +($i+1)+ ' .mota').html(data[$i]['short_des']);
 
@@ -301,7 +304,7 @@
 		                    <h4 class="diachi">Kế Bến Ninh Kiều</h4>
 		                    <h4 class="khoangcach">3 km</h4>
 		                    <h4 class="thoigian">15 phút (xe ô tô)</h4>
-		                    <h4>4.3 / 5 (20 đánh giá)</h4>
+		                    <h4 class="danhgia">4.3 / 5 (20 đánh giá)</h4>
 		                    <h4 class="tenloai">Ăn chơi</h4>
 		              	</div>
 		            </div>
@@ -366,7 +369,6 @@
 
 {{-- script thêm vị trí vào map --}}
 <script>
-	alert(coord);
 	var locations = [
       	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962],
       	['Công Viên Vòng Xoay Công Viên Nước, 36 Trần Phú, Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', 10.041788, 105.791230],

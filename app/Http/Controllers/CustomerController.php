@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Collection;
 use Session;
+use DB;
 
 class CustomerController extends Controller
 {
@@ -106,6 +107,8 @@ class CustomerController extends Controller
 
         $viewIntro = collect([]);
 
+        $fbIntro = collect([]);
+
         $cntplace = count($plocate);
 
         for($i = 0; $i < $cntplace; $i++){
@@ -131,9 +134,15 @@ class CustomerController extends Controller
                     ->select('places.id as id', 'places.name as pname', 'places.short_des', 'places.address', 'pimg.name as pimage', 'pt.name as ptname', 'plo.coor as pcoord')
                     ->get();
             $viewIntro->push($pintro);
+
+            // $fb = Feedback::where('id_place', $intro[$i]['id'])->avg('star');
+            $fb = DB::select(DB::raw('SELECT id_place, COUNT(id_place) as cntfbp, AVG(star) as avgstar FROM feedbacks WHERE id_place = '.$intro[$i]["id"].' GROUP BY id_place'));
+            $fbIntro->push($fb);
         }
 
         $flattened = $viewIntro->flatten(1);
+
+        $flattenfb = $fbIntro->flatten(1);
 
         $cntflattened = $flattened->count();
 
@@ -142,6 +151,8 @@ class CustomerController extends Controller
         for($i = 0; $i < $cntflattened; $i++){
             $flattened[$i]['dist'] = $intro[$i]['distance'];
             $flattened[$i]['time'] = $intro[$i]['time'];
+            $flattened[$i]['avgstar'] = $flattenfb[$i]->avgstar;
+            $flattened[$i]['cntfbp'] = $flattenfb[$i]->cntfbp;
             $final->push($flattened[$i]);
         }
 
