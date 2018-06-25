@@ -40,14 +40,16 @@
                         $('#it' +($i+1)).remove();
                     }
                     var divbu = $('.fade-div-bu') .html();
+                }
 
+                for($i=0; $i<2; $i++){
+                    $('.div-bu').append(divbu).children('#itm'+($i-$i)).attr('id', 'itm'+ ($i+1));
 
-                    for($i=0; $i<1; $i++){
-                    //     $('.div-bu').append(divbu);
-                    //     $('.div-bu').append(divbu).children().attr('id', 'itm1');
-                        alert($i);
+                    if(id_type != data[1][0]['id_type']){
+                        for($j=0; $j< data[1].length; $j++){
+                            // alert('dsajk');
+                        }
                     }
-
                 }
             }
         });
