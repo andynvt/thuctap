@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th6 20, 2018 lúc 11:56 AM
+-- Thời gian đã tạo: Th6 25, 2018 lúc 09:34 AM
 -- Phiên bản máy phục vụ: 10.1.31-MariaDB
 -- Phiên bản PHP: 7.2.3
 
@@ -30,12 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cities` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slg` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `cities`
---
+-- --------------------------------------------------------
 
 INSERT INTO `cities` (`id`, `name`) VALUES
 (3, 'An Giang'),
@@ -102,12 +101,9 @@ INSERT INTO `cities` (`id`, `name`) VALUES
 (64, 'Cần Thơ'),
 (65, 'Hải Phòng');
 
--- --------------------------------------------------------
-
 --
 -- Cấu trúc bảng cho bảng `districts`
 --
-
 CREATE TABLE `districts` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_city` int(10) UNSIGNED NOT NULL,
@@ -847,7 +843,11 @@ INSERT INTO `feedbacks` (`id`, `id_place`, `star`, `status`, `created_at`, `upda
 (22, 1, 3.00, 1, NULL, NULL),
 (23, 1, 5.00, 1, NULL, NULL),
 (24, 1, 0.50, 1, NULL, NULL),
-(25, 1, 4.50, 1, NULL, NULL);
+(25, 1, 4.50, 1, NULL, NULL),
+(26, 14, 4.00, 0, NULL, NULL),
+(27, 14, 4.50, 0, NULL, NULL),
+(28, 14, 4.50, 0, NULL, NULL),
+(29, 14, 2.50, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -902,11 +902,11 @@ CREATE TABLE `places` (
 --
 
 INSERT INTO `places` (`id`, `id_type`, `id_district`, `name`, `slogan`, `short_des`, `full_des`, `map`, `address`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'Chợ nổi Cái Răng', 'Nét văn hoá cổ xưa', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.1802349064924!2d105.74193531479423!3d10.001966392849832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089afb6342d8d%3A0xcdb2b569f5f13898!2zQ2jhu6MgTuG7lWkgQ8OhaSBSxINuZw!5e0!3m2!1svi!2s!4v1527733455653\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Lê Bình, Cái Răng, Cần Thơ', '2018-05-21 00:00:00', '2018-06-19 19:21:33'),
-(2, 1, 1, 'Bến Ninh Kiều', 'Một nét văn hoá của người Cần Thơ', 'Cần Thơ có bến Ninh Kiều/Có dòng sông đẹp với nhiều giai nhân\"...Bến Ninh Kiều nay được người dân xứ Tây Đô gọi là công viên Ninh Kiều, là một bến nước, địa danh du lịch và văn hóa được hình thành từ thế kỷ 19', 'Ca dao từng có cầu: \"Cần Thơ có bến Ninh Kiều/Có dòng sông đẹp với nhiều giai nhân\"...Bến Ninh Kiều nay được người dân xứ Tây Đô gọi là công viên Ninh Kiều, là một bến nước, địa danh du lịch và văn hóa được hình thành từ thế kỷ 19.Bến Ninh Kiều, nơi nhìn ra dòng Hậu Giang dạt dào phù sa, nằm ở vị trí đắc địa, giao thoa hữu ngạn sông Hậu, ngay ngã ba sông Hậu và sông Cần Thơ, gần trung tâm thành phố Cần Thơ.</br>\r\n\r\n         Điều hấp dẫn du khách của bến là nhà thủy tạ trên sông. Nhà thủy tạ là một con tàu nổi bồng bềnh nối bờ bằng một đoạn cầu, hai bên cầu có lan can, khách có thể dừng chân đứng hóng gió. Nhà nổi này chính là nhà hàng ăn uống có hai tầng với hàng trăm chỗ ngồi. Khách tới nhà nổi, gọi ly nước ngọt, hoặc một xị rượu nếp than nhắm với món lẩu lươn đặc sản địa phương. Vừa ăn uống, vừa ngắm cảnh sông Hậu. Trên sông đủ loại thuyền ngược thuyền xuôi tấp nập. Bến còn có công viên với nhiều loại cây quý, xanh mướt, là nơi vui chơi và sinh hoạt của người dân.', ' <iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3928.8141814257274!2d105.7858675!3d10.0321875!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a06298aae43e71%3A0xc6a64bdac582285d!2zQuG6v24gTmluaCBLaeG7gXU!5e0!3m2!1svi!2s!4v1527733506977\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>                                   ', '106 Hai Bà Trưng, Tân An, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(3, 1, 1, 'Làng du lịch Mỹ Khánh', 'Du lịch sinh thái trong lòng Cần Thơ', 'Làng Du Lịch Mỹ Khánh thuộc huyện Phong Điền, nằm cách trung tâm TP Cần Thơ 10km, trên tuyến Lộ Vòng Cung lịch sử và ở giữa hai chợ nổi Cái Răng và Phong Điền. Làng du lịch Mỹ Khánh là nơi hội tụ những tinh hoa văn hóa sông nước miệt vườn.', 'Làng Du Lịch Mỹ Khánh thuộc huyện Phong Điền, nằm cách trung tâm TP Cần Thơ 10km, trên tuyến Lộ Vòng Cung lịch sử và ở giữa hai chợ nổi Cái Răng và Phong Điền. Làng du lịch Mỹ Khánh là nơi hội tụ những tinh hoa văn hóa sông nước miệt vườn.\r\n\r\nNhững trải nghiệm du khách không thể bỏ qua ở đây là thưởng thức hơn 20 chủng loại trái cây trong miệt vườn rộng lớn, tham quan làng nghề truyền thống, nấu rượu, tráng bánh với người dân bản địa, thưởng thức những món ăn đặc sản, tham quan nhà cổ Nam Bộ và được nghe những bài hát vọng cổ giao duyên từ máy hát đĩa quay có tuổi thọ đã 80 năm.</br>\r\nĐến với Làng Du Lịch Mỹ Khánh, quý khách thỏa sức khám phá, tìm hiểu về đời sống cư dân miệt vườn như: tham quan Nhà cổ Nam bộ, thưởng thức chương trình văn nghệ “đờn ca tài tử”, “một ngày làm Điền Chủ” với bữa cơm điền chủ, “một ngày làm nông dân”, “tát mương bắt cá…”, tham quan làng nghề văn hóa truyền thống, vườn cây ăn trái, các dịch vụ tại chỗ như đi xe ngựa, bơi thuyền, taxi điện, đua heo, đua chó, xiếc khỉ, câu cá sấu…và nhiều chương trình khác theo yêu cầu của quý khách.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.3355796516753!2d105.7043455147941!3d9.989113892858635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089ae6c592dbb%3A0x5475c9775633f9fe!2zTMOgbmcgRHUgbOG7i2NoIE3hu7kgS2jDoW5o!5e0!3m2!1svi!2s!4v1527733527287\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '335 Lộ Vòng Cung, Mỹ Khánh, Phong Điền, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, 1, 1, 'Vườn cò Bằng Lăng', 'Hoà mình với thiên nhiên', '<p>Vườn c&ograve; Bằng Lăng thuộc ấp Thới B&igrave;nh, huyện Thốt Nốt, Tp Cần Thơ. Vườn c&ograve; Bằng Lăng hiện đang l&agrave; một trong những s&acirc;n chim lớn nhất nơi miệt vườn n&agrave;y.</p>', '<p>Tr&ecirc;n đường từ Cần Thơ về th&agrave;nh phố Long Xuy&ecirc;n, qua khỏi thị trấn Thốt Nốt chừng 5 km l&agrave; đến vườn c&ograve; Bằng Lăng. Du kh&aacute;ch đến thăm vườn c&ograve; n&agrave;y sẽ được chi&ecirc;m ngưỡng thỏa th&iacute;ch v&ocirc; số c&aacute;c loại c&ograve; (c&ograve; trắng, c&ograve; x&aacute;m, c&ograve; đen, cồng cộc&hellip;) đang chao c&aacute;nh v&agrave; s&agrave; xuống đậu trắng x&oacute;a những những c&agrave;nh tr&uacute;c, đong đưa theo chiều gi&oacute;. Khi chiều về, quanh khu vực n&agrave;y c&oacute; &acirc;m thanh văng vẳng tiếng những con c&ograve; đang rối r&iacute;t gọi đ&agrave;n&hellip;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.7459923699903!2d105.50308531479638!3d10.282038692658071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a767e831c7399%3A0xf1d584c069d473eb!2zVsaw4budbiBjw7IgQuG6sW5nIEzEg25n!5e0!3m2!1svi!2s!4v1527733567718\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Thuận An, Thốt Nốt, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-06-19 20:01:39'),
-(5, 1, 1, 'Chùa Ông', 'Hoài niệm xưa cũ', 'Chùa Ông nằm ở đường Hai Bà Trưng, Quận Ninh Kiều, Tp. Cần Thơ. Chùa Ông là nơi sinh hoạt tín ngưỡng và văn hoá của người Hoa tại đây. Chùa được Bộ Văn hoá – Thông tin công nhận là di tích kiến trúc nghệ thuật quốc gia năm 1993', 'Chùa Ông nằm ở đường Hai Bà Trưng, Quận Ninh Kiều, Tp. Cần Thơ. Chùa Ông là nơi sinh hoạt tín ngưỡng và văn hoá của người Hoa tại đây. Chùa được Bộ Văn hoá – Thông tin công nhận là di tích kiến trúc nghệ thuật quốc gia năm 1993. Chùa được xây dựng năm 1894 – 1896, với lối kiến trúc độc đáo. Mái chùa lợp ngói âm dương với các gờ bó mái bằng những hàng ngói ống men xanh thẫm, trên bờ nóc có vô số hình nhân đủ màu bằng gốm sứ, lưỡng long chầu nguyệt, chim phụng, ở hai đầu có hai tượng người cầm mặt trời, mặt trăng. Trong chùa thờ Quan Công – một tấm gương về lòng trung hiếu tiết nghĩa và các vị Quan Âm Nam Hải, Thái Bạch tinh quân, Thổ Địa, Đổng Vĩnh,…', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.7900380452093!2d105.78626891479446!3d10.034177592827776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0629e9e0072c5%3A0x45ff04519813c779!2zQ2jDuWEgw5RuZw!5e0!3m2!1svi!2s!4v1527733586010\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', ' 32, Hai Bà Trưng, Tân An, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(1, 1, 2, 'Chợ nổi Cái Răng', 'Nét văn hoá cổ xưa', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>', '<p><strong><em>Chợ nổi C&aacute;i Răng<s> </s></em></strong><s><em>c&aacute;ch trung t&acirc;m Th&agrave;nh phố Cần Thơ khoảng 6 km đường bộ v&agrave; mất 30 ph&uacute;t khi ch&uacute;ng ta đi bằng thuyền từ Bến Ninh Kiều. Theo truyền thuyết, t&ecirc;n gọi C&aacute;i Răng xuất ph&aacute;t từ c&acirc;u chuyện hồi đầu thời khẩn hoang c&oacute; con c&aacute; sấu rất lớn dạt v&agrave;o đ&acirc;y, răng của n&oacute; cắm v&agrave;o miệng đất n&agrave;y. Sở dĩ nơi đ&acirc;y gọi l&agrave; chợ nổi v&igrave; n&oacute; tr&ocirc;i nổi tr&ecirc;n s&ocirc;ng.</em></s><br />\r\n<a href=\"http://aaaa\">Đến đ&acirc;y du kh&aacute;ch sẽ được cảm nhận hết những n&eacute;t văn h&oacute;a đặc trưng, độc đ&aacute;o của v&ugrave;ng s&ocirc;ng nước. V&agrave; chợ nổi như l&agrave; một phần kh&ocirc;ng thể thiếu trong n&eacute;t văn h&oacute;a m</a>iệt vườn của người miền T&acirc;y Nam Bộ. Mỗi s&aacute;ng, h&agrave;ng trăm chiếc thuyền lớn b&eacute; đậu san s&aacute;t, tr&ecirc;n thuyền treo b&aacute;n sản vật b&aacute;n kh&ocirc;ng cần phải rao h&agrave;ng như c&aacute;c chợ tr&ecirc;n đất liền. Đến với chợ v&agrave;o mỗi s&aacute;ng, ngo&agrave;i những đặc sản nơi đ&acirc;y muốn mua, du kh&aacute;ch c&ograve;n c&oacute; thể ăn s&aacute;ng, trải nghiệm cuộc sống l&ecirc;nh đ&ecirc;nh th&uacute; vị tr&ecirc;n thuyền.</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.1802349064924!2d105.74193531479423!3d10.001966392849832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089afb6342d8d%3A0xcdb2b569f5f13898!2zQ2jhu6MgTuG7lWkgQ8OhaSBSxINuZw!5e0!3m2!1svi!2s!4v1527733455653\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Lê Bình, Cái Răng, Cần Thơ', '2018-05-21 00:00:00', '2018-06-21 01:32:52'),
+(2, 1, 1, 'Bến Ninh Kiều', 'Một nét văn hoá của người Cần Thơ', '<p>Cần Thơ c&oacute; bến Ninh Kiều/C&oacute; d&ograve;ng s&ocirc;ng đẹp với nhiều giai nh&acirc;n&quot;...Bến Ninh Kiều nay được người d&acirc;n xứ T&acirc;y Đ&ocirc; gọi l&agrave; c&ocirc;ng vi&ecirc;n Ninh Kiều, l&agrave; một bến nước, địa danh du lịch v&agrave; văn h&oacute;a được h&igrave;nh th&agrave;nh từ thế kỷ 19</p>', '<p>Ca dao từng c&oacute; cầu: &quot;Cần Thơ c&oacute; bến Ninh Kiều/C&oacute; d&ograve;ng s&ocirc;ng đẹp với nhiều giai nh&acirc;n&quot;...Bến Ninh Kiều nay được người d&acirc;n xứ T&acirc;y Đ&ocirc; gọi l&agrave; c&ocirc;ng vi&ecirc;n Ninh Kiều, l&agrave; một bến nước, địa danh du lịch v&agrave; văn h&oacute;a được h&igrave;nh th&agrave;nh từ thế kỷ 19.Bến Ninh Kiều, nơi nh&igrave;n ra d&ograve;ng Hậu Giang dạt d&agrave;o ph&ugrave; sa, nằm ở vị tr&iacute; đắc địa, giao thoa hữu ngạn s&ocirc;ng Hậu, ngay ng&atilde; ba s&ocirc;ng Hậu v&agrave; s&ocirc;ng Cần Thơ, gần trung t&acirc;m th&agrave;nh phố Cần Thơ.<br />\r\nĐiều hấp dẫn du kh&aacute;ch của bến l&agrave; nh&agrave; thủy tạ tr&ecirc;n s&ocirc;ng. Nh&agrave; thủy tạ l&agrave; một con t&agrave;u nổi bồng bềnh nối bờ bằng một đoạn cầu, hai b&ecirc;n cầu c&oacute; lan can, kh&aacute;ch c&oacute; thể dừng ch&acirc;n đứng h&oacute;ng gi&oacute;. Nh&agrave; nổi n&agrave;y ch&iacute;nh l&agrave; nh&agrave; h&agrave;ng ăn uống c&oacute; hai tầng với h&agrave;ng trăm chỗ ngồi. Kh&aacute;ch tới nh&agrave; nổi, gọi ly nước ngọt, hoặc một xị rượu nếp than nhắm với m&oacute;n lẩu lươn đặc sản địa phương. Vừa ăn uống, vừa ngắm cảnh s&ocirc;ng Hậu. Tr&ecirc;n s&ocirc;ng đủ loại thuyền ngược thuyền xu&ocirc;i tấp nập. Bến c&ograve;n c&oacute; c&ocirc;ng vi&ecirc;n với nhiều loại c&acirc;y qu&yacute;, xanh mướt, l&agrave; nơi vui chơi v&agrave; sinh hoạt của người d&acirc;n.</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3928.8141814257274!2d105.7858675!3d10.0321875!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a06298aae43e71%3A0xc6a64bdac582285d!2zQuG6v24gTmluaCBLaeG7gXU!5e0!3m2!1svi!2s!4v1527733506977\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '106 Hai Bà Trưng, Tân An, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-06-21 01:33:51'),
+(3, 1, 1, 'Làng du lịch Mỹ Khánh', 'Du lịch sinh thái trong lòng Cần Thơ', '<p>L&agrave;ng Du Lịch Mỹ Kh&aacute;nh thuộc huyện Phong Điền, nằm c&aacute;ch trung t&acirc;m TP Cần Thơ 10km, tr&ecirc;n tuyến Lộ V&ograve;ng Cung lịch sử v&agrave; ở giữa hai chợ nổi C&aacute;i Răng v&agrave; Phong Điền. L&agrave;ng du lịch Mỹ Kh&aacute;nh l&agrave; nơi hội tụ những tinh hoa văn h&oacute;a s&ocirc;ng nước miệt vườn.</p>', '<p>L&agrave;ng Du Lịch Mỹ Kh&aacute;nh thuộc huyện Phong Điền, nằm c&aacute;ch trung t&acirc;m TP Cần Thơ 10km, tr&ecirc;n tuyến Lộ V&ograve;ng Cung lịch sử v&agrave; ở giữa hai chợ nổi C&aacute;i Răng v&agrave; Phong Điền. L&agrave;ng du lịch Mỹ Kh&aacute;nh l&agrave; nơi hội tụ những tinh hoa văn h&oacute;a s&ocirc;ng nước miệt vườn. Những trải nghiệm du kh&aacute;ch kh&ocirc;ng thể bỏ qua ở đ&acirc;y l&agrave; thưởng thức hơn 20 chủng loại tr&aacute;i c&acirc;y trong miệt vườn rộng lớn, tham quan l&agrave;ng nghề truyền thống, nấu rượu, tr&aacute;ng b&aacute;nh với người d&acirc;n bản địa, thưởng thức những m&oacute;n ăn đặc sản, tham quan nh&agrave; cổ Nam Bộ v&agrave; được nghe những b&agrave;i h&aacute;t vọng cổ giao duy&ecirc;n từ m&aacute;y h&aacute;t đĩa quay c&oacute; tuổi thọ đ&atilde; 80 năm.<br />\r\nĐến với L&agrave;ng Du Lịch Mỹ Kh&aacute;nh, qu&yacute; kh&aacute;ch thỏa sức kh&aacute;m ph&aacute;, t&igrave;m hiểu về đời sống cư d&acirc;n miệt vườn như: tham quan Nh&agrave; cổ Nam bộ, thưởng thức chương tr&igrave;nh văn nghệ &ldquo;đờn ca t&agrave;i tử&rdquo;, &ldquo;một ng&agrave;y l&agrave;m Điền Chủ&rdquo; với bữa cơm điền chủ, &ldquo;một ng&agrave;y l&agrave;m n&ocirc;ng d&acirc;n&rdquo;, &ldquo;t&aacute;t mương bắt c&aacute;&hellip;&rdquo;, tham quan l&agrave;ng nghề văn h&oacute;a truyền thống, vườn c&acirc;y ăn tr&aacute;i, c&aacute;c dịch vụ tại chỗ như đi xe ngựa, bơi thuyền, taxi điện, đua heo, đua ch&oacute;, xiếc khỉ, c&acirc;u c&aacute; sấu&hellip;v&agrave; nhiều chương tr&igrave;nh kh&aacute;c theo y&ecirc;u cầu của qu&yacute; kh&aacute;ch.</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.3355796516753!2d105.7043455147941!3d9.989113892858635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089ae6c592dbb%3A0x5475c9775633f9fe!2zTMOgbmcgRHUgbOG7i2NoIE3hu7kgS2jDoW5o!5e0!3m2!1svi!2s!4v1527733527287\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '335 Lộ Vòng Cung, Mỹ Khánh, Phong Điền, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-06-21 01:34:22'),
+(4, 1, 1, 'Vườn cò Bằng Lăng', 'Hoà mình với thiên nhiên', '<p>Vườn c&ograve; Bằng Lăng thuộc ấp Thới B&igrave;nh, huyện Thốt Nốt, Tp Cần Thơ. Vườn c&ograve; Bằng Lăng hiện đang l&agrave; một trong những s&acirc;n chim lớn nhất nơi miệt vườn n&agrave;y.</p>', '<p>Tr&ecirc;n đường từ Cần Thơ về th&agrave;nh phố Long Xuy&ecirc;n, qua khỏi thị trấn Thốt Nốt chừng 5 km l&agrave; đến vườn c&ograve; Bằng Lăng. Du kh&aacute;ch đến thăm vườn c&ograve; n&agrave;y sẽ được chi&ecirc;m ngưỡng thỏa th&iacute;ch v&ocirc; số c&aacute;c loại c&ograve; (c&ograve; trắng, c&ograve; x&aacute;m, c&ograve; đen, cồng cộc&hellip;) đang chao c&aacute;nh v&agrave; s&agrave; xuống đậu trắng x&oacute;a những những c&agrave;nh tr&uacute;c, đong đưa theo chiều gi&oacute;. Khi chiều về, quanh khu vực n&agrave;y c&oacute; &acirc;m thanh văng vẳng tiếng những con c&ograve; đang rối r&iacute;t gọi đ&agrave;n&hellip;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.7459923699903!2d105.50308531479638!3d10.282038692658071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a767e831c7399%3A0xf1d584c069d473eb!2zVsaw4budbiBjw7IgQuG6sW5nIEzEg25n!5e0!3m2!1svi!2s!4v1527733567718\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Thuận An, Thốt Nốt, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-06-21 01:34:48'),
+(5, 1, 1, 'Chùa Ông', 'Hoài niệm xưa cũ', '<p>Ch&ugrave;a &Ocirc;ng nằm ở đường Hai B&agrave; Trưng, Quận Ninh Kiều, Tp. Cần Thơ. Ch&ugrave;a &Ocirc;ng l&agrave; nơi sinh hoạt t&iacute;n ngưỡng v&agrave; văn ho&aacute; của người Hoa tại đ&acirc;y. Ch&ugrave;a được Bộ Văn ho&aacute; &ndash; Th&ocirc;ng tin c&ocirc;ng nhận l&agrave; di t&iacute;ch kiến tr&uacute;c nghệ thuật quốc gia năm 1993</p>', '<p>Ch&ugrave;a &Ocirc;ng nằm ở đường Hai B&agrave; Trưng, Quận Ninh Kiều, Tp. Cần Thơ. Ch&ugrave;a &Ocirc;ng l&agrave; nơi sinh hoạt t&iacute;n ngưỡng v&agrave; văn ho&aacute; của người Hoa tại đ&acirc;y. Ch&ugrave;a được Bộ Văn ho&aacute; &ndash; Th&ocirc;ng tin c&ocirc;ng nhận l&agrave; di t&iacute;ch kiến tr&uacute;c nghệ thuật quốc gia năm 1993. Ch&ugrave;a được x&acirc;y dựng năm 1894 &ndash; 1896, với lối kiến tr&uacute;c độc đ&aacute;o. M&aacute;i ch&ugrave;a lợp ng&oacute;i &acirc;m dương với c&aacute;c gờ b&oacute; m&aacute;i bằng những h&agrave;ng ng&oacute;i ống men xanh thẫm, tr&ecirc;n bờ n&oacute;c c&oacute; v&ocirc; số h&igrave;nh nh&acirc;n đủ m&agrave;u bằng gốm sứ, lưỡng long chầu nguyệt, chim phụng, ở hai đầu c&oacute; hai tượng người cầm mặt trời, mặt trăng. Trong ch&ugrave;a thờ Quan C&ocirc;ng &ndash; một tấm gương về l&ograve;ng trung hiếu tiết nghĩa v&agrave; c&aacute;c vị Quan &Acirc;m Nam Hải, Th&aacute;i Bạch tinh qu&acirc;n, Thổ Địa, Đổng Vĩnh,&hellip;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.7900380452093!2d105.78626891479446!3d10.034177592827776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0629e9e0072c5%3A0x45ff04519813c779!2zQ2jDuWEgw5RuZw!5e0!3m2!1svi!2s!4v1527733586010\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '32, Hai Bà Trưng, Tân An, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-06-21 01:35:37'),
 (6, 2, 1, 'Quán ăn Hàn Quốc Sam', 'Hoà nhập thế giới', 'Không gian ấm cúng, tinh tế\r\n                Đa dạng các món ăn mang hương vị Hàn Quốc\r\n               Phục vụ vhu đáo, nhiệt tình', 'Đồ ăn ở dạ đa dạng với nhiều món khác nhau cho khách hàng lựa chọn. Một phần lẩu 2 người đồ ăn cũng tương đối chứ không hẳn là nhiều, nhưng nước lẩu thì khá là ngon, còn có món mì tương đen nữa. Kêu 1phần mà ăn cả 2 người mới hết\r\nCó dịp sẽ ghé lại quán ủng hộ tiếp', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.978357620994!2d105.7648397147943!3d10.018644392838372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08831098958e9%3A0x83a667d12440f794!2zUXXDoW4gxINuIEjDoG4gUXXhu5FjIFNhbQ!5e0!3m2!1svi!2s!4v1527733603966\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '474 Đường 30 Tháng 4, Hưng Lợi, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (7, 2, 1, 'Quán Hồi Đó', 'Trở về ngày xưa', 'Quán có không gian kiểu xưa \r\nĐồ ăn khá ngon\r\nGiá ổn\r\nNằm trong hẻm nhưng cũng dễ tìm\r\nCó món lẩu mắn theo cá nhân thì ngon', 'Quán Hồi Đó có kiến trúc xây dựng kiểu nhà Nam Bộ xưa. Nếu là một người thành thị bạn sẽ thích với không gian nơi đây. Ngoài ra quán bán thức ăn khá phong phú, phục vụ cơm trưa và cả lẩu.\r\n              Nếu bạn muốn một vé về tuổi thơ. Thưởng thức những món ăn ngon của thời xưa, được chế biến theo phong cách truyền thống, và ăn bằn những dụng cụ truyền thống của những quán ăn 1975 sang trọng. Thì hãy đến nơi này.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.785519641608!2d105.77394781479445!3d10.034549992827467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0881f3bcce005%3A0x89d28cf688a6e80b!2zUXXDoW4gSOG7k2kgxJDDsw!5e0!3m2!1svi!2s!4v1527733619631\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '54, Trần Bình Trọng, An Phú, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (8, 2, 1, 'Bún Đậu Mắm Tôm 3 Hiền', 'Thử đồ ăn người Bắc', 'Một phần Bún Đậu Mắm Tôm 3 Hiền gồm: Chả cá, đậu hủ chiên giòn, thịt luộc cắt lát mỏng, thơm cắt sợi, rau sống, dưa leo và bánh tráng để cuốn vào, chấm với nước mắm pha thơm ngon mê ngất lòng người.', 'Một phần Bún Đậu Mắm Tôm 3 Hiền gồm: Chả cá, đậu hủ chiên giòn, thịt luộc cắt lát mỏng, thơm cắt sợi, rau sống, dưa leo và bánh tráng để cuốn vào, chấm với nước mắm pha thơm ngon mê ngất lòng người. Bí quyết tạo nên sự khác biệt của quán chính là cách pha mắm tôm độc quyền. Không quá mặn nồng cũng không quá ngọt, vừa ăn mà mùi thơm của mắm tôm dù chưa ăn nhưng nghe qua đã thấy thèm thuồng. Quán ăn đậm chất Bắc Bộ, theo đánh giá của thực khách. Còn chần chờ gì mà không đến với 3 Hiền để nhanh tay thưởng thức cái cảm giác mới mẻ mà bún đậu mang lại, hòa quyện với vị mắm tôm đậm đà, để lại dư vị khó phai trong lòng khách hàng.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.8719411125576!2d105.76796231479443!3d10.02742489283234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0883b537f9f5f%3A0xaba627c09d0c9623!2zQsO6biDEkOG6rXUgTeG6r20gVMO0bSAzIEhp4buBbg!5e0!3m2!1svi!2s!4v1527733637855\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '146A Ba Tháng Hai, Xuân Khánh, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
@@ -915,8 +915,8 @@ INSERT INTO `places` (`id`, `id_type`, `id_district`, `name`, `slogan`, `short_d
 (11, 3, 1, 'Mường Thanh Luxury Cần Thơ', 'Sang trọng là đẳng cấp', 'Chỗ nghỉ này cách bãi biển 2 phút đi bộ. Muong Thanh Luxury Can Tho Hotel cung cấp chỗ nghỉ tại thành phố Cần Thơ và có Wi-Fi miễn phí, trung tâm spa cũng như hồ bơi ngoài trời và quầy bar trong khuôn viên.', 'Chỗ nghỉ này cách bãi biển 2 phút đi bộ. Muong Thanh Luxury Can Tho Hotel cung cấp chỗ nghỉ tại thành phố Cần Thơ và có Wi-Fi miễn phí, trung tâm spa cũng như hồ bơi ngoài trời và quầy bar trong khuôn viên.\r\n          Mỗi phòng tại đây đều được trang bị máy điều hòa không khí và TV màn hình phẳng. Một số phòng có khu vực tiếp khách để thư giãn sau một ngày bận rộn và tầm nhìn ra quang cảnh dòng sông hoặc thành phố. Các phòng đi kèm phòng tắm riêng với bồn rửa vệ sinh (bidet), vòi sen, dép, áo choàng tắm và đồ vệ sinh cá nhân miễn phí.\r\n\r\n          Khách sạn có quầy lễ tân 24 giờ, sảnh khách chung và tiệm làm tóc.\r\n\r\n          Quý khách có thể chơi tennis tại khách sạn. Muong Thanh Luxury Can Tho Hotel nằm trong bán kính 1,2 km từ Bến Ninh Kiều và 7 km từ Chợ nổi Cái Răng. Sân bay gần nhất là Sân bay Cần Thơ, cách khách sạn 13 km. \r\n\r\n          Chỗ nghỉ này cũng được đánh giá là đáng giá tiền nhất ở Cần Thơ! Khách sẽ tiết kiệm được nhiều hơn so với nghỉ tại những chỗ nghỉ khác ở thành phố này.\r\n\r\n          Chúng tôi sử dụng ngôn ngữ của bạn!', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.691346462849!2d105.78822771479449!3d10.042308492822128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a5846ab293%3A0xc849fa3f328edd91!2zS2jDoWNoIHPhuqFuIE3GsOG7nW5nIFRoYW5oIEx1eHVyeSBD4bqnbiBUaMah!5e0!3m2!1svi!2s!4v1527733710710\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (12, 3, 1, 'Victoria Can Tho Resort ', 'Nhẹ nhàng và thư thái', 'Nằm bên bờ Sông Hậu, Victoria Can Tho Resort cung cấp chỗ nghỉ đạt chuẩn 4 sao tại một góc yên tĩnh của thành phố Cần Thơ. Với kiến ​​trúc kiểu thuộc địa, resort nằm giữa các khu vườn với những loại cây ngoại lai, nơi du khách có thể thư giãn và nhâm nhi đồ uống trong lúc tắm nắng bên hồ bơi ngoài trời.', 'Nằm bên bờ Sông Hậu, Victoria Can Tho Resort cung cấp chỗ nghỉ đạt chuẩn 4 sao tại một góc yên tĩnh của thành phố Cần Thơ. Với kiến ​​trúc kiểu thuộc địa, resort nằm giữa các khu vườn với những loại cây ngoại lai, nơi du khách có thể thư giãn và nhâm nhi đồ uống trong lúc tắm nắng bên hồ bơi ngoài trời.\r\n      Các phòng lắp máy điều hòa tại đây được trang trí với sắc be nhạt của vải và nâu của đồ nội thất gỗ sẫm màu. Trong phòng trang bị khu vực ghế ngồi, truyền hình vệ tinh màn hình phẳng và tủ lạnh mini. Một số phòng có ban công riêng. Phòng tắm riêng đi kèm bồn tắm, vòi sen và đồ vệ sinh cá nhân miễn phí.\r\n\r\n     Victoria Can Tho Resort có 7 phòng trị liệu với nhiều liệu pháp mát-xa, bao gồm từ mát-xa kiểu Việt Nam truyền thống cho tới mát-xa chữa bệnh toàn thân. Resort có quầy lễ tân 24 giờ và bàn đặt tour để hỗ trợ khách với nhiều dịch vụ, bao gồm dịch vụ nhận/trả phòng cấp tốc, giữ hành lý và đưa đón sân bay.\r\n\r\n      Victoria Can Tho Resort cách Cầu đi bộ Bến Ninh Kiều 700 m và Sân vận động Cần Thơ cũng như Bảo tàng Cần Thơ 1 km. Sân bay gần nhất là sân bay quốc tế Cần Thơ, cách đó 12 km.\r\n\r\n    Nhà hàng Spices trong khuôn viên nhìn ra Sông Hậu và có khu vực ghế ngồi trong nhà lẫn ngoài trời. Tại đây phục vụ ẩm thực Âu và Việt, được chuẩn bị bởi đầu bếp người Pháp của khách sạn. \r\n\r\n    Chỗ nghỉ này là một trong những vị trí được đánh giá tốt nhất ở Cần Thơ! Khách thích nơi đây hơn so với những chỗ nghỉ khác trong khu vực.\r\n\r\n Các cặp đôi đặc biệt thích địa điểm này — họ cho điểm 9,5 cho kỳ nghỉ dành cho 2 người.\r\n\r\n Chỗ nghỉ này cũng được đánh giá là đáng giá tiền nhất ở Cần Thơ! Khách sẽ tiết kiệm được nhiều hơn so với nghỉ tại những chỗ nghỉ khác ở thành phố này.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.72729334627!2d105.79134561479455!3d10.039347692824183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a4cdb540cd%3A0x62f4b50f8a858d2a!2zS2jDoWNoIHPhuqFuIFZpY3RvcmlhIEPhuqduIFRoxqE!5e0!3m2!1svi!2s!4v1527733728753\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', 'Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (13, 3, 1, 'Vinpearl Can Tho Hotel', 'Ngắm trọn Cần Thơ', 'Cách Bến Ninh Kiều chỉ 2,4 km, tòa nhà trắng Vinpearl Can Tho Hotel có hồ bơi ngoài trời tạo cảm giác dễ chịu. Khách ở khách sạn này có thể thưởng thức hàng loạt các món ăn địa phương và quốc tế tại nhà hàng trong khuôn viên hoặc chỉ đơn giản là thư giãn với đồ uống tùy chọn ở quầy bar. Du khách có thể lướt Internet bằng Wi-Fi miễn phí toàn khách sạn.', 'Cách Bến Ninh Kiều chỉ 2,4 km, tòa nhà trắng Vinpearl Can Tho Hotel có hồ bơi ngoài trời tạo cảm giác dễ chịu. Khách ở khách sạn này có thể thưởng thức hàng loạt các món ăn địa phương và quốc tế tại nhà hàng trong khuôn viên hoặc chỉ đơn giản là thư giãn với đồ uống tùy chọn ở quầy bar. Du khách có thể lướt Internet bằng Wi-Fi miễn phí toàn khách sạn.\r\n        Các phòng nghỉ lắp máy điều hòa tại đây cho tầm nhìn ra dòng sông và/hoặc thành phố. Trong phòng còn được trang bị TV truyền hình cáp và tủ lạnh mini. Phòng tắm riêng đi kèm bồn tắm và vòi sen. Áo choàng tắm và dép cũng được cung cấp trong phòng.\r\n\r\n        Những khách muốn chăm sóc bản thân có thể đến trung tâm chăm sóc sức khỏe và spa cũng như tiệm làm tóc trong khuôn viên. Khách sạn còn có trung tâm thể dục, CLB trẻ em và bàn đặt tour.\r\n\r\n        Nhân viên nói được 2 thứ tiếng tại lễ tân có thể trợ giúp khách với việc thu xếp dịch vụ đưa đón, dịch vụ giặt là, dịch vụ thu đổi ngoại tệ và những yêu cầu khác.\r\n\r\n        Khách sạn còn có dịch vụ cho thuê xe hơi. Vinpearl Can Tho Hotel cách Chợ nổi Cái Răng 3,8 km và Bảo tàng Cần Thơ 2,3 km. Sân bay Rạch Giá cách đó 70 km. \r\n\r\n        Chỗ nghỉ này là một trong những vị trí được đánh giá tốt nhất ở Cần Thơ! Khách thích nơi đây hơn so với những chỗ nghỉ khác trong khu vực.\r\n\r\n     Các cặp đôi đặc biệt thích địa điểm này — họ cho điểm 8,8 cho kỳ nghỉ dành cho 2 người.\r\n\r\n     Chỗ nghỉ này cũng được đánh giá là đáng giá tiền nhất ở Cần Thơ! Khách sẽ tiết kiệm được nhiều hơn so với nghỉ tại những chỗ nghỉ khác ở thành phố này.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.9084146562564!2d105.77264101479432!3d10.024416292834454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08833f000f11f%3A0x7eabead940802b56!2zVmlucGVhcmwgQ-G6p24gVGjGoSBIb3RlbA!5e0!3m2!1svi!2s!4v1527733747499\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '209 Đường 30 Tháng 4, Xuân Khánh, Ninh Kiều, Cần Thơ', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(14, 3, 1, 'Ninh Kieu Riverside Hotel', 'Thủ phủ quê nhà', 'Ninh Kieu Riverside Hotel tọa lạc tại thành phố Cần Thơ và cách Cầu đi bộ Bến Ninh Kiều chỉ 1 phút dạo bước. Du khách có thể dùng bữa trong nhà hàng hay thư giãn ở quán bar. Khách sạn cung cấp miễn phí Wi-Fi trong toàn khuôn viên và bãi đậu xe riêng tại chỗ.', 'Ninh Kieu Riverside Hotel tọa lạc tại thành phố Cần Thơ và cách Cầu đi bộ Bến Ninh Kiều chỉ 1 phút dạo bước. Du khách có thể dùng bữa trong nhà hàng hay thư giãn ở quán bar. Khách sạn cung cấp miễn phí Wi-Fi trong toàn khuôn viên và bãi đậu xe riêng tại chỗ.\r\nTất cả các phòng nghỉ tại đây đều được trang bị truyền hình cáp màn hình phẳng, ấm đun nước và phòng tắm riêng kèm vòi sen. Những tiện nghi khác bao gồm dép và đồ vệ sinh cá nhân miễn phí.\r\n\r\nNhân viên song ngữ tại quầy lễ tân 24 giờ có thể hỗ trợ khách với các dịch vụ nhận phòng và trả phòng riêng, thu đổi ngoại tệ cũng như giữ hành lý.\r\n\r\nNinh Kieu Riverside Hotel cách Chợ Đêm 400 m, Bảo tàng Cần Thơ 500 m, Chợ nổi Cái Răng 7 km và sân bay gần nhất là sân bay Rạch Giá 72 km. \r\n\r\nChỗ nghỉ này là một trong những vị trí được đánh giá tốt nhất ở Cần Thơ! Khách thích nơi đây hơn so với những chỗ nghỉ khác trong khu vực.\r\n\r\nCác cặp đôi đặc biệt thích địa điểm này — họ cho điểm 8,8 cho kỳ nghỉ dành cho 2 người.', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.763826809605!2d105.78745501479453!3d10.036337692826258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x3f70fa9b4ba0895e!2sNinh+Kieu+Riverside+Hotel!5e0!3m2!1svi!2s!4v1527733770529\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '2 Hai Bà Trưng st, Tân An, Ninh Kiều, Cần Thơ 900000, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(15, 3, 1, 'Ninh Kieu 2 Hotel', 'Trung tâm thành phố', 'Tọa lạc tại thành phố Cần Thơ, cách Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel có trung tâm thể dục, lễ tân 24 giờ và sảnh khách chung. Khách sạn 4 sao này cung cấp Wi-Fi miễn phí.', 'Tọa lạc tại thành phố Cần Thơ, cách Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel có trung tâm thể dục, lễ tân 24 giờ và sảnh khách chung. Khách sạn 4 sao này cung cấp Wi-Fi miễn phí.\r\n     Tất cả các phòng nghỉ tại Ninh Kieu 2 Hotel đều có khu vực ghế ngồi và TV truyền hình cáp màn hình phẳng. Các phòng cũng có phòng tắm riêng, tầm nhìn ra quang cảnh thành phố, máy điều hòa và bàn làm việc.\r\n\r\n      Khách sạn cung cấp bữa sáng kiểu Mỹ hàng ngày. Tại đây có nhà hàng ngay trong khuôn viên phục vụ hải sản và ẩm thực Việt Nam.\r\n\r\n     Ninh Kieu 2 Hotel có sân hiên.\r\n\r\n    Gần khách sạn có các điểm tham quan nổi tiếng như trung tâm thương mại Vincom Plaza Hùng Vương, trung tâm thương mại Vincom Plaza Xuân Khánh và Bảo tàng Cần Thơ. Sân bay gần nhất là Sân bay Rạch Giá, cách chỗ nghỉ 72 km. ', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.780440486042!2d105.78387401479443!3d10.03496859282718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x386bdb632835e00e!2zS2jDoWNoIFPhuqFuIE5pbmggS2nhu4F1IDI!5e0!3m2!1svi!2s!4v1527733792692\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '03 Đại lộ Hoà Bình, Tân An, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
+(14, 3, 1, 'Ninh Kieu Riverside Hotel', 'Thủ phủ quê nhà', '<p>Ninh Kieu Riverside Hotel tọa lạc tại th&agrave;nh phố Cần Thơ v&agrave; c&aacute;ch Cầu đi bộ Bến Ninh Kiều chỉ 1 ph&uacute;t dạo bước. Du kh&aacute;ch c&oacute; thể d&ugrave;ng bữa trong nh&agrave; h&agrave;ng hay thư gi&atilde;n ở qu&aacute;n bar. Kh&aacute;ch sạn cung cấp miễn ph&iacute; Wi-Fi trong to&agrave;n khu&ocirc;n vi&ecirc;n v&agrave; b&atilde;i đậu xe ri&ecirc;ng tại chỗ.</p>', '<p>Ninh Kieu Riverside Hotel tọa lạc tại th&agrave;nh phố Cần Thơ v&agrave; c&aacute;ch Cầu đi bộ Bến Ninh Kiều chỉ 1 ph&uacute;t dạo bước. Du kh&aacute;ch c&oacute; thể d&ugrave;ng bữa trong nh&agrave; h&agrave;ng hay thư gi&atilde;n ở qu&aacute;n bar. Kh&aacute;ch sạn cung cấp miễn ph&iacute; Wi-Fi trong to&agrave;n khu&ocirc;n vi&ecirc;n v&agrave; b&atilde;i đậu xe ri&ecirc;ng tại chỗ. Tất cả c&aacute;c ph&ograve;ng nghỉ tại đ&acirc;y đều được trang bị truyền h&igrave;nh c&aacute;p m&agrave;n h&igrave;nh phẳng, ấm đun nước v&agrave; ph&ograve;ng tắm ri&ecirc;ng k&egrave;m v&ograve;i sen. Những tiện nghi kh&aacute;c bao gồm d&eacute;p v&agrave; đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;. Nh&acirc;n vi&ecirc;n song ngữ tại quầy lễ t&acirc;n 24 giờ c&oacute; thể hỗ trợ kh&aacute;ch với c&aacute;c dịch vụ nhận ph&ograve;ng v&agrave; trả ph&ograve;ng ri&ecirc;ng, thu đổi ngoại tệ cũng như giữ h&agrave;nh l&yacute;. Ninh Kieu Riverside Hotel c&aacute;ch Chợ Đ&ecirc;m 400 m, Bảo t&agrave;ng Cần Thơ 500 m, Chợ nổi C&aacute;i Răng 7 km v&agrave; s&acirc;n bay gần nhất l&agrave; s&acirc;n bay Rạch Gi&aacute; 72 km. Chỗ nghỉ n&agrave;y l&agrave; một trong những vị tr&iacute; được đ&aacute;nh gi&aacute; tốt nhất ở C&acirc;̀n Thơ! Kh&aacute;ch th&iacute;ch nơi đ&acirc;y hơn so với những chỗ nghỉ kh&aacute;c trong khu vực. C&aacute;c cặp đ&ocirc;i đặc biệt th&iacute;ch địa điểm n&agrave;y &mdash; họ cho điểm 8,8 cho kỳ nghỉ d&agrave;nh cho 2 người.</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.763826809605!2d105.78745501479453!3d10.036337692826258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x3f70fa9b4ba0895e!2sNinh+Kieu+Riverside+Hotel!5e0!3m2!1svi!2s!4v1527733770529\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '2 Hai Bà Trưng st, Tân An, Ninh Kiều, Cần Thơ 900000, Việt Nam', '2018-05-21 00:00:00', '2018-06-21 01:31:41'),
+(15, 3, 1, 'Ninh Kieu 2 Hotel', 'Trung tâm thành phố', '<p>Tọa lạc tại th&agrave;nh phố Cần Thơ, c&aacute;ch Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel c&oacute; trung t&acirc;m thể dục, lễ t&acirc;n 24 giờ v&agrave; sảnh kh&aacute;ch chung. Kh&aacute;ch sạn 4 sao n&agrave;y cung cấp Wi-Fi miễn ph&iacute;.</p>', '<p>Tọa lạc tại th&agrave;nh phố Cần Thơ, c&aacute;ch Bến Ninh Kiều 300 m, Ninh Kieu 2 Hotel c&oacute; trung t&acirc;m thể dục, lễ t&acirc;n 24 giờ v&agrave; sảnh kh&aacute;ch chung. Kh&aacute;ch sạn 4 sao n&agrave;y cung cấp Wi-Fi miễn ph&iacute;. Tất cả c&aacute;c ph&ograve;ng nghỉ tại Ninh Kieu 2 Hotel đều c&oacute; khu vực ghế ngồi v&agrave; TV truyền h&igrave;nh c&aacute;p m&agrave;n h&igrave;nh phẳng. C&aacute;c ph&ograve;ng cũng c&oacute; ph&ograve;ng tắm ri&ecirc;ng, tầm nh&igrave;n ra quang cảnh th&agrave;nh phố, m&aacute;y điều h&ograve;a v&agrave; b&agrave;n l&agrave;m việc. Kh&aacute;ch sạn cung cấp bữa s&aacute;ng kiểu Mỹ h&agrave;ng ng&agrave;y. Tại đ&acirc;y c&oacute; nh&agrave; h&agrave;ng ngay trong khu&ocirc;n vi&ecirc;n phục vụ hải sản v&agrave; ẩm thực Việt Nam. Ninh Kieu 2 Hotel c&oacute; s&acirc;n hi&ecirc;n. Gần kh&aacute;ch sạn c&oacute; c&aacute;c điểm tham quan nổi tiếng như trung t&acirc;m thương mại Vincom Plaza H&ugrave;ng Vương, trung t&acirc;m thương mại Vincom Plaza Xu&acirc;n Kh&aacute;nh v&agrave; Bảo t&agrave;ng Cần Thơ. S&acirc;n bay gần nhất l&agrave; S&acirc;n bay Rạch Gi&aacute;, c&aacute;ch chỗ nghỉ 72 km.</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.780440486042!2d105.78387401479443!3d10.03496859282718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a062a3c85bbcc5%3A0x386bdb632835e00e!2zS2jDoWNoIFPhuqFuIE5pbmggS2nhu4F1IDI!5e0!3m2!1svi!2s!4v1527733792692\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '03 Đại lộ Hoà Bình, Tân An, Ninh Kiều, Cần Thơ, Việt Nam', '2018-05-21 00:00:00', '2018-06-21 01:32:22');
 
 -- --------------------------------------------------------
 
@@ -1000,21 +1000,21 @@ CREATE TABLE `place_location` (
 --
 
 INSERT INTO `place_location` (`id`, `id_place`, `coor`, `created_at`, `updated_at`) VALUES
-(1, 1, '260', '2018-05-21 00:00:00', '2018-06-19 19:21:33'),
-(2, 2, '120', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(3, 3, '230', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, 4, '450', '2018-05-21 00:00:00', '2018-06-19 20:01:39'),
-(5, 5, '430', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(6, 6, '330', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(7, 7, '670', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(8, 8, '780', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(9, 9, '870', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(10, 10, '390', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(11, 11, '660', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(12, 12, '560', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(13, 13, '900', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(14, 14, '870', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(15, 15, '880', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
+(1, 1, '10.002061, 105.744070', '2018-05-20 17:00:00', '2018-06-21 01:32:52'),
+(2, 2, '10.033385, 105.788444', '2018-05-20 17:00:00', '2018-06-21 01:33:51'),
+(3, 3, '9.989114, 105.706534', '2018-05-20 17:00:00', '2018-06-21 01:34:22'),
+(4, 4, '10.282091, 105.505285', '2018-05-20 17:00:00', '2018-06-21 01:34:48'),
+(5, 5, '10.034198, 105.788450', '2018-05-20 17:00:00', '2018-06-21 01:35:37'),
+(16, 6, '10.018581, 105.767093', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(17, 7, '10.034539, 105.776126', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(18, 8, '10.027488, 105.770151', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(19, 9, '10.028744, 105.774190', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(20, 10, '10.009708, 105.747233', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(21, 11, '10.042372, 105.790427', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(22, 12, '10.039316, 105.793470', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(23, 13, '10.024490, 105.774787', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(24, 14, '10.036391, 105.789665', '2018-06-20 17:00:00', '2018-06-20 17:00:00'),
+(25, 15, '10.035011, 105.786063', '2018-06-20 17:00:00', '2018-06-20 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -1046,29 +1046,25 @@ INSERT INTO `place_type` (`id`, `name`, `description`) VALUES
 CREATE TABLE `travel` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_place` int(10) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `travel`
---
-
-INSERT INTO `travel` (`id`, `id_place`, `created_at`, `updated_at`) VALUES
-(1, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(2, 2, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(3, 3, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(4, 4, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(5, 5, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(6, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(7, 1, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(8, 4, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(9, 5, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(10, 10, '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
-(11, 11, '2018-05-21 00:00:00', '2018-05-24 00:00:00');
-
 -- --------------------------------------------------------
 
+INSERT INTO `travel` (`id`, `id_place`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 20,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(2, 2, 30,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(3, 3, 25,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(4, 4, 50,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(5, 5, 10,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(6, 1, 24,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(7, 1, 23,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(8, 4, 13,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(9, 5, 80,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(10, 10, 100,'2018-05-21 00:00:00', '2018-05-24 00:00:00'),
+(11, 11, 1000,'2018-05-21 00:00:00', '2018-05-24 00:00:00');
 --
 -- Cấu trúc bảng cho bảng `users`
 --
@@ -1083,9 +1079,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `users`
---
+-- --------------------------------------------------------
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'a@b.c', '$2y$10$8L4srdLWmt/nP76GgoDYI.801KtHp28yIm/JPYud4rnVxYWj6lE6G', 'C8Tx9DKbd9R7iwIRhIhxnxLV8pyIrU7bgtfiPuPQY06CJqO8ftrWAaqtqlfS', '2018-06-19 20:23:24', '2018-06-19 20:23:24');
@@ -1115,9 +1109,6 @@ INSERT INTO `user_location` (`id`, `coor`, `created_at`, `updated_at`) VALUES
 (5, '10.039252,105.791973', '2018-05-21 00:00:00', '2018-05-24 00:00:00'),
 (6, '10.039252,105.791979', '2018-05-21 00:00:00', '2018-05-24 00:00:00');
 
---
--- Chỉ mục cho các bảng đã đổ
---
 
 --
 -- Chỉ mục cho bảng `cities`
@@ -1201,19 +1192,19 @@ ALTER TABLE `user_location`
 -- AUTO_INCREMENT cho bảng `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `districts`
 --
 ALTER TABLE `districts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=687;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -1225,43 +1216,43 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `place_image`
 --
 ALTER TABLE `place_image`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `place_location`
 --
 ALTER TABLE `place_location`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `place_type`
 --
 ALTER TABLE `place_type`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `travel`
 --
 ALTER TABLE `travel`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `user_location`
 --
 ALTER TABLE `user_location`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

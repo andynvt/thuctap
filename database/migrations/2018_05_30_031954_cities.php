@@ -16,6 +16,7 @@ class Cities extends Migration
         Schema::create('cities', function ($table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slg');
         });
     }
 

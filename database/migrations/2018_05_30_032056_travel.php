@@ -17,6 +17,7 @@ class Travel extends Migration
             $table->increments('id');
             $table->integer('id_place')->unsigned();
             $table->foreign('id_place')->references('id')->on('places')->onDelete('CASCADE');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
