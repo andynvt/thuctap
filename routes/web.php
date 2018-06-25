@@ -51,7 +51,9 @@ Route::get('chi-tiet-dia-diem/{id}',[
 	'uses' => 'CustomerController@CustomerDetailplace'
 ]);
 
-Route::get('dg', 'CustomerController@postDanhGia') ;
+Route::get('dg', 'CustomerController@postDanhGia');
+
+Route::get('pl', 'CustomerController@AjaxPlace');
 
 Route::get('tim-kiem',[
     'as' => 'customer.tim-kiem',

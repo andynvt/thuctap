@@ -1,5 +1,6 @@
 @extends('customer.master')
 
+
 @section('header')
     @include('customer.header')
 @endsection
@@ -7,6 +8,51 @@
     {{$places[0]->name}} | Tour Guide
 </title>
 @section('content')
+
+    <script>
+
+        var id = '{{$pl[0]->id}}';
+        var id_type = '{{$pl[0]->id_type}}';
+        var coor = '{{$pl[0]->coor}}';
+
+        $.ajax({
+            url: 'pl',
+            type: 'GET',
+            dataType: 'json',
+            data: {id:id, id_type:id_type, coor:coor},
+            success: function (data) {
+                console.log(data);
+
+                var sameplace = $('#same-place').html();
+
+                for ($i=0; $i<data.length; $i++){
+
+                    var base_url = {!! json_encode(url('/')) !!}
+
+                    $('.same-pl').append(sameplace).children('#it'+($i-$i)).attr('id', 'it'+ ($i+1));
+
+                    $('#it' +($i+1)+ ' .a-img-pl').attr('href', base_url + '/chi-tiet-dia-diem/' + data[0][$i]['id']);
+                    $('#it' +($i+1)+ ' .img-pl').attr('src', 'storage/image/' + data[0][$i]['piname']);
+                    $('#it' +($i+1)+ ' .a-h4-lq').attr('href', base_url + '/chi-tiet-dia-diem/' + data[0][$i]['id']);
+                    $('#it' +($i+1)+ ' .a-h4-lq').html(data[0][$i]['name']);
+
+                    if(id == data[0][$i]['id']){
+                        $('#it' +($i+1)).remove();
+                    }
+                    var divbu = $('.fade-div-bu') .html();
+
+
+                    for($i=0; $i<1; $i++){
+                    //     $('.div-bu').append(divbu);
+                    //     $('.div-bu').append(divbu).children().attr('id', 'itm1');
+                        alert($i);
+                    }
+
+                }
+            }
+        });
+
+    </script>
 <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('./storage/image/{{$image[0]->name}}');">
     <div class="container">
         <div class="row">
@@ -168,195 +214,204 @@
             </div>
             <div class="col-md-4 col-lg-4 col-xl-4 col-sm-12 card col-card-lq">
                 <div class="title-lq card-header card-header-primary">
-                    <h3>ĐỊA ĐIỂM LIÊN QUAN</h3>
+                    <h3>ĐỊA ĐIỂM GẦN NHẤT</h3>
                 </div>
                 <br>
-                <div class="col-12 content-lq" style="flex: auto;">
-                    @foreach($same_place as $sp)
-                    <div class="item-lq">
-                        <a href="{{route('detailplace',$sp->id)}}"><img src="storage/image/{{$sp->piname}}" alt="{{$sp->name}}" class="img-raised rounded img-fluid"></a>
-                        <div class="">
-                            <p class="h4-lq"><a href="{{route('detailplace',$sp->id)}}">{{$sp->name}}</a></p>
-                        </div>
-                    </div>
-                    @endforeach
+                <div class="col-12 content-lq same-pl" style="flex: auto;">
+                    {{--@foreach($same_place as $sp)--}}
+                    {{--<div class="item-lq">--}}
+                        {{--<a href="{{route('detailplace',$sp->id)}}"><img src="storage/image/{{$sp->piname}}" alt="{{$sp->name}}" class="img-raised rounded img-fluid"></a>--}}
+                        {{--<div class="">--}}
+                            {{--<p class="h4-lq"><a href="{{route('detailplace',$sp->id)}}">{{$sp->name}}</a></p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--@endforeach--}}
                 </div>
             </div>
         </div>
         @switch($id_type)
             @case(1)
-                <div class="row" style="margin: 0;">
-                    <div class="col-12">
-                        <div class="card card-nav-tabs">
-                            <div class="title-lq card-header card-header-primary">
-                                <h3>ĂN UỐNG</h3>
-                            </div>
-                            <div class="card-body " style="padding: 20px 5px 0 5px;">
-                                <div class="tab-content text-left">
-                                    <div class="tab-pane active" id="info">
-                                        <div class="text-center my-3 content-slide-place">
-                                            <div id="eatingCarousel" class="carousel slide w-100" data-ride="carousel">
-                                                <div class="carousel-inner w-100" role="listbox">
-                                                    @foreach($anuong->chunk(3) as $count => $item)
-                                                        <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
-                                                            @foreach($item as $au)
-                                                                <div class="col-4 float-left">
-                                                                    <div class="item-lq">
-                                                                        <a href="{{route('detailplace',$au->id)}}"><img
-                                                                                    src="storage/image/{{$au->piname}}"
-                                                                                    alt="{{$au->name}}"
-                                                                                    class="img-raised rounded img-fluid"></a>
-                                                                        <h4 class="h4-ct"><a
-                                                                                    href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>
-                                                                        </h4>
-                                                                    </div>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                                <a class="carousel-control-prev" href="#eatingCarousel" role="button"
-                                                   data-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="carousel-control-next" href="#eatingCarousel" role="button"
-                                                   data-slide="next"><span class="carousel-control-next-icon"
-                                                                           aria-hidden="true"></span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </div>
-                                        </div>
+            <div class="div-bu">
+                {{--<div class="row" style="margin: 0;">--}}
+                    {{--<div class="col-12">--}}
+                        {{--<div class="card card-nav-tabs">--}}
+                            {{--<div class="title-lq card-header card-header-primary">--}}
+                                {{--<h3>ĂN UỐNG</h3>--}}
+                            {{--</div>--}}
+                            {{--<div class="card-body " style="padding: 20px 5px 0 5px;">--}}
+                                {{--<div class="tab-content text-left">--}}
+                                    {{--<div class="tab-pane active" id="info">--}}
+                                        {{--<div class="text-center my-3 content-slide-place">--}}
+                                            {{--<div id="eatingCarousel" class="carousel slide w-100" data-ride="carousel">--}}
+                                                {{--<div class="carousel-inner w-100" role="listbox">--}}
+                                                    {{--@foreach($anuong->chunk(3) as $count => $item)--}}
+                                                        {{--<div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">--}}
+                                                            {{--@foreach($item as $au)--}}
+                                                                {{--<div class="col-4 float-left">--}}
+                                                                    {{--<div class="item-lq">--}}
+                                                                        {{--<a href="{{route('detailplace',$au->id)}}"><img--}}
+                                                                                    {{--src="storage/image/{{$au->piname}}"--}}
+                                                                                    {{--alt="{{$au->name}}"--}}
+                                                                                    {{--class="img-raised rounded img-fluid"></a>--}}
+                                                                        {{--<h4 class="h4-ct"><a--}}
+                                                                                    {{--href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>--}}
+                                                                        {{--</h4>--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--@endforeach--}}
+                                                        {{--</div>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</div>--}}
+                                                {{--<a class="carousel-control-prev" href="#eatingCarousel" role="button"--}}
+                                                   {{--data-slide="prev">--}}
+                                                    {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Previous</span>--}}
+                                                {{--</a>--}}
+                                                {{--<a class="carousel-control-next" href="#eatingCarousel" role="button"--}}
+                                                   {{--data-slide="next"><span class="carousel-control-next-icon"--}}
+                                                                           {{--aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Next</span>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
 
-                                        <!--mobile carousel-->
+                                        {{--<!--mobile carousel-->--}}
 
-                                        <div class="text-center my-3">
-                                            <div id="eatingMobileCarousel" class="carousel slide w-100"
-                                                 data-ride="carousel">
-                                                <div class="carousel-inner w-100" role="listbox">
-                                                    @foreach($anuong->chunk(1) as $count => $item)
-                                                        <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
-                                                            @foreach($item as $au)
-                                                                <div class="col-12 float-left">
-                                                                    <div class="item-lq">
-                                                                        <a href="{{route('detailplace',$au->id)}}"><img
-                                                                                    src="storage/image/{{$au->piname}}"
-                                                                                    alt="{{$au->name}}"
-                                                                                    class="img-raised rounded img-fluid"></a>
-                                                                        <h4 class="h4-ct"><a
-                                                                                    href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>
-                                                                        </h4>
-                                                                    </div>
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                                <a class="carousel-control-prev" href="#eatingMobileCarousel" role="button"
-                                                   data-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="carousel-control-next" href="#eatingMobileCarousel" role="button"
-                                                   data-slide="next"><span class="carousel-control-next-icon"
-                                                                           aria-hidden="true"></span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin: 0;">
-                <div class="col-12">
-                    <div class="card card-nav-tabs">
-                        <div class="title-lq card-header card-header-primary">
-                            <h3>KHÁCH SẠN</h3>
-                        </div>
-                        <div class="card-body " style="padding: 20px 5px 0 5px;">
-                            <div class="tab-content text-left">
-                                <div class="tab-pane active" id="info">
-                                    <div class="text-center my-3 content-slide-place">
-                                        <div id="hotelCarousel" class="carousel slide w-100" data-ride="carousel">
-                                            <div class="carousel-inner w-100" role="listbox">
-                                                @foreach($khachsan->chunk(3) as $count => $item)
-                                                    <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
-                                                        @foreach($item as $au)
-                                                            <div class="col-4 float-left">
-                                                                <div class="item-lq">
-                                                                    <a href="{{route('detailplace',$au->id)}}"><img
-                                                                                src="storage/image/{{$au->piname}}"
-                                                                                alt="{{$au->name}}"
-                                                                                class="img-raised rounded img-fluid"></a>
-                                                                    <h4 class="h4-ct"><a
-                                                                                href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>
-                                                                    </h4>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <a class="carousel-control-prev" href="#hotelCarousel" role="button"
-                                               data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#hotelCarousel" role="button"
-                                               data-slide="next"><span class="carousel-control-next-icon"
-                                                                       aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                        {{--<div class="text-center my-3">--}}
+                                            {{--<div id="eatingMobileCarousel" class="carousel slide w-100"--}}
+                                                 {{--data-ride="carousel">--}}
+                                                {{--<div class="carousel-inner w-100" role="listbox">--}}
+                                                    {{--@foreach($anuong->chunk(1) as $count => $item)--}}
+                                                        {{--<div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">--}}
+                                                            {{--@foreach($item as $au)--}}
+                                                                {{--<div class="col-12 float-left">--}}
+                                                                    {{--<div class="item-lq">--}}
+                                                                        {{--<a href="{{route('detailplace',$au->id)}}"><img--}}
+                                                                                    {{--src="storage/image/{{$au->piname}}"--}}
+                                                                                    {{--alt="{{$au->name}}"--}}
+                                                                                    {{--class="img-raised rounded img-fluid"></a>--}}
+                                                                        {{--<h4 class="h4-ct"><a--}}
+                                                                                    {{--href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>--}}
+                                                                        {{--</h4>--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--@endforeach--}}
+                                                        {{--</div>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</div>--}}
+                                                {{--<a class="carousel-control-prev" href="#eatingMobileCarousel"--}}
+                                                   {{--role="button"--}}
+                                                   {{--data-slide="prev">--}}
+                                                    {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Previous</span>--}}
+                                                {{--</a>--}}
+                                                {{--<a class="carousel-control-next" href="#eatingMobileCarousel"--}}
+                                                   {{--role="button"--}}
+                                                   {{--data-slide="next"><span class="carousel-control-next-icon"--}}
+                                                                           {{--aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Next</span>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="row" style="margin: 0;">--}}
+                    {{--<div class="col-12">--}}
+                        {{--<div class="card card-nav-tabs">--}}
+                            {{--<div class="title-lq card-header card-header-primary">--}}
+                                {{--<h3>KHÁCH SẠN</h3>--}}
+                            {{--</div>--}}
+                            {{--<div class="card-body " style="padding: 20px 5px 0 5px;">--}}
+                                {{--<div class="tab-content text-left">--}}
+                                    {{--<div class="tab-pane active" id="info">--}}
+                                        {{--<div class="text-center my-3 content-slide-place">--}}
+                                            {{--<div id="hotelCarousel" class="carousel slide w-100" data-ride="carousel">--}}
+                                                {{--<div class="carousel-inner w-100" role="listbox">--}}
+                                                    {{--@foreach($khachsan->chunk(3) as $count => $item)--}}
+                                                        {{--<div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">--}}
+                                                            {{--@foreach($item as $au)--}}
+                                                                {{--<div class="col-4 float-left">--}}
+                                                                    {{--<div class="item-lq">--}}
+                                                                        {{--<a href="{{route('detailplace',$au->id)}}"><img--}}
+                                                                                    {{--src="storage/image/{{$au->piname}}"--}}
+                                                                                    {{--alt="{{$au->name}}"--}}
+                                                                                    {{--class="img-raised rounded img-fluid"></a>--}}
+                                                                        {{--<h4 class="h4-ct"><a--}}
+                                                                                    {{--href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>--}}
+                                                                        {{--</h4>--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--@endforeach--}}
+                                                        {{--</div>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</div>--}}
+                                                {{--<a class="carousel-control-prev" href="#hotelCarousel" role="button"--}}
+                                                   {{--data-slide="prev">--}}
+                                                    {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Previous</span>--}}
+                                                {{--</a>--}}
+                                                {{--<a class="carousel-control-next" href="#hotelCarousel" role="button"--}}
+                                                   {{--data-slide="next"><span class="carousel-control-next-icon"--}}
+                                                                           {{--aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Next</span>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
 
-                                    <!--mobile carousel-->
+                                        {{--<!--mobile carousel-->--}}
 
-                                    <div class="text-center my-3">
-                                        <div id="hotelMobileCarousel" class="carousel slide w-100" data-ride="carousel">
-                                            <div class="carousel-inner w-100" role="listbox">
-                                                @foreach($khachsan->chunk(1) as $count => $item)
-                                                    <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
-                                                        @foreach($item as $au)
-                                                            <div class="col-12 float-left">
-                                                                <div class="item-lq">
-                                                                    <a href="{{route('detailplace',$au->id)}}"><img
-                                                                                src="storage/image/{{$au->piname}}"
-                                                                                alt="{{$au->name}}"
-                                                                                class="img-raised rounded img-fluid"></a>
-                                                                    <h4 class="h4-ct"><a
-                                                                                href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>
-                                                                    </h4>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <a class="carousel-control-prev" href="#hotelMobileCarousel" role="button"
-                                               data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#hotelMobileCarousel" role="button"
-                                               data-slide="next"><span class="carousel-control-next-icon"
-                                                                       aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                        {{--<div class="text-center my-3">--}}
+                                            {{--<div id="hotelMobileCarousel" class="carousel slide w-100"--}}
+                                                 {{--data-ride="carousel">--}}
+                                                {{--<div class="carousel-inner w-100" role="listbox">--}}
+                                                    {{--@foreach($khachsan->chunk(1) as $count => $item)--}}
+                                                        {{--<div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">--}}
+                                                            {{--@foreach($item as $au)--}}
+                                                                {{--<div class="col-12 float-left">--}}
+                                                                    {{--<div class="item-lq">--}}
+                                                                        {{--<a href="{{route('detailplace',$au->id)}}"><img--}}
+                                                                                    {{--src="storage/image/{{$au->piname}}"--}}
+                                                                                    {{--alt="{{$au->name}}"--}}
+                                                                                    {{--class="img-raised rounded img-fluid"></a>--}}
+                                                                        {{--<h4 class="h4-ct"><a--}}
+                                                                                    {{--href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>--}}
+                                                                        {{--</h4>--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--@endforeach--}}
+                                                        {{--</div>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</div>--}}
+                                                {{--<a class="carousel-control-prev" href="#hotelMobileCarousel"--}}
+                                                   {{--role="button"--}}
+                                                   {{--data-slide="prev">--}}
+                                                    {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Previous</span>--}}
+                                                {{--</a>--}}
+                                                {{--<a class="carousel-control-next" href="#hotelMobileCarousel"--}}
+                                                   {{--role="button"--}}
+                                                   {{--data-slide="next"><span class="carousel-control-next-icon"--}}
+                                                                           {{--aria-hidden="true"></span>--}}
+                                                    {{--<span class="sr-only">Next</span>--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
-                @break
+
+            @break
+
             @case(2)
-                <div class="row" style="margin: 0;">
+            <div class="row" style="margin: 0;">
                     <div class="col-12">
                         <div class="card card-nav-tabs">
                             <div class="title-lq card-header card-header-primary">
@@ -441,7 +496,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="margin: 0;">
+            <div class="row" style="margin: 0;">
                 <div class="col-12">
                     <div class="card card-nav-tabs">
                         <div class="title-lq card-header card-header-primary">
@@ -700,8 +755,114 @@
 
             @default
         @endswitch
+
+
+
+
     </div>
 </div>
+
+    <div class="col-12 content-lq" id="same-place" style="flex: auto; display: none">
+            <div class="item-lq" id="it0">
+                <a class="a-img-pl"><img class="img-pl" src="" class="img-raised rounded img-fluid">  </a> 
+                <div class="">
+                    <p class="h4-lq">
+                        <a class="a-h4-lq" href=""></a>
+                    </p>
+                </div>
+
+            </div>
+    </div>
+
+    <div class="fade-div-bu" style="display: none" >
+        <div class="row" style="margin: 0;" id="itm0">
+            <div class="col-12">
+                <div class="card card-nav-tabs">
+                    <div class="title-lq card-header card-header-primary">
+                        <h3>ĂN UỐNG</h3>
+                    </div>
+                    <div class="card-body " style="padding: 20px 5px 0 5px;">
+                        <div class="tab-content text-left">
+                            <div class="tab-pane active" id="info">
+                                <div class="text-center my-3 content-slide-place">
+                                    <div id="eatingCarousel" class="carousel slide w-100" data-ride="carousel">
+                                        <div class="carousel-inner w-100" role="listbox">
+                                            @foreach($anuong->chunk(3) as $count => $item)
+                                                <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
+                                                    @foreach($item as $au)
+                                                        <div class="col-4 float-left">
+                                                            <div class="item-lq">
+                                                                <a href="{{route('detailplace',$au->id)}}"><img
+                                                                            src="storage/image/{{$au->piname}}"
+                                                                            alt="{{$au->name}}"
+                                                                            class="img-raised rounded img-fluid"></a>
+                                                                <h4 class="h4-ct"><a
+                                                                            href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <a class="carousel-control-prev" href="#eatingCarousel" role="button"
+                                           data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#eatingCarousel" role="button"
+                                           data-slide="next"><span class="carousel-control-next-icon"
+                                                                   aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!--mobile carousel-->
+
+                                <div class="text-center my-3">
+                                    <div id="eatingMobileCarousel" class="carousel slide w-100"
+                                         data-ride="carousel">
+                                        <div class="carousel-inner w-100" role="listbox">
+                                            @foreach($anuong->chunk(1) as $count => $item)
+                                                <div class="carousel-item row no-gutters {{ $count == 0 ? 'active' : '' }}">
+                                                    @foreach($item as $au)
+                                                        <div class="col-12 float-left">
+                                                            <div class="item-lq">
+                                                                <a href="{{route('detailplace',$au->id)}}"><img
+                                                                            src="storage/image/{{$au->piname}}"
+                                                                            alt="{{$au->name}}"
+                                                                            class="img-raised rounded img-fluid"></a>
+                                                                <h4 class="h4-ct"><a
+                                                                            href="{{route('detailplace',$au->id)}}">{{$au->name}}</a>
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <a class="carousel-control-prev" href="#eatingMobileCarousel"
+                                           role="button"
+                                           data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#eatingMobileCarousel"
+                                           role="button"
+                                           data-slide="next"><span class="carousel-control-next-icon"
+                                                                   aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {{-- Đem đống script này qua bên detail.js giùm tao --}}
 	<script>
