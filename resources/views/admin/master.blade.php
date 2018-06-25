@@ -38,23 +38,13 @@
     <script src="{{asset('source/admin/assets/demo/demo.js')}}"></script>
     {{--ckeditor--}}
     <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.material.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
 
-    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{asset('source/admin/js/datatables.js')}}"></script>
-
-
-    <script>
-        // $(document).ready(function() {
-        //     // Javascript method's body can be found in assets/js/demos.js
-        //     demo.initDashboardPageCharts();
-        // });
-
-    </script>
 
     {{-- style --}}
         {{-- Css --}}

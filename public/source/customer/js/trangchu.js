@@ -15,19 +15,19 @@ $(function () {
 // end search form
 
 // open/close info box
-$(function () {
-    var i = 1;
-    $('.home-minimize-btn').on('click', function(){
-      if(i == 1){
-        $(".hide-place-info-box").css('transform', 'translateY(150%)');
-        $(".home-minimize-btn i").css('transform', 'rotate(-180deg)');
-        i = 0;
-      }
-      else {
-        $(".hide-place-info-box").css('transform', 'translateY(0)');
-        $(".home-minimize-btn i").css('transform', 'rotate(0deg)');
-        i = 1;
-      }
-    });
-});
+// $(function () {
+//     var i = 1;
+//     $('.home-minimize-btn').on('click', function(){
+//       if(i == 1){
+//         $(".hide-place-info-box").css('transform', 'translateY(150%)');
+//         $(".home-minimize-btn i").css('transform', 'rotate(-180deg)');
+//         i = 0;
+//       }
+//       else {
+//         $(".hide-place-info-box").css('transform', 'translateY(0)');
+//         $(".home-minimize-btn i").css('transform', 'rotate(0deg)');
+//         i = 1;
+//       }
+//     });
+// });
 // end open/close info box

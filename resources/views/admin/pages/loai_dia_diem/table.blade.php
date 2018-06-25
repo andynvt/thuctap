@@ -44,10 +44,10 @@
                        data-toggle="modal" data-target="#edit-placetype{{$tp->id }}">
                         <i class="now-ui-icons ui-2_settings-90"></i>
                     </a>
-                    <a class="a-white btn btn-danger btn-fab btn-icon btn-round"
-                       data-toggle="modal" data-target="#modal-delete-{{$tp->id }}">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                    </a>
+                    {{--<a class="a-white btn btn-danger btn-fab btn-icon btn-round"--}}
+                       {{--data-toggle="modal" data-target="#modal-delete-{{$tp->id }}">--}}
+                            {{--<i class="now-ui-icons ui-1_simple-remove"></i>--}}
+                    {{--</a>--}}
                 </td>
             </tr>
         @endforeach
@@ -59,13 +59,23 @@
     {{--{{ $placeType->links() }}--}}
 {{--</div>--}}
 <script>
+
     function eventCheckBox() {
         let checkboxs = document.getElementsByName("loai-dia-diem-id[]");
         let checkAll = document.getElementById('checkall');
         for (let i = 0; i < checkboxs.length; i++) {
             checkboxs[i].checked = checkAll.checked;
         }
+
     }
+
+    $('input[type="checkbox"]').change( function () {
+        let button = document.getElementById("all-delete");
+        button.disabled= true;
+        if ($('.form-check input:checked').length < 1)
+            return false;
+        return button.disabled = false;
+    });
 
     // var tableid = $('table').attr('id');
     // // alert(tableid);

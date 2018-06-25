@@ -11,8 +11,8 @@
                 {{ csrf_field() }}
                 <div class="card-header">
                     <h5 class="title">BẢNG DANH SÁCH VỊ TRÍ NGƯỜI DÙNG</h5>
-                    <button class="btn btn-danger btn-round" type="submit"
-                            data-toggle="modal" data-target="#modal-Alldelete">
+                    <button id="all-delete" class="btn btn-danger btn-round" type="submit"
+                            data-toggle="modal" data-target="#modal-Alldelete" disabled>
                         <i class="now-ui-icons ui-1_simple-remove"></i> Xóa nhiều
                     </button>
                 </div>
