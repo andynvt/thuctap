@@ -290,11 +290,7 @@ label {
     top: -45px;
 }
 
-#eatingMobileCarousel {
-    display: none;
-}
-
-#hotelMobileCarousel {
+.mobile-carousel {
     display: none;
 }
 
@@ -371,21 +367,16 @@ label {
     .col-info-place {
         padding-right: 0
     }
-    #eatingMobileCarousel {
+    .mobile-carousel {
         display: block;
     }
-    #eatingCarousel {
-        display: none;
-    }
-    #hotelMobileCarousel {
-        display: block;
-    }
-    #hotelCarousel {
+    .desktop-carousel {
         display: none;
     }
     .main-raised {
         margin: 0
     }
+    
 }
 
 @media (max-width: 424px) {
@@ -422,16 +413,10 @@ label {
     .col-info-place {
         padding-right: 0
     }
-    #eatingMobileCarousel {
+    .mobile-carousel {
         display: block;
     }
-    #eatingCarousel {
-        display: none;
-    }
-    #hotelMobileCarousel {
-        display: block;
-    }
-    #hotelCarousel {
+    .desktop-carousel {
         display: none;
     }
 }
