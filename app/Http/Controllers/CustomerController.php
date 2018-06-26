@@ -233,7 +233,7 @@ class CustomerController extends Controller
         $places = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
             ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->select('places.*','place_location.coor', 'place_image.name as piname')
-            ->where('id_type',$id_type)
+            ->where('id_type', $id_type)
             ->groupBy('places.id')
             ->get();
 
@@ -241,9 +241,10 @@ class CustomerController extends Controller
             $co = explode(', ', $places[$i]->coor);
             $dis = $getpl->GetDrivingDistance($places[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
             $collect->push($dis);
-
         }
+
         $sorted = $collect->sortBy('distance');
+
         $detailpl = $sorted->values()->take(5);
 
         for ($i=0; $i<count($places); $i++){
@@ -252,12 +253,11 @@ class CustomerController extends Controller
 
         $dl = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
             ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
-            ->select('places.*','place_location.coor', 'place_image.name as piname')
-            ->where('id_type','<>',1)
+            ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
+            ->select('places.*','place_location.coor', 'place_image.name as piname', 'place_type.name as ptname')
+            ->where('id_type','<>', $id_type)
             ->groupBy('places.id', 'places.id_type')
             ->get();
-
-
 
 //        $slice1 = $dl->slice(0, 6);
 
@@ -268,7 +268,7 @@ class CustomerController extends Controller
             $dist = $getpl->GetDrivingDistance($dl[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
             $collect_dl->push($dist);
         }
-//
+
 //        $sorted_dl = $collect_dl->sortBy('distance');
 //
 //        $gr = $dl->groupBy('id_type');
@@ -276,18 +276,20 @@ class CustomerController extends Controller
 //        //cho nay sau nay sua lai la 6
 //        $detaildl = $sorted_dl->values()->take(5);
 //
+
         for ($i=0; $i<count($dl); $i++){
             $dl[$i]['dis'] = $collect_dl[$i]['distance'];
         }
 
-        $gr = $dl->groupBy('id_type');
+        $sorted_dl = $dl->sortBy('dis');
 
-        $sorted = $dl->sortBy('dis');
+        $detail_dl = $sorted_dl->values();
 
-//        $gr->values()->take(1);
+        $gr = $detail_dl->groupBy('id_type');
 
+        $grouped = $gr->values();
 
-        return  json_encode([$places, $gr]);
+        return  json_encode([$places, $grouped]);
 
 //        $dl = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
 //            ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
