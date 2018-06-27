@@ -195,36 +195,37 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="navbar-nav ml-auto">
-	            <li class="nav-item" style="margin-right: 10px;">
-	              <a href="#" class="nav-link" data-toggle="tooltip" title="Trang chủ"><i class="material-icons">home</i>Trang chủ</a>
-	            </li>
 	            <li class="nav-item" data-toggle="tooltip" title="Bản đồ">
 	              <a data-toggle="modal" data-target="#mapmodal" href="#" class="nav-link"><i class="material-icons">place</i>Bản đồ</a>
 	            </li>
 	            <li class="nav-item" data-toggle="tooltip" title="Tìm kiếm">
 	              <a href="#home-search-form" class="nav-link"><i class="material-icons">search</i>Tìm kiếm</a>
 	            </li>
-	            <li class="dropdown nav-item">
-	              <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-	                <i class="material-icons">apps</i> Danh mục
-	              </a>
-	              <div class="dropdown-menu dropdown-with-icons">
-	                <a href="./index.html" class="dropdown-item">
-	                  <i class="material-icons">beach_access</i> Du lịch
-	                </a>
-	                <a href="#" class="dropdown-item">
-	                  <i class="material-icons">room_service</i> Ăn uống
-	                </a>
-	                <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
-	                  <i class="material-icons">hotel</i> Khách sạn
-	                </a>
-	              </div>
-	            </li>
+	            <li class="nav-item">
+                    <div class="dropdown" style="float:left;">
+                       <a class="nav-link dropbtn"><i class="material-icons">apps</i>Thành phố</a>
+                        <div class="dropdown-content">
+                            <div class="row col-12">
+                                @foreach(App\City::all() as $c20)
+                                    <div class="col-3">
+                                        <ul class="float-left" style="padding-left: 5px; ">
+                                            <li class="nav-item" style="font-size: 12px">
+                                                <a href="{{route('customer.thanh-pho',[$c20->id,1])}}">
+                                                    {{$c20->name}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </li>
 	          </ul>
 	          <!-- form search -->
 	          <div id="home-search-form">
 	            <button type="button" class="close">×</button>
-	            <form>
+	            <form action="{{route('customer.tim-kiem')}}" method="get">
 	                <input type="search" value="" placeholder="Nhập địa điểm cần tìm" />
 	                <button type="submit" class="btn btn-primary">Search</button>
 	            </form>
