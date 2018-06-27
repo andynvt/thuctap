@@ -30,15 +30,16 @@
 
 	      		var la = pos.lat;
 	      		var long = pos.lng;
-	      		var _token = $('input[name="_token"]').val();
 
 	      		$.ajax({
 			        type: "GET",
 			        url: "cal-dis",
 			        dataType: "json",
-			        data: {token: _token, lati: la, longi: long},
+			        data: {lati: la, longi: long},
 			        success: function(data){
 			        	console.log(data);
+
+		        		var base_url = {!! json_encode(url('/')) !!}
 
 			        	var introhtml = $('.fadeitem').html();
 
@@ -59,6 +60,7 @@
 						}
 
 			        	for($i = 0; $i < data.length; $i++){
+
 			        		time = secondsToHms(data[$i]['time']);
 
 			        		$('.viewplace').append(introhtml).children('#item'+($i-$i)).attr('id', 'item'+ ($i+1));
@@ -68,15 +70,36 @@
 			        		$('#item' +($i+1)+ ' .diachi').html(data[$i]['address']);
 			        		$('#item' +($i+1)+ ' .khoangcach').html( (data[$i]['dist']/1000).toFixed(2) + " km");
 			        		$('#item' +($i+1)+ ' .thoigian').html(time);
-			        		$('#item' +($i+1)+ ' .danhgia').html( (data[$i]['avgstar']).toFixed(2) + " / 5 " + "(" + data[$i]['cntfbp'] + " đánh giá)");
+			        		$('#item' +($i+1)+ ' .danhgia').html( (data[$i]['avgstar']).toFixed(2) + " / 5.00 " + "(" + data[$i]['cntfbp'] + " đánh giá)");
 			        		$('#item' +($i+1)+ ' .tenloai').html(data[$i]['ptname']);
 			        		$('#item' +($i+1)+ ' .mota').html(data[$i]['short_des']);
 
+			        		$('#item' +($i+1)+ ' .placelink').attr('href', base_url + '/chi-tiet-dia-diem/'+ data[$i]['id']);
+
 			        		coord += (data[$i]['pname'] +","+ data[$i]['pcoord'] + ";");
+
 			        	}
 
-			        	// $('.fadecoord').append('<div id="coordhtml"></div>');
-			        	// $('#coordhtml').html(coord);
+			        	$(function () {
+						    var i = 1;
+						    $('.home-minimize-btn').on('click', function(){
+						      if(i == 1){
+						        $(".hide-place-info-box").css('transform', 'translateY(150%)');
+						        $(".home-minimize-btn i").css('transform', 'rotate(-180deg)');
+						        i = 0;
+						      }
+						      else {
+						        $(".hide-place-info-box").css('transform', 'translateY(0)');
+						        $(".home-minimize-btn i").css('transform', 'rotate(0deg)');
+						        i = 1;
+						      }
+						    });
+						});
+
+						$('.fadecoord').html(coord);
+
+						$('.fadebtn').trigger('click');
+
 			        	$('.carousel-item:first').addClass('active');
 			        }
 			    });
@@ -146,9 +169,6 @@
 	                <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" class="dropdown-item">
 	                  <i class="material-icons">hotel</i> Khách sạn
 	                </a>
-	                <a  class="dropdown-item">
-    					<p id="demo" style="color: black; font-size: 30px;">dsadsa</p>
-	                </a>
 	              </div>
 	            </li>
 	          </ul>
@@ -156,7 +176,7 @@
 	          <div id="home-search-form">
 	            <button type="button" class="close">×</button>
 	            <form>
-	                <input type="search" value="" placeholder="type keyword(s) here" />
+	                <input type="search" value="" placeholder="Nhập địa điểm cần tìm" />
 	                <button type="submit" class="btn btn-primary">Search</button>
 	            </form>
 	          </div>
@@ -218,6 +238,7 @@
 	    </div>
 	    <!-- end modal map -->
 
+	    {{-- modal image --}}
 	    <div class="modal fade" id="modalimg" tabindex="-1" role="dialog">
 	      <div class="modal-dialog modal-lg" role="document">
 	        <div class="modal-content">
@@ -283,13 +304,14 @@
 	        </div>
 	      </div>
 	    </div>
+	    {{-- end modal image --}}
 	</div>
 
 	<div class="fadeitem">
 		<div class="carousel-item" id="item0">
 		    <img class="d-block w-100 anhdiadiem" src="storage/image/cho-noi.jpg" alt="First slide" style="height: 100vh">
 		    <div class="place-intro">
-		      	<a href="#" style="color: white">
+		      	<a class="placelink" href="#" style="color: white">
 		            <h3>Địa điểm gần đây</h3>
 		            <h1 class="tendiadiem">Chợ nổi</h1>
 		            <div class="row">
@@ -351,6 +373,8 @@
 	</div>
 
 	<div class="fadecoord"></div>
+
+	<button class="fadebtn">abc</button>
 </body>
 
 <style>
@@ -369,6 +393,13 @@
 
 {{-- script thêm vị trí vào map --}}
 <script>
+	var fadecoord = "";
+
+	$('.fadebtn').on('click', function () {
+		fadecoord += $('.fadecoord').html();
+		// alert("sau: "+fadecoord);
+	});
+
 	var locations = [
       	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962],
       	['Công Viên Vòng Xoay Công Viên Nước, 36 Trần Phú, Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', 10.041788, 105.791230],

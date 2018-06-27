@@ -138,8 +138,8 @@ class CustomerController extends Controller
         $cntplace = count($plocate);
 
         for($i = 0; $i < $cntplace; $i++){
-            $coords = explode(',', $plocate[$i]->coor);
-            $dist = $getdist->GetDrivingDistance($plocate[$i]->id, $latitude, $longitude, $coords[0], $coords[1]);
+            $coords = explode(', ', $plocate[$i]->coor);
+            $dist = $getdist->GetDrivingDistance($plocate[$i]->id_place, $latitude, $longitude, $coords[0], $coords[1]);
 
             $collection->push($dist);
         }
@@ -237,9 +237,155 @@ class CustomerController extends Controller
             ->limit('6')
             ->get();
 
-//        dd($khachsan);
+        $pl = Place::join('place_location', 'places.id', '=', 'place_location.id_place')
+            ->select('places.id','places.id_type', 'place_location.coor')
+            ->where('places.id', $id)
+            ->get();
 
-        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','floor_fb','same_place','dulich','anuong','khachsan','id_type'));
+//        dd($pl);
+
+        return view('customer.pages.detailplace', compact('places','image','no_of_fb','avg_fb','floor_fb','same_place','dulich','anuong','khachsan','id_type','pl'));
+    }
+
+    public function AjaxPlace(Request $req){
+        $id = $req->id;
+        $id_type = $req->id_type;
+        $coor = $req->coor;
+        $coords = explode(', ', $coor);
+
+        $collect = collect([]);
+
+        $getpl = new Controller();
+        $places = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+            ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->select('places.*','place_location.coor', 'place_image.name as piname')
+            ->where('id_type', $id_type)
+            ->groupBy('places.id')
+            ->get();
+
+        for ($i=0; $i<count($places); $i++){
+            $co = explode(', ', $places[$i]->coor);
+            $dis = $getpl->GetDrivingDistance($places[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
+            $collect->push($dis);
+        }
+
+        $sorted = $collect->sortBy('distance');
+
+        $detailpl = $sorted->values()->take(5);
+
+        for ($i=0; $i<count($places); $i++){
+            $places[$i]['dis'] = $detailpl[$i]['distance'];
+        }
+
+        $dl = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+            ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
+            ->select('places.*','place_location.coor', 'place_image.name as piname', 'place_type.name as ptname')
+            ->where('id_type','<>', $id_type)
+            ->groupBy('places.id', 'places.id_type')
+            ->get();
+
+//        $slice1 = $dl->slice(0, 6);
+
+        $collect_dl = collect([]);
+//
+        for ($i = 0; $i < count($dl); $i++) {
+            $co = explode(', ', $dl[$i]->coor);
+            $dist = $getpl->GetDrivingDistance($dl[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
+            $collect_dl->push($dist);
+        }
+
+//        $sorted_dl = $collect_dl->sortBy('distance');
+//
+//        $gr = $dl->groupBy('id_type');
+//
+//        //cho nay sau nay sua lai la 6
+//        $detaildl = $sorted_dl->values()->take(5);
+//
+
+        for ($i=0; $i<count($dl); $i++){
+            $dl[$i]['dis'] = $collect_dl[$i]['distance'];
+        }
+
+        $sorted_dl = $dl->sortBy('dis');
+
+        $detail_dl = $sorted_dl->values();
+
+        $gr = $detail_dl->groupBy('id_type');
+
+        $grouped = $gr->values();
+
+        return  json_encode([$places, $grouped]);
+
+//        $dl = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+//            ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+//            ->select('places.*','place_location.coor', 'place_image.name as piname')
+//            ->where('id_type',1)
+//            ->groupBy('places.id')
+//            ->get();
+//
+//        $au = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+//            ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+//            ->select('places.*','place_location.coor', 'place_image.name as piname')
+//            ->where('id_type',2)
+//            ->groupBy('places.id')
+//            ->get();
+//
+//        $ks = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
+//            ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+//            ->select('places.*','place_location.coor', 'place_image.name as piname')
+//            ->where('id_type',3)
+//            ->groupBy('places.id')
+//            ->get();
+//
+//        $collect_dl = collect([]);
+//        $collect_au = collect([]);
+//        $collect_ks = collect([]);
+//
+//        for ($i = 0; $i < count($dl); $i++) {
+//            $co = explode(', ', $dl[$i]->coor);
+//            $dist = $getpl->GetDrivingDistance($dl[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
+//            $collect_dl->push($dist);
+//        }
+//        for ($i = 0; $i < count($au); $i++) {
+//            $co = explode(',', $au[$i]->coor);
+//            $dis = $getpl->GetDrivingDistance($au[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
+//            $collect_au->push($dis);
+//        }
+//        for ($i = 0; $i < count($ks); $i++) {
+//            $co = explode(',', $ks[$i]->coor);
+//            $dis = $getpl->GetDrivingDistance($ks[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
+//            $collect_ks->push($dis);
+//        }
+//
+//        $sorted_dl = $collect_dl->sortBy('distance');
+//        $sorted_au = $collect_au->sortBy('distance');
+//        $sorted_ks = $collect_ks->sortBy('distance');
+//
+////        $gr = $dl->groupBy('id_type');
+//
+//        //cho nay sau nay sua lai la 6
+//        $detaildl = $sorted_dl->values()->take(5);
+//        $detailau = $sorted_au->values()->take(5);
+//        $detailks = $sorted_ks->values()->take(5);
+//
+//        for ($i=0; $i<count($dl); $i++){
+//            $dl[$i]['dis'] = $detaildl[$i]['distance'];
+//        }
+//
+//        for ($i=0; $i<count($au); $i++){
+//            $au[$i]['dis'] = $detailau[$i]['distance'];
+//        }
+//        for ($i=0; $i<count($ks); $i++){
+//            $ks[$i]['dis'] = $detailks[$i]['distance'];
+//        }
+//
+////        $gr = $dl->groupBy('id_type');
+//
+////        $gr->values()->take(1);
+//
+//
+//        return  json_encode([$places, $dl, $au, $ks]);
     }
 
     public function postDanhGia(Request $req){

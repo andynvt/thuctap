@@ -28,7 +28,7 @@
                         <div class="col-12">
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">Thống kê về thành phố Cần Thơ</h4>
+                                    <h4 class="card-title">Thống kê về thành phố <b>Cần Thơ</b></h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area" style="height: unset">
@@ -58,7 +58,7 @@
                                                 options: {
                                                   title: {
                                                     display: true,
-                                                    text: 'Lượng du khách đến Cần Thơ',
+                                                    text: 'Lượng du khách đến',
                                                     fontSize: 20
                                                   }
                                                 }
