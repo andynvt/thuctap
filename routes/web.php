@@ -36,8 +36,9 @@ Route::get('index',[
 
 Route::get('cal-dis','CustomerController@CustomerCaldis');
 
-Route::get('loai-dia-diem/{id}',[
-    'as' => 'customer.loai-dia-diem',
+
+Route::get('thanh-pho/{id}/{ids}',[
+    'as' => 'customer.thanh-pho',
     'uses' => 'CustomerController@CustomerListplace'
 ]);
 
@@ -63,7 +64,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
         'as' => 'admin.logout',
         'uses' => 'Auth\AdminLoginController@logout'
     ]);
-
+    Route::get('doi-mat-khau/', [
+        'as' => 'admin.changePass',
+        'uses' => 'AdminController@AdminChangePassword'
+    ]);
     Route::get('/',[
         'as' => 'adminthongke',
         'uses' => 'AdminController@AdminThongke'

@@ -49,10 +49,12 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card" style="border-radius: 10px">
-                <div class="card-header-image" style="background-color: rgba(255,113,29,0.9)">
-                    <div class="col-md-8 offset-md-4">
-                        <img src="{{asset('storage/image/user-male-circle.png')}}"
-                             style="width: 100px; height: 100px;" alt="logo admin">
+                <div class="card-header title" style="background:rgba(255,113,29,0.9); color: white">
+                    <div class="col-md-8" >
+                        <i class="material-icons">input</i>&nbsp; &nbsp;
+                        <strong style="font-size: 22px">
+                            Đăng nhập hệ thống
+                        </strong>
                     </div>
                 </div>
                 <div class="card-body">
@@ -66,7 +68,7 @@
                                     </span>
                                     <input id="email"
                                               class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                              name="email" type="email" placeholder="Email..." value="a@b.c" required>
+                                              name="email" type="email" placeholder="Email..." value="" required>
                                 </div>
 
                             </div>
@@ -83,7 +85,7 @@
                                     </span>
                                     <input id="password" type="password"
                                               class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                              name="password" placeholder="Mật khẩu..." value="123456"
+                                              name="password" placeholder="Mật khẩu..." value=""
                                               required>
 
                                     @if ($errors->has('password'))
@@ -94,19 +96,18 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Ghi nhớ
-                                        <span class="form-check-sign">
-                                        <span class="check" style=""></span>
-                                    </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        {{--<div class="form-group row">--}}
+                            {{--<div class="col-md-6 offset-md-4">--}}
+                                {{--<div class="form-check">--}}
+                                    {{--<label class="form-check-label">--}}
+                                        {{--<input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Ghi nhớ--}}
+                                        {{--<span class="form-check-sign">--}}
+                                        {{--<span class="check" style=""></span>--}}
+                                    {{--</span>--}}
+                                    {{--</label>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-round" style="background-color: rgba(255,113,29,0.9)">
