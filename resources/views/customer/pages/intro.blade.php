@@ -45,6 +45,7 @@
 
 			        	var time = "";
 			        	
+			        	// Đổi thời gian
 			        	function secondsToHms(d) {
 						    d = Number(d);
 						    var h = Math.floor(d / 3600);
@@ -56,7 +57,9 @@
 						    var sDisplay = s > 0 ? s + (s == 1 ? " giây" : " giây") : "";
 						    return hDisplay + mDisplay + sDisplay; 
 						}
+						// End Đổi thời gian
 
+						// Đổ dữ liệu địa điểm được gợi ý
 			        	for($i = 0; $i < data[0].length; $i++){
 
 			        		time = secondsToHms(data[0][$i]['time']);
@@ -76,28 +79,31 @@
 
 			        		$('#item' +($i+1)+ ' .id-place').attr('value', data[0][$i]['id']);
 			        	}
+			        	// End Đổ dữ liệu địa điểm được gợi ý
 
+			        	// Đổ hình ảnh vào modal
 			        	$('.open-img').on('click', function(){
-			        			// alert($(this).prev('.id-place').val());
-			        			var id_img = $(this).prev('.id-place').val();
-			        			var itemimg = $('.fadeitemintrocarousel').html();
+		        			var id_img = $(this).prev('.id-place').val();
+		        			var itemimg = $('.fadeitemintrocarousel').html();
 
-			        			$(this).attr('data-target', '#modalimg'+id_img);
-			        			$('.modalimage').attr('id', 'modalimg'+id_img);
+		        			$(this).attr('data-target', '#modalimg'+id_img);
+		        			$('.modalimage').attr('id', 'modalimg'+id_img);
 
-			        			$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').empty();
+		        			$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').empty();
 
-			        			for($i = 0; $i < data[1].length; $i++){
-			        				if(data[1][$i][0]['id'] == id_img){
-			        					$('#modalimg'+id_img+ ' .modal-title').html('Hình ảnh về '+ data[0][$i]['pname']);
-			        					for($j = 0; $j < data[1][$i].length; $j++){
-				        					$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').append(itemimg).children('#itemimg'+($j-$j)).attr('id', 'itemimg'+ ($j+1));
-				        					$('#itemimg'+ ($j+1) + ' img').attr('src','storage/image/' + data[1][$i][$j]['pimg']);
-				        				}
+		        			for($i = 0; $i < data[1].length; $i++){
+		        				if(data[1][$i][0]['id'] == id_img){
+		        					$('#modalimg'+id_img+ ' .modal-title').html('Hình ảnh về '+ data[0][$i]['pname']);
+		        					for($j = 0; $j < data[1][$i].length; $j++){
+			        					$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').append(itemimg).children('#itemimg'+($j-$j)).attr('id', 'itemimg'+ ($j+1));
+			        					$('#itemimg'+ ($j+1) + ' img').attr('src','storage/image/' + data[1][$i][$j]['pimg']);
 			        				}
-			        			}
-			        		});
+		        				}
+		        			}
+		        		});
+		        		// End Đổ hình ảnh vào modal
 
+		        		// Nút hiện ẩn khung thông tin
 			        	$(function () {
 						    var i = 1;
 						    $('.home-minimize-btn').on('click', function(){
@@ -113,11 +119,36 @@
 						      }
 						    });
 						});
+						// End Nút hiện ẩn khung thông tin
 
-						// $('.fadecoord').html(coord);
+						// Hiển thị địa điểm gợi ý lên map
+						var locations = new Array();
 
-						// $('.fadebtn').trigger('click');
+			        	for($i = 0; $i < data[0].length; $i++){
+			        		var res = data[0][$i]['pcoord'].split(", ");
+			        		var name = data[0][$i]['pname'];
+						  	locations.push([name, res[0], res[1]]);
+						}
 
+					    var infowindow1 = new google.maps.InfoWindow();
+
+					    var marker, i;
+
+					    for (i = 0; i < locations.length; i++) {  
+					      	marker = new google.maps.Marker({
+					        	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+					        	map: map
+					      	});
+
+					      	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					        	return function() {
+					          		infowindow1.setContent(locations[i][0]);
+					          		infowindow1.open(map, marker);
+					        	}
+					      	})(marker, i));
+					    }
+					    // End Hiển thị địa điểm gợi ý lên map
+					    
 			        	$('.carousel-item:first').addClass('active');
 			        }
 			    });
@@ -325,7 +356,6 @@
 		                  </li>
 		                  <li class="nav-item">
 		                  	<input class="id-place" type="hidden">
-		                    {{-- <a class="nav-link open-img" href="#" data-target="#modalimg" data-toggle="modal"> --}}
 	                    	<a class="nav-link open-img" href="#" data-toggle="modal">
 		                      <i class="material-icons">insert_photo</i> Hình ảnh
 		                    </a>
@@ -361,6 +391,8 @@
             </div>
         </div>
 	</div>
+
+	<div class="locate"></div>
 </body>
 
 <style>
@@ -437,41 +469,4 @@
     });
 </script>
 {{-- end intro-carousel --}}
-
-{{-- script thêm vị trí vào map --}}
-<script>
-	var locations = [
-      	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962],
-      	['Công Viên Vòng Xoay Công Viên Nước, 36 Trần Phú, Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', 10.041788, 105.791230],
-      	['Khách sạn Mường Thanh Luxury Cần Thơ', 10.042318, 105.790419],
-      	['Khách sạn Victoria Cần Thơ', 10.039361, 105.793527],
-      	['Nhà hàng Hoa Sứ', 10.039252, 105.791973]
-    ];
-
-    var map = new google.maps.Map(document.getElementById('map-intro'), {
-      	zoom: 15,
-      	center: new google.maps.LatLng(10.041143, 105.792070),
-      	mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      	marker = new google.maps.Marker({
-        	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        	map: map
-      	});
-
-      	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        	return function() {
-          		infowindow.setContent(locations[i][0]);
-          		infowindow.open(map, marker);
-        	}
-      	})(marker, i));
-    }
-</script>
-{{-- end script thêm vị trí vào map --}}
-
 @endsection
