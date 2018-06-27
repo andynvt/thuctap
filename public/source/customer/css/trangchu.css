@@ -82,19 +82,6 @@
   font-size: 1.05vw !important;
 }
 
-.div-img {
-  height: 200px;
-  padding-left: 15px;
-  padding-right: 15px;
-  overflow: hidden;
-}
-
-.div-img > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .home-minimize-btn {
   position: absolute !important; 
   right: -41px;
@@ -185,38 +172,56 @@
 }
 /*end home-search-form*/
 
-/*@media (max-width: 1366px) and (min-width: 991px){
-  .place-intro{
-    top: 20%;
-  }
+/*intro-carousel*/
+.intro-carousel .p0 {
+    padding: 0;
+}
 
-  .hide-place-info-box > .card-header > .nav-tabs-navigation .nav-item > .nav-link {
-    font-size: 1.35vw !important;
-  }
+.intro-carousel .resCarousel-inner .item {
+    /*border: 4px solid #eee;*/
+    /*vertical-align: top;*/
+    text-align: center;
+}
 
-  .place-info-box {
-    right: 10%;
-    left: 10%;
-  }
+.intro-carousel .resCarousel-inner .item .tile div,
+.intro-carousel .banner .item div {
+    display: table;
+    width: 100%;
+    min-height: 250px;
+    text-align: center;
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, .1);*/
+}
 
-  .place-intro > a > h1{
-    font-size: 3.9vw !important;
-  }
+.intro-carousel .resCarousel-inner .item h1 {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+}
 
-  .place-intro > a > h3{
-    font-size: 2.5vw !important;
-  }
+.intro-carousel .banner .item div {
+    /*background: url('demoImg.jpg') center top no-repeat;*/
+    background-size: cover;
+    height: 200px;
+}
 
-  .place-intro h4 {
-    font-size: 1.7vw !important;
-  }
+.intro-carousel .item .tile div {
+    /*background: url('demoImg.jpg') center center no-repeat;*/
+    overflow: hidden;
+    object-fit: contain;
+    background-size: cover;
+    height: 200px;
+    color: white;
+}
 
-  .responsive-card-body .tab-pane p {
-    font-size: 1.35vw !important;
-  }
-}*/
+.intro-carousel .item .tile div img {
+    width: 100%;
+    height: 100%;
+}
 
-/*Max-width: <= ; Min-width: >=*/
+.intro-carousel .item div h1 {
+    background: rgba(0, 0, 0, .4);
+}
+/*end intro-carousel*/
 
 @media (max-width: 991px) and (min-width: 768px){
   .place-intro{

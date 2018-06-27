@@ -107,6 +107,8 @@ class CustomerController extends Controller
 
         $viewIntro = collect([]);
 
+        $imgPlace = collect([]);
+
         $fbIntro = collect([]);
 
         $cntplace = count($plocate);
@@ -120,7 +122,7 @@ class CustomerController extends Controller
 
         $sorted = $collection->sortBy('distance');
 
-        $intro = $sorted->values()->take(3);
+        $intro = $sorted->values()->take(4);
 
         $cntintro = $intro->count();
 
@@ -138,6 +140,12 @@ class CustomerController extends Controller
             // $fb = Feedback::where('id_place', $intro[$i]['id'])->avg('star');
             $fb = DB::select(DB::raw('SELECT id_place, COUNT(id_place) as cntfbp, AVG(star) as avgstar FROM feedbacks WHERE id_place = '.$intro[$i]["id"].' GROUP BY id_place'));
             $fbIntro->push($fb);
+
+            $img = Place_Image::leftjoin('places as p', 'place_image.id_place', '=', 'p.id')
+                            ->where('place_image.id_place', $intro[$i]['id'])
+                            ->select('p.id', 'place_image.name as pimg')
+                            ->get();
+            $imgPlace->push($img);
         }
 
         $flattened = $viewIntro->flatten(1);
@@ -156,7 +164,7 @@ class CustomerController extends Controller
             $final->push($flattened[$i]);
         }
 
-        return json_encode($final);
+        return json_encode([$final, $imgPlace]);
     }
 
     public function CustomerIntro(){

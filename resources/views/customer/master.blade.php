@@ -54,9 +54,11 @@
 	{{-- Intro --}}
 		{{-- Css --}}
 	    <link rel="stylesheet" href="source/customer/css/trangchu.css">
+	    <link href="source/customer/css/resCarousel.css" rel="stylesheet" type="text/css">
 	    <!-- Js -->
 	    <script src="source/customer/js/trangchu.js"></script>
 	    <script src="source/customer/js/time.js"></script>
+	    <script src="source/customer/js/resCarousel.js"></script>
 
 	{{-- List place --}}
 		{{-- Css --}}

@@ -2,7 +2,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script>
 
 {{-- script xác định vị trí hiện tại --}}
-<script>
+<script> 
   // Note: This example requires that you consent to location sharing when
   // prompted by your browser. If you see the error "The Geolocation service
   // failed.", it means you probably did not give permission for the browser to
@@ -44,8 +44,6 @@
 			        	var introhtml = $('.fadeitem').html();
 
 			        	var time = "";
-
-			        	var coord = "";
 			        	
 			        	function secondsToHms(d) {
 						    d = Number(d);
@@ -59,26 +57,46 @@
 						    return hDisplay + mDisplay + sDisplay; 
 						}
 
-			        	for($i = 0; $i < data.length; $i++){
+			        	for($i = 0; $i < data[0].length; $i++){
 
-			        		time = secondsToHms(data[$i]['time']);
+			        		time = secondsToHms(data[0][$i]['time']);
 
 			        		$('.viewplace').append(introhtml).children('#item'+($i-$i)).attr('id', 'item'+ ($i+1));
 
-			        		$('#item' +($i+1)+ ' .anhdiadiem').attr('src','storage/image/'+data[$i]['pimage']);
-			        		$('#item' +($i+1)+ ' .tendiadiem').html(data[$i]['pname']);
-			        		$('#item' +($i+1)+ ' .diachi').html(data[$i]['address']);
-			        		$('#item' +($i+1)+ ' .khoangcach').html( (data[$i]['dist']/1000).toFixed(2) + " km");
+			        		$('#item' +($i+1)+ ' .anhdiadiem').attr('src','storage/image/'+data[0][$i]['pimage']);
+			        		$('#item' +($i+1)+ ' .tendiadiem').html(data[0][$i]['pname']);
+			        		$('#item' +($i+1)+ ' .diachi').html(data[0][$i]['address']);
+			        		$('#item' +($i+1)+ ' .khoangcach').html( (data[0][$i]['dist']/1000).toFixed(2) + " km");
 			        		$('#item' +($i+1)+ ' .thoigian').html(time);
-			        		$('#item' +($i+1)+ ' .danhgia').html( (data[$i]['avgstar']).toFixed(2) + " / 5.00 " + "(" + data[$i]['cntfbp'] + " đánh giá)");
-			        		$('#item' +($i+1)+ ' .tenloai').html(data[$i]['ptname']);
-			        		$('#item' +($i+1)+ ' .mota').html(data[$i]['short_des']);
+			        		$('#item' +($i+1)+ ' .danhgia').html( (data[0][$i]['avgstar']).toFixed(2) + " / 5.00 " + "(" + data[0][$i]['cntfbp'] + " đánh giá)");
+			        		$('#item' +($i+1)+ ' .tenloai').html(data[0][$i]['ptname']);
+			        		$('#item' +($i+1)+ ' .mota').html(data[0][$i]['short_des']);
 
-			        		$('#item' +($i+1)+ ' .placelink').attr('href', base_url + '/chi-tiet-dia-diem/'+ data[$i]['id']);
+			        		$('#item' +($i+1)+ ' .placelink').attr('href', base_url + '/chi-tiet-dia-diem/'+ data[0][$i]['id']);
 
-			        		coord += (data[$i]['pname'] +","+ data[$i]['pcoord'] + ";");
-
+			        		$('#item' +($i+1)+ ' .id-place').attr('value', data[0][$i]['id']);
 			        	}
+
+			        	$('.open-img').on('click', function(){
+			        			// alert($(this).prev('.id-place').val());
+			        			var id_img = $(this).prev('.id-place').val();
+			        			var itemimg = $('.fadeitemintrocarousel').html();
+
+			        			$(this).attr('data-target', '#modalimg'+id_img);
+			        			$('.modalimage').attr('id', 'modalimg'+id_img);
+
+			        			$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').empty();
+
+			        			for($i = 0; $i < data[1].length; $i++){
+			        				if(data[1][$i][0]['id'] == id_img){
+			        					$('#modalimg'+id_img+ ' .modal-title').html('Hình ảnh về '+ data[0][$i]['pname']);
+			        					for($j = 0; $j < data[1][$i].length; $j++){
+				        					$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').append(itemimg).children('#itemimg'+($j-$j)).attr('id', 'itemimg'+ ($j+1));
+				        					$('#itemimg'+ ($j+1) + ' img').attr('src','storage/image/' + data[1][$i][$j]['pimg']);
+				        				}
+			        				}
+			        			}
+			        		});
 
 			        	$(function () {
 						    var i = 1;
@@ -96,9 +114,9 @@
 						    });
 						});
 
-						$('.fadecoord').html(coord);
+						// $('.fadecoord').html(coord);
 
-						$('.fadebtn').trigger('click');
+						// $('.fadebtn').trigger('click');
 
 			        	$('.carousel-item:first').addClass('active');
 			        }
@@ -239,7 +257,7 @@
 	    <!-- end modal map -->
 
 	    {{-- modal image --}}
-	    <div class="modal fade" id="modalimg" tabindex="-1" role="dialog">
+	    <div class="modal fade modalimage" tabindex="-1" role="dialog">
 	      <div class="modal-dialog modal-lg" role="document">
 	        <div class="modal-content">
 	          <div class="modal-header">
@@ -248,55 +266,15 @@
 	              <i class="material-icons">clear</i>
 	            </button>
 	          </div>
-	          <div class="modal-body">
-	            <div class="text-center my-3">
-	              <div id="recipeCarousel" class="carousel slide w-100" data-interval="false" data-ride="carousel">
-	                <div class="carousel-inner w-100" role="listbox">
-	                    <div class="carousel-item row no-gutters active">
-	                        <div class="col-4 float-left">
-	                            <div class="div-img">
-	                                <img src="storage/image/2big.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
-	                            </div>
-	                        </div>
-	                        <div class="col-4 float-left">
-	                            <div class="div-img">
-	                                <img src="storage/image/2small.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
-	                            </div>
-	                        </div>
-	                        <div class="col-4 float-left">
-	                            <div class="div-img">
-	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="carousel-item row no-gutters ">
-	                        <div class="col-4 float-left">
-	                            <div class="div-img">
-	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
-	                            </div>
-	                        </div>
-	                        <div class="col-4 float-left">
-	                            <div class="div-img">
-	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
-	                            </div>
-	                        </div>
-	                        <div class="col-4 float-left">
-	                            <div class="div-img">
-	                                <img src="storage/image/cho-noi.jpg" alt="Chợ nổi Cái Răng" class="img-raised rounded img-fluid">
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	                <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
-	                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	                  <span class="sr-only">Previous</span>
-	                </a>
-	                <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
-	                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	                  <span class="sr-only">Next</span>
-	                </a>
-	              </div>
-	            </div>
+	          <div class="modal-body intro-carousel">
+	            <div class="container p8">
+			        <div class="resCarousel" data-items="1-2-2-2" data-interval="false" data-slide="1" data-animator="lazy">
+			            <div class="resCarousel-inner">
+			            </div>
+			            <button class='leftRs'><</button>
+			            <button class='rightRs'>></button>
+			        </div>
+			    </div>
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-primary btn-link" data-dismiss="modal">Đóng</button>
@@ -346,7 +324,9 @@
 		                    </a>
 		                  </li>
 		                  <li class="nav-item">
-		                    <a class="nav-link" href="#" data-target="#modalimg" data-toggle="modal">
+		                  	<input class="id-place" type="hidden">
+		                    {{-- <a class="nav-link open-img" href="#" data-target="#modalimg" data-toggle="modal"> --}}
+	                    	<a class="nav-link open-img" href="#" data-toggle="modal">
 		                      <i class="material-icons">insert_photo</i> Hình ảnh
 		                    </a>
 		                  </li>
@@ -372,9 +352,15 @@
 		</div>
 	</div>
 
-	<div class="fadecoord"></div>
-
-	<button class="fadebtn">abc</button>
+	<div class="fadeitemintrocarousel">
+		<div class="item" id="itemimg0">
+            <div class="tile">
+                <div>
+                    <img src="storage/image/1big.jpg">
+                </div>
+            </div>
+        </div>
+	</div>
 </body>
 
 <style>
@@ -386,20 +372,74 @@
         position: unset !important;
   	}
 
-  	.fadeitem {
+  	.fadeitem,
+  	.fadeitemintrocarousel {
   		display: none;
   	}
 </style>
 
+{{-- intro-carousel --}}
+<script>
+    //ResCarouselCustom();
+    var pageRefresh = true;
+
+    function ResCarouselCustom() {
+        var items = $("#dItems").val(),
+            slide = $("#dSlide").val(),
+            speed = $("#dSpeed").val(),
+            interval = $("#dInterval").val()
+
+        var itemsD = "data-items=\"" + items + "\"",
+            slideD = "data-slide=\"" + slide + "\"",
+            speedD = "data-speed=\"" + speed + "\"",
+            intervalD = "data-interval=\"" + interval + "\"";
+
+
+        var atts = "";
+        atts += items != "" ? itemsD + " " : "";
+        atts += slide != "" ? slideD + " " : "";
+        atts += speed != "" ? speedD + " " : "";
+        atts += interval != "" ? intervalD + " " : ""
+
+        //console.log(atts);
+
+        var dat = "";
+        dat += '<h4 >' + atts + '</h4>'
+        dat += '<div class=\"resCarousel\" ' + atts + '>'
+        dat += '<div class="resCarousel-inner">'
+        for (var i = 1; i <= 14; i++) {
+            dat += '<div class=\"item\"><div><h1>' + i + '</h1></div></div>'
+        }
+        dat += '</div>'
+        dat += '<button class=\'btn btn-default leftRs\'><i class=\"fa fa-fw fa-angle-left\"></i></button>'
+        dat += '<button class=\'btn btn-default rightRs\'><i class=\"fa fa-fw fa-angle-right\"></i></button>    </div>'
+        console.log(dat);
+        $("#customRes").html(null).append(dat);
+
+        if (!pageRefresh) {
+            ResCarouselSize();
+        } else {
+            pageRefresh = false;
+        }
+        //ResCarouselSlide();
+    }
+
+    $("#eventLoad").on('ResCarouselLoad', function() {
+        //console.log("triggered");
+        var dat = "";
+        var lenghtI = $(this).find(".item").length;
+        if (lenghtI <= 30) {
+            for (var i = lenghtI; i <= lenghtI + 10; i++) {
+                dat += '<div class="item"><div class="tile"><div><h1>' + (i + 1) + '</h1></div><h3>Title</h3><p>content</p></div></div>'
+            }
+            $(this).append(dat);
+        }
+    });
+</script>
+{{-- end intro-carousel --}}
+
 {{-- script thêm vị trí vào map --}}
 <script>
-	var fadecoord = "";
-
-	$('.fadebtn').on('click', function () {
-		fadecoord += $('.fadecoord').html();
-		// alert("sau: "+fadecoord);
-	});
-
 	var locations = [
       	['Trung Tâm Hội Nghị Tiệc Cưới CB Diamond Palace Cần Thơ', 10.041295, 105.792962],
       	['Công Viên Vòng Xoay Công Viên Nước, 36 Trần Phú, Cái Khế, Ninh Kiều, Cần Thơ, Việt Nam', 10.041788, 105.791230],
