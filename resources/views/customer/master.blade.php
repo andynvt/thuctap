@@ -74,6 +74,44 @@
 	    <link rel="stylesheet" href="source/customer/css/detail.css"/>
 	    {{-- Js --}}
 	    <script src="source/customer/js/detail.js"></script>
+	<style>
+		.dropbtn {
+			color: white;
+			padding: 16px;
+			font-size: 16px;
+			border: none;
+			cursor: pointer;
+		}
+
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			min-width: 600px!important;
+			display: none;
+			position: absolute;
+			right: 0;
+			background-color: #f9f9f9;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		}
+
+		.dropdown-content a {
+			color: #9c27b0;
+			padding: 0px;
+			text-decoration: none;
+			display: block;
+		}
+
+		.dropdown-content a:hover {background-color: #9c27b0;color: #ffffff}
+		.dropdown:hover .dropdown-content {display: block;}
+		.dropdown:hover .dropbtn {background-color: #c96ef9;}
+	</style>
 
 </head>
 

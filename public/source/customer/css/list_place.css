@@ -1,6 +1,9 @@
 .nav-tabs #sort-1.nav-item.show .nav-link{
     background-color: rgba(204, 204, 204, 0.15)!important;
 }
+.menu_card{
+    padding: 12px 20px!important;
+}
 .title-bg{
     font-weight: bold;
 }
@@ -21,8 +24,21 @@ p.h4-top{
     font-size: 20px!important;
     padding-top: 10px;
 }
-
+@media (min-width: 1024px) {
+    #li-span {
+        padding-left: 40% !important;
+    }
+    #title-menu{
+        font-size: 18px!important;
+    }
+}
 @media (max-width: 1024px) and (min-width: 992px) {
+    #title-menu{
+        font-size: 15px!important;
+    }
+    #li-span{
+        padding-left: 20%!important;
+    }
     .title-top-main {
         padding: 10px 12px !important;
     }
@@ -47,8 +63,20 @@ p.h4-top{
     .p-place{
         font-size: 14px!important;
     }
+    #li-view{
+        display: none;
+    }
 }
 @media (max-width: 991px) and (min-width: 768px) {
+    #title-menu{
+        font-size: 11px!important;
+    }
+    #liModule{
+        display: none;
+    }
+    #li-view{
+        display: none;
+    }
     .title-tab-place {
         font-size: 15px !important;
     }
@@ -85,6 +113,16 @@ p.h4-top{
 
 
 @media (max-width: 767px) and (min-width: 425px) {
+    #title-menu{
+        font-size: 11px!important;
+    }
+
+    #liModule{
+        display: none;
+    }
+    #li-view{
+        display: none;
+    }
     .title-tab-place {
         font-size: 15px !important;
     }
@@ -140,7 +178,9 @@ p.h4-top{
     .main-raised {
         margin: 0
     }
-
+    #li-view{
+        display: none;
+    }
     .title-bg{
         font-size: 15px !important;
     }

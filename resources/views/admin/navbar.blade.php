@@ -10,7 +10,8 @@
             </div>
             <a class="navbar-brand" href="#pablo">Thống kê</a>
         </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -44,14 +45,17 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="now-ui-icons users_single-02"></i>
-                        <p>
-                            <span class="d-lg-none d-md-block">Some Actions</span>
-                        </p>
+                        @foreach(App\User::all() as $u)
+                            {{--<i class="now-ui-icons users_single-02"></i>--}}
+                            <strong>{{$u ->name}}</strong>
+                        @endforeach
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-right"
+                         aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#changePass">
+                            <i class="now-ui-icons ui-1_settings-gear-63"></i>Đổi mật khẩu</a>
                         <a class="dropdown-item" href="{{route('admin.logout')}}">
-                            <i class="material-icons"></i>ĐĂNG XUẤT</a>
+                            <i class="now-ui-icons media-1_button-power "></i>Đăng xuất</a>
                     </div>
                 </li>
 
@@ -59,3 +63,4 @@
         </div>
     </div>
 </nav>
+@include('admin.pages.login.modalChangePwd')

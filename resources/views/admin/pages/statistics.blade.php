@@ -9,14 +9,11 @@
                     <div class="place-selection">
                         <div class="form-group">
                             <label class="control-label" for="thanhpho">Chọn thành phố</label>
-                            <input class="form-control" id="thanhpho" list="thanhphos" name="thanhpho">
-                            <datalist id="thanhphos">
-                                <option value="Cần Thơ">
-                                <option value="Đà Lạt">
-                                <option value="Huế">
-                                <option value="Đà Nẵng">
-                                <option value="TP. HCM">
-                            </datalist>
+                            <select name="" id="">
+                                <option value="Cần Thơ">Cần Thơ</option>
+                                <option value="Sóc Trăng">Sóc Trăng</option>
+                                <option value="Bạc Liêu">Bạc Liêu</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -42,24 +39,24 @@
                                                     {
                                                       label: "Du lịch",
                                                       backgroundColor: "#3e95cd",
-                                                      data: [133,221,783,1478, ]
+                                                        data: [ @foreach($month_dl as $m) {{$m}}, @endforeach ],
                                                     }, {
                                                       label: "Ăn uống",
                                                       backgroundColor: "#8e5ea2",
-                                                      data: [408,547,675,734]
+                                                      data: [@foreach($month_au as $m) {{$m}}, @endforeach]
                                                     },
                                                     {
                                                       label: "Nghỉ ngơi",
                                                       backgroundColor: "pink",
-                                                      data: [266,137,221,472]
+                                                      data: [@foreach($month_ks as $m) {{$m}}, @endforeach]
                                                     }
                                                   ]
                                                 },
                                                 options: {
                                                   title: {
                                                     display: true,
-                                                    text: 'Lượng du khách đến',
-                                                    fontSize: 20
+                                                    text: 'Lượng du khách',
+                                                    fontSize: 25
                                                   }
                                                 }
                                             });
@@ -120,39 +117,46 @@
                                                         type: 'line',
                                                         data: {
                                                             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                                                            datasets: [{ 
-                                                                data: [86,114,106,106,107,111,133,221,783,2478],
-                                                                label: "Bến Ninh Kiều",
-                                                                borderColor: "#3e95cd",
+                                                            datasets: [
+
+                                                                @foreach($gr_dl as $g)
+                                                                {
+                                                                data: [0,0],
+                                                                label: "{{$g[0]->name}}",
+                                                                borderColor: "{{$g['color']}}",
+                                                                {{--color: "{{$g['color']}}",--}}
                                                                 fill: false
-                                                              }, { 
-                                                                data: [282,350,411,502,635,809,947,1402,3700,5267],
-                                                                label: "Chợ nổi Cái Răng",
-                                                                borderColor: "#8e5ea2",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [168,170,178,190,203,276,408,547,675,734],
-                                                                label: "Thiền viện Trúc Lâm phương Nam",
-                                                                borderColor: "#3cba9f",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [40,20,10,16,24,38,74,167,508,784],
-                                                                label: "Vườn cò Bằng Lăng",
-                                                                borderColor: "#e8c3b9",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [6,3,2,2,7,26,82,172,312,433],
-                                                                label: "Nhà cổ Bình Thuỷ",
-                                                                borderColor: "#c45850",
-                                                                fill: false
-                                                              }
+                                                              },
+                                                                @endforeach
+
+                                                              //   {
+                                                              //   data: [282,350,411,502,635,809,947,1402,3700,5267],
+                                                              //   label: "Chợ nổi Cái Răng",
+                                                              //   borderColor: "#8e5ea2",
+                                                              //   fill: false
+                                                              // }, {
+                                                              //   data: [168,170,178,190,203,276,408,547,675,734],
+                                                              //   label: "Thiền viện Trúc Lâm phương Nam",
+                                                              //   borderColor: "#3cba9f",
+                                                              //   fill: false
+                                                              // }, {
+                                                              //   data: [40,20,10,16,24,38,74,167,508,784],
+                                                              //   label: "Vườn cò Bằng Lăng",
+                                                              //   borderColor: "#e8c3b9",
+                                                              //   fill: false
+                                                              // }, {
+                                                              //   data: [6,3,2,2,7,26,82,172,312,433],
+                                                              //   label: "Nhà cổ Bình Thuỷ",
+                                                              //   borderColor: "#c45850",
+                                                              //   fill: false
+                                                              // }
                                                             ]
                                                           },
                                                           options: {
                                                             title: {
                                                               display: true,
-                                                              text: 'Lượng du khách tham quan theo địa điểm trong năm',
-                                                              fontSize: 20
+                                                              text: 'Số lượng khách tham quan du lịch năm 2018',
+                                                              fontSize: 25
                                                             }
                                                           }
                                                         });

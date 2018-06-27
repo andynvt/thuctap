@@ -17,6 +17,7 @@
                     <button id="all-delete" class="btn btn-danger btn-round" data-toggle="modal" data-target="#modal-Alldelete" disabled>
                         <i class="now-ui-icons ui-1_simple-remove"></i> Xóa nhiều
                     </button>
+                    @include('admin.success_msg')
                 </div>
                 @include('admin.pages.danh_gia.table')
             </div>

@@ -18,6 +18,7 @@
                             {{--data-toggle="modal" data-target="#modal-Alldelete" disabled>--}}
                         {{--<i class="now-ui-icons ui-1_simple-remove"></i> Xóa nhiều--}}
                     {{--</button>--}}
+                    @include('admin.success_msg')
                 </div>
                 <div class="card-body">
                     <div class="table">
