@@ -21,7 +21,7 @@
                                         <li class="nav-item" style="font-size: 12px">
                                             <a href="{{route('customer.thanh-pho',[$c20 ->id,1])}}"
                                                data-toggle="tooltip" data-placement="right" title="{{$c20 -> name}}">
-                                                <i class="material-icons" style="font-size: 12px">location_on</i>
+                                                <i class="material-icons" style="font-size: 12px">location_city</i>
                                                 {{$c20 ->name}}</a>
                                         </li>
                                     @endforeach
@@ -33,7 +33,7 @@
                                         <li class="nav-item" style="font-size: 12px">
                                             <a href="{{route('customer.thanh-pho',[$c40 ->id,1])}}"
                                                data-toggle="tooltip" data-placement="right" title="{{$c40 -> name}}">
-                                                <i class="material-icons" style="font-size: 12px">location_on</i>
+                                                <i class="material-icons" style="font-size: 12px">location_city</i>
                                                 {{$c40 ->name}}</a>
                                         </li>
                                     @endforeach
@@ -45,7 +45,7 @@
                                         <li class="nav-item" style="font-size: 12px">
                                             <a href="{{route('customer.thanh-pho',[$c60 ->id,1])}}"
                                                data-toggle="tooltip" data-placement="right" title="{{$c60 -> name}}">
-                                                <i class="material-icons" style="font-size: 12px">location_on</i>
+                                                <i class="material-icons" style="font-size: 12px">location_city</i>
                                                 {{$c60 ->name}}</a>
                                         </li>
                                     @endforeach
@@ -57,7 +57,7 @@
                                         <li class="nav-item" style="font-size: 12px">
                                             <a href="{{route('customer.thanh-pho',[$c ->id,1])}}"
                                                data-toggle="tooltip" data-placement="right" title="{{$c -> name}}">
-                                                <i class="material-icons" style="font-size: 12px">location_on</i>
+                                                <i class="material-icons" style="font-size: 12px">location_city</i>
                                                 {{$c ->name}}</a>
                                         </li>
                                     @endforeach

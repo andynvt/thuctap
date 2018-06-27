@@ -9,6 +9,7 @@ use App\Place_Location;
 use App\Place_Type;
 use App\Place_Image;
 use App\Place;
+use App\User;
 use App\User_Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -237,19 +238,19 @@ class AdminController extends Controller
         $loaiDiaDiem ->description = $request->get('des');
 
         $loaiDiaDiem->update();
-        return back()->with('success', "Cập nhật thành công");
+        return back()->with('success', "Cập nhật thành công!");
     }
     public function AdminXoaLoaidiadiem($id){
 
         $xoaLoai= Place_Type::find($id);
         $xoaLoai->delete();
-        return back();
+        return back()->with('success', "Dữ liệu đã được thành công!");
     }
     public function AdminXoaLoaidiadiemdachon(Request $request) {
 
         $id = $request->get('loai-dia-diem-id');
         Place_Type::destroy($id);
-        return back();
+        return back()->with('success', "Dữ liệu đã được xóa thành công!");
     }
 
     public function AdminDanhgia($id){//
@@ -295,13 +296,13 @@ class AdminController extends Controller
     {
         $xoaDanhGia= Feedback::find($id);
         $xoaDanhGia->delete();
-        return back();
+        return back()->with('success', "Dữ liệu đã được xóa thành công!");
     }
     public function AdminXoaDanhGiadachon(Request $request) {
 
         $id = $request->get('danh-gia-id');
         Feedback::destroy($id);
-        return back();
+        return back()->with('success', "Dữ liệu đã được xóa thành công!");
     }
     public function AdminVitringuoidung(){
         $userLocation = User_Location::orderBy('id','asc')->get();
@@ -312,11 +313,42 @@ class AdminController extends Controller
     {
         $xoaViTri = User_Location::find($ids);
         $xoaViTri->delete();
-        return back();
+        return back()->with('success', "Dữ liệu đã được xóa thành công!");
     }
     public function AdminXoavitringuoidungdachon(Request $request ) {
         $ids = $request->get('vi-tri-id');
         User_Location::destroy($ids);
-        return back();
+//        session()->flash('success','adadad');
+        return back()->with('success','Dữ liệu đã được xóa thành công!');
+    }
+    public function AdminChangePassword(Request $request)
+    {
+        $validatedData = $request->validate([
+            'oldpass' => 'required|min:6',
+            'password' => 'required|string|min:6',
+            'password_confirmation' => 'required|same:password',
+        ],[
+            'oldpass.required' => 'Mật khẩu không đúng. Vui lòng nhập lại!',
+            'oldpass.min' => 'Mật khẩu ít nhất 6 ký tự',
+            'password.required' => 'Yêu cầu nhập mật khẩu',
+            'password.min' => 'Mật khẩu ít nhất 6 ký tự',
+            'password_confirmation.required' => 'Mật khẩu không trùng khớp!'
+        ]);
+
+        $current_password = \Auth::User()->password;
+        if(\Hash::check($request->input('oldpass'), $current_password))
+        {
+            $user_id = \Auth::User()->id;
+            $obj_user = User::find($user_id);
+            $obj_user->password = \Hash::make($request->input('password'));
+            $obj_user->save();
+            session()->flash('success','Thao tác thành công!');
+            return redirect()->route('admin.logout')->with('success','Thao tác thành công!');
+        }
+        else
+        {
+            return back()->with('Thao tác thất bại!');
+        }
+
     }
 }

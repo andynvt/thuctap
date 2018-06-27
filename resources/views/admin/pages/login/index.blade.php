@@ -121,6 +121,7 @@
         </div>
     </div>
 </div>
-</body>
+@include('admin.success_msg')
 
+</body>
 </html>
