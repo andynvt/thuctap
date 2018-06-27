@@ -9,8 +9,11 @@ use App\Place_Location;
 use App\Place_Type;
 use App\Place_Image;
 use App\Place;
+use App\Travel;
 use App\User_Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
@@ -34,7 +37,116 @@ class AdminController extends Controller
 
 
     public function AdminThongke(){
-        return view('admin.pages.statistics');
+        //biểu đồ 1
+        $sl_dl = DB::select(DB::raw('SELECT MONTH(travel.created_at) AS month,places.id_type,SUM(travel.quantity) AS sum FROM places,travel WHERE places.id = travel.id_place AND places.id_type = 1 GROUP BY month'));
+        $sl_au = DB::select(DB::raw('SELECT MONTH(travel.created_at) AS month,places.id_type,SUM(travel.quantity) AS sum FROM places,travel WHERE places.id = travel.id_place AND places.id_type = 2 GROUP BY month'));
+        $sl_ks = DB::select(DB::raw('SELECT MONTH(travel.created_at) AS month,places.id_type,SUM(travel.quantity) AS sum FROM places,travel WHERE places.id = travel.id_place AND places.id_type = 3 GROUP BY month'));
+
+        $month_dl = $month_au = $month_ks = array();
+        for ($i=1; $i<=12; $i++){
+            foreach ($sl_dl as $s){
+                if($s->month == $i){
+                    $month_dl[$i] = $s->sum;
+                    break;
+                }
+                else $month_dl[$i] = 0;
+            }
+            foreach ($sl_au as $s) {
+                if ($s->month == $i) {
+                    $month_au[$i] = $s->sum;
+                    break;
+                } else $month_au[$i] = 0;
+            }
+            foreach ($sl_ks as $s) {
+                if ($s->month == $i) {
+                    $month_ks[$i] = $s->sum;
+                    break;
+                } else $month_ks[$i] = 0;
+            }
+
+        }
+
+        //biểu đồ 2
+        $tk_dl = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 1'));
+        $tk_au = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 2'));
+        $tk_ks = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 3'));
+
+        $cl_dl = collect($tk_dl);
+        $cl_au = collect($tk_au);
+        $cl_ks = collect($tk_ks);
+
+        $gr1 = $cl_dl->groupBy('id');
+        $gr2 = $cl_au->groupBy('id');
+        $gr3 = $cl_ks->groupBy('id');
+        $gr_dl = $gr1->values();
+        $gr_au = $gr2->values();
+        $gr_ks = $gr3->values();
+
+        foreach ($gr_dl as $g){
+            $g['color'] = '#'.mt_rand( 0, 0xFFFFFF );
+        }
+        foreach ($gr_au as $g) {
+            $g['color'] = '#' . mt_rand(0, 0xFFFFFF);
+        }
+        foreach ($gr_ks as $g) {
+            $g['color'] = '#' . mt_rand(0, 0xFFFFFF);
+        }
+
+        //cách 2
+//        $ar_dl = DB::select(DB::raw('select id, name from places'));
+//        $ar_tv = DB::select(DB::raw('select id_place, quantity, month(created_at) as month from travel'));
+//$cl = collect($ar_dl);
+//$cl2 = collect($ar_tv);
+////        $ar_dl = Place::
+        $m = array();
+//        foreach ($ar_dl as $d){
+////            $d['corlor'] = '#' . mt_rand(0, 0xFFFFFF);
+//            foreach ($ar_tv as $t){
+//                if($d->id == $t->id_place){
+//                    for ($i=1; $i<=12; $i++){
+//                        if($t->month = $i){
+//                            $m[$i] = $t[$i]['quantity'];
+//                            break;
+//                        }
+//                        else $m[$i] = 0;
+//                    }
+//                }
+//
+//            }
+//
+//        }
+//
+
+//        foreach ($tk_dl as $d){
+//            for($i=1; $i<=12; $i++){
+//                if($d->month == $i){
+//
+//                }
+//            }
+//        }
+        $cl = collect([]);
+        foreach ($gr_dl as $g){
+            for($i=0; $i<count($g)-1; $i++){
+                for ($j=1; $j<=12; $j++){
+                    if($j == $g[$i]->month){
+//                        $cl[$i]->push($g[$i]->quantity);
+                        $m[$g[$i]->id][$j] = $g[$i]->quantity;
+                    }
+                    else{
+                        $m[$g[$i]->id][$j] = 0;
+                    }
+
+//                        $cl->push(0);
+                }
+//                print_r($m[$g[$i]->id]);
+//                print_r('<br>');
+            }
+
+        }
+//        dd($m);
+//        dd($gr_dl);
+
+        return view('admin.pages.statistics', compact('month_dl','month_au','month_ks','gr_dl','gr_au','gr_ks'));
     }
 
     public function AdminDiadiem(){
