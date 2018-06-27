@@ -45,19 +45,19 @@
                                         </li>
                                         <li class="nav-item">
                                         </li>
-                                        <li class="dropdown nav-item" id="sort-1">
-                                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                                <i class="material-icons">sort</i> Sắp xếp
-                                            </a>
-                                            <div class="dropdown-menu dropdown-with-icons">
-                                                <a href="#" class="dropdown-item">
-                                                    <i class="material-icons">near_me</i> Gần nhất
-                                                </a>
-                                                <a href="{{route('customer.pho-bien')}}" class="dropdown-item">
-                                                    <i class="material-icons">favorite</i> Phổ biến
-                                                </a>
-                                            </div>
-                                        </li>
+                                        {{--<li class="dropdown nav-item" id="sort-1">--}}
+                                            {{--<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">--}}
+                                                {{--<i class="material-icons">sort</i> Sắp xếp--}}
+                                            {{--</a>--}}
+                                            {{--<div class="dropdown-menu dropdown-with-icons">--}}
+                                                {{--<a href="#" class="dropdown-item">--}}
+                                                    {{--<i class="material-icons">near_me</i> Gần nhất--}}
+                                                {{--</a>--}}
+                                                {{--<a href="{{route('customer.pho-bien')}}" class="dropdown-item">--}}
+                                                    {{--<i class="material-icons">favorite</i> Phổ biến--}}
+                                                {{--</a>--}}
+                                            {{--</div>--}}
+                                        {{--</li>--}}
                                     </ul>
                                 </div>
                             </div>

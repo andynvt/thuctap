@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Place;
 use App\Place_Image;
 use App\Feedback;
@@ -16,28 +17,53 @@ use DB;
 
 class CustomerController extends Controller
 {
-    public function CustomerListplace(Request $request,$id)
+    public function CustomerListplace(Request $request,$id,$ids)
     {
-//       view list places
-        $title_place= Place_Type::find($id);
-        $title_place->get();
-        $result_lp = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+        $title_city = City::find($id);
+        $title_city->get();
+        $title_placeType = Place_Type::find($ids);
+        $title_placeType->get();
+        $result_dl = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->join('feedbacks','feedbacks.id_place','=','places.id')
+            -> join('districts','districts.id','=','places.id_district')
+            -> join('cities','cities.id','=','districts.id_city')
             ->select('places.id as pid', 'places.name as pname', 'places.short_des', 'places.name',
                 'place_image.id as piimg', 'place_image.name as piname','feedbacks.id as fid')
-            ->where('places.id_type', $id)
+            ->where([
+                ['cities.id', $id],
+                ['places.id_type',$ids]
+            ])
             ->groupBy('places.id')
             ->paginate(10);
-//       view top places interesting
+        $total = $result_dl->count();
+        //       view top places interesting
         $result_top = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->leftjoin('feedbacks', 'places.id', '=', 'feedbacks.id_place')
+            -> join('districts','districts.id','=','places.id_district')
+            -> join('cities','cities.id','=','districts.id_city')
             ->select('places.id as pid', 'places.name as pname', 'places.short_des', 'places.name', 'place_image.id as piimg', 'place_image.name as piname')
-            ->where('places.id_type', $id)
+            ->where([
+                ['cities.id', $id]
+            ])
             ->groupBy('places.id')
             ->orderBy('feedbacks.star', 'desc')
             ->limit(5)
             ->get();
-        return view('customer.pages.listplace', compact('types','result_lp', 'title_place','result_top','sum_fb','avg_fb'));
+        $bg_img = Place::leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
+            ->leftjoin('feedbacks', 'places.id', '=', 'feedbacks.id_place')
+            -> join('districts','districts.id','=','places.id_district')
+            -> join('cities','cities.id','=','districts.id_city')
+            ->select('places.id as pid', 'places.name as pname', 'places.short_des',
+                'places.name', 'place_image.id as piimg', 'place_image.name as piname')
+            ->where([
+                ['cities.id', $id]
+            ])
+            ->groupBy('places.id')
+            ->orderBy('feedbacks.star', 'desc')
+            ->limit(1)
+            ->get();
+        return view('customer.pages.listplace',
+            compact('id','total','bg_img','result_dl','title_placeType', 'title_city','result_top'));
     }
     public function CustomerListplaceFavorite()
     {
@@ -233,7 +259,7 @@ class CustomerController extends Controller
         $places = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
             ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
             ->select('places.*','place_location.coor', 'place_image.name as piname')
-            ->where('id_type',$id_type)
+            ->where('id_type', $id_type)
             ->groupBy('places.id')
             ->get();
 
@@ -241,9 +267,10 @@ class CustomerController extends Controller
             $co = explode(', ', $places[$i]->coor);
             $dis = $getpl->GetDrivingDistance($places[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
             $collect->push($dis);
-
         }
+
         $sorted = $collect->sortBy('distance');
+
         $detailpl = $sorted->values()->take(5);
 
         for ($i=0; $i<count($places); $i++){
@@ -252,12 +279,11 @@ class CustomerController extends Controller
 
         $dl = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
             ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
-            ->select('places.*','place_location.coor', 'place_image.name as piname')
-            ->where('id_type','<>',1)
+            ->leftjoin('place_type', 'places.id_type', '=', 'place_type.id')
+            ->select('places.*','place_location.coor', 'place_image.name as piname', 'place_type.name as ptname')
+            ->where('id_type','<>', $id_type)
             ->groupBy('places.id', 'places.id_type')
             ->get();
-
-
 
 //        $slice1 = $dl->slice(0, 6);
 
@@ -268,7 +294,7 @@ class CustomerController extends Controller
             $dist = $getpl->GetDrivingDistance($dl[$i]->id, $coords[0], $coords[1], $co[0], $co[1]);
             $collect_dl->push($dist);
         }
-//
+
 //        $sorted_dl = $collect_dl->sortBy('distance');
 //
 //        $gr = $dl->groupBy('id_type');
@@ -276,18 +302,20 @@ class CustomerController extends Controller
 //        //cho nay sau nay sua lai la 6
 //        $detaildl = $sorted_dl->values()->take(5);
 //
+
         for ($i=0; $i<count($dl); $i++){
             $dl[$i]['dis'] = $collect_dl[$i]['distance'];
         }
 
-        $gr = $dl->groupBy('id_type');
+        $sorted_dl = $dl->sortBy('dis');
 
-        $sorted = $dl->sortBy('dis');
+        $detail_dl = $sorted_dl->values();
 
-//        $gr->values()->take(1);
+        $gr = $detail_dl->groupBy('id_type');
 
+        $grouped = $gr->values();
 
-        return  json_encode([$places, $gr]);
+        return  json_encode([$places, $grouped]);
 
 //        $dl = Place::leftjoin('place_location', 'places.id', '=', 'place_location.id_place')
 //            ->leftjoin('place_image', 'places.id', '=', 'place_image.id_place')
