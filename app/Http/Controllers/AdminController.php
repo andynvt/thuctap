@@ -68,7 +68,7 @@ class AdminController extends Controller
         }
 
         //biểu đồ 2
-        $tk_dl = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 1'));
+        $tk_dl = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 1 ORDER BY month'));
         $tk_au = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 2'));
         $tk_ks = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 3'));
 
@@ -94,58 +94,43 @@ class AdminController extends Controller
         }
 
         //cách 2
-//        $ar_dl = DB::select(DB::raw('select id, name from places'));
-//        $ar_tv = DB::select(DB::raw('select id_place, quantity, month(created_at) as month from travel'));
-//$cl = collect($ar_dl);
-//$cl2 = collect($ar_tv);
-////        $ar_dl = Place::
-        $m = array();
-//        foreach ($ar_dl as $d){
-////            $d['corlor'] = '#' . mt_rand(0, 0xFFFFFF);
-//            foreach ($ar_tv as $t){
-//                if($d->id == $t->id_place){
-//                    for ($i=1; $i<=12; $i++){
-//                        if($t->month = $i){
-//                            $m[$i] = $t[$i]['quantity'];
-//                            break;
-//                        }
-//                        else $m[$i] = 0;
-//                    }
-//                }
-//
-//            }
-//
-//        }
-//
-
-//        foreach ($tk_dl as $d){
-//            for($i=1; $i<=12; $i++){
-//                if($d->month == $i){
-//
-//                }
-//            }
-//        }
-        $cl = collect([]);
+        $month = array();
         foreach ($gr_dl as $g){
             for($i=0; $i<count($g)-1; $i++){
                 for ($j=1; $j<=12; $j++){
+
                     if($j == $g[$i]->month){
-//                        $cl[$i]->push($g[$i]->quantity);
-                        $m[$g[$i]->id][$j] = $g[$i]->quantity;
+                        $month[$g[$i]->id][$j] = $g[$i]->quantity;
                     }
                     else{
-                        $m[$g[$i]->id][$j] = 0;
+//                        $month[$g[$i]->id][$j] = 0;
                     }
-
-//                        $cl->push(0);
                 }
-//                print_r($m[$g[$i]->id]);
-//                print_r('<br>');
             }
-
         }
-//        dd($m);
-//        dd($gr_dl);
+//        foreach ($month as $m => $value){
+//            print_r('<br>Mảng lớn: '.$m.'<br><br>');
+//            print_r($value);
+//            foreach ($value as $item => $value2){
+//                print_r($item.': '.$value2.'<br>');
+//
+//                for($j=1; $j<=12; $j++){
+//                    if($j != $item){
+//                        print_r('g: '.$m[$item][$j].'<br>');
+//
+////                        $month[$m][$j]=0;
+//                    }
+//                    else{
+////                        print_r('gt: '.$item.'<br>');
+//
+//                    }
+//                }
+//            }
+//
+//        }
+
+        dd($month);
+        dd($gr_dl);
 
         return view('admin.pages.statistics', compact('month_dl','month_au','month_ks','gr_dl','gr_au','gr_ks'));
     }
@@ -206,6 +191,7 @@ class AdminController extends Controller
     public function AdminPostdiadiem(Request $req){
         $place = new Place();
         $place_location = new Place_Location();
+        $feedback = new Feedback();
 
         if($req->hasfile('images')){
 
@@ -222,6 +208,11 @@ class AdminController extends Controller
             $place_location->id_place = $place->id;
             $place_location->coor = $req->coor;
             $place_location->save();
+
+            $feedback->id_place = $place->id;
+            $feedback->star = 5;
+            $feedback->status = 1;
+            $feedback->save();
 
             foreach($req->file('images') as $image){
                 $namee=date('Y-m-d-H-i-s')."-".$image->getClientOriginalName();
