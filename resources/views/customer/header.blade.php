@@ -1,7 +1,7 @@
 <nav class="navbar navbar-color-on-scroll fixed-top navbar-expand-lg bg-primary" color-on-scroll="100" id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="{{ route('intro') }}">TRANG CHỦ</a>
+            <a class="navbar-brand" style="font-weight: 400" href="{{ route('intro') }}">TRANG CHỦ</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
                 <span class="navbar-toggler-icon"></span>
