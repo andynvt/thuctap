@@ -7,3 +7,7 @@
 .hover-table tbody tr:hover {
 	background-color: #EEEEEE;
 }
+
+.navbar-nav{
+	margin-bottom: 14px !important;
+}
