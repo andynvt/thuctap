@@ -22,10 +22,7 @@
                         <div class="col-md-8 ml-auto mr-auto">
                             <div class="brand text-center">
                                 <h2 class="title-bg">{{$title_city->name}}</h2>
-                                <h5 class="h5-bg">{{$title_city->slg}}</h5>
-                                {{--<h5 class="h5-bg">Vùng đất Tây đô - Thủ phủ của miền Tây Nam Bộ <br>--}}
-                                    {{--Nơi hội tụ tinh hoa văn hóa dân tộc - nét đẹp miền sông nước không lẫn vào đâu hết--}}
-                                {{--</h5>--}}
+                                <h5 class="h5-bg">{!! $title_city->slg !!}</h5>
                             </div>
                         </div>
                     </div>
@@ -75,21 +72,6 @@
                                                         </h4></li>
                                                     </ul>
                                                 </div>
-
-
-                                            {{--<li class="dropdown nav-item" id="sort-1">--}}
-                                            {{--<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">--}}
-                                            {{--<i class="material-icons">sort</i> Sắp xếp--}}
-                                            {{--</a>--}}
-                                            {{--<div class="dropdown-menu dropdown-with-icons">--}}
-                                            {{--<a href="#" class="dropdown-item">--}}
-                                            {{--<i class="material-icons">near_me</i> Gần nhất--}}
-                                            {{--</a>--}}
-                                            {{--<a href="{{route('customer.pho-bien')}}" class="dropdown-item">--}}
-                                            {{--<i class="material-icons">favorite</i> Phổ biến--}}
-                                            {{--</a>--}}
-                                            {{--</div>--}}
-                                            {{--</li>--}}
                                         </ul>
                                     </div>
                                 </div>
@@ -97,7 +79,7 @@
                             <div class="card-body" style="padding: 15px;">
                                 <div class="tab-content">
                                     @if($total > 0)
-                                        <div class="tab-pane active col-12" id="viewList">
+                                        <div class="tab-pane active col-12 list" id="viewList">
                                             <div class="title-dl ">
                                                 <h3 class="text-primary" style="text-transform: uppercase">
                                                     {{$title_placeType->name}}
@@ -150,9 +132,8 @@
                                             <div class="div-pagination" style="padding-left: 40%!important;">
                                                 {{ $result_dl->links() }}
                                             </div>
-
                                         </div>
-                                        <div class="tab-pane col-12" id="viewModule">
+                                        <div class="tab-pane col-12 module" id="viewModule">
                                             <section class="list-place" id="place-dl">
                                                 <div class="title-dl ">
                                                     <h3 class="text-primary" style="text-transform: uppercase">
@@ -244,6 +225,7 @@
                     </div>
                 </div><!--End main-->
             </div> <!-- End list place -->
+    </div>
 @endsection
 
 @section('footer')
