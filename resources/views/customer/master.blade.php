@@ -44,7 +44,15 @@
 	        materialKit.initSliders();
 	    });
 	</script>
-
+	<script>
+        $(window).on("load resize", function() {
+            if($(window).width() <= 425){
+                $('.list').removeClass("active");
+                $('.module').addClass("active");
+            }
+            else $('.module').removeClass("active");
+        });
+	</script>
 	{{-- Style --}}
 		{{-- Css --}}
 		<link rel="stylesheet" href="source/customer/css/style.css">
