@@ -148,6 +148,30 @@ class CustomerController extends Controller
 
         $sorted = $collection->sortBy('distance');
 
+        $cltravel = collect([]);
+
+        // for($i = 0; $i < count($sorted); $i++){
+        //     $tid = $sorted[$i]["id"];
+        
+        //     $travel = DB::select(DB::raw('SELECT id_place, MAX(month(created_at)) as month from travel where id_place = '.$tid));
+        //     // $cltravel->push($travel);
+
+        //     $curmonth = DB::select(DB::raw('SELECT month(CURRENT_DATE()) as curmonth'));
+
+        //     if($sorted[$i]['distance'] <= 500){
+        //         if($curmonth[0]['curmonth'] == $travel[0]['month']){
+        //             $upqty = Travel::where('id_place', '=', $travel[0]['id_place']);
+        //             $upqty->quantity += 1;
+        //             $upqty->save();
+        //         }
+        //         else{
+        //             $upquantity = new Travel;
+        //             $upquantity->quantity += 1;
+        //             $upquantity->save();
+        //         }
+        //     }
+        // }
+
         $intro = $sorted->values()->take(4);
 
         $cntintro = $intro->count();
@@ -189,7 +213,6 @@ class CustomerController extends Controller
             $flattened[$i]['cntfbp'] = $flattenfb[$i]->cntfbp;
             $final->push($flattened[$i]);
         }
-
         return json_encode([$final, $imgPlace]);
     }
 
