@@ -31,6 +31,11 @@
 }
 
 @media (max-width: 767px) and (min-width: 425px) {
+	.scrollToTop{
+	    bottom:30px;
+	    right:10px;
+	}
+
 	.dropdown-city .dropdown-content {
 		position: fixed !important;
 		width: 100vw !important;
@@ -43,6 +48,11 @@
 }
 
 @media (max-width: 424px) {
+	.scrollToTop{
+	    bottom:30px;
+	    right:10px;
+	}
+
 	.dropdown-city .dropdown-content {
 		position: fixed !important;
 		width: 100vw !important;
