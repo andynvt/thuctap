@@ -16,3 +16,41 @@
     text-decoration:none;
 }
 /*end scroll top btn*/
+
+.city-name{
+	/*margin: 1px 0;*/
+}
+
+.dropdown-content ul{
+	width: 100%;
+	height: 100%;
+}
+
+.dropdown-content a{
+	font-size: 13px;
+}
+
+@media (max-width: 767px) and (min-width: 425px) {
+	.dropdown-city .dropdown-content {
+		position: fixed !important;
+		width: 100vw !important;
+		min-width: 100vw !important;
+	}
+
+	.dropdown-content a{
+		font-size: 2vw;
+	}
+}
+
+@media (max-width: 424px) {
+	.dropdown-city .dropdown-content {
+		position: fixed !important;
+		width: 100vw !important;
+		min-width: 100vw !important;
+	}
+
+	.dropdown-content a{
+		font-size: 3vw;
+	}
+}
+
