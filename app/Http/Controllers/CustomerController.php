@@ -8,6 +8,7 @@ use App\Place_Image;
 use App\Feedback;
 use App\Place_Type;
 use App\Place_Location;
+use App\Travel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Console\Scheduling\Schedule;
@@ -148,29 +149,27 @@ class CustomerController extends Controller
 
         $sorted = $collection->sortBy('distance');
 
-        $cltravel = collect([]);
-
-        // for($i = 0; $i < count($sorted); $i++){
-        //     $tid = $sorted[$i]["id"];
+        for($i = 0; $i < count($sorted); $i++){
+            $tid = $sorted[$i]["id"];
         
-        //     $travel = DB::select(DB::raw('SELECT id_place, MAX(month(created_at)) as month from travel where id_place = '.$tid));
-        //     // $cltravel->push($travel);
+            $travel = DB::select(DB::raw('SELECT id_place, MAX(month(created_at)) as month from travel where id_place = '.$tid));
 
-        //     $curmonth = DB::select(DB::raw('SELECT month(CURRENT_DATE()) as curmonth'));
+            $curmonth = DB::select(DB::raw('SELECT month(CURRENT_DATE()) as currentmonth'));
 
-        //     if($sorted[$i]['distance'] <= 500){
-        //         if($curmonth[0]['curmonth'] == $travel[0]['month']){
-        //             $upqty = Travel::where('id_place', '=', $travel[0]['id_place']);
-        //             $upqty->quantity += 1;
-        //             $upqty->save();
-        //         }
-        //         else{
-        //             $upquantity = new Travel;
-        //             $upquantity->quantity += 1;
-        //             $upquantity->save();
-        //         }
-        //     }
-        // }
+            if($sorted[$i]['distance'] <= 500){
+                if($curmonth[0]->currentmonth == $travel[0]->month){
+                    $upqty = Travel::where('id_place', $tid)->get();
+                    $upqty[0]->quantity += 1;
+                    $upqty[0]->save();
+                }
+                else{
+                    $upquantity = new Travel;
+                    $upquantity->quantity = 1;
+                    $upquantity->id_place = $tid;
+                    $upquantity->save();
+                }
+            }
+        }
 
         $intro = $sorted->values()->take(4);
 
