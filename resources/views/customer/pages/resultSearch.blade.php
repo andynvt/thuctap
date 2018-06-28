@@ -4,7 +4,7 @@
     @include('customer.header')
 @endsection
 <title>
-    Phổ biến | Tour Guide
+    Tìm kiếm | Tour Guide
 </title>
 @section('content')
     <div class="list_place">

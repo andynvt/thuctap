@@ -71,7 +71,7 @@ p.h4-top{
     #title-menu{
         font-size: 11px!important;
     }
-    #liModule{
+    #liList{
         display: none;
     }
     #li-view{
@@ -177,6 +177,12 @@ p.h4-top{
 @media (max-width: 424px) {
     .main-raised {
         margin: 0
+    }
+    #liModule{
+        display: none;
+    }
+    #title-menu{
+        font-size: 10px;
     }
     #li-view{
         display: none;

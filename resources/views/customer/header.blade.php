@@ -37,7 +37,7 @@
                     <div id="home-search-form">
                         <button type="button" class="close">×</button>
                         <form action="{{route('customer.tim-kiem')}}" method="get">
-                            <input type="search" value="" placeholder="Nhập địa điểm cần tìm" />
+                            <input type="search" name="data" value="" placeholder="Nhập địa điểm cần tìm" />
                             <button type="submit" class="btn btn-primary">Search</button>
                         </form>
                     </div>
