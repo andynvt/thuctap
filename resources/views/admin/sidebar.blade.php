@@ -11,7 +11,7 @@
             </a>
         </li>
 
-        <li @if(Request::is('admin/dia-diem') || Request::is('admin/them-dia-diem') || Request::is('admin/sua-dia-diem'))
+        <li @if(Request::is('admin/dia-diem') || Request::is('admin/them-dia-diem') || Request::is('admin/sua-dia-diem*'))
                 class="active"
             @endif
         >
@@ -28,7 +28,7 @@
             </a>
         </li>
 
-        <li @if(Request::is('admin/danh-gia/1') || Request::is('admin/chi-tiet-danh-gia'))
+        <li @if(Request::is('admin/danh-gia*') || Request::is('admin/chi-tiet-danh-gia*'))
                 class="active"
             @endif
         >
