@@ -11,12 +11,12 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <div class="dropdown" style="float:left;">
+                    <div class="dropdown dropdown-city" style="float:left;">
                        <a class="nav-link dropbtn"><i class="material-icons">apps</i>Thành phố</a>
                         <div class="dropdown-content">
                             <div class="row col-12">
                                 @foreach(App\City::all() as $c20)
-                                    <div class="col-3">
+                                    <div class="col-md-3 col-4 city-name">
                                         <ul class="float-left" style="padding-left: 5px; ">
                                             <li class="nav-item" style="font-size: 12px">
                                                 <a href="{{route('customer.thanh-pho',[$c20->id,1])}}">
