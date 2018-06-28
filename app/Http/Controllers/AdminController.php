@@ -9,11 +9,8 @@ use App\Place_Location;
 use App\Place_Type;
 use App\Place_Image;
 use App\Place;
-<<<<<<< HEAD
 use App\User;
-=======
 use App\Travel;
->>>>>>> 02d6c842245b3f89163c6d184c7bc75d1551becc
 use App\User_Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
