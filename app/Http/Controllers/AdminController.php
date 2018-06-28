@@ -69,8 +69,8 @@ class AdminController extends Controller
 
         //biểu đồ 2
         $tk_dl = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 1 ORDER BY month'));
-        $tk_au = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 2'));
-        $tk_ks = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 3'));
+        $tk_au = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 2 ORDER BY month'));
+        $tk_ks = DB::select(DB::raw('SELECT places.id, places.name, month(travel.created_at) as month, quantity FROM places, travel WHERE places.id = travel.id_place AND places.id_type = 3 ORDER BY month'));
 
         $cl_dl = collect($tk_dl);
         $cl_au = collect($tk_au);
@@ -83,56 +83,57 @@ class AdminController extends Controller
         $gr_au = $gr2->values();
         $gr_ks = $gr3->values();
 
+        function random_color() {
+            return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+        }
+
         foreach ($gr_dl as $g){
-            $g['color'] = '#'.mt_rand( 0, 0xFFFFFF );
+            $g['color'] = random_color();
         }
         foreach ($gr_au as $g) {
-            $g['color'] = '#' . mt_rand(0, 0xFFFFFF);
+            $g['color'] = random_color();
         }
         foreach ($gr_ks as $g) {
-            $g['color'] = '#' . mt_rand(0, 0xFFFFFF);
+            $g['color'] = random_color();
         }
 
         //cách 2
-        $month = array();
-        foreach ($gr_dl as $g){
-            for($i=0; $i<count($g)-1; $i++){
-                for ($j=1; $j<=12; $j++){
+        $m_dl = array();
+        $m_au = array();
+        $m_ks = array();
 
+        foreach ($gr_dl as $g){
+            for ($j=1; $j<=12; $j++){
+                $m_dl[$g[0]->id][$j] = 0;
+                for($i=0; $i<count($g)-1; $i++){
                     if($j == $g[$i]->month){
-                        $month[$g[$i]->id][$j] = $g[$i]->quantity;
-                    }
-                    else{
-//                        $month[$g[$i]->id][$j] = 0;
+                        $m_dl[$g[$i]->id][$j] = $g[$i]->quantity;
                     }
                 }
             }
         }
-//        foreach ($month as $m => $value){
-//            print_r('<br>Mảng lớn: '.$m.'<br><br>');
-//            print_r($value);
-//            foreach ($value as $item => $value2){
-//                print_r($item.': '.$value2.'<br>');
-//
-//                for($j=1; $j<=12; $j++){
-//                    if($j != $item){
-//                        print_r('g: '.$m[$item][$j].'<br>');
-//
-////                        $month[$m][$j]=0;
-//                    }
-//                    else{
-////                        print_r('gt: '.$item.'<br>');
-//
-//                    }
-//                }
-//            }
-//
-//        }
-
-        dd($month);
-        dd($gr_dl);
-
-        return view('admin.pages.statistics', compact('month_dl','month_au','month_ks','gr_dl','gr_au','gr_ks'));
+        foreach ($gr_au as $g) {
+            for ($j = 1; $j <= 12; $j++) {
+                $m_au[$g[0]->id][$j] = 0;
+                for ($i = 0; $i < count($g) - 1; $i++) {
+                    if ($j == $g[$i]->month) {
+                        $m_au[$g[$i]->id][$j] = $g[$i]->quantity;
+                    }
+                }
+            }
+        }
+        foreach ($gr_ks as $g) {
+            for ($j = 1; $j <= 12; $j++) {
+                $m_ks[$g[0]->id][$j] = 0;
+                for ($i = 0; $i < count($g) - 1; $i++) {
+                    if ($j == $g[$i]->month) {
+                        $m_ks[$g[$i]->id][$j] = $g[$i]->quantity;
+                    }
+                }
+            }
+        }
+//        dd($gr_dl);
+        return view('admin.pages.statistics', compact('month_dl','month_au','month_ks','gr_dl','gr_au','gr_ks','m_dl','m_au','m_ks'));
     }
 
     public function AdminDiadiem(){

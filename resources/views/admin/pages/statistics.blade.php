@@ -118,38 +118,15 @@
                                                         data: {
                                                             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                                                             datasets: [
-
                                                                 @foreach($gr_dl as $g)
                                                                 {
-                                                                data: [0,0],
+                                                                data: [ @foreach ($m_dl[$g[0]->id] as $mdl) {{$mdl}}, @endforeach ],
                                                                 label: "{{$g[0]->name}}",
                                                                 borderColor: "{{$g['color']}}",
-                                                                {{--color: "{{$g['color']}}",--}}
+                                                                backgroundColor: "{{$g['color']}}",
                                                                 fill: false
                                                               },
                                                                 @endforeach
-
-                                                              //   {
-                                                              //   data: [282,350,411,502,635,809,947,1402,3700,5267],
-                                                              //   label: "Chợ nổi Cái Răng",
-                                                              //   borderColor: "#8e5ea2",
-                                                              //   fill: false
-                                                              // }, {
-                                                              //   data: [168,170,178,190,203,276,408,547,675,734],
-                                                              //   label: "Thiền viện Trúc Lâm phương Nam",
-                                                              //   borderColor: "#3cba9f",
-                                                              //   fill: false
-                                                              // }, {
-                                                              //   data: [40,20,10,16,24,38,74,167,508,784],
-                                                              //   label: "Vườn cò Bằng Lăng",
-                                                              //   borderColor: "#e8c3b9",
-                                                              //   fill: false
-                                                              // }, {
-                                                              //   data: [6,3,2,2,7,26,82,172,312,433],
-                                                              //   label: "Nhà cổ Bình Thuỷ",
-                                                              //   borderColor: "#c45850",
-                                                              //   fill: false
-                                                              // }
                                                             ]
                                                           },
                                                           options: {
@@ -183,39 +160,23 @@
                                                         type: 'line',
                                                         data: {
                                                             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                                                            datasets: [{ 
-                                                                data: [86,114,106,106,107,111,133,221,783,2478],
-                                                                label: "Hoa Sứ",
-                                                                borderColor: "#3e95cd",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [282,350,411,502,635,809,947,1402,3700,5267],
-                                                                label: "Cây bưởi",
-                                                                borderColor: "#8e5ea2",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [168,170,178,190,203,276,408,547,675,734],
-                                                                label: "Biển Đông",
-                                                                borderColor: "#3cba9f",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [40,20,10,16,24,38,74,167,508,784],
-                                                                label: "Năm Sánh",
-                                                                borderColor: "#e8c3b9",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [6,3,2,2,7,26,82,172,312,433],
-                                                                label: "Starbucks",
-                                                                borderColor: "#c45850",
-                                                                fill: false
-                                                              }
+                                                            datasets: [
+                                                                    @foreach($gr_au as $g)
+                                                                {
+                                                                    data: [ @foreach ($m_au[$g[0]->id] as $mdl) {{$mdl}}, @endforeach ],
+                                                                    label: "{{$g[0]->name}}",
+                                                                    borderColor: "{{$g['color']}}",
+                                                                    backgroundColor: "{{$g['color']}}",
+                                                                    fill: false
+                                                                },
+                                                                @endforeach
                                                             ]
                                                           },
                                                           options: {
                                                             title: {
                                                               display: true,
-                                                              text: 'Lượng du khách ăn uống theo địa điểm trong năm',
-                                                              fontSize: 20
+                                                              text: 'Số lượng khách tham quan ăn uống năm 2018',
+                                                              fontSize: 25
                                                             }
                                                           }
                                                         });
@@ -242,39 +203,23 @@
                                                         type: 'line',
                                                         data: {
                                                             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-                                                            datasets: [{ 
-                                                                data: [86,114,106,106,107,111,133,221,783,2478],
-                                                                label: "Ninh Kiều 2",
-                                                                borderColor: "#3e95cd",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [282,350,411,502,635,809,947,1402,3700,5267],
-                                                                label: "Vincom Plaza",
-                                                                borderColor: "#8e5ea2",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [168,170,178,190,203,276,408,547,675,734],
-                                                                label: "Gold",
-                                                                borderColor: "#3cba9f",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [40,20,10,16,24,38,74,167,508,784],
-                                                                label: "Mường Thanh",
-                                                                borderColor: "#e8c3b9",
-                                                                fill: false
-                                                              }, { 
-                                                                data: [6,3,2,2,7,26,82,172,312,433],
-                                                                label: "Ninh Kiều 1",
-                                                                borderColor: "#c45850",
-                                                                fill: false
-                                                              }
+                                                            datasets: [
+                                                                    @foreach($gr_ks as $g)
+                                                                {
+                                                                    data: [ @foreach ($m_ks[$g[0]->id] as $mdl) {{$mdl}}, @endforeach ],
+                                                                    label: "{{$g[0]->name}}",
+                                                                    borderColor: "{{$g['color']}}",
+                                                                    backgroundColor: "{{$g['color']}}",
+                                                                    fill: false
+                                                                },
+                                                                @endforeach
                                                             ]
                                                           },
                                                           options: {
                                                             title: {
                                                               display: true,
-                                                              text: 'Lượng du khách nghỉ ngơi theo địa điểm trong năm',
-                                                              fontSize: 20
+                                                              text: 'Số lượng khách nghỉ ngơi năm 2018',
+                                                              fontSize: 25
                                                             }
                                                           }
                                                         });
