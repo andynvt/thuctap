@@ -26,11 +26,7 @@
                 var base_url = {!! json_encode(url('/')) !!};
                 var sameplace = $('#same-place').html();
                 var divbu = $('.fade-div-bu').html();
-                var typeCarousel = $('.fade-typeCarousel').html();
-                var typeMobileCarousel = $('.fade-typeMobileCarousel').html();
-                var cnt_carousel_item = 0;
-                var cnt_group = 0;
-                var screensize = screen.width;
+                var itemimg = $('.fadeitemdtplacecarousel').html();
 
                 for ($i=0; $i<data[0].length; $i++){
 
@@ -46,107 +42,33 @@
                     }
                 }
 
-                // typeCarousel0
-
                 for($i=0; $i<data[1].length; $i++){
                     $('.div-bu').append(divbu).children('#itm'+($i-$i)).attr('id', 'itm'+ ($i+1));
-
-                    $('#itm'+($i+1)+ " #typeCarousel0").attr('id', 'typeCarousel'+ ($i+1));
-
-                    $('#itm'+($i+1)+ " #typeMobileCarousel0").attr('id', 'typeMobileCarousel'+ ($i+1));
 
                     $('#itm'+($i+1)+ ' .tenloai').html(data[1][$i][0]['ptname']);
 
                     var take6 = data[1][$i].length;
 
                     if(take6 > 6){
-                        for($j=0; $j < 5; $j++){
+                        for($j = 0; $j < 5; $j++){
                             var id_p = data[1][$i][$j]['id'];
+                            $('#itm'+($i+1)+ ' .intro-carousel .resCarousel-inner').append(itemimg).children('#itemimg'+($j-$j)).attr('id', 'itemimg'+ (id_p));
 
-                            if(screensize >= 768){
-                                if(cnt_carousel_item%3 == 0){
-                                    cnt_group+=10;
-                                    $('#typeCarousel'+($i+1)+' .carousel-inner').append('<div class="carousel-item row no-gutters carousel'+($i+cnt_group)+'"></div>');
-                                }
-
-                                $('.carousel'+($i+cnt_group)).append(typeCarousel).children('#i'+($j-$j)).attr('id', 'i'+(id_p));
-
-                                $('#i' +(id_p)+ ' .aanhdiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i' +(id_p)+ ' .aanhdiadiem img').attr('src', 'storage/image/' + data[1][$i][$j]['piname']);
-                                $('#i' +(id_p)+ ' .aanhdiadiem img').attr('alt', '' + data[1][$i][$j]['name']);
-
-                                $('#i' +(id_p)+ ' .atendiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i' +(id_p)+ ' .atendiadiem').html(data[1][$i][$j]['name']);
-                            }
-                            else{
-                                cnt_group+=10;
-                                $('#typeMobileCarousel'+($i+1)+' .carousel-inner').append('<div class="carousel-item row no-gutters carousel'+($i+cnt_group)+'m"></div>');
-
-                                $('.carousel'+($i+cnt_group)+'m').append(typeMobileCarousel).children('#i_mobile'+($j-$j)).attr('id', 'i_mobile'+(id_p));
-
-                                $('#i_mobile' +(id_p)+ ' .aanhdiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i_mobile' +(id_p)+ ' .aanhdiadiem img').attr('src', 'storage/image/' + data[1][$i][$j]['piname']);
-                                $('#i_mobile' +(id_p)+ ' .aanhdiadiem img').attr('alt', '' + data[1][$i][$j]['name']);
-
-                                $('#i_mobile' +(id_p)+ ' .atendiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i_mobile' +(id_p)+ ' .atendiadiem').html(data[1][$i][$j]['name']);
-                            }
-
-                            cnt_carousel_item++;
+                            $('#itemimg'+ (id_p) + ' img').attr('src','storage/image/' + data[1][$i][$j]['piname']);
+                            $('#itemimg'+ (id_p) + ' .linkdiadiem').attr('href',base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
+                            $('#itemimg'+ (id_p) + ' .tendiadiem').html(data[1][$i][$j]['name']);
                         }
-
-                        cnt_carousel_item = 0;
-                        cnt_groupt = 0;
                     }
-                     // screensize >= 768
-                     // i_mobile0
                     else{
-                        for($j=0; $j < data[1][$i].length; $j++){
+                        for($j = 0; $j < data[1][$i].length; $j++){
                             var id_p = data[1][$i][$j]['id'];
+                            $('#itm'+($i+1)+ ' .intro-carousel .resCarousel-inner').append(itemimg).children('#itemimg'+($j-$j)).attr('id', 'itemimg'+ (id_p));
 
-                            if(screensize >= 768){
-                                if(cnt_carousel_item%3 == 0){
-                                    cnt_group+=10;
-                                    $('#typeCarousel'+($i+1)+' .carousel-inner').append('<div class="carousel-item row no-gutters carousel'+($i+cnt_group)+'"></div>');
-                                }
-
-                                $('.carousel'+($i+cnt_group)).append(typeCarousel).children('#i'+($j-$j)).attr('id', 'i'+(id_p));
-
-                                $('#i' +(id_p)+ ' .aanhdiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i' +(id_p)+ ' .aanhdiadiem img').attr('src', 'storage/image/' + data[1][$i][$j]['piname']);
-                                $('#i' +(id_p)+ ' .aanhdiadiem img').attr('alt', '' + data[1][$i][$j]['name']);
-
-                                $('#i' +(id_p)+ ' .atendiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i' +(id_p)+ ' .atendiadiem').html(data[1][$i][$j]['name']);
-                            }
-                            else{
-                                cnt_group+=10;
-                                $('#typeMobileCarousel'+($i+1)+' .carousel-inner').append('<div class="carousel-item row no-gutters carousel'+($i+cnt_group)+'m"></div>');
-
-                                $('.carousel'+($i+cnt_group)+'m').append(typeMobileCarousel).children('#i_mobile'+($j-$j)).attr('id', 'i_mobile'+(id_p));
-
-                                $('#i_mobile' +(id_p)+ ' .aanhdiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i_mobile' +(id_p)+ ' .aanhdiadiem img').attr('src', 'storage/image/' + data[1][$i][$j]['piname']);
-                                $('#i_mobile' +(id_p)+ ' .aanhdiadiem img').attr('alt', '' + data[1][$i][$j]['name']);
-
-                                $('#i_mobile' +(id_p)+ ' .atendiadiem').attr('href', base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
-                                $('#i_mobile' +(id_p)+ ' .atendiadiem').html(data[1][$i][$j]['name']);
-                            }
-
-                            cnt_carousel_item++;
+                            $('#itemimg'+ (id_p) + ' img').attr('src','storage/image/' + data[1][$i][$j]['piname']);
+                            $('#itemimg'+ (id_p) + ' .linkdiadiem').attr('href',base_url + '/chi-tiet-dia-diem/' + data[1][$i][$j]['id']);
+                            $('#itemimg'+ (id_p) + ' .tendiadiem').html(data[1][$i][$j]['name']);
                         }
-                        cnt_carousel_item = 0;
-                        cnt_groupt = 0;
                     }
-
-                    $('#typeCarousel' +($i+1)+ ' .carousel-inner .carousel-item:first').addClass('active');
-                    $('#typeMobileCarousel' +($i+1)+ ' .carousel-inner .carousel-item:first').addClass('active');
-
-                    $('#typeCarousel' +($i+1)+ ' .carousel-control-next').attr('href', '#typeCarousel' + ($i+1));
-                    $('#typeCarousel' +($i+1)+ ' .carousel-control-prev').attr('href', '#typeCarousel' + ($i+1));
-
-                    $('#typeMobileCarousel' +($i+1)+ ' .carousel-control-next').attr('href', '#typeMobileCarousel' + ($i+1));
-                    $('#typeMobileCarousel' +($i+1)+ ' .carousel-control-prev').attr('href', '#typeMobileCarousel' + ($i+1));
                 }
             }
         });
@@ -347,46 +269,17 @@
                     </div>
                     <div class="card-body " style="padding: 20px 5px 0 5px;">
                         <div class="tab-content text-left">
-                            <div class="tab-pane active" id="info">
-
+                            <div class="tab-pane active intro-carousel" id="info">
                                 <div class="text-center my-3 content-slide-place">
-                                    <div id="typeCarousel0" class="carousel slide w-100 desktop-carousel" data-ride="carousel">
-                                        <div class="carousel-inner w-100" role="listbox">
+                                    <div class="p8">
+                                        <div class="resCarousel" data-items="1-2-3-3" data-interval="false" data-slide="1" data-animator="lazy">
+                                            <div class="resCarousel-inner">
+                                            </div>
+                                            <button class='leftRs'><</button>
+                                            <button class='rightRs'>></button>
                                         </div>
-                                        <a class="carousel-control-prev" href="#eatingCarousel" role="button"
-                                           data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#eatingCarousel" role="button"
-                                           data-slide="next"><span class="carousel-control-next-icon"
-                                                                   aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
                                     </div>
                                 </div>
-
-                                <!--mobile carousel-->
-
-                                <div class="text-center my-3">
-                                    <div id="typeMobileCarousel0" class="carousel slide w-100 mobile-carousel" data-ride="carousel">
-                                        <div class="carousel-inner w-100" role="listbox">
-                                        </div>
-                                        <a class="carousel-control-prev" href="#eatingMobileCarousel"
-                                           role="button"
-                                           data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#eatingMobileCarousel"
-                                           role="button"
-                                           data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -394,31 +287,17 @@
             </div>
         </div>
     </div>
-
-    <div class="fade-typeCarousel" style="display: none">
-        <div class="col-4 float-left" id="i0">
-            <div class="item-lq">
-                <a class="aanhdiadiem" href="#">
-                    <img src="storage/image/sam-quan-an-han-quoc.jpg" alt="Quán ăn Hàn Quốc Sam"
-                            class="img-raised rounded img-fluid">
-                </a>
-                <h4 class="h4-ct">
-                    <a class="atendiadiem" href="#">Quán ăn Hàn Quốc Sam</a>
-                </h4>
-            </div>
-        </div>
-    </div>
-
-    <div class="fade-typeMobileCarousel" style="display: none">
-        <div class="col-12 float-left" id="i_mobile0">
-            <div class="item-lq">
-                <a class="aanhdiadiem" href="#">
-                    <img src="storage/image/sam-quan-an-han-quoc.jpg" alt="Quán ăn Hàn Quốc Sam"
-                            class="img-raised rounded img-fluid"></a>
-                <h4 class="h4-ct">
-                    <a class="atendiadiem" href="#">Quán ăn Hàn Quốc Sam</a>
-                </h4>
-            </div>
+    <div class="fadeitemdtplacecarousel" style="display: none">
+        <div class="item" id="itemimg0">
+            <a class="linkdiadiem" href="#">
+                <div class="tile">
+                    <div>
+                        <img src="storage/image/sam-quan-an-han-quoc.jpg" alt="Quán ăn Hàn Quốc Sam"
+                                    class="img-raised rounded img-fluid">
+                    </div>
+                    <h4 class="tendiadiem h4-ct">Quán ăn Hàn Quốc Sam</h4>
+                </div>
+            </a>
         </div>
     </div>
 
