@@ -46,7 +46,7 @@
                                         <td class="collapsing">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" type="checkbox" name="placeid[]" value="{{ $p->id }}">
+                                                    <input class="form-check-input" type="checkbox" name="place-id[]" value="{{ $p->id }}">
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
                                                     </span>
@@ -139,16 +139,24 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="full_des">Mô tả ngắn gọn</label>
-                                <textarea rows="5" class="form-control" id="short_des" name="short_des"
+                                <textarea rows="5" class="form-control" id="short_des-{{$pl->id}}" name="short_des"
                                           disabled>{!!$pl->short_des!!}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="short_des">Mô tả đầy đủ</label>
-                                <textarea rows="5" class="form-control" id="full_des" name="full_des"
+                                <textarea rows="5" class="form-control" id="full_des-{{$pl->id}}" name="full_des"
                                           disabled>{!!$pl->full_des!!}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="images" disabled>Hình ảnh: </label>
+                                <label for="images">Hình ảnh: </label>
+                                <br>
+                                <div class="gallery">
+                                    @foreach($img as $i)
+                                        @if($i->id_place == $pl->id)
+                                            <img src="../storage/image/{{$i->name}}">
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
