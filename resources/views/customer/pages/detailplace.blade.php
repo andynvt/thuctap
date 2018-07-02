@@ -272,7 +272,7 @@
                             <div class="tab-pane active intro-carousel" id="info">
                                 <div class="text-center my-3 content-slide-place">
                                     <div class="p8">
-                                        <div class="resCarousel" data-items="1-2-3-3" data-interval="false" data-slide="1" data-animator="lazy">
+                                        <div class="resCarousel" data-items="1-2-3-4" data-interval="false" data-slide="1" data-animator="lazy">
                                             <div class="resCarousel-inner">
                                             </div>
                                             <button class='leftRs'><</button>
