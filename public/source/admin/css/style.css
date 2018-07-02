@@ -1,7 +1,8 @@
 .table-responsive{
-	overflow-x: auto !important;
-	overflow-y: auto !important;
-	height: 500px !important;
+	/*overflow-x: auto !important;*/
+	/*overflow-y: auto !important;*/
+	/*height: 500px !important;*/
+	overflow: hidden!important;
 }
 
 .hover-table tbody tr:hover {

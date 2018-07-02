@@ -173,10 +173,69 @@ p.h4-top{
         display: none!important;
     }
 }
-
-@media (max-width: 424px) {
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+@media (max-width: 424px ) and (min-width: 375px) {
     .main-raised {
         margin: 0
+    }
+    #liModule{
+        display: none;
+    }
+    #title-menu{
+        font-size: 10px;
+    }
+    #li-view{
+        display: none;
+    }
+    .title-bg{
+        font-size: 15px !important;
+    }
+    .h5-bg{
+        font-size: 10px!important;
+    }
+
+    .title-tab-place {
+        font-size: 15px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    .title-top {
+        padding: 4px 5px !important;
+    }
+    .title-top h3 {
+        font-size: 15px !important;
+    }
+    .content-top {
+        padding: 0;
+    }
+    .col-card-top {
+        margin-left: 15px !important
+    }
+    #liList{
+        display: none!important;
+    }
+    .img-div{
+        object-fit: cover;
+        height: 150px;
+    }
+    .img-top{
+        object-fit: cover;
+        height: 100px;
+    }
+    .p-place{
+        font-size: 10px!important;
+    }
+}
+@media (max-width: 320px) {
+    .main-raised {
+        margin: 0
+    }
+    .scroll-city{
+        overflow-y:scroll;
     }
     #liModule{
         display: none;

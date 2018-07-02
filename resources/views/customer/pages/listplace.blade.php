@@ -34,7 +34,7 @@
                 <div class="row" style=" padding-top:20px; margin-left: 0; margin-right: 15px;">
                     <div class="col-md-8 col-lg-8 col-xl-8 col-sm-12 col-list-place">
                         <div class="card card-nav-tabs">
-                            <div class="card-header menu_card card-header-primary title-top-main" id="" style="height: 67px;">
+                            <div class="card-header menu_card card-header-primary title-top-main">
                                 <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
                                 <div class="nav-tabs-navigation">
                                     <div class="nav-tabs-wrapper">
@@ -193,9 +193,9 @@
                             <!-- End Tabs with icons on Card -->
                         </div>
                     </div>
-                        <div class="col-md-4 col-lg-4 col-xl-4 col-sm-12 card col-card-top">
+                    <div class="col-md-4 col-lg-4 col-xl-4 col-sm-12 card col-card-top" style="min-height: 1800px">
                             <div class="card-header card-header-primary title-top-main title-top text-center"
-                                 style=" height: 67px;">
+                                 >
                                 <h3 style="text-transform: uppercase;margin-top: 10px">TOP DU LỊCH HẤP DẪN</h3>
                             </div>
                             <br>
@@ -222,9 +222,9 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                </div><!--End main-->
-            </div> <!-- End list place -->
+                </div>
+            </div><!--End main-->
+        </div> <!-- End list place -->
     </div>
 @endsection
 

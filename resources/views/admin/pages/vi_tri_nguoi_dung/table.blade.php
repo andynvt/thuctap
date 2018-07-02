@@ -32,7 +32,7 @@
                 </td>
                 <td class="text-center">{{$stt + 1}}</td>
                 <td class="text-center">{{$ul -> id}}</td>
-                <td>{{($ul -> created_at).('-').($ul -> updated_at)}}</td>
+                <td>{{($ul -> created_at)}}</td>
                 <td class="td-actions text-center">
                     <a class="btn btn-info btn-fab btn-icon btn-round a-white"
                        data-toggle="modal" data-target="#view-location-{{$ul ->id}}">

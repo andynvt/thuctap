@@ -41,7 +41,7 @@
                             {{$ct -> fstar}}
                         @endcomponent
                     </td>
-                    <td class="text-center">{{$ct ->fcreated_at . '-' . $ct ->fupdated_at}}</td>
+                    <td class="text-center">{{$ct ->fcreated_at}}</td>
                     <td class="td-actions text-right">
                         <button class="btn btn-danger btn-fab btn-icon btn-round" type="button"
                                 data-toggle="modal" data-target="#modal-delete-{{$ct ->fid}}">
