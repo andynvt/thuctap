@@ -97,7 +97,6 @@ class AdminController extends Controller
             $g['color'] = random_color();
         }
 
-        //cách 2
         $m_dl = array();
         $m_au = array();
         $m_ks = array();
@@ -132,7 +131,6 @@ class AdminController extends Controller
                 }
             }
         }
-//        dd($gr_dl);
         return view('admin.pages.statistics', compact('month_dl','month_au','month_ks','gr_dl','gr_au','gr_ks','m_dl','m_au','m_ks'));
     }
 
@@ -145,14 +143,15 @@ class AdminController extends Controller
             ->select('places.*', 'place_image.name as piname', 'place_type.name as ptname', 'districts.name as dname', 'cities.name as cname','place_location.coor')
             ->groupBy('places.id')
             ->get();
-        return view('admin.pages.place.place', compact('place'));
+        $img = Place_Image::all();
+//        dd($place);
+        return view('admin.pages.place.place', compact('place','img'));
     }
 
     public function AdminXoaDiadiem($id){
         $name = Place::where('id', $id)->value('name');
 
         $idimg = Place_Image::where('id_place',$id)->get();
-//        dd($idimg);
         foreach ($idimg as $i){
             Place_Image::find($i->id)->delete();
             Storage::delete('app/public/image/'.$i->name);
