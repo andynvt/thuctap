@@ -9,11 +9,16 @@
   // locate you.
   	var map, infoWindow;
   	function initMap() {
+  		var directionsDisplay = new google.maps.DirectionsRenderer;
+  		var directionsService = new google.maps.DirectionsService;
+
 	    map = new google.maps.Map(document.getElementById('map-intro'), {
 	      center: {lat: -34.397, lng: 150.644},
 	      zoom: 15
 	    });
 	    infoWindow = new google.maps.InfoWindow;
+
+	    directionsDisplay.setMap(map);
 
 	    // Try HTML5 geolocation.
 	    if (navigator.geolocation) {
@@ -134,19 +139,37 @@
 
 					    var marker, i;
 
-					    for (i = 0; i < locations.length; i++) {  
+					    var currentposition = la+", "+long;
+
+					    for (i = 0; i < locations.length; i++) {
 					      	marker = new google.maps.Marker({
 					        	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
 					        	map: map
 					      	});
 
 					      	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					      		var directionposition = locations[i][1]+", "+locations[i][2];
 					        	return function() {
 					          		infowindow1.setContent(locations[i][0]);
 					          		infowindow1.open(map, marker);
+					          		calculateAndDisplayRoute(directionsService, directionsDisplay, currentposition, directionposition);
 					        	}
 					      	})(marker, i));
 					    }
+
+					    function calculateAndDisplayRoute(directionsService, directionsDisplay, start, end) {
+					        directionsService.route({
+					          origin: start,
+					          destination: end,
+					          travelMode: 'DRIVING'
+					        }, function(response, status) {
+					          if (status === 'OK') {
+					            directionsDisplay.setDirections(response);
+					          } else {
+					            window.alert('Directions request failed due to ' + status);
+					          }
+					        });
+			      		}
 					    // End Hiển thị địa điểm gợi ý lên map
 					    
 			        	$('.carousel-item:first').addClass('active');
