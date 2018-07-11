@@ -1,205 +1,4 @@
 @extends('customer.master')
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script>
-
-{{-- script xác định vị trí hiện tại --}}
-<script> 
-  // Note: This example requires that you consent to location sharing when
-  // prompted by your browser. If you see the error "The Geolocation service
-  // failed.", it means you probably did not give permission for the browser to
-  // locate you.
-  	var map, infoWindow;
-  	function initMap() {
-  		var directionsDisplay = new google.maps.DirectionsRenderer;
-  		var directionsService = new google.maps.DirectionsService;
-
-	    map = new google.maps.Map(document.getElementById('map-intro'), {
-	      center: {lat: -34.397, lng: 150.644},
-	      zoom: 15
-	    });
-	    infoWindow = new google.maps.InfoWindow;
-
-	    directionsDisplay.setMap(map);
-
-	    // Try HTML5 geolocation.
-	    if (navigator.geolocation) {
-	      	navigator.geolocation.getCurrentPosition(function(position) {
-	        	var pos = {
-		          	lat: position.coords.latitude,
-		          	lng: position.coords.longitude
-		        };
-
-	        	infoWindow.setPosition(pos);
-	        	infoWindow.setContent('Bạn đang ở đây.');
-	        	infoWindow.open(map);
-	        	map.setCenter(pos);
-
-	      		var la = pos.lat;
-	      		var long = pos.lng;
-
-	      		$.ajax({
-			        type: "GET",
-			        url: "cal-dis",
-			        dataType: "json",
-			        data: {lati: la, longi: long},
-			        success: function(data){
-			        	console.log(data);
-
-		        		var base_url = {!! json_encode(url('/')) !!}
-
-			        	var introhtml = $('.fadeitem').html();
-
-			        	var time = "";
-			        	
-			        	// Đổi thời gian
-			        	function secondsToHms(d) {
-						    d = Number(d);
-						    var h = Math.floor(d / 3600);
-						    var m = Math.floor(d % 3600 / 60);
-						    var s = Math.floor(d % 3600 % 60);
-
-						    var hDisplay = h > 0 ? h + (h == 1 ? " giờ, " : " giờ, ") : "";
-						    var mDisplay = m > 0 ? m + (m == 1 ? " phút, " : " phút, ") : "";
-						    var sDisplay = s > 0 ? s + (s == 1 ? " giây" : " giây") : "";
-						    return hDisplay + mDisplay + sDisplay; 
-						}
-						// End Đổi thời gian
-
-						// Đổ dữ liệu địa điểm được gợi ý
-			        	for($i = 0; $i < data[0].length; $i++){
-
-			        		time = secondsToHms(data[0][$i]['time']);
-
-			        		$('.viewplace').append(introhtml).children('#item'+($i-$i)).attr('id', 'item'+ ($i+1));
-
-			        		$('#item' +($i+1)+ ' .anhdiadiem').attr('src','storage/image/'+data[0][$i]['pimage']);
-			        		$('#item' +($i+1)+ ' .tendiadiem').html(data[0][$i]['pname']);
-			        		$('#item' +($i+1)+ ' .diachi').html(data[0][$i]['address']);
-			        		$('#item' +($i+1)+ ' .khoangcach').html( (data[0][$i]['dist']/1000).toFixed(2) + " km");
-			        		$('#item' +($i+1)+ ' .thoigian').html(time);
-			        		$('#item' +($i+1)+ ' .danhgia').html( (data[0][$i]['avgstar']).toFixed(2) + " / 5.00 " + "(" + data[0][$i]['cntfbp'] + " đánh giá)");
-			        		$('#item' +($i+1)+ ' .tenloai').html(data[0][$i]['ptname']);
-			        		$('#item' +($i+1)+ ' .mota').html(data[0][$i]['short_des']);
-
-			        		$('#item' +($i+1)+ ' .placelink').attr('href', base_url + '/chi-tiet-dia-diem/'+ data[0][$i]['id']);
-
-			        		$('#item' +($i+1)+ ' .id-place').attr('value', data[0][$i]['id']);
-			        	}
-			        	// End Đổ dữ liệu địa điểm được gợi ý
-
-			        	// Đổ hình ảnh vào modal
-			        	$('.open-img').on('click', function(){
-		        			var id_img = $(this).prev('.id-place').val();
-		        			var itemimg = $('.fadeitemintrocarousel').html();
-
-		        			$(this).attr('data-target', '#modalimg'+id_img);
-		        			$('.modalimage').attr('id', 'modalimg'+id_img);
-
-		        			$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').empty();
-
-		        			for($i = 0; $i < data[1].length; $i++){
-		        				if(data[1][$i][0]['id'] == id_img){
-		        					$('#modalimg'+id_img+ ' .modal-title').html('Hình ảnh về '+ data[0][$i]['pname']);
-		        					for($j = 0; $j < data[1][$i].length; $j++){
-			        					$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').append(itemimg).children('#itemimg'+($j-$j)).attr('id', 'itemimg'+ ($j+1));
-			        					$('#itemimg'+ ($j+1) + ' img').attr('src','storage/image/' + data[1][$i][$j]['pimg']);
-			        				}
-		        				}
-		        			}
-		        		});
-		        		// End Đổ hình ảnh vào modal
-
-		        		// Nút hiện ẩn khung thông tin
-			        	$(function () {
-						    var i = 1;
-						    $('.home-minimize-btn').on('click', function(){
-						      if(i == 1){
-						        $(".hide-place-info-box").css('transform', 'translateY(150%)');
-						        $(".home-minimize-btn i").css('transform', 'rotate(-180deg)');
-						        i = 0;
-						      }
-						      else {
-						        $(".hide-place-info-box").css('transform', 'translateY(0)');
-						        $(".home-minimize-btn i").css('transform', 'rotate(0deg)');
-						        i = 1;
-						      }
-						    });
-						});
-						// End Nút hiện ẩn khung thông tin
-
-						// Hiển thị địa điểm gợi ý lên map
-						var locations = new Array();
-
-			        	for($i = 0; $i < data[0].length; $i++){
-			        		var res = data[0][$i]['pcoord'].split(", ");
-			        		var name = data[0][$i]['pname'];
-						  	locations.push([name, res[0], res[1]]);
-						}
-
-					    var infowindow1 = new google.maps.InfoWindow();
-
-					    var marker, i;
-
-					    var currentposition = la+", "+long;
-
-					    for (i = 0; i < locations.length; i++) {
-					      	marker = new google.maps.Marker({
-					        	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-					        	map: map
-					      	});
-
-					      	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-					      		var directionposition = locations[i][1]+", "+locations[i][2];
-					        	return function() {
-					          		infowindow1.setContent(locations[i][0]);
-					          		infowindow1.open(map, marker);
-					          		calculateAndDisplayRoute(directionsService, directionsDisplay, currentposition, directionposition);
-					        	}
-					      	})(marker, i));
-					    }
-
-					    function calculateAndDisplayRoute(directionsService, directionsDisplay, start, end) {
-					        directionsService.route({
-					          origin: start,
-					          destination: end,
-					          travelMode: 'DRIVING'
-					        }, function(response, status) {
-					          if (status === 'OK') {
-					            directionsDisplay.setDirections(response);
-					          } else {
-					            window.alert('Directions request failed due to ' + status);
-					          }
-					        });
-			      		}
-					    // End Hiển thị địa điểm gợi ý lên map
-					    
-			        	$('.carousel-item:first').addClass('active');
-			        }
-			    });
-	      	}, 
-	      	function() {
-	        	handleLocationError(true, infoWindow, map.getCenter());
-	      	});
-
-	    } else {
-	      	// Browser doesn't support Geolocation
-	      	handleLocationError(false, infoWindow, map.getCenter());
-	    }
-  	}
-
-  	// alert(la);
-
-  	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-	    infoWindow.setPosition(pos);
-	    infoWindow.setContent(browserHasGeolocation ?
-	                          // 'Error: The Geolocation service failed.' :
-	                          	'Error: Xác định vị trí thất bại.' :
-	                          // 'Error: Your browser doesn\'t support geolocation.');
-	    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
-	    infoWindow.open(map);
-  	}
-
-</script>
-{{-- end script xác định vị trí hiện tại --}}
 
 @section('content')
 <script src="source/customer/js/trangchu.js"></script>
@@ -493,4 +292,206 @@
     });
 </script>
 {{-- end intro-carousel --}}
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEaPFYsmK4vcKMFPuyPbt2IVtEpq3WNPI&callback=initMap"></script>
+
+{{-- script xác định vị trí hiện tại --}}
+<script> 
+  // Note: This example requires that you consent to location sharing when
+  // prompted by your browser. If you see the error "The Geolocation service
+  // failed.", it means you probably did not give permission for the browser to
+  // locate you.
+  	var map, infoWindow;
+  	function initMap() {
+  		var directionsDisplay = new google.maps.DirectionsRenderer;
+  		var directionsService = new google.maps.DirectionsService;
+
+	    map = new google.maps.Map(document.getElementById('map-intro'), {
+	      center: {lat: -34.397, lng: 150.644},
+	      zoom: 15
+	    });
+	    infoWindow = new google.maps.InfoWindow;
+
+	    directionsDisplay.setMap(map);
+
+	    // Try HTML5 geolocation.
+	    if (navigator.geolocation) {
+	      	navigator.geolocation.getCurrentPosition(function(position) {
+	        	var pos = {
+		          	lat: position.coords.latitude,
+		          	lng: position.coords.longitude
+		        };
+
+	        	infoWindow.setPosition(pos);
+	        	infoWindow.setContent('Bạn đang ở đây.');
+	        	infoWindow.open(map);
+	        	map.setCenter(pos);
+
+	      		var la = pos.lat;
+	      		var long = pos.lng;
+
+	      		$.ajax({
+			        type: "GET",
+			        url: "cal-dis",
+			        dataType: "json",
+			        data: {lati: la, longi: long},
+			        success: function(data){
+			        	console.log(data);
+
+		        		var base_url = {!! json_encode(url('/')) !!}
+
+			        	var introhtml = $('.fadeitem').html();
+
+			        	var time = "";
+			        	
+			        	// Đổi thời gian
+			        	function secondsToHms(d) {
+						    d = Number(d);
+						    var h = Math.floor(d / 3600);
+						    var m = Math.floor(d % 3600 / 60);
+						    var s = Math.floor(d % 3600 % 60);
+
+						    var hDisplay = h > 0 ? h + (h == 1 ? " giờ, " : " giờ, ") : "";
+						    var mDisplay = m > 0 ? m + (m == 1 ? " phút, " : " phút, ") : "";
+						    var sDisplay = s > 0 ? s + (s == 1 ? " giây" : " giây") : "";
+						    return hDisplay + mDisplay + sDisplay; 
+						}
+						// End Đổi thời gian
+
+						// Đổ dữ liệu địa điểm được gợi ý
+			        	for($i = 0; $i < data[0].length; $i++){
+
+			        		time = secondsToHms(data[0][$i]['time']);
+
+			        		$('.viewplace').append(introhtml).children('#item'+($i-$i)).attr('id', 'item'+ ($i+1));
+
+			        		$('#item' +($i+1)+ ' .anhdiadiem').attr('src','storage/image/'+data[0][$i]['pimage']);
+			        		$('#item' +($i+1)+ ' .tendiadiem').html(data[0][$i]['pname']);
+			        		$('#item' +($i+1)+ ' .diachi').html(data[0][$i]['address']);
+			        		$('#item' +($i+1)+ ' .khoangcach').html( (data[0][$i]['dist']/1000).toFixed(2) + " km");
+			        		$('#item' +($i+1)+ ' .thoigian').html(time);
+			        		$('#item' +($i+1)+ ' .danhgia').html( (data[0][$i]['avgstar']).toFixed(2) + " / 5.00 " + "(" + data[0][$i]['cntfbp'] + " đánh giá)");
+			        		$('#item' +($i+1)+ ' .tenloai').html(data[0][$i]['ptname']);
+			        		$('#item' +($i+1)+ ' .mota').html(data[0][$i]['short_des']);
+
+			        		$('#item' +($i+1)+ ' .placelink').attr('href', base_url + '/chi-tiet-dia-diem/'+ data[0][$i]['id']);
+
+			        		$('#item' +($i+1)+ ' .id-place').attr('value', data[0][$i]['id']);
+			        	}
+			        	// End Đổ dữ liệu địa điểm được gợi ý
+
+			        	// Đổ hình ảnh vào modal
+			        	$('.open-img').on('click', function(){
+		        			var id_img = $(this).prev('.id-place').val();
+		        			var itemimg = $('.fadeitemintrocarousel').html();
+
+		        			$(this).attr('data-target', '#modalimg'+id_img);
+		        			$('.modalimage').attr('id', 'modalimg'+id_img);
+
+		        			$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').empty();
+
+		        			for($i = 0; $i < data[1].length; $i++){
+		        				if(data[1][$i][0]['id'] == id_img){
+		        					$('#modalimg'+id_img+ ' .modal-title').html('Hình ảnh về '+ data[0][$i]['pname']);
+		        					for($j = 0; $j < data[1][$i].length; $j++){
+			        					$('#modalimg'+id_img+ ' .intro-carousel .resCarousel-inner').append(itemimg).children('#itemimg'+($j-$j)).attr('id', 'itemimg'+ ($j+1));
+			        					$('#itemimg'+ ($j+1) + ' img').attr('src','storage/image/' + data[1][$i][$j]['pimg']);
+			        				}
+		        				}
+		        			}
+		        		});
+		        		// End Đổ hình ảnh vào modal
+
+		        		// Nút hiện ẩn khung thông tin
+			        	$(function () {
+						    var i = 1;
+						    $('.home-minimize-btn').on('click', function(){
+						      if(i == 1){
+						        $(".hide-place-info-box").css('transform', 'translateY(150%)');
+						        $(".home-minimize-btn i").css('transform', 'rotate(-180deg)');
+						        i = 0;
+						      }
+						      else {
+						        $(".hide-place-info-box").css('transform', 'translateY(0)');
+						        $(".home-minimize-btn i").css('transform', 'rotate(0deg)');
+						        i = 1;
+						      }
+						    });
+						});
+						// End Nút hiện ẩn khung thông tin
+
+						// Hiển thị địa điểm gợi ý lên map
+						var locations = new Array();
+
+			        	for($i = 0; $i < data[0].length; $i++){
+			        		var res = data[0][$i]['pcoord'].split(", ");
+			        		var name = data[0][$i]['pname'];
+						  	locations.push([name, res[0], res[1]]);
+						}
+
+					    var infowindow1 = new google.maps.InfoWindow();
+
+					    var marker, i;
+
+					    var currentposition = la+", "+long;
+
+					    for (i = 0; i < locations.length; i++) {
+					      	marker = new google.maps.Marker({
+					        	position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+					        	map: map
+					      	});
+
+					      	google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					      		var directionposition = locations[i][1]+", "+locations[i][2];
+					        	return function() {
+					          		infowindow1.setContent(locations[i][0]);
+					          		infowindow1.open(map, marker);
+					          		calculateAndDisplayRoute(directionsService, directionsDisplay, currentposition, directionposition);
+					        	}
+					      	})(marker, i));
+					    }
+
+					    function calculateAndDisplayRoute(directionsService, directionsDisplay, start, end) {
+					        directionsService.route({
+					          origin: start,
+					          destination: end,
+					          travelMode: 'DRIVING'
+					        }, function(response, status) {
+					          if (status === 'OK') {
+					            directionsDisplay.setDirections(response);
+					          } else {
+					            window.alert('Directions request failed due to ' + status);
+					          }
+					        });
+			      		}
+					    // End Hiển thị địa điểm gợi ý lên map
+					    
+			        	$('.carousel-item:first').addClass('active');
+			        }
+			    });
+	      	}, 
+	      	function() {
+	        	handleLocationError(true, infoWindow, map.getCenter());
+	      	});
+
+	    } else {
+	      	// Browser doesn't support Geolocation
+	      	handleLocationError(false, infoWindow, map.getCenter());
+	    }
+  	}
+
+  	// alert(la);
+
+  	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	    infoWindow.setPosition(pos);
+	    infoWindow.setContent(browserHasGeolocation ?
+	                          // 'Error: The Geolocation service failed.' :
+	                          	'Error: Xác định vị trí thất bại.' :
+	                          // 'Error: Your browser doesn\'t support geolocation.');
+	    						'Error: Trình duyệt của bạn không hỗ trợ xác định vị trí.');
+	    infoWindow.open(map);
+  	}
+
+</script>
+{{-- end script xác định vị trí hiện tại --}}
 @endsection
